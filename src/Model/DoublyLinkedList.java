@@ -18,7 +18,7 @@ public class DoublyLinkedList
 	}
 	
 	Node head, tail = null;
-	int size;
+	int size=0;
 	
 	public void insertAtFirst(int data)
 	{
@@ -196,5 +196,15 @@ public class DoublyLinkedList
 			}
 			current=current.next;
 		}
+	}
+	
+	public int getSize()
+	{
+		return size;
+	}
+	
+	public void setSize(int size)
+	{
+		this.size=size;
 	}
 }
