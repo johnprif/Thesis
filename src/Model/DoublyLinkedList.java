@@ -145,7 +145,7 @@ public class DoublyLinkedList
 		}
 	}
 
-	private void deleteLastNode() 
+	public void deleteLastNode() 
 	{
 		Node newNode;
 		if(tail==null)

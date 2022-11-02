@@ -1,5 +1,7 @@
 package View;
 
+import Model.DoublyLinkedList;
+import Model.DoublyLinkedListTester;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -20,6 +22,8 @@ public class HelloFX extends Application
         
 //        stage.setScene(scene);
         stage.show();
+        
+//        DoublyLinkedListTester tester = new DoublyLinkedListTester();
     }
 
     public static void main(String[] args) {
