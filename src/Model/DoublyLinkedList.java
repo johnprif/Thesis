@@ -165,4 +165,16 @@ public class DoublyLinkedList
 		}
 		System.out.println("");
 	}
+	
+	public void displayLastToFirst()
+	{
+		Node current=tail;
+		System.out.println("The doubly linked list is --> ");
+		while(current!=null)
+		{
+			System.out.println(" "+current.data);
+			current=current.before;
+		}
+		System.out.println(" ");
+	}
 }
