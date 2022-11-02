@@ -33,7 +33,7 @@ public class DoublyLinkedList
 	public void insertAtFirst(int data)
 	{
 		Node newNode = new Node(data);
-		//For the first element, head and tail both will poit to it
+		//For the first element, head and tail both will point to it
 		if(head == null)
 		{
 			tail = newNode;
