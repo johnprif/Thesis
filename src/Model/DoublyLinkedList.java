@@ -153,4 +153,16 @@ public class DoublyLinkedList
 		tail=tail.before;
 		size--;
 	}
+	
+	public void displayFirstToLast()
+	{
+		Node current=head;
+		System.out.println("The doubly linked list is --> ");
+		while(current!=null)
+		{
+			System.out.println(" "+current.data);
+			current=current.next;
+		}
+		System.out.println("");
+	}
 }
