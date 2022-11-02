@@ -86,4 +86,71 @@ public class DoublyLinkedList
 		tail=newNode;
 		size++;
 	}
+	
+	public void deleteFirstNode()
+	{
+		Node newNode;
+		if(head==null)
+		{
+			System.out.println("List is empty");
+		}
+		newNode = head;
+		if(head.next==null)
+		{
+			tail=null;
+		}else
+		{
+			head.next.before=null;
+		}
+		head=head.next;
+		size--;		
+	}
+	
+	public void deleteAtIndex(int index)
+	{
+		Node current;
+		if(index+1>=0 && index+1<=size)
+		{
+			current=head; 
+			
+			if(index==0) //remove at the start
+			{
+				deleteFirstNode();
+			}else if(index==size-1) //remove at last
+			{
+				deleteLastNode();
+			}else
+			{
+				for(int i=0; i<index && current.next!=null; i++)
+				{
+					current=current.next;
+				}
+				current.before.next=current.next;
+				current.next.before=current.before;
+				size--;
+			}			
+		}else
+		{
+			System.out.println("Index "+index+" not valid for linked list of size "+size);
+		}
+	}
+
+	private void deleteLastNode() 
+	{
+		Node newNode;
+		if(tail==null)
+		{
+			throw new RuntimeException("List is empty");
+		}
+		newNode=tail;
+		if(head.next==null)
+		{
+			head=null;
+		}else
+		{
+			tail.before.next=null;
+		}
+		tail=tail.before;
+		size--;
+	}
 }
