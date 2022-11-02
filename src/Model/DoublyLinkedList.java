@@ -177,4 +177,24 @@ public class DoublyLinkedList
 		}
 		System.out.println(" ");
 	}
+	
+	public void searchNode(int data)
+	{
+		Node current=head;
+		if(head==null)
+		{
+			System.out.println("Doubly linked list is empty");
+			return;
+		}
+		System.out.println("Search node with data "+data+" in doubly linked list");
+		while(current!=null)
+		{
+			if(current.data==data)
+			{
+				System.out.println("node with data "+data+" found");
+				break;
+			}
+			current=current.next;
+		}
+	}
 }
