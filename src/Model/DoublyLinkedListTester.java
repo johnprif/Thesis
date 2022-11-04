@@ -1,8 +1,12 @@
 package Model;
 
+import java.io.IOException;
+
+import com.opencsv.exceptions.CsvException;
+
 public class DoublyLinkedListTester 
 {
-	public DoublyLinkedListTester()
+	public DoublyLinkedListTester() throws IOException, CsvException
 	{
 		DoublyLinkedList list = new DoublyLinkedList();
 		list.insertAtFirst(1);
@@ -43,5 +47,6 @@ public class DoublyLinkedListTester
 
 		list.searchNode(5);
 		list.displayFirstToLast();
+		
 	}
 }
