@@ -3,7 +3,6 @@
 
 package Model;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ public class CSVLoader
 {
 	private String csvPath="test.csv";
 	private List<String[]> csvData;
-	FileReader filereader;
 	
 	public CSVLoader(String CSVpath) throws IOException, CsvException
 	{
@@ -44,6 +42,25 @@ public class CSVLoader
             }
             System.out.println();
         }
+	}
+	
+	public ArrayList<Double[]> convertValues()
+	{
+		ArrayList<Double[]> doubleList=new ArrayList<Double[]>();
+		Double[] temp = new Double[2];
+		int i=0;
+		for (String[] row : csvData) {
+			for (String cell : row) {
+				temp[i]=Double.parseDouble(cell);
+                System.out.print(cell + "\t");
+                i++;
+            }
+			i=0;
+            doubleList.add(temp);
+            System.out.print(temp + "\t");
+        }
+		
+		return doubleList;
 	}
 	
 	public List<String[]> getValues()

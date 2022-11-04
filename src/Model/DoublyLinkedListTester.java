@@ -46,7 +46,6 @@ public class DoublyLinkedListTester
 		list.displayFirstToLast();
 
 		list.searchNode(5);
-		list.displayFirstToLast();
-		
+		list.displayFirstToLast();		
 	}
 }
