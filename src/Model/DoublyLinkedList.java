@@ -19,7 +19,7 @@ public class DoublyLinkedList
 	
 	Node head, tail = null;
 	int size=0;
-	
+		
 	public int getSize()
 	{
 		return size;
@@ -30,7 +30,7 @@ public class DoublyLinkedList
 		this.size=size;
 	}
 	
-	public void insertAtFirst(int data)
+	public boolean insertAtFirst(int data)
 	{
 		Node newNode = new Node(data);
 		//For the first element, head and tail both will point to it
@@ -46,9 +46,11 @@ public class DoublyLinkedList
 		head = newNode;
 		
 		size++;
+		
+		return true;
 	}
 	
-	public void insertAtIndex(int data, int index)
+	public boolean insertAtIndex(int data, int index)
 	{			
 		if(index>=0 && index<=size)
 		{
@@ -74,14 +76,16 @@ public class DoublyLinkedList
 				current.before=newNode;
 				
 				size++;
+				return true;
 			}
 		}else
 		{
 			System.out.println("Index "+index+" not valid for linked list of size "+size);
 		}
+		return false;
 	}
 	
-	public void insertAtLast(int data)
+	public boolean insertAtLast(int data)
 	{
 		Node newNode = new Node(data);
 		
@@ -95,9 +99,11 @@ public class DoublyLinkedList
 		}
 		tail=newNode;
 		size++;
+		
+		return true;
 	}
 	
-	public void deleteFirstNode()
+	public boolean deleteFirstNode()
 	{
 		Node newNode;
 		if(head==null)
@@ -114,9 +120,10 @@ public class DoublyLinkedList
 		}
 		head=head.next;
 		size--;		
+		return true;
 	}
 	
-	public void deleteAtIndex(int index)
+	public boolean deleteAtIndex(int index)
 	{
 		Node current;
 		if(index+1>=0 && index+1<=size)
@@ -138,14 +145,16 @@ public class DoublyLinkedList
 				current.before.next=current.next;
 				current.next.before=current.before;
 				size--;
+				return true;
 			}			
 		}else
 		{
 			System.out.println("Index "+index+" not valid for linked list of size "+size);
 		}
+		return false;
 	}
 
-	public void deleteLastNode() 
+	public boolean deleteLastNode() 
 	{
 		Node newNode;
 		if(tail==null)
@@ -162,6 +171,7 @@ public class DoublyLinkedList
 		}
 		tail=tail.before;
 		size--;
+		return true;
 	}
 	
 	public void displayFirstToLast()
@@ -188,13 +198,13 @@ public class DoublyLinkedList
 		System.out.println(" ");
 	}
 	
-	public void searchNode(int data)
+	public boolean searchNode(int data)
 	{
 		Node current=head;
 		if(head==null)
 		{
 			System.out.println("Doubly linked list is empty");
-			return;
+			return false;
 		}
 		System.out.println("Search node with data "+data+" in doubly linked list");
 		while(current!=null)
@@ -202,9 +212,11 @@ public class DoublyLinkedList
 			if(current.data==data)
 			{
 				System.out.println("node with data "+data+" found");
-				break;
+				return true;
+//				break;
 			}
 			current=current.next;
 		}
+		return false;
 	}
 }

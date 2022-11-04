@@ -16,6 +16,7 @@ module Java_Paper
 	requires java.desktop;
 	requires java.xml;
 	requires com.opencsv;
+	requires org.junit.jupiter.api;
 //	requires com.healthmarketscience.jackcess;
 	
 	opens View to javafx.graphics, javafx.fxml;

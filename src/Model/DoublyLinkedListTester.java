@@ -47,9 +47,6 @@ public class DoublyLinkedListTester
 
 		list.searchNode(5);
 		list.displayFirstToLast();
-		
-		CSVLoader myCSVLoader = new CSVLoader("test.csv");
-		myCSVLoader.readValues();
-		myCSVLoader.convertValues();
+
 	}
 }
