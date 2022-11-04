@@ -7,11 +7,11 @@ public class DoublyLinkedList
 {
 	class Node
 	{
-		int data;
+		double data;
 		Node before;
 		Node next;
 		
-		public Node(int data)
+		public Node(double data)
 		{
 			this.data = data;
 		}
@@ -30,7 +30,7 @@ public class DoublyLinkedList
 		this.size=size;
 	}
 	
-	public boolean insertAtFirst(int data)
+	public boolean insertAtFirst(double data)
 	{
 		Node newNode = new Node(data);
 		//For the first element, head and tail both will point to it
@@ -50,7 +50,7 @@ public class DoublyLinkedList
 		return true;
 	}
 	
-	public boolean insertAtIndex(int data, int index)
+	public boolean insertAtIndex(double data, int index)
 	{			
 		if(index>=0 && index<=size)
 		{
@@ -85,7 +85,7 @@ public class DoublyLinkedList
 		return false;
 	}
 	
-	public boolean insertAtLast(int data)
+	public boolean insertAtLast(double data)
 	{
 		Node newNode = new Node(data);
 		
@@ -198,7 +198,7 @@ public class DoublyLinkedList
 		System.out.println(" ");
 	}
 	
-	public boolean searchNode(int data)
+	public boolean searchNode(double data)
 	{
 		Node current=head;
 		if(head==null)
@@ -213,7 +213,6 @@ public class DoublyLinkedList
 			{
 				System.out.println("node with data "+data+" found");
 				return true;
-//				break;
 			}
 			current=current.next;
 		}
