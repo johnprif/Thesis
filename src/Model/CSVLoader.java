@@ -48,18 +48,15 @@ public class CSVLoader
 	{
 		ArrayList<Double[]> doubleList=new ArrayList<Double[]>();
 		Double[] temp = new Double[2];
-		int i=0;
-		for (String[] row : csvData) {
-			for (String cell : row) {
-				temp[i]=Double.parseDouble(cell);
-                System.out.print(cell + "\t");
-                i++;
-            }
-			i=0;
-            doubleList.add(temp);
-            System.out.print(temp + "\t");
-        }
-		
+
+		for(int i=0; i<csvData.size(); i++)
+		{
+			temp[0]=Double.parseDouble(csvData.get(i)[0]);
+			temp[1]=Double.parseDouble(csvData.get(i)[1]);
+			doubleList.add(temp);
+			
+			System.out.println("Σημείο -"+i+"- με x="+doubleList.get(i)[0]+" και y="+doubleList.get(i)[1]);
+		}
 		return doubleList;
 	}
 	
