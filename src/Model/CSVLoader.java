@@ -53,22 +53,17 @@ public class CSVLoader
 	
 	public void convertValuesToDouble()
 	{
-		//Convert data from String to double
-		
+		//Convert data from String to double		
 		double point[]=new double[2];
-		int i;
-		
-		for (String[] row : stringCSVData) 
+		for(int i=0; i<stringCSVData.size(); i++)
 		{
-			i=0;
-            for (String cell : row) 
-            {
-                point[i]=Double.parseDouble(cell);
-                System.out.println(point[i] + " is of type " + ((Object)point[i]).getClass().getSimpleName());
-                i++;
-            }
-            doubleCSVData.add(point);
-        }
+			for(int j=0; j<stringCSVData.get(i).length; j++)
+			{
+				point[j]=Double.parseDouble(stringCSVData.get(i)[j]);
+                System.out.println(point[j] + " is of type " + ((Object)point[j]).getClass().getSimpleName());
+			}
+			doubleCSVData.add(point);
+		}
 	}
 	
 	public List<double[]> getValues()
