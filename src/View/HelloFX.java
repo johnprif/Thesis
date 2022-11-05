@@ -6,7 +6,6 @@ import com.opencsv.exceptions.CsvException;
 
 import Model.CSVLoader;
 import Model.DoublyLinkedList;
-import Model.DoublyLinkedListTester;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -27,16 +26,6 @@ public class HelloFX extends Application
         
 //        stage.setScene(scene);
         stage.show();
-        try {
-			DoublyLinkedListTester tester = new DoublyLinkedListTester();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (CsvException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
     }
 
     public static void main(String[] args) {
