@@ -17,21 +17,21 @@ class CSVLoaderTester {
 
 	private static CSVLoader myCSVLoader;
 	private static String csvPath="test.csv";
-	private static List<String[]> csvData;
+	private static List<double[]> doubleCSVData;
 	
 	@BeforeAll
 	public static void initialize() throws IOException, CsvException
 	{
 		myCSVLoader=new CSVLoader(csvPath);
 		myCSVLoader.readValues();
-		csvData = new ArrayList<String[]>(myCSVLoader.getValues());
+		doubleCSVData = new ArrayList<double[]>(myCSVLoader.getValues());
 	}
 	
 	@Test
 	void test() 
 	{
 		myCSVLoader.printResults();
-		myCSVLoader.convertValues2();
+		myCSVLoader.convertValuesToDouble();
 //		assertEquals(csvData.size(), myCSVLoader.convertValues().size());
 //		assertEquals(csvData.size(), csvData.size());
 //		fail("Not yet implemented");

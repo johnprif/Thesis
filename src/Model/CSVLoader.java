@@ -13,16 +13,16 @@ import com.opencsv.exceptions.CsvException;
 public class CSVLoader 
 {
 	private String csvPath="test.csv";
-	private List<String[]> csvData;
+	private List<String[]> stringCSVData;
+	private List<double[]> doubleCSVData;
 	
 	public CSVLoader(String CSVpath) throws IOException, CsvException
 	{
 //		this.csvPath=csvPath;
-		csvData=new ArrayList<String[]>();
+		stringCSVData=new ArrayList<String[]>();
+		doubleCSVData=new ArrayList<double[]>();
 	}
-	
-	
-	
+		
 	public void readValues()  throws IOException, CsvException
 	{
 		// Create an object of file reader
@@ -32,56 +32,48 @@ public class CSVLoader
 		CSVReader csvReader = new CSVReaderBuilder(new FileReader(csvPath))
 									.withCSVParser(csvParser)
 									.withSkipLines(0).build();																					
-		csvData.addAll(csvReader.readAll());
+		stringCSVData.addAll(csvReader.readAll());
 	}
 	
 	public void printResults()
 	{
 		//Print data from csv
-		for (String[] row : csvData) {
-            for (String cell : row) {
-                System.out.print(cell + "\t");
-//                System.out.println(cell + " is of type " + ((Object)cell).getClass().getSimpleName());   == STRING
-            }
-            System.out.println();
-        }
-	}
-	
-	public void convertValues2()
-	{
-		//Print data from csv
-		for (String[] row : csvData) {
-            for (String cell : row) {
-                System.out.print(cell + "\t");
-                double kati=Double.parseDouble(cell);
-//                Double kati=Double.valueOf(cell);
-                System.out.println(kati + " is of type " + ((Object)kati).getClass().getSimpleName());
-            }
-            System.out.println();
-        }
-	}
-	
-//	is not working properly 
-//	TO DO
-	public ArrayList<Double[]> convertValues()
-	{
-		ArrayList<Double[]> doubleList=new ArrayList<Double[]>();
-		Double[] temp = new Double[2];
-
-		for(int i=0; i<csvData.size(); i++)
+		int i=0;
+		for (String[] row : stringCSVData) 
 		{
-			temp[0]=Double.parseDouble(csvData.get(i)[0]);
-			temp[1]=Double.parseDouble(csvData.get(i)[1]);
-			doubleList.add(temp);
-			
-			System.out.println("Σημείο -"+i+"- με x="+doubleList.get(i)[0]+" και y="+doubleList.get(i)[1]);
-		}
-		return doubleList;
+            for (String cell : row) 
+            {
+                System.out.print("String: "+i+"="+cell + "\t");
+//                System.out.println(cell + " is of type " + ((Object)cell).getClass().getSimpleName());   == STRING               
+            }
+            i++;
+            System.out.println();
+        }
 	}
 	
-	public List<String[]> getValues()
+	public void convertValuesToDouble()
 	{
-		return csvData;
+		//Convert data from String to double
+		
+		double point[]=new double[2];
+		int i;
+		
+		for (String[] row : stringCSVData) 
+		{
+			i=0;
+            for (String cell : row) 
+            {
+                point[i]=Double.parseDouble(cell);
+                System.out.println(point[i] + " is of type " + ((Object)point[i]).getClass().getSimpleName());
+                i++;
+            }
+            doubleCSVData.add(point);
+        }
+	}
+	
+	public List<double[]> getValues()
+	{
+		return doubleCSVData;
 	}
 	
 }
