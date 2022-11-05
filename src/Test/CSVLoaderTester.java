@@ -28,9 +28,11 @@ class CSVLoaderTester {
 	}
 	
 	@Test
-	void test() {
+	void test() 
+	{
+		myCSVLoader.printResults();
 //		assertEquals(csvData.size(), myCSVLoader.convertValues().size());
-		assertEquals(csvData.size(), csvData.size());
+//		assertEquals(csvData.size(), csvData.size());
 //		fail("Not yet implemented");
 	}
 
