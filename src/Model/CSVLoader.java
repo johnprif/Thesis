@@ -41,6 +41,21 @@ public class CSVLoader
 		for (String[] row : csvData) {
             for (String cell : row) {
                 System.out.print(cell + "\t");
+//                System.out.println(cell + " is of type " + ((Object)cell).getClass().getSimpleName());   == STRING
+            }
+            System.out.println();
+        }
+	}
+	
+	public void convertValues2()
+	{
+		//Print data from csv
+		for (String[] row : csvData) {
+            for (String cell : row) {
+                System.out.print(cell + "\t");
+                double kati=Double.parseDouble(cell);
+//                Double kati=Double.valueOf(cell);
+                System.out.println(kati + " is of type " + ((Object)kati).getClass().getSimpleName());
             }
             System.out.println();
         }

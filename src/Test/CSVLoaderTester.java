@@ -31,6 +31,7 @@ class CSVLoaderTester {
 	void test() 
 	{
 		myCSVLoader.printResults();
+		myCSVLoader.convertValues2();
 //		assertEquals(csvData.size(), myCSVLoader.convertValues().size());
 //		assertEquals(csvData.size(), csvData.size());
 //		fail("Not yet implemented");
