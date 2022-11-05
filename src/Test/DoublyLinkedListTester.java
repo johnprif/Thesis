@@ -48,23 +48,17 @@ class DoublyLinkedListTester {
 		i++;
 		assertEquals(list.getSize(), i);		
 
-//		assertEquals(!list.deleteAtIndex(2), list.searchNode(5));
-//		i--;
-//		assertEquals(list.getSize(), i);
+		list.deleteAtIndex(2);
+		i--;
+		assertEquals(list.getSize(), i);
 		
-//		assertEquals(!list.deleteFirstNode(), list.);
-//		i--;
-//		assertEquals(list.getSize(), i);
-//
-//		list.deleteLastNode();
-//		System.out.println("Last Node  has been deleted");
-//		System.out.println("size :" + list.getSize());
-//		list.displayFirstToLast();
-//
-//		list.searchNode(5);
-//		list.displayFirstToLast();
-//		
-//		fail("Not yet implemented");
+		list.deleteFirstNode();
+		i--;
+		assertEquals(list.getSize(), i);
+
+		list.deleteLastNode();
+		i--;
+		assertEquals(list.getSize(), i);
 	}
 
 }
