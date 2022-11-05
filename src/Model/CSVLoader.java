@@ -1,5 +1,6 @@
 //https://www.geeksforgeeks.org/reading-csv-file-java-using-opencsv/
 //https://github.com/johnprif/GoogleFromLidl
+//https://www.digitalocean.com/community/tutorials/java-convert-string-to-double
 
 package Model;
 
