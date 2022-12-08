@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -44,6 +45,10 @@ public class HelloFX extends Application
         Scene scene = new Scene(gridPane);
         
         stage.setTitle("Sven Skyum 1991, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
+        stage.setMinHeight(600);
+        stage.setMinWidth(600);
+        stage.setHeight(600);
+        stage.setWidth(600);
         stage.setScene(scene);
 //        stage.setScene(scene);
         stage.show();
@@ -60,14 +65,26 @@ public class HelloFX extends Application
     	exitButton = new Button("Έξοδος");
     	changeLanguageButton = new Button("Αλλαγή γλώσσας");
     	
-    	loadFileButton.setMaxWidth(Double.MAX_VALUE);
-    	putPointsButton.setMaxWidth(Double.MAX_VALUE);		    
-	    exitButton.setMaxWidth(Double.MAX_VALUE);
-	    changeLanguageButton.setMaxWidth(Double.MAX_VALUE);
+    	
+    	loadFileButton.setAlignment(Pos.CENTER);
+    	putPointsButton.setAlignment(Pos.CENTER);
+    	exitButton.setAlignment(Pos.CENTER);
+    	changeLanguageButton.setAlignment(Pos.CENTER);
+    	
+//    	loadFileButton.setMaxWidth(Double.MAX_VALUE);
+//    	putPointsButton.setMaxWidth(Double.MAX_VALUE);		    
+//	    exitButton.setMaxWidth(Double.MAX_VALUE);
+//	    changeLanguageButton.setMaxWidth(Double.MAX_VALUE);
 	}
     
     private void createGridPane()
 	{
+    	Label kati = new Label("A gridpane's unbounded maximum width and height are an indication to the parent that it may be resized beyond its preferred size to fill whatever space is assigned to it.");
+    	Label kat2 = new Label("GridPane provides properties for setting the size range directly. These properties default to the sentinel value USE_COMPUTED_SIZE, however the application may set them to other values as needed");
+    	Label kat3 = new Label("GridPanntinel value USE_COMPUTED_SIZE, however the application may set them to other values as needed");
+
+
+    	
     	boredrPane = new BorderPane();
     	
     	gridPane = new GridPane();
@@ -77,31 +94,65 @@ public class HelloFX extends Application
   	    gridPane.setHgap(10);
   	    gridPane.setVgap(10);
     	gridPane.setGridLinesVisible(true);
-  	    
-  	    gridPane.getColumnConstraints().add(new ColumnConstraints() {{
-  	      setPercentWidth(10);
-  	    }});
-
-  	    gridPane.getColumnConstraints().add(new ColumnConstraints() {{
-  	      setPercentWidth(50);
-  	    }});
-  	    gridPane.getColumnConstraints().add(new ColumnConstraints() {{
-  	      setPercentWidth(10);
-  	    }});
-  	    
-  	    gridPane.getRowConstraints().add(new RowConstraints() {{
-  	      setPercentHeight(10);
-  	    }});
-  	    gridPane.getRowConstraints().add(new RowConstraints() {{
-  	      setPercentHeight(50);
-  	    }});
-  	    gridPane.getRowConstraints().add(new RowConstraints() {{
-  	      setPercentHeight(10);
-  	    }});
+    	
+    	//Column1
+  	    gridPane.getColumnConstraints().add(new ColumnConstraints() 
+  	    {
+  	    	{
+  	    		setPercentWidth(20);
+  	    	}
+  	    });
+  	    //Column2
+  	    gridPane.getColumnConstraints().add(new ColumnConstraints() 
+  	    {
+  	    	{
+  	    		setPercentWidth(80);
+  	    	}
+  	    });
+  	    //Column3
+  	    gridPane.getColumnConstraints().add(new ColumnConstraints() 
+  	    {
+  	    	{
+  	    		setPercentWidth(20);	   
+  	    	}
+  	    });
+  	    //Row1
+  	    gridPane.getRowConstraints().add(new RowConstraints() 
+  	    {
+  	    	{
+  	    		setPercentHeight(20);
+  	    	}
+  	    });
+  	    //Row2
+  	    gridPane.getRowConstraints().add(new RowConstraints() 
+  	    {
+  	    	{
+  	    		setPercentHeight(20);
+  	    	}
+  	    });
+  	    //Row3
+  	    gridPane.getRowConstraints().add(new RowConstraints() 
+  	    {
+  	    	{
+  	    		setPercentHeight(20);
+  	    	}
+  	    });
+  	    //Row4
+  	    gridPane.getRowConstraints().add(new RowConstraints() 
+  	    {
+  	    	{
+  	    		setPercentHeight(20);
+  	    	}
+  	    });
   	    
     	gridPane.add(loadFileButton, 0, 1);	    
 	    gridPane.add(putPointsButton, 0, 2);
 	    gridPane.add(exitButton, 0, 3);
+	    
+	    gridPane.add(kati, 1, 1);
+	    gridPane.add(kat2, 1, 2);
+	    gridPane.add(kat3, 1, 3);
+	    
 	    gridPane.add(changeLanguageButton, 2, 0);
 	    
 	    
