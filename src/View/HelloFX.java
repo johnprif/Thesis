@@ -1,5 +1,8 @@
 package View;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import com.opencsv.exceptions.CsvException;
@@ -11,6 +14,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -28,7 +33,11 @@ public class HelloFX extends Application
 	
 	
 	private GridPane gridPane;
-	private BorderPane boredrPane;
+	private BorderPane borderPane;
+	
+	private FileInputStream inputstreamMain;
+	private Image imageMain;
+	private ImageView imageViewMain;
 	
 	@Override
     public void start(Stage stage)
@@ -79,85 +88,38 @@ public class HelloFX extends Application
     
     private void createGridPane()
 	{
-    	Label kati = new Label("A gridpane's unbounded maximum width and height are an indication to the parent that it may be resized beyond its preferred size to fill whatever space is assigned to it.");
-    	Label kat2 = new Label("GridPane provides properties for setting the size range directly. These properties default to the sentinel value USE_COMPUTED_SIZE, however the application may set them to other values as needed");
-    	Label kat3 = new Label("GridPanntinel value USE_COMPUTED_SIZE, however the application may set them to other values as needed");
-
-
+    	borderPane = new BorderPane();
     	
-    	boredrPane = new BorderPane();
-    	
-    	gridPane = new GridPane();
-    	
-    	gridPane.setAlignment(Pos.CENTER); 
-  	  //Spaces between the buttons 
-  	    gridPane.setHgap(10);
-  	    gridPane.setVgap(10);
-    	gridPane.setGridLinesVisible(true);
-    	
-    	//Column1
-  	    gridPane.getColumnConstraints().add(new ColumnConstraints() 
-  	    {
-  	    	{
-  	    		setPercentWidth(20);
-  	    	}
-  	    });
-  	    //Column2
-  	    gridPane.getColumnConstraints().add(new ColumnConstraints() 
-  	    {
-  	    	{
-  	    		setPercentWidth(80);
-  	    	}
-  	    });
-  	    //Column3
-  	    gridPane.getColumnConstraints().add(new ColumnConstraints() 
-  	    {
-  	    	{
-  	    		setPercentWidth(20);	   
-  	    	}
-  	    });
-  	    //Row1
-  	    gridPane.getRowConstraints().add(new RowConstraints() 
-  	    {
-  	    	{
-  	    		setPercentHeight(20);
-  	    	}
-  	    });
-  	    //Row2
-  	    gridPane.getRowConstraints().add(new RowConstraints() 
-  	    {
-  	    	{
-  	    		setPercentHeight(20);
-  	    	}
-  	    });
-  	    //Row3
-  	    gridPane.getRowConstraints().add(new RowConstraints() 
-  	    {
-  	    	{
-  	    		setPercentHeight(20);
-  	    	}
-  	    });
-  	    //Row4
-  	    gridPane.getRowConstraints().add(new RowConstraints() 
-  	    {
-  	    	{
-  	    		setPercentHeight(20);
-  	    	}
-  	    });
-  	    
-    	gridPane.add(loadFileButton, 0, 1);	    
-	    gridPane.add(putPointsButton, 0, 2);
-	    gridPane.add(exitButton, 0, 3);
-	    
-	    gridPane.add(kati, 1, 1);
-	    gridPane.add(kat2, 1, 2);
-	    gridPane.add(kat3, 1, 3);
-	    
-	    gridPane.add(changeLanguageButton, 2, 0);
-	    
-	    
-	    
 	}
+    
+    private void createLogoForMain()
+	{
+		String saitecLogo = "ImportantFiles/Icons/MainLogo.png";
+		
+		File f = new File(saitecLogo);
+		
+		if(f.exists() && !f.isDirectory())
+		{
+			try {
+				inputstreamMain = new FileInputStream(saitecLogo);
+			} catch (FileNotFoundException e) 
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			imageMain = new Image(inputstreamMain); 
+			imageViewMain = new ImageView(imageMain);
+			//setting the fit height and width of the image view 
+		    imageViewMain.setFitHeight(96); 
+		    imageViewMain.setFitWidth(96);
+		}else
+		{
+			imageMain=null;
+			imageViewMain = null;
+		}
+		
+	}
+    
 }
 
 
