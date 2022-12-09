@@ -26,6 +26,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class HelloFX extends Application
@@ -38,6 +39,8 @@ public class HelloFX extends Application
 	
 	private BorderPane borderPane;
 	private GridPane gridPane;
+	private VBox vbox;
+	private VBox vbox2;
 	
 	private FileInputStream inputstreamMain;
 	private Image imageMain;
@@ -47,7 +50,8 @@ public class HelloFX extends Application
     public void start(Stage stage)
 	{
 		createButtons();
-		createSecondPane();
+//		createSecondPane();
+		createSecondPane2();
 		createMainPane(stage);
 		
 		
@@ -104,9 +108,10 @@ public class HelloFX extends Application
     	borderPane.setLeft(imageViewMain);
     	borderPane.setAlignment(imageViewMain, Pos.CENTER); 
 
-    	borderPane.setCenter(gridPane);
-    	borderPane.setAlignment(gridPane, Pos.CENTER);
-
+    	//------------------------------------------------------------------
+    	borderPane.setCenter(vbox);
+    	borderPane.setAlignment(vbox, Pos.CENTER);
+    	//------------------------------------------------------------------
        	borderPane.setTop(changeLanguageButton);
        	borderPane.setAlignment(changeLanguageButton, Pos.CENTER_RIGHT);
        	
@@ -122,7 +127,7 @@ public class HelloFX extends Application
     	myText.setAlignment(Pos.CENTER);
     	
     	gridPane = new GridPane();
-//    	gridPane.setPadding(new Insets(10, 10, 10, 10));
+    	gridPane.setPadding(new Insets(10, 10, 10, 10));
     	gridPane.setVgap(10); 
     	gridPane.setHgap(10); 
     	gridPane.setAlignment(Pos.CENTER); 
@@ -130,6 +135,27 @@ public class HelloFX extends Application
     	gridPane.add(loadFileButton, 0, 1);
     	gridPane.add(putPointsButton, 0, 2);
     	gridPane.add(exitButton, 0, 3);
+    }
+    
+    private void createSecondPane2()
+    {
+    	Label myText = new Label("A simple aglorithm for\ncomputing the smallest\nenclosing circle");
+    	myText.setStyle("-fx-font-weight: bold; -fx-font-size: 17; -fx-font-family: 'Courier New'; -fx-underline: true;");
+    	myText.setMaxWidth(Double.MAX_VALUE);
+    	myText.setAlignment(Pos.CENTER);
+    	
+    	vbox = new VBox(10);
+    	
+    	vbox.setAlignment(Pos.CENTER);
+    	
+    	vbox.setMargin(myText, new Insets(5, 5, 80, 5)); 
+//    	vbox.setStyle("-fx-background-color: yellow;");
+
+    	vbox.getChildren().addAll(myText, loadFileButton, putPointsButton, exitButton);
+    	
+    	
+    	vbox.setPadding(new Insets(10, 10, 60, 10));
+    	vbox.setAlignment(Pos.CENTER); 
     }
     
     private void createMainLogo()
