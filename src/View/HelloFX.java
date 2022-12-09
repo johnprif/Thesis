@@ -10,6 +10,8 @@ import com.opencsv.exceptions.CsvException;
 import Model.CSVLoader;
 import Model.DoublyLinkedList;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -31,6 +33,12 @@ import javafx.stage.Stage;
 
 public class HelloFX extends Application
 {
+	private String javaVersion = System.getProperty("java.version");
+    private String javafxVersion = System.getProperty("javafx.version");
+	
+	private Stage stage;
+	private Scene scene;
+		
 	private Button loadFileButton;
 	private Button putPointsButton;
 	private Button exitButton;
@@ -42,6 +50,8 @@ public class HelloFX extends Application
 	private VBox vbox;
 	private VBox vbox2;
 	
+	private Label paperTitle;
+	
 	private FileInputStream inputstreamMain;
 	private Image imageMain;
 	private ImageView imageViewMain;
@@ -49,26 +59,23 @@ public class HelloFX extends Application
 	@Override
     public void start(Stage stage)
 	{
+		this.stage = stage;
+		
 		createButtons();
-//		createSecondPane();
-		createSecondPane2();
-		createMainPane(stage);
-		
-		
-        String javaVersion = System.getProperty("java.version");
-        String javafxVersion = System.getProperty("javafx.version");
-//        Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-//        Scene scene = new Scene(new StackPane(l), 640, 480);
+		createPaperTitle();
+		createSecondPane();
+		createMainPane();
+		      
+        scene = new Scene(borderPane);
         
-        Scene scene = new Scene(borderPane);
+        createStage();
         
-        stage.setTitle("Sven Skyum 1991, JavaFX " + javafxVersion + ", running on Java " + javaVersion);
-        stage.setHeight(700);
-        stage.setWidth(600);
-        stage.setResizable(false);
-        stage.setScene(scene);
-//        stage.setScene(scene);
-        stage.show();
+        exitButton.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override public void handle(ActionEvent e) {
+		    	stage.close();
+		    	System.exit(0);
+		    }
+		});
     }
 
     public static void main(String[] args) {
@@ -92,10 +99,16 @@ public class HelloFX extends Application
     	loadFileButton.setMaxWidth(Double.MAX_VALUE);
     	putPointsButton.setMaxWidth(Double.MAX_VALUE);		    
 	    exitButton.setMaxWidth(Double.MAX_VALUE);
-//	    changeLanguageButton.setMaxWidth(Double.MAX_VALUE);
+	    
+	    loadFileButton.setStyle("-fx-font-weight: bold; -fx-text-fill: darkslategrey; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
+	    putPointsButton.setStyle("-fx-font-weight: bold; -fx-text-fill: darkslategrey; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
+	    exitButton.setStyle("-fx-font-weight: bold; -fx-text-fill: red; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
+	    changeLanguageButton.setStyle("-fx-font-weight: bold; -fx-text-fill: darkslategrey; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
+	    infoButton.setStyle("-fx-font-weight: bold; -fx-text-fill: darkslategrey; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
+
 	}
     
-    private void createMainPane(Stage stage)
+    private void createMainPane()
 	{
     	borderPane = new BorderPane();
     	createMainLogo();
@@ -119,42 +132,21 @@ public class HelloFX extends Application
        	borderPane.setAlignment(infoButton, Pos.CENTER_RIGHT);
 	}
     
-    private void createSecondPane()
+    
+    private void createPaperTitle()
     {
-    	Label myText = new Label("A simple aglorithm for computing \nthe smallest enclosing circle");
-    	myText.setStyle("-fx-font-weight: bold;");
-    	myText.setMaxWidth(Double.MAX_VALUE);
-    	myText.setAlignment(Pos.CENTER);
-    	
-    	gridPane = new GridPane();
-    	gridPane.setPadding(new Insets(10, 10, 10, 10));
-    	gridPane.setVgap(10); 
-    	gridPane.setHgap(10); 
-    	gridPane.setAlignment(Pos.CENTER); 
-    	gridPane.add(myText, 0, 0);
-    	gridPane.add(loadFileButton, 0, 1);
-    	gridPane.add(putPointsButton, 0, 2);
-    	gridPane.add(exitButton, 0, 3);
+    	paperTitle = new Label("A SIMPLE ALGORITHM FOR\nCOMPUTING THE SMALEST\n   ENCLOSING CIRCLE");
+    	paperTitle.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 17; -fx-font-family: 'Courier New'; -fx-underline: false;");
+    	paperTitle.setMaxWidth(Double.MAX_VALUE);
+    	paperTitle.setAlignment(Pos.CENTER);
     }
     
-    private void createSecondPane2()
-    {
-//    	Label myText = new Label("A simple aglorithm for\ncomputing the smallest\nenclosing circle");
-    	Label myText = new Label("A SIMPLE ALGORITHM FOR\nCOMPUTING THE SMALEST\n   ENCLOSING CIRCLE");
-    	myText.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 17; -fx-font-family: 'Courier New'; -fx-underline: false;");
-    	myText.setMaxWidth(Double.MAX_VALUE);
-    	myText.setAlignment(Pos.CENTER);
-    	
-    	vbox = new VBox(10);
-    	
-    	vbox.setAlignment(Pos.CENTER);
-    	
-    	vbox.setMargin(myText, new Insets(5, 5, 50, 5)); 
-//    	vbox.setStyle("-fx-background-color: yellow;");
-
-    	vbox.getChildren().addAll(myText, loadFileButton, putPointsButton, exitButton);
-    	
-    	
+    private void createSecondPane()
+    { 	
+    	vbox = new VBox(10);    	
+    	vbox.setAlignment(Pos.CENTER);    	
+    	vbox.setMargin(paperTitle, new Insets(5, 5, 50, 5)); 
+    	vbox.getChildren().addAll(paperTitle, loadFileButton, putPointsButton, exitButton);    	
     	vbox.setPadding(new Insets(10, 10, 130, 10));
     	vbox.setAlignment(Pos.CENTER); 
     }
@@ -186,6 +178,16 @@ public class HelloFX extends Application
 		}
 		
 	}
+    
+    private void createStage()
+    {
+    	stage.setTitle("Sven Skyum 1991, JavaFX " + javafxVersion + ", running on Java " + javaVersion);
+        stage.setHeight(700);
+        stage.setWidth(600);
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
+    }
     
 }
 
