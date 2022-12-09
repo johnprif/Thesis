@@ -62,7 +62,7 @@ public class HelloFX extends Application
         
         Scene scene = new Scene(borderPane);
         
-        stage.setTitle("Sven Skyum 1991, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
+        stage.setTitle("Sven Skyum 1991, JavaFX " + javafxVersion + ", running on Java " + javaVersion);
         stage.setHeight(700);
         stage.setWidth(600);
         stage.setResizable(false);
@@ -99,7 +99,7 @@ public class HelloFX extends Application
 	{
     	borderPane = new BorderPane();
     	createMainLogo();
-    	borderPane.setStyle("-fx-background: lightblue;");
+    	borderPane.setStyle("-fx-background: #4682b4;");
 //    	imageViewMain.fitWidthProperty().bind(stage.widthProperty()); 
     	borderPane.setPadding(new Insets(10, 10, 10, 10));
     	
@@ -139,8 +139,9 @@ public class HelloFX extends Application
     
     private void createSecondPane2()
     {
-    	Label myText = new Label("A simple aglorithm for\ncomputing the smallest\nenclosing circle");
-    	myText.setStyle("-fx-font-weight: bold; -fx-font-size: 17; -fx-font-family: 'Courier New'; -fx-underline: true;");
+//    	Label myText = new Label("A simple aglorithm for\ncomputing the smallest\nenclosing circle");
+    	Label myText = new Label("A SIMPLE ALGORITHM FOR\nCOMPUTING THE SMALEST\n   ENCLOSING CIRCLE");
+    	myText.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 17; -fx-font-family: 'Courier New'; -fx-underline: false;");
     	myText.setMaxWidth(Double.MAX_VALUE);
     	myText.setAlignment(Pos.CENTER);
     	
@@ -148,19 +149,19 @@ public class HelloFX extends Application
     	
     	vbox.setAlignment(Pos.CENTER);
     	
-    	vbox.setMargin(myText, new Insets(5, 5, 80, 5)); 
+    	vbox.setMargin(myText, new Insets(5, 5, 50, 5)); 
 //    	vbox.setStyle("-fx-background-color: yellow;");
 
     	vbox.getChildren().addAll(myText, loadFileButton, putPointsButton, exitButton);
     	
     	
-    	vbox.setPadding(new Insets(10, 10, 60, 10));
+    	vbox.setPadding(new Insets(10, 10, 130, 10));
     	vbox.setAlignment(Pos.CENTER); 
     }
     
     private void createMainLogo()
 	{
-		String saitecLogo = "ImportantFiles/Icons/MainLogo_B.png";
+		String saitecLogo = "ImportantFiles/Icons/MainLogo_W.png";
 		
 		File f = new File(saitecLogo);
 		
