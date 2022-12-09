@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import com.opencsv.exceptions.CsvException;
 
+import Control.ExitButtonHandler;
 import Model.CSVLoader;
 import Model.DoublyLinkedList;
 import javafx.application.Application;
@@ -45,6 +46,8 @@ public class HelloFX extends Application
 	private Button changeLanguageButton;
 	private Button infoButton;
 	
+	private ExitButtonHandler exitButtonHandler;
+	
 	private BorderPane borderPane;
 	private GridPane gridPane;
 	private VBox vbox;
@@ -59,6 +62,7 @@ public class HelloFX extends Application
 	@Override
     public void start(Stage stage)
 	{
+				
 		this.stage = stage;
 		
 		createButtons();
@@ -68,18 +72,22 @@ public class HelloFX extends Application
 		      
         scene = new Scene(borderPane);
         
-        createStage();
+        createAndSetHandlers();
         
-        exitButton.setOnAction(new EventHandler<ActionEvent>() {
-		    @Override public void handle(ActionEvent e) {
-		    	stage.close();
-		    	System.exit(0);
-		    }
-		});
+        createStage();       
+        
     }
 
     public static void main(String[] args) {
         launch();
+    }
+    
+    private void createAndSetHandlers()
+    {
+    	exitButtonHandler = new ExitButtonHandler(stage);
+    	exitButton.setOnAction(exitButtonHandler);
+    	
+    	
     }
     
     private void createButtons()
