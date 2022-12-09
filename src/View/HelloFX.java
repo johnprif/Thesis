@@ -10,14 +10,17 @@ import com.opencsv.exceptions.CsvException;
 import Model.CSVLoader;
 import Model.DoublyLinkedList;
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.RowConstraints;
@@ -92,9 +95,9 @@ public class HelloFX extends Application
 	{
     	borderPane = new BorderPane();
     	createMainLogo();
-    	
+    	borderPane.setStyle("-fx-background: lightblue;");
 //    	imageViewMain.fitWidthProperty().bind(stage.widthProperty()); 
-
+    	borderPane.setPadding(new Insets(10, 10, 10, 10));
     	
     	borderPane.setTop(null);
     	
@@ -113,16 +116,20 @@ public class HelloFX extends Application
     
     private void createSecondPane()
     {
-    	gridPane = new GridPane();
+    	Label myText = new Label("A simple aglorithm for computing \nthe smallest enclosing circle");
+    	myText.setStyle("-fx-font-weight: bold;");
+    	myText.setMaxWidth(Double.MAX_VALUE);
+    	myText.setAlignment(Pos.CENTER);
     	
+    	gridPane = new GridPane();
+//    	gridPane.setPadding(new Insets(10, 10, 10, 10));
     	gridPane.setVgap(10); 
     	gridPane.setHgap(10); 
     	gridPane.setAlignment(Pos.CENTER); 
-//    	gridPane.add(changeLanguageButton, 1, 0);
+    	gridPane.add(myText, 0, 0);
     	gridPane.add(loadFileButton, 0, 1);
     	gridPane.add(putPointsButton, 0, 2);
     	gridPane.add(exitButton, 0, 3);
-//    	gridPane.add(infoButton, 1, 11);
     }
     
     private void createMainLogo()
