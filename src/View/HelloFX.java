@@ -31,10 +31,10 @@ public class HelloFX extends Application
 	private Button putPointsButton;
 	private Button exitButton;
 	private Button changeLanguageButton;
+	private Button infoButton;
 	
-	
-	private GridPane gridPane;
 	private BorderPane borderPane;
+	private GridPane gridPane;
 	
 	private FileInputStream inputstreamMain;
 	private Image imageMain;
@@ -44,7 +44,8 @@ public class HelloFX extends Application
     public void start(Stage stage)
 	{
 		createButtons();
-		createGridPane(stage);
+		createSecondPane();
+		createMainPane(stage);
 		
 		
         String javaVersion = System.getProperty("java.version");
@@ -72,24 +73,25 @@ public class HelloFX extends Application
     	loadFileButton = new Button("Φόρτωση σημείων από εξωτερικό αρχείο");
     	putPointsButton = new Button("Βάλε τα σημειά με το χέρι");
     	exitButton = new Button("Έξοδος");
-    	changeLanguageButton = new Button("Αλλαγή γλώσσας");
-    	
+    	changeLanguageButton = new Button("EN");
+    	infoButton = new Button("?");
     	
     	loadFileButton.setAlignment(Pos.CENTER);
     	putPointsButton.setAlignment(Pos.CENTER);
     	exitButton.setAlignment(Pos.CENTER);
     	changeLanguageButton.setAlignment(Pos.CENTER);
+    	infoButton.setAlignment(Pos.CENTER);
     	
-//    	loadFileButton.setMaxWidth(Double.MAX_VALUE);
-//    	putPointsButton.setMaxWidth(Double.MAX_VALUE);		    
-//	    exitButton.setMaxWidth(Double.MAX_VALUE);
+    	loadFileButton.setMaxWidth(Double.MAX_VALUE);
+    	putPointsButton.setMaxWidth(Double.MAX_VALUE);		    
+	    exitButton.setMaxWidth(Double.MAX_VALUE);
 //	    changeLanguageButton.setMaxWidth(Double.MAX_VALUE);
 	}
     
-    private void createGridPane(Stage stage)
+    private void createMainPane(Stage stage)
 	{
     	borderPane = new BorderPane();
-    	createLogoForMain();
+    	createMainLogo();
     	
 //    	imageViewMain.fitWidthProperty().bind(stage.widthProperty()); 
 
@@ -99,13 +101,31 @@ public class HelloFX extends Application
     	borderPane.setLeft(imageViewMain);
     	borderPane.setAlignment(imageViewMain, Pos.CENTER); 
 
-    	borderPane.setCenter(null);
-    	
-    	borderPane.setRight(new VBox(loadFileButton, putPointsButton, exitButton));
-    	System.out.println("HERE");
+    	borderPane.setCenter(gridPane);
+    	borderPane.setAlignment(gridPane, Pos.CENTER);
+
+       	borderPane.setTop(changeLanguageButton);
+       	borderPane.setAlignment(changeLanguageButton, Pos.CENTER_RIGHT);
+       	
+       	borderPane.setBottom(infoButton);
+       	borderPane.setAlignment(infoButton, Pos.CENTER_RIGHT);
 	}
     
-    private void createLogoForMain()
+    private void createSecondPane()
+    {
+    	gridPane = new GridPane();
+    	
+    	gridPane.setVgap(10); 
+    	gridPane.setHgap(10); 
+    	gridPane.setAlignment(Pos.CENTER); 
+//    	gridPane.add(changeLanguageButton, 1, 0);
+    	gridPane.add(loadFileButton, 0, 1);
+    	gridPane.add(putPointsButton, 0, 2);
+    	gridPane.add(exitButton, 0, 3);
+//    	gridPane.add(infoButton, 1, 11);
+    }
+    
+    private void createMainLogo()
 	{
 		String saitecLogo = "ImportantFiles/Icons/MainLogo_B.png";
 		
