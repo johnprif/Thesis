@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.opencsv.exceptions.CsvException;
 
@@ -43,23 +44,22 @@ public class HelloFX extends Application
 	
 	private Stage stage;
 	private Scene scene;
-		
+	
+	private Button changeLanguageButton;
 	private Button loadFileButton;
 	private Button putPointsButton;
-	private Button exitButton;
-	private Button changeLanguageButton;
+	private Button exitButton;	
 	private Button infoButton;
-	
+
+	private ChangeLanguageButtonHandler changeLanguageButtonHandler;
 	private LoadFileButtonHandler loadFileButtonHandler;
 	private PutPointsButtonHandler putPointsButtonHandler;
 	private ExitButtonHandler exitButtonHandler;
-	private ChangeLanguageButtonHandler changeLanguageButtonHandler;
+
 	private InfoButtonHandler infoButtonHandler;
 	
 	private BorderPane borderPane;
-	private GridPane gridPane;
 	private VBox vbox;
-	private VBox vbox2;
 	
 	private Label paperTitle;
 	
@@ -67,10 +67,12 @@ public class HelloFX extends Application
 	private Image imageMain;
 	private ImageView imageViewMain;
 	
+	private ArrayList<Button> buttons;
+	
 	@Override
     public void start(Stage stage)
 	{
-				
+		buttons = new ArrayList<Button>();		
 		this.stage = stage;
 		
 		createButtons();
@@ -92,48 +94,52 @@ public class HelloFX extends Application
     
     private void createAndSetHandlers()
     {
+    	changeLanguageButtonHandler = new ChangeLanguageButtonHandler(buttons, paperTitle);
     	loadFileButtonHandler = new LoadFileButtonHandler();
-    	loadFileButton.setOnAction(loadFileButtonHandler);
-    	
     	putPointsButtonHandler = new PutPointsButtonHandler();
-    	putPointsButton.setOnAction(putPointsButtonHandler);
-    	
-    	exitButtonHandler = new ExitButtonHandler(stage);
-    	exitButton.setOnAction(exitButtonHandler);
-    	
-    	changeLanguageButtonHandler = new ChangeLanguageButtonHandler();
-    	changeLanguageButton.setOnAction(changeLanguageButtonHandler);
-    	
+    	exitButtonHandler = new ExitButtonHandler(stage);   	
     	infoButtonHandler = new InfoButtonHandler();
+    	
+    	changeLanguageButton.setOnAction(changeLanguageButtonHandler); 
+    	loadFileButton.setOnAction(loadFileButtonHandler);   	
+    	putPointsButton.setOnAction(putPointsButtonHandler);   	
+    	exitButton.setOnAction(exitButtonHandler);   	  	
     	infoButton.setOnAction(infoButtonHandler);
     	
     	
     }
     
+    
     private void createButtons()
 	{
-    	loadFileButton = new Button("Φόρτωση σημείων από εξωτερικό αρχείο");
-    	putPointsButton = new Button("Βάλε τα σημειά με το χέρι");
-    	exitButton = new Button("Έξοδος");
     	changeLanguageButton = new Button("GR");
+    	loadFileButton = new Button("Φόρτωση Σημείων απο CSV");
+    	putPointsButton = new Button("Δημιουργία σημείων");
+    	exitButton = new Button("Έξοδος");    	
     	infoButton = new Button("?");
     	
+    	changeLanguageButton.setAlignment(Pos.CENTER);
     	loadFileButton.setAlignment(Pos.CENTER);
     	putPointsButton.setAlignment(Pos.CENTER);
-    	exitButton.setAlignment(Pos.CENTER);
-    	changeLanguageButton.setAlignment(Pos.CENTER);
+    	exitButton.setAlignment(Pos.CENTER);   	
     	infoButton.setAlignment(Pos.CENTER);
     	
     	loadFileButton.setMaxWidth(Double.MAX_VALUE);
     	putPointsButton.setMaxWidth(Double.MAX_VALUE);		    
 	    exitButton.setMaxWidth(Double.MAX_VALUE);
 	    
+	    changeLanguageButton.setStyle("-fx-font-weight: bold; -fx-text-fill: darkslategrey; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
 	    loadFileButton.setStyle("-fx-font-weight: bold; -fx-text-fill: darkslategrey; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
 	    putPointsButton.setStyle("-fx-font-weight: bold; -fx-text-fill: darkslategrey; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
 	    exitButton.setStyle("-fx-font-weight: bold; -fx-text-fill: red; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
-	    changeLanguageButton.setStyle("-fx-font-weight: bold; -fx-text-fill: darkslategrey; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
 	    infoButton.setStyle("-fx-font-weight: bold; -fx-text-fill: darkslategrey; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
 
+	    buttons.add(changeLanguageButton);
+	    buttons.add(loadFileButton);
+	    buttons.add(putPointsButton);
+	    buttons.add(exitButton);	    
+	    buttons.add(infoButton);
+	    
 	}
     
     private void createMainPane()
@@ -163,7 +169,7 @@ public class HelloFX extends Application
     
     private void createPaperTitle()
     {
-    	paperTitle = new Label("A SIMPLE ALGORITHM FOR\nCOMPUTING THE SMALEST\n   ENCLOSING CIRCLE");
+    	paperTitle = new Label("ΕΝΑΣ ΑΠΛΟΣ ΑΛΓΟΡΙΘΜΟΣ\n ΓΙΑ ΤΟΝ ΥΠΟΛΟΓΙΣΜΟ\n   ΤΟΥ ΕΛΑΧΙΣΤΟΥ\n ΠΕΡΙΚΛΕΙΩΝΤΑ ΚΥΚΛΟΥ");
     	paperTitle.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 17; -fx-font-family: 'Courier New'; -fx-underline: false;");
     	paperTitle.setMaxWidth(Double.MAX_VALUE);
     	paperTitle.setAlignment(Pos.CENTER);
