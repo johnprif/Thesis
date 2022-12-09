@@ -7,7 +7,11 @@ import java.io.IOException;
 
 import com.opencsv.exceptions.CsvException;
 
+import Control.ChangeLanguageButtonHandler;
 import Control.ExitButtonHandler;
+import Control.InfoButtonHandler;
+import Control.LoadFileButtonHandler;
+import Control.PutPointsButtonHandler;
 import Model.CSVLoader;
 import Model.DoublyLinkedList;
 import javafx.application.Application;
@@ -46,7 +50,11 @@ public class HelloFX extends Application
 	private Button changeLanguageButton;
 	private Button infoButton;
 	
+	private LoadFileButtonHandler loadFileButtonHandler;
+	private PutPointsButtonHandler putPointsButtonHandler;
 	private ExitButtonHandler exitButtonHandler;
+	private ChangeLanguageButtonHandler changeLanguageButtonHandler;
+	private InfoButtonHandler infoButtonHandler;
 	
 	private BorderPane borderPane;
 	private GridPane gridPane;
@@ -84,8 +92,20 @@ public class HelloFX extends Application
     
     private void createAndSetHandlers()
     {
+    	loadFileButtonHandler = new LoadFileButtonHandler();
+    	loadFileButton.setOnAction(loadFileButtonHandler);
+    	
+    	putPointsButtonHandler = new PutPointsButtonHandler();
+    	putPointsButton.setOnAction(putPointsButtonHandler);
+    	
     	exitButtonHandler = new ExitButtonHandler(stage);
     	exitButton.setOnAction(exitButtonHandler);
+    	
+    	changeLanguageButtonHandler = new ChangeLanguageButtonHandler();
+    	changeLanguageButton.setOnAction(changeLanguageButtonHandler);
+    	
+    	infoButtonHandler = new InfoButtonHandler();
+    	infoButton.setOnAction(infoButtonHandler);
     	
     	
     }
@@ -95,7 +115,7 @@ public class HelloFX extends Application
     	loadFileButton = new Button("Φόρτωση σημείων από εξωτερικό αρχείο");
     	putPointsButton = new Button("Βάλε τα σημειά με το χέρι");
     	exitButton = new Button("Έξοδος");
-    	changeLanguageButton = new Button("EN");
+    	changeLanguageButton = new Button("GR");
     	infoButton = new Button("?");
     	
     	loadFileButton.setAlignment(Pos.CENTER);
