@@ -22,6 +22,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class HelloFX extends Application
@@ -43,7 +44,7 @@ public class HelloFX extends Application
     public void start(Stage stage)
 	{
 		createButtons();
-		createGridPane();
+		createGridPane(stage);
 		
 		
         String javaVersion = System.getProperty("java.version");
@@ -51,13 +52,12 @@ public class HelloFX extends Application
 //        Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
 //        Scene scene = new Scene(new StackPane(l), 640, 480);
         
-        Scene scene = new Scene(gridPane);
+        Scene scene = new Scene(borderPane);
         
         stage.setTitle("Sven Skyum 1991, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        stage.setMinHeight(600);
-        stage.setMinWidth(600);
-        stage.setHeight(600);
+        stage.setHeight(700);
         stage.setWidth(600);
+        stage.setResizable(false);
         stage.setScene(scene);
 //        stage.setScene(scene);
         stage.show();
@@ -86,15 +86,28 @@ public class HelloFX extends Application
 //	    changeLanguageButton.setMaxWidth(Double.MAX_VALUE);
 	}
     
-    private void createGridPane()
+    private void createGridPane(Stage stage)
 	{
     	borderPane = new BorderPane();
+    	createLogoForMain();
     	
+//    	imageViewMain.fitWidthProperty().bind(stage.widthProperty()); 
+
+    	
+    	borderPane.setTop(null);
+    	
+    	borderPane.setLeft(imageViewMain);
+    	borderPane.setAlignment(imageViewMain, Pos.CENTER); 
+
+    	borderPane.setCenter(null);
+    	
+    	borderPane.setRight(new VBox(loadFileButton, putPointsButton, exitButton));
+    	System.out.println("HERE");
 	}
     
     private void createLogoForMain()
 	{
-		String saitecLogo = "ImportantFiles/Icons/MainLogo.png";
+		String saitecLogo = "ImportantFiles/Icons/MainLogo_B.png";
 		
 		File f = new File(saitecLogo);
 		
@@ -110,8 +123,8 @@ public class HelloFX extends Application
 			imageMain = new Image(inputstreamMain); 
 			imageViewMain = new ImageView(imageMain);
 			//setting the fit height and width of the image view 
-		    imageViewMain.setFitHeight(96); 
-		    imageViewMain.setFitWidth(96);
+		    imageViewMain.setFitHeight(573); 
+		    imageViewMain.setFitWidth(300);
 		}else
 		{
 			imageMain=null;
