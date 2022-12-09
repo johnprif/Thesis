@@ -22,6 +22,8 @@ public class ChangeLanguageButtonHandler  implements EventHandler<ActionEvent>
 	
 	public ChangeLanguageButtonHandler(ArrayList<Button> buttons, Label paperTitle)
 	{
+		textHandler = TextHandler.getInstance();
+		
 		this.buttons = new ArrayList<Button>(buttons);
 		this.paperTitle = paperTitle;
 		
@@ -41,6 +43,7 @@ public class ChangeLanguageButtonHandler  implements EventHandler<ActionEvent>
 		flag=!flag;
 		
 		textHandler = TextHandler.getInstance();
+		
 		textHandler.setLanguage(flag? "EN" : "GR");
 		
 		changeLanguageButton.setText(flag? "EN" : "GR");

@@ -4,12 +4,15 @@ public class TextHandler
 {
 	private static TextHandler instance;
 	
+	//parallel
 	private String changeLanguageButtonText;
 	private String paperTitleText;	
 	private String loadFileButtonText;
 	private String putPointsButtonText;
 	private String exitButtonText;
 	
+	//notParallel
+	private String fileChooserTitleText = "Επιλέξτε το αρχείο που περιέχει τα σημεία";
 	
 	private TextHandler()
     {
@@ -36,13 +39,19 @@ public class TextHandler
     		putPointsButtonText = "Create Points";
     		exitButtonText = "Exit";  		
     		
+    		//-----FileChooserWindow--------------
+    		fileChooserTitleText = "Choose the file who contains the points";
+    		
     	}else //GR
     	{
-    		//-----LoginWidnow--------------
+    		//-----MainWidnow--------------
     		paperTitleText = "ΕΝΑΣ ΑΠΛΟΣ ΑΛΓΟΡΙΘΜΟΣ\n ΓΙΑ ΤΟΝ ΥΠΟΛΟΓΙΣΜΟ\n   ΤΟΥ ΕΛΑΧΙΣΤΟΥ\n ΠΕΡΙΚΛΕΙΩΝΤΑ ΚΥΚΛΟΥ";
     		loadFileButtonText = "Φόρτωση Σημείων απο CSV";
     		putPointsButtonText = "Δημιουργία σημείων";
     		exitButtonText = "Έξοδος";
+    		
+    		//-----FileChooserWindow--------------
+    		fileChooserTitleText = "Επιλέξτε το αρχείο που περιέχει τα σημεία";
     	}
     }
     
@@ -64,5 +73,10 @@ public class TextHandler
     public String getExitButtonText()
     {
     	return exitButtonText;
+    }
+    
+    public String getFileChooserTitleText()
+    {
+    	return fileChooserTitleText;
     }
 }
