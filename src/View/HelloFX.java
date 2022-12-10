@@ -67,6 +67,10 @@ public class HelloFX extends Application
 	private Image imageMain;
 	private ImageView imageViewMain;
 	
+	private FileInputStream inputstreamMain2;
+	private Image imageMain2;
+	private ImageView imageViewMain2;
+	
 	private ArrayList<Button> buttons;
 	
 	@Override
@@ -83,6 +87,8 @@ public class HelloFX extends Application
         scene = new Scene(borderPane);
         
         createAndSetHandlers();
+        
+        createMainLogo2();
         
         createStage();       
         
@@ -213,8 +219,41 @@ public class HelloFX extends Application
 		
 	}
     
+    private void createMainLogo2()
+	{
+		String saitecLogo = "ImportantFiles/Icons/MainLogo_B2.png";
+		
+		File f = new File(saitecLogo);
+		
+		if(f.exists() && !f.isDirectory())
+		{
+			try {
+				inputstreamMain2 = new FileInputStream(saitecLogo);
+			} catch (FileNotFoundException e) 
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			imageMain2 = new Image(inputstreamMain2); 
+			imageViewMain2 = new ImageView(imageMain2);
+			//setting the fit height and width of the image view 
+		    imageViewMain2.setFitHeight(38); 
+		    imageViewMain2.setFitWidth(20);
+		}else
+		{
+			imageMain2=null;
+			imageViewMain2 = null;
+		}
+		
+	}
+    
     private void createStage()
     {
+    	if(imageViewMain2 != null)
+		{
+    		stage.getIcons().add(imageMain2);
+		}
+    	
     	stage.setTitle("Sven Skyum 1991, JavaFX " + javafxVersion + ", running on Java " + javaVersion);
         stage.setHeight(700);
         stage.setWidth(600);
