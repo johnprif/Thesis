@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 public class ChangeLanguageButtonHandler  implements EventHandler<ActionEvent>
 {
 	private TextHandler textHandler;
-	private Boolean flag=false;
+	private Boolean flag=true;
 	private ArrayList<Button> buttons;
 		
 	private Button changeLanguageButton;
@@ -37,8 +37,8 @@ public class ChangeLanguageButtonHandler  implements EventHandler<ActionEvent>
 	@Override
 	public void handle(ActionEvent arg0) 
 	{
-		//flag=0 -> EN
-		//flag=1 -> GR
+		//flag=true -> EN
+		//flag=false -> GR
 		
 		flag=!flag;
 		

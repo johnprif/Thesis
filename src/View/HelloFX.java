@@ -118,10 +118,10 @@ public class HelloFX extends Application
     
     private void createButtons()
 	{
-    	changeLanguageButton = new Button("GR");
-    	loadFileButton = new Button("Φόρτωση Σημείων απο CSV");
-    	putPointsButton = new Button("Δημιουργία σημείων");
-    	exitButton = new Button("Έξοδος");    	
+    	changeLanguageButton = new Button("EN");
+    	loadFileButton = new Button("Load Points From CSV");
+    	putPointsButton = new Button("Create Points");
+    	exitButton = new Button("Exit");    	
     	infoButton = new Button("?");
     	
     	changeLanguageButton.setAlignment(Pos.CENTER);
@@ -179,7 +179,7 @@ public class HelloFX extends Application
     
     private void createPaperTitle()
     {
-    	paperTitle = new Label("ΕΝΑΣ ΑΠΛΟΣ ΑΛΓΟΡΙΘΜΟΣ\n ΓΙΑ ΤΟΝ ΥΠΟΛΟΓΙΣΜΟ\n   ΤΟΥ ΕΛΑΧΙΣΤΟΥ\n ΠΕΡΙΚΛΕΙΩΝΤΑ ΚΥΚΛΟΥ");
+    	paperTitle = new Label("A SIMPLE ALGORITHM FOR\nCOMPUTING THE SMALEST\n   ENCLOSING CIRCLE\n  ");
     	paperTitle.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 17; -fx-font-family: 'Courier New'; -fx-underline: false;");
     	paperTitle.setMaxWidth(Double.MAX_VALUE);
     	paperTitle.setAlignment(Pos.CENTER);
