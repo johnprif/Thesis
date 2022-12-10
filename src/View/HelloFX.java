@@ -158,9 +158,13 @@ public class HelloFX extends Application
     	
     	borderPane.setTop(null);
     	
-    	borderPane.setLeft(imageViewMain);
-    	borderPane.setAlignment(imageViewMain, Pos.CENTER); 
-
+    	
+    	if(imageViewMain !=null)
+    	{
+    		borderPane.setLeft(imageViewMain);
+        	borderPane.setAlignment(imageViewMain, Pos.CENTER); 
+    	}
+    	
     	//------------------------------------------------------------------
     	borderPane.setCenter(vbox);
     	borderPane.setAlignment(vbox, Pos.CENTER);
