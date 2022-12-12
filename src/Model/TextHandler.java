@@ -12,7 +12,7 @@ public class TextHandler
 	private String exitButtonText;
 	
 	//notParallel
-	private String fileChooserTitleText = "Επιλέξτε το αρχείο που περιέχει τα σημεία";
+	private String fileChooserTitleText = "Choose the file who contains the points";
 	
 	private TextHandler()
     {
