@@ -1,6 +1,9 @@
 //https://stackoverflow.com/questions/1211212/how-to-calculate-an-angle-from-three-points
 //https://www.geeksforgeeks.org/java-math-acos-method-examples/
 //https://www.geeksforgeeks.org/java-sqrt-method-examples/
+//https://www.geeksforgeeks.org/equation-of-circle-when-three-points-on-the-circle-are-given/
+//https://qc.edu.hk/math/Advanced%20Level/circle%20given%203%20points.htm
+
 package Model;
 
 import java.util.ArrayList;
