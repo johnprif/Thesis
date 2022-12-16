@@ -1,6 +1,9 @@
 package Control;
 
 import java.io.File;
+import java.io.IOException;
+
+import com.opencsv.exceptions.CsvException;
 
 import Model.CSVLoader;
 import Model.GrahamScan;
@@ -48,7 +51,8 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 		fileChooser.setTitle(textHandler.getFileChooserTitleText());
 		fileChooser.getExtensionFilters().addAll(
 			     new FileChooser.ExtensionFilter("CSV", "*.csv")
-//			    ,new FileChooser.ExtensionFilter("Microsoft Access Data Base 2008-2021 Files", "*.accdb")
+			    ,new FileChooser.ExtensionFilter("txt", "*.txt")
+			    ,new FileChooser.ExtensionFilter("Excel", "*.xlsx")
 			);
 		File selectedFile = fileChooser.showOpenDialog(stage);
 
@@ -69,8 +73,20 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 	
 	private void computeConvex()
 	{
-		CSVLoader allPoints = new CSVLoader(path);
-		GrahamScan convexPoints = new GrahamScan(allPoints.getValues());
+		CSVLoader allPoints;
+		GrahamScan convexPoints;
+		
+		try {
+			allPoints = new CSVLoader(path);
+			convexPoints = new GrahamScan(allPoints.get2Dvalues());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (CsvException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

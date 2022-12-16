@@ -30,7 +30,7 @@ public class CSVLoader
 		
 		readValues();
 		printResults();
-		convertValuesToDouble();
+		convertValuesToOther();
 	}
 		
 	private void readValues()  throws IOException, CsvException
@@ -74,10 +74,11 @@ public class CSVLoader
 			}
 			doubleCSVData.add(point);
 			points2DCSVData.add(new Point2D(point[0], point[1]));
+			System.out.println(points2DCSVData.get(i) + " is of type " + points2DCSVData.get(i).getX() +" --- "+points2DCSVData.get(i).getY());
 		}
 	}
 	
-	public List<double[]> getValues()
+	public List<double[]> getDoubleValues()
 	{
 		return doubleCSVData;
 	}
