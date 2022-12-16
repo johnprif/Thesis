@@ -3,15 +3,17 @@
 
 package Model;
 
+import javafx.geometry.Point2D;
+
 public class DoublyLinkedList 
 {
 	class Node
 	{
-		double data;
+		Point2D data;
 		Node before;
 		Node next;
 		
-		public Node(double data)
+		public Node(Point2D data)
 		{
 			this.data = data;
 		}
@@ -30,7 +32,7 @@ public class DoublyLinkedList
 		this.size=size;
 	}
 	
-	public boolean insertAtFirst(double data)
+	public boolean insertAtFirst(Point2D data)
 	{
 		Node newNode = new Node(data);
 		//For the first element, head and tail both will point to it
@@ -50,7 +52,7 @@ public class DoublyLinkedList
 		return true;
 	}
 	
-	public boolean insertAtIndex(double data, int index)
+	public boolean insertAtIndex(Point2D data, int index)
 	{			
 		if(index>=0 && index<=size)
 		{
@@ -85,7 +87,7 @@ public class DoublyLinkedList
 		return false;
 	}
 	
-	public boolean insertAtLast(double data)
+	public boolean insertAtLast(Point2D data)
 	{
 		Node newNode = new Node(data);
 		
@@ -198,7 +200,7 @@ public class DoublyLinkedList
 		System.out.println(" ");
 	}
 	
-	public boolean searchNode(double data)
+	public boolean searchNode(Point2D data)
 	{
 		Node current=head;
 		if(head==null)
