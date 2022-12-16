@@ -133,7 +133,7 @@ public class GrahamScan
 		return slope;
 	}	
 	
-	private void moveStackToArrayList()
+	public void moveStackToArrayList()
 	{
 		convexHullPoints = new ArrayList<Point2D>(stack);
 	}

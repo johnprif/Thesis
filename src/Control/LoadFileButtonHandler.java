@@ -2,6 +2,7 @@ package Control;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.opencsv.exceptions.CsvException;
 
@@ -17,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.geometry.Point2D;
 
 public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 {
@@ -79,6 +81,14 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 		try {
 			allPoints = new CSVLoader(path);
 			convexPoints = new GrahamScan(allPoints.get2Dvalues());
+			convexPoints.computeGrahamScan();
+			convexPoints.moveStackToArrayList();
+			ArrayList<Point2D> kati = new ArrayList<Point2D>(convexPoints.getconvexHullPoints());
+			System.out.println("------BELLOW ARE THE CONVEXHULL POINTS------");
+			for(int i=0; i<kati.size(); i++)
+			{
+				System.out.println("My points are = "+kati.get(i));
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
