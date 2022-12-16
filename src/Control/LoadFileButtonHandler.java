@@ -2,6 +2,8 @@ package Control;
 
 import java.io.File;
 
+import Model.CSVLoader;
+import Model.GrahamScan;
 import Model.TextHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -34,6 +36,7 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 		stage = new Stage();
 		textHandler = TextHandler.getInstance();
 		fileChooser(stage);
+		computeConvex();
 	}
 	
 	private void fileChooser(Stage stage)
@@ -57,6 +60,17 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 		}else
 		{
 		}
+	}
+	
+	public String getPath()
+	{
+		return path;
+	}
+	
+	private void computeConvex()
+	{
+		CSVLoader allPoints = new CSVLoader(path);
+		GrahamScan convexPoints = new GrahamScan(allPoints.getValues());
 	}
 
 }

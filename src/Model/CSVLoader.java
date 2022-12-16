@@ -1,4 +1,5 @@
 //https://www.geeksforgeeks.org/reading-csv-file-java-using-opencsv/
+//https://stackoverflow.com/questions/40066333/how-to-store-doubles-in-a-point
 //https://github.com/johnprif/GoogleFromLidl
 //https://www.digitalocean.com/community/tutorials/java-convert-string-to-double
 
@@ -11,20 +12,28 @@ import java.util.List;
 import com.opencsv.*;
 import com.opencsv.exceptions.CsvException;
 
+import javafx.geometry.Point2D;
+
 public class CSVLoader 
 {
 	private String csvPath="test.csv";
 	private List<String[]> stringCSVData;
 	private List<double[]> doubleCSVData;
+	private ArrayList<Point2D> points2DCSVData;
 	
 	public CSVLoader(String CSVpath) throws IOException, CsvException
 	{
 //		this.csvPath=csvPath;
-		stringCSVData=new ArrayList<String[]>();
-		doubleCSVData=new ArrayList<double[]>();
+		stringCSVData = new ArrayList<String[]>();
+		doubleCSVData = new ArrayList<double[]>();
+		points2DCSVData = new ArrayList<Point2D>(); 
+		
+		readValues();
+		printResults();
+		convertValuesToDouble();
 	}
 		
-	public void readValues()  throws IOException, CsvException
+	private void readValues()  throws IOException, CsvException
 	{
 		// Create an object of file reader
         // class with CSV file as a parameter.
@@ -36,7 +45,7 @@ public class CSVLoader
 		stringCSVData.addAll(csvReader.readAll());
 	}
 	
-	public void printResults()
+	private void printResults()
 	{
 		//Print data from csv
 		int i=0;
@@ -52,7 +61,7 @@ public class CSVLoader
         }
 	}
 	
-	public void convertValuesToDouble()
+	public void convertValuesToOther()
 	{
 		//Convert data from String to double		
 		double point[]=new double[2];
@@ -64,12 +73,18 @@ public class CSVLoader
                 System.out.println(point[j] + " is of type " + ((Object)point[j]).getClass().getSimpleName());
 			}
 			doubleCSVData.add(point);
+			points2DCSVData.add(new Point2D(point[0], point[1]));
 		}
 	}
 	
 	public List<double[]> getValues()
 	{
 		return doubleCSVData;
+	}
+	
+	public ArrayList<Point2D> get2Dvalues()
+	{
+		return points2DCSVData;
 	}
 	
 }
