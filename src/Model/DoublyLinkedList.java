@@ -220,4 +220,27 @@ public class DoublyLinkedList
 		}
 		return false;
 	}
+	
+	
+	//it must be implement here?
+	public Point2D searchMaxNode()
+	{
+		Node current = head;
+		Node max = head;
+		if(head==null)
+		{
+			System.out.println("Doubly linked list is empty");
+			return null;
+		}
+		while(current!=null)
+		{
+			if(current.data>max.data)
+			{
+				System.out.println("node with data "+data+" found");
+				return true;
+			}
+			current=current.next;
+		}
+		return false;
+	}
 }
