@@ -4,6 +4,14 @@
 //https://www.geeksforgeeks.org/equation-of-circle-when-three-points-on-the-circle-are-given/
 //https://qc.edu.hk/math/Advanced%20Level/circle%20given%203%20points.htm
 
+//https://planetcalc.com/8116/
+//https://www.geeksforgeeks.org/equation-of-circle-when-three-points-on-the-circle-are-given/
+//https://www.had2know.org/academics/circle-through-three-points.html
+//https://www.math-only-math.com/circle-passing-through-three-given-points.html#gallery[pageGallery]/0/
+//https://qc.edu.hk/math/Advanced%20Level/circle%20given%203%20points.htm
+//https://math.stackexchange.com/questions/2836274/3-point-to-circle-and-get-radius
+//https://jdmeducational.com/how-to-find-center-radius-of-a-circle-3-methods/
+
 package Model;
 
 import java.util.ArrayList;
