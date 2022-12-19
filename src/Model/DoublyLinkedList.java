@@ -230,7 +230,9 @@ public class DoublyLinkedList
 		Node current = head;
 		Node maxNode = head;
 		double maxRadius = 0;
+		double maxAngle = 0;
 		double currentRadius = 0;
+		double currentAngle = 0;
 		
 		if(head==null)
 		{
@@ -244,10 +246,23 @@ public class DoublyLinkedList
 		while(current!=null && current.next!=null)
 		{
 			currentRadius = getRadius(current.before.data, current.data, current.next.data);
-			if(currentRadius>maxRadius)
+			currentAngle = getAngle(current.before.data, current.data, current.next.data);
+			if(currentRadius>=maxRadius)
 			{
-				maxNode = current;
-				maxRadius = currentRadius;
+				if(currentRadius==maxRadius)
+				{
+					if(currentAngle>=maxAngle)
+					{
+						maxNode = current;
+						maxRadius = currentRadius;
+						maxAngle = currentAngle;
+					}//else nothing
+				}else//currentRadius>maxRadius
+				{
+					maxNode = current;
+					maxRadius = currentRadius;
+					maxAngle = currentAngle;
+				}			
 			}
 			current=current.next;
 		}
