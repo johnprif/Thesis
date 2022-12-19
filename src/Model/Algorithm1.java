@@ -29,7 +29,9 @@ public class Algorithm1
 	public Algorithm1(ArrayList<Point2D> convexPoints) 
 	{
 		this.convexPoints = new ArrayList<Point2D>(convexPoints);
+		myDoublyLinkedList = new DoublyLinkedList();
 		movePointsToDoublyLinkedList();
+		computeSmallestEnclosingCircle();
 	}
 	
 	private void movePointsToDoublyLinkedList()
@@ -40,6 +42,9 @@ public class Algorithm1
 		for(int i=0; i<convexPoints.size(); i++)
 		{
 			myDoublyLinkedList.insertAtLast(convexPoints.get(i));
+			System.out.println(i+" = ");
+			myDoublyLinkedList.displayFirstToLast();
+			System.out.println(" --------------------------- ");
 		}
 	}
 	
@@ -47,6 +52,7 @@ public class Algorithm1
 	{
 		boolean finish;
 		Node maxPoint;
+		int i=0;
 		
 		if(myDoublyLinkedList.getSize() != 1)
 		{
@@ -54,6 +60,9 @@ public class Algorithm1
 			do
 			{
 				maxPoint = myDoublyLinkedList.findMaxNode();
+				System.out.println("BEFORE MAX POINT IS = "+maxPoint.before.data);
+				System.out.println("MAX POINT IS = "+maxPoint.data);
+				System.out.println("AFTER MAX POINT IS = "+maxPoint.next.data);
 				//TO-DO 
 				//How to find angle for specific point(paxPoint==p)
 				if(myDoublyLinkedList.getAngle(maxPoint.before.data, maxPoint.data, maxPoint.next.data)<=Math.PI/2)
@@ -62,12 +71,15 @@ public class Algorithm1
 				}else
 				{
 					myDoublyLinkedList.deleteAtIndex(myDoublyLinkedList.searchIndexOfNode(maxPoint.data));
+					System.out.println("\n\n------- "+i+"------- \n\n");
+					i++;
 				}
-			}while(finish);
+			}while(!finish);
 		}else
 		{
 			System.out.println("Only 1 point");
 		}
+		myDoublyLinkedList.displayFirstToLast();
 	}
 	
 	

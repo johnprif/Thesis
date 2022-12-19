@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import com.opencsv.exceptions.CsvException;
 
+import Model.Algorithm1;
 import Model.CSVLoader;
 import Model.GrahamScan;
 import Model.TextHandler;
@@ -41,7 +42,7 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 		stage = new Stage();
 		textHandler = TextHandler.getInstance();
 		fileChooser(stage);
-		computeConvex();
+//		computeConvex();
 	}
 	
 	private void fileChooser(Stage stage)
@@ -63,6 +64,7 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 		if(selectedFile != null)
 		{
 			path = selectedFile.getAbsolutePath();
+			computeConvex();
 		}else
 		{
 		}
@@ -89,6 +91,8 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 			{
 				System.out.println("My points are = "+kati.get(i));
 			}
+			Algorithm1 al = new Algorithm1(kati);
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

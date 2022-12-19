@@ -213,7 +213,7 @@ public class DoublyLinkedList
 		System.out.println("Search node with data "+data+" in doubly linked list");
 		while(current!=null)
 		{
-			if(current.data==data)
+			if(current.data.equals(data))
 			{
 				System.out.println("index of node with data "+data+" found at the "+index);
 				return index;
@@ -283,7 +283,7 @@ public class DoublyLinkedList
 			}
 			current=current.next;
 		}
-		return current;
+		return maxNode;
 	}
 
 	
@@ -313,14 +313,14 @@ public class DoublyLinkedList
 			double x21 = x2 - x1;
 		 
 		    // x1^2 - x3^2
-			double sx13 = (int)(Math.pow(x1, 2) - Math.pow(x3, 2));
+			double sx13 = (Math.pow(x1, 2) - Math.pow(x3, 2));
 		 
 		    // y1^2 - y3^2
-			double sy13 = (int)(Math.pow(y1, 2) - Math.pow(y3, 2));
+			double sy13 = (Math.pow(y1, 2) - Math.pow(y3, 2));
 		 
-			double sx21 = (int)(Math.pow(x2, 2) - Math.pow(x1, 2));
+			double sx21 = (Math.pow(x2, 2) - Math.pow(x1, 2));
 		                     
-			double sy21 = (int)(Math.pow(y2, 2) - Math.pow(y1, 2));
+			double sy21 = (Math.pow(y2, 2) - Math.pow(y1, 2));
 		 
 			double f = ((sx13) * (x12)
 		            + (sy13) * (x12)
@@ -333,7 +333,7 @@ public class DoublyLinkedList
 		            + (sy21) * (y13))
 		            / (2 * ((x31) * (y12) - (x21) * (y13)));
 		 
-			double c = -(int)Math.pow(x1, 2) - (int)Math.pow(y1, 2) -
+			double c = -Math.pow(x1, 2) - Math.pow(y1, 2) -
 		                                2 * g * x1 - 2 * f * y1;
 		 
 		    // eqn of circle be x^2 + y^2 + 2*g*x + 2*f*y + c = 0
@@ -357,9 +357,10 @@ public class DoublyLinkedList
 		Point2D pq = new Point2D(p.getX()-q.getX(), p.getY()-q.getY());
 		Point2D qr = new Point2D(q.getX()-r.getX(), q.getY()-r.getY());
 		double pq_qr = pq.getX()*qr.getX()+pq.getY()*qr.getY();
-		double _pq_qr_ = Math.sqrt(pq.getX()*pq.getX()+pq.getY()*pq.getY()) * Math.sqrt(qr.getX()*qr.getX()+qr.getY()*qr.getY());		
+//		double _pq_qr_ = Math.sqrt(pq.getX()*pq.getX()+pq.getY()*pq.getY()) * Math.sqrt(qr.getX()*qr.getX()+qr.getY()*qr.getY());		
+		double _pq_qr_ = Math.sqrt(Math.pow(pq.getX(),2)+Math.pow(pq.getY(),2)) * Math.sqrt(Math.pow(qr.getX(),2)+Math.pow(qr.getY(),2));	
 		double angle = Math.acos(pq_qr/_pq_qr_);
-		
+		System.out.println("The angle is = "+angle);
 		return angle;
 	}
 }
