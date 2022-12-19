@@ -28,23 +28,23 @@ class DoublyLinkedListTester {
 	{	
 		int i=0;
 		
-		assertEquals(list.insertAtFirst(1), list.searchNode(1));
+		assertEquals(list.insertAtFirst(1), list.searchIndexOfNode(1));
 		i++;
 		assertEquals(list.getSize(), i);
 		
-		assertEquals(list.insertAtFirst(2), list.searchNode(2));
+		assertEquals(list.insertAtFirst(2), list.searchIndexOfNode(2));
 		i++;
 		assertEquals(list.getSize(), i);
 		
-		assertEquals(list.insertAtFirst(3), list.searchNode(3));
+		assertEquals(list.insertAtFirst(3), list.searchIndexOfNode(3));
 		i++;			
 		assertEquals(list.getSize(), i);
 		
-		assertEquals(list.insertAtLast(4), list.searchNode(4));
+		assertEquals(list.insertAtLast(4), list.searchIndexOfNode(4));
 		i++;
 		assertEquals(list.getSize(), i);
 		
-		assertEquals(list.insertAtIndex(5, 3), list.searchNode(5));
+		assertEquals(list.insertAtIndex(5, 3), list.searchIndexOfNode(5));
 		i++;
 		assertEquals(list.getSize(), i);		
 

@@ -201,13 +201,14 @@ public class DoublyLinkedList
 		System.out.println(" ");
 	}
 	
-	public boolean searchNode(Point2D data)
+	public int searchIndexOfNode(Point2D data)
 	{
 		Node current=head;
+		int index=0;
 		if(head==null)
 		{
 			System.out.println("Doubly linked list is empty");
-			return false;
+			return index;
 		}
 		System.out.println("Search node with data "+data+" in doubly linked list");
 		while(current!=null)
@@ -215,17 +216,33 @@ public class DoublyLinkedList
 			if(current.data==data)
 			{
 				System.out.println("node with data "+data+" found");
-				return true;
+				return index;
 			}
 			current=current.next;
+			index++;
 		}
-		return false;
+		return -1;
+	}
+	
+	public Node searchNodeAtIndex(int index)
+	{
+		Node current=head;
+		if(head==null)
+		{
+			System.out.println("Doubly linked list is empty");
+			return null;
+		}
+		for(int i=0; i<index && current.next!=null; i++)
+		{
+			current=current.next;
+		}
+		return current;
 	}
 	
 	
 	//it must be implement here?
 	//serial search, multiplexity O(n)
-	public Point2D findMaxNode()
+	public Node findMaxNode()
 	{
 		Node current = head;
 		Node maxNode = head;
@@ -233,6 +250,7 @@ public class DoublyLinkedList
 		double maxAngle = 0;
 		double currentRadius = 0;
 		double currentAngle = 0;
+		int index=0;
 		
 		if(head==null)
 		{
@@ -256,25 +274,23 @@ public class DoublyLinkedList
 						maxNode = current;
 						maxRadius = currentRadius;
 						maxAngle = currentAngle;
+						index++;
 					}//else nothing
 				}else//currentRadius>maxRadius
 				{
 					maxNode = current;
 					maxRadius = currentRadius;
 					maxAngle = getAngle(current.before.data, current.data, current.next.data);
+					index++;
 				}			
 			}
 			current=current.next;
 		}
-		return maxNode.data;
+		return current;
 	}
+
 	
-	public double getPreviousAngle()
-	{
-		return maxAngle;
-	}
-	
-	private double getRadius(Point2D p, Point2D q, Point2D r)
+	public double getRadius(Point2D p, Point2D q, Point2D r)
 	{
 		double x1 = p.getX();
 		double y1 = p.getY();
@@ -339,7 +355,7 @@ public class DoublyLinkedList
 		return R;
 	}
 	
-	private double getAngle(Point2D p, Point2D q, Point2D r)
+	public double getAngle(Point2D p, Point2D q, Point2D r)
 	{
 		Point2D pq = new Point2D(p.getX()-q.getX(), p.getY()-q.getY());
 		Point2D qr = new Point2D(q.getX()-r.getX(), q.getY()-r.getY());

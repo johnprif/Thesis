@@ -16,6 +16,9 @@ package Model;
 
 import java.text.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
+
+import Model.DoublyLinkedList.Node;
 import javafx.geometry.Point2D;
 import java.lang.Math;
 public class Algorithm1 
@@ -43,7 +46,7 @@ public class Algorithm1
 	private void computeSmallestEnclosingCircle()
 	{
 		boolean finish;
-		Point2D maxPoint;
+		Node maxPoint;
 		
 		if(myDoublyLinkedList.getSize() != 1)
 		{
@@ -53,13 +56,12 @@ public class Algorithm1
 				maxPoint = myDoublyLinkedList.findMaxNode();
 				//TO-DO 
 				//How to find angle for specific point(paxPoint==p)
-				if(myDoublyLinkedList.getPreviousAngle()<=Math.PI/2)
+				if(myDoublyLinkedList.getAngle(maxPoint.before.data, maxPoint.data, maxPoint.next.data)<=Math.PI/2)
 				{
 					finish = true;
 				}else
 				{
-					//TO-DO
-					//remove p from myDoublyLinkedList
+					myDoublyLinkedList.deleteAtIndex(myDoublyLinkedList.searchIndexOfNode(maxPoint.data));
 				}
 			}while(finish);
 		}else
