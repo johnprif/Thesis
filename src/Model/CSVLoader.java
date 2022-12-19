@@ -29,7 +29,7 @@ public class CSVLoader
 		points2DCSVData = new ArrayList<Point2D>(); 
 		
 		readValues();
-		printResults();
+//		printResults();
 		convertValuesToOther();
 	}
 		
@@ -72,7 +72,7 @@ public class CSVLoader
 				String temp = stringCSVData.get(i)[j].replace(',', '.');
 //				point[j]=Double.parseDouble(stringCSVData.get(i)[j]);
 				point[j]=Double.parseDouble(temp);
-                System.out.println(point[j] + " is of type " + ((Object)point[j]).getClass().getSimpleName());
+//                System.out.println(point[j] + " is of type " + ((Object)point[j]).getClass().getSimpleName());
 			}
 			doubleCSVData.add(point);
 			points2DCSVData.add(new Point2D(point[0], point[1]));		

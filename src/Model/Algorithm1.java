@@ -59,14 +59,16 @@ public class Algorithm1
 			do
 			{
 				maxPoint = myDoublyLinkedList.findMaxNode();
+				System.out.println("maxPoint.data = "+maxPoint.data);
 				//TO-DO 
 				//How to find angle for specific point(paxPoint==p)
-				if(myDoublyLinkedList.getAngle(maxPoint.before.data, maxPoint.data, maxPoint.next.data)<=Math.PI/2)
+				if(myDoublyLinkedList.getAngle(maxPoint.before.data, maxPoint.data, maxPoint.next.data)<=3.14/2)
+//				if(Double.compare(myDoublyLinkedList.getAngle(maxPoint.before.data, maxPoint.data, maxPoint.next.data), Math.PI/2) < 0)
 				{
 					finish = true;
 				}else
 				{
-					myDoublyLinkedList.deleteAtIndex(myDoublyLinkedList.searchIndexOfNode(maxPoint.data));
+					myDoublyLinkedList.deleteAtIndex(myDoublyLinkedList.searchIndexOfNode(maxPoint.data));					
 					System.out.println("The length of DLL is = "+myDoublyLinkedList.getSize());
 				}
 			}while(!finish);
@@ -77,6 +79,7 @@ public class Algorithm1
 		System.out.print("The size of latest DLL is = "+myDoublyLinkedList.getSize()+"\n");
 		myDoublyLinkedList.displayFirstToLast();
 		System.out.print("----------------------------------------------------------------------\n");
+		System.out.println("The final size is = "+myDoublyLinkedList.getSize());
 	}
 	
 	

@@ -259,7 +259,9 @@ public class DoublyLinkedList
 		//Start from second node
 		current = current.next;
 		//TO-DO
-		//check if current.next == null  
+		//check if current.next == null 
+		//check current.next, head, head.next
+		//check head, head.next, head.next.next
 		while(current!=null && current.next!=null)
 		{
 			currentRadius = getRadius(current.before.data, current.data, current.next.data);
@@ -345,7 +347,7 @@ public class DoublyLinkedList
 		 
 		    // r is the radius
 		    R = Math.sqrt(sqr_of_r);
-		    DecimalFormat df = new DecimalFormat("#.#####");
+//		    DecimalFormat df = new DecimalFormat("#.#####");
 //		    System.out.println("Centre = (" + h + "," + k + ")");
 //		    System.out.println("Radius = " + df.format(R));
 		}
