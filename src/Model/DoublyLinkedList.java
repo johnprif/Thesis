@@ -346,8 +346,8 @@ public class DoublyLinkedList
 		    // r is the radius
 		    R = Math.sqrt(sqr_of_r);
 		    DecimalFormat df = new DecimalFormat("#.#####");
-		    System.out.println("Centre = (" + h + "," + k + ")");
-		    System.out.println("Radius = " + df.format(R));
+//		    System.out.println("Centre = (" + h + "," + k + ")");
+//		    System.out.println("Radius = " + df.format(R));
 		}
 		return R;
 	}
@@ -360,7 +360,7 @@ public class DoublyLinkedList
 //		double _pq_qr_ = Math.sqrt(pq.getX()*pq.getX()+pq.getY()*pq.getY()) * Math.sqrt(qr.getX()*qr.getX()+qr.getY()*qr.getY());		
 		double _pq_qr_ = Math.sqrt(Math.pow(pq.getX(),2)+Math.pow(pq.getY(),2)) * Math.sqrt(Math.pow(qr.getX(),2)+Math.pow(qr.getY(),2));	
 		double angle = Math.acos(pq_qr/_pq_qr_);
-		System.out.println("The angle is = "+angle);
+//		System.out.println("The angle is = "+angle);
 		return angle;
 	}
 }

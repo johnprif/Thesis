@@ -30,7 +30,7 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 	private TextHandler textHandler;
 	
 	private FileChooser fileChooser;
-	
+	private CSVLoader allPoints;
 	public LoadFileButtonHandler()
 	{
 		textHandler = TextHandler.getInstance();
@@ -42,7 +42,7 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 		stage = new Stage();
 		textHandler = TextHandler.getInstance();
 		fileChooser(stage);
-//		computeConvex();
+		computeConvex();
 	}
 	
 	private void fileChooser(Stage stage)
@@ -58,13 +58,19 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 			    ,new FileChooser.ExtensionFilter("Excel", "*.xlsx")
 			);
 		File selectedFile = fileChooser.showOpenDialog(stage);
-
-		
 		
 		if(selectedFile != null)
 		{
 			path = selectedFile.getAbsolutePath();
-			computeConvex();
+			try {
+				allPoints = new CSVLoader(path);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (CsvException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
 		}else
 		{
 		}
@@ -76,31 +82,17 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 	}
 	
 	private void computeConvex()
-	{
-		CSVLoader allPoints;
-		GrahamScan convexPoints;
-		
-		try {
-			allPoints = new CSVLoader(path);
+	{	
+		GrahamScan convexPoints;		
 			convexPoints = new GrahamScan(allPoints.get2Dvalues());
 			convexPoints.computeGrahamScan();
 			convexPoints.moveStackToArrayList();
 			ArrayList<Point2D> kati = new ArrayList<Point2D>(convexPoints.getconvexHullPoints());
-			System.out.println("------BELLOW ARE THE CONVEXHULL POINTS------");
-			for(int i=0; i<kati.size(); i++)
-			{
-				System.out.println("My points are = "+kati.get(i));
-			}
-			Algorithm1 al = new Algorithm1(kati);
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (CsvException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+//			System.out.println("------BELLOW ARE THE CONVEXHULL POINTS------");
+//			for(int i=0; i<kati.size(); i++)
+//			{
+//				System.out.println("My points are = "+kati.get(i));
+//			}
+			Algorithm1 al = new Algorithm1(kati);		
 	}
-
 }

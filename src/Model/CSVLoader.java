@@ -16,14 +16,14 @@ import javafx.geometry.Point2D;
 
 public class CSVLoader 
 {
-	private String csvPath="test.csv";
+	private String csvPath;
 	private List<String[]> stringCSVData;
 	private List<double[]> doubleCSVData;
 	private ArrayList<Point2D> points2DCSVData;
 	
-	public CSVLoader(String CSVpath) throws IOException, CsvException
+	public CSVLoader(String csvPath) throws IOException, CsvException
 	{
-//		this.csvPath=csvPath;
+		this.csvPath=csvPath;
 		stringCSVData = new ArrayList<String[]>();
 		doubleCSVData = new ArrayList<double[]>();
 		points2DCSVData = new ArrayList<Point2D>(); 
@@ -37,7 +37,7 @@ public class CSVLoader
 	{
 		// Create an object of file reader
         // class with CSV file as a parameter.
-		CSVParser csvParser = new CSVParserBuilder().withSeparator(';').build();
+		CSVParser csvParser = new CSVParserBuilder().withSeparator(',').withSeparator(',').build();
 		// create csvReader object
 		CSVReader csvReader = new CSVReaderBuilder(new FileReader(csvPath))
 									.withCSVParser(csvParser)
@@ -54,7 +54,7 @@ public class CSVLoader
             for (String cell : row) 
             {
                 System.out.print("String: "+i+"="+cell + "\t");
-//                System.out.println(cell + " is of type " + ((Object)cell).getClass().getSimpleName());   == STRING               
+//              System.out.println(cell + " is of type " + ((Object)cell).getClass().getSimpleName());   == STRING               
             }
             i++;
             System.out.println();
@@ -69,12 +69,13 @@ public class CSVLoader
 		{
 			for(int j=0; j<stringCSVData.get(i).length; j++)
 			{
-				point[j]=Double.parseDouble(stringCSVData.get(i)[j]);
+				String temp = stringCSVData.get(i)[j].replace(',', '.');
+//				point[j]=Double.parseDouble(stringCSVData.get(i)[j]);
+				point[j]=Double.parseDouble(temp);
                 System.out.println(point[j] + " is of type " + ((Object)point[j]).getClass().getSimpleName());
 			}
 			doubleCSVData.add(point);
-			points2DCSVData.add(new Point2D(point[0], point[1]));
-			System.out.println(i+" = "+points2DCSVData.get(i) + " is of type " + points2DCSVData.get(i).getX() +" --- "+points2DCSVData.get(i).getY());
+			points2DCSVData.add(new Point2D(point[0], point[1]));		
 		}
 	}
 	
