@@ -43,6 +43,9 @@ public class Algorithm1
 		{
 			myDoublyLinkedList.insertAtLast(convexPoints.get(i));
 		}
+		System.out.print("The size of initial DLL is = "+myDoublyLinkedList.getSize()+"\n");
+		myDoublyLinkedList.displayFirstToLast();
+		System.out.print("----------------------------------------------------------------------\n");
 	}
 	
 	private void computeSmallestEnclosingCircle()
@@ -71,7 +74,9 @@ public class Algorithm1
 		{
 			System.out.println("Only 1 point");
 		}
+		System.out.print("The size of latest DLL is = "+myDoublyLinkedList.getSize()+"\n");
 		myDoublyLinkedList.displayFirstToLast();
+		System.out.print("----------------------------------------------------------------------\n");
 	}
 	
 	
