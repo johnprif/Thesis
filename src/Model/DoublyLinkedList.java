@@ -225,6 +225,7 @@ public class DoublyLinkedList
 	
 	
 	//it must be implement here?
+	//serial search, multiplexity O(n)
 	public Point2D findMaxNode()
 	{
 		Node current = head;
