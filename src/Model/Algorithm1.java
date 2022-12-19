@@ -51,9 +51,15 @@ public class Algorithm1
 			do
 			{
 				maxPoint = myDoublyLinkedList.findMaxNode();
-				if(myDoublyLinkedList.getPreviousAngle()<=Math.PI)
+				//TO-DO 
+				//How to find angle for specific point(paxPoint==p)
+				if(myDoublyLinkedList.getPreviousAngle()<=Math.PI/2)
 				{
-					
+					finish = true;
+				}else
+				{
+					//TO-DO
+					//remove p from myDoublyLinkedList
 				}
 			}while(finish);
 		}else
