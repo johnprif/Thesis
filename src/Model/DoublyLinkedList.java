@@ -1,10 +1,9 @@
 //Sources
 //https://www.javadevjournal.com/data-structure/doubly-linked-list-in-java/
-
+//https://www.geeksforgeeks.org/singleton-class-java/
 package Model;
 
 import java.text.DecimalFormat;
-
 import javafx.geometry.Point2D;
 
 public class DoublyLinkedList 
@@ -247,11 +246,11 @@ public class DoublyLinkedList
 		while(current!=null && current.next!=null)
 		{
 			currentRadius = getRadius(current.before.data, current.data, current.next.data);
-			currentAngle = getAngle(current.before.data, current.data, current.next.data);
 			if(currentRadius>=maxRadius)
 			{
 				if(currentRadius==maxRadius)
 				{
+					currentAngle = getAngle(current.before.data, current.data, current.next.data);
 					if(currentAngle>=maxAngle)
 					{
 						maxNode = current;
@@ -262,12 +261,17 @@ public class DoublyLinkedList
 				{
 					maxNode = current;
 					maxRadius = currentRadius;
-					maxAngle = currentAngle;
+					maxAngle = getAngle(current.before.data, current.data, current.next.data);
 				}			
 			}
 			current=current.next;
 		}
 		return maxNode.data;
+	}
+	
+	public double getPreviousAngle()
+	{
+		return maxAngle;
 	}
 	
 	private double getRadius(Point2D p, Point2D q, Point2D r)

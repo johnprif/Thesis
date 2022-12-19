@@ -50,8 +50,11 @@ public class Algorithm1
 			finish = false;
 			do
 			{
-				maxPoint = findMax();
-				if()
+				maxPoint = myDoublyLinkedList.findMaxNode();
+				if(myDoublyLinkedList.getPreviousAngle()<=Math.PI)
+				{
+					
+				}
 			}while(finish);
 		}else
 		{
