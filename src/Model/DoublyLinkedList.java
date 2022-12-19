@@ -215,7 +215,7 @@ public class DoublyLinkedList
 		{
 			if(current.data==data)
 			{
-				System.out.println("node with data "+data+" found");
+				System.out.println("index of node with data "+data+" found at the "+index);
 				return index;
 			}
 			current=current.next;
@@ -224,20 +224,20 @@ public class DoublyLinkedList
 		return -1;
 	}
 	
-	public Node searchNodeAtIndex(int index)
-	{
-		Node current=head;
-		if(head==null)
-		{
-			System.out.println("Doubly linked list is empty");
-			return null;
-		}
-		for(int i=0; i<index && current.next!=null; i++)
-		{
-			current=current.next;
-		}
-		return current;
-	}
+//	private Node searchNodeAtIndex(int index)
+//	{
+//		Node current=head;
+//		if(head==null)
+//		{
+//			System.out.println("Doubly linked list is empty");
+//			return null;
+//		}
+//		for(int i=0; i<index && current.next!=null; i++)
+//		{
+//			current=current.next;
+//		}
+//		return current;
+//	}
 	
 	
 	//it must be implement here?
@@ -250,7 +250,6 @@ public class DoublyLinkedList
 		double maxAngle = 0;
 		double currentRadius = 0;
 		double currentAngle = 0;
-		int index=0;
 		
 		if(head==null)
 		{
@@ -264,24 +263,22 @@ public class DoublyLinkedList
 		while(current!=null && current.next!=null)
 		{
 			currentRadius = getRadius(current.before.data, current.data, current.next.data);
+			currentAngle = getAngle(current.before.data, current.data, current.next.data);
 			if(currentRadius>=maxRadius)
 			{
 				if(currentRadius==maxRadius)
-				{
-					currentAngle = getAngle(current.before.data, current.data, current.next.data);
+				{					
 					if(currentAngle>=maxAngle)
 					{
 						maxNode = current;
 						maxRadius = currentRadius;
 						maxAngle = currentAngle;
-						index++;
 					}//else nothing
 				}else//currentRadius>maxRadius
 				{
 					maxNode = current;
 					maxRadius = currentRadius;
-					maxAngle = getAngle(current.before.data, current.data, current.next.data);
-					index++;
+					maxAngle = currentAngle;
 				}			
 			}
 			current=current.next;
