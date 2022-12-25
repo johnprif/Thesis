@@ -8,6 +8,7 @@ import com.opencsv.exceptions.CsvException;
 
 import Model.Algorithm1;
 import Model.CSVLoader;
+import Model.FileLoader;
 import Model.GrahamScan;
 import Model.TextHandler;
 import javafx.event.ActionEvent;
@@ -30,8 +31,6 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 	private TextHandler textHandler;
 	
 	private FileChooser fileChooser;
-	private CSVLoader allPoints;
-	private TXTLoader allPoints;
 	private FileLoader allPoints;
 	
 	public LoadFileButtonHandler()
@@ -65,16 +64,7 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 		if(selectedFile != null)
 		{
 			path = selectedFile.getAbsolutePath();
-			try {
-//				allPoints = new CSVLoader(path);
-				allPoints = new FileLoader(path);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (CsvException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
+			allPoints = new FileLoader(path);
 		}else
 		{
 		}
@@ -83,23 +73,6 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 	public String getPath()
 	{
 		return path;
-	}
-	
-	private void checkExtension()
-	{
-		if(path.contains(".csv"))
-		{
-			
-		}else if(path.contains(".txt"))
-		{
-			
-		}else if(path.contains(".xlsx"))
-		{
-			
-		}else
-		{
-			
-		}
 	}
 	
 	private void computeConvex()

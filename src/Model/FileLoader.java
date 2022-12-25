@@ -16,11 +16,6 @@ public class FileLoader
 	
 	private void callSpecificLoader()
 	{
-		
-	}
-	
-	private void checkExtension()
-	{
 		try {
 			if(path.contains(".csv"))
 			{
