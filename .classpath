@@ -57,7 +57,15 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/Joanis Prifti/Documents/GitHub/Java_Paper/ImportantFiles/jars/commons-lang3-3.12.0.wso2v1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Joanis Prifti/Documents/GitHub/Java_Paper/ImportantFiles/jars/jxls-jexcel-1.0.9.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Joanis Prifti/Documents/GitHub/Java_Paper/ImportantFiles/jars/poi-ooxml-5.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Joanis Prifti/Documents/GitHub/Java_Paper/ImportantFiles/jars/jxls-jexcel-1.0.9.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Joanis Prifti/Documents/GitHub/Java_Paper/ImportantFiles/jars/poi-ooxml-5.2.3.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
