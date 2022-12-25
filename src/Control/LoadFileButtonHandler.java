@@ -31,6 +31,9 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 	
 	private FileChooser fileChooser;
 	private CSVLoader allPoints;
+	private TXTLoader allPoints;
+	private FileLoader allPoints;
+	
 	public LoadFileButtonHandler()
 	{
 		textHandler = TextHandler.getInstance();
@@ -42,7 +45,7 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 		stage = new Stage();
 		textHandler = TextHandler.getInstance();
 		fileChooser(stage);
-		computeConvex();
+//		computeConvex();
 	}
 	
 	private void fileChooser(Stage stage)
@@ -63,7 +66,8 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 		{
 			path = selectedFile.getAbsolutePath();
 			try {
-				allPoints = new CSVLoader(path);
+//				allPoints = new CSVLoader(path);
+				allPoints = new FileLoader(path);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -79,6 +83,23 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 	public String getPath()
 	{
 		return path;
+	}
+	
+	private void checkExtension()
+	{
+		if(path.contains(".csv"))
+		{
+			
+		}else if(path.contains(".txt"))
+		{
+			
+		}else if(path.contains(".xlsx"))
+		{
+			
+		}else
+		{
+			
+		}
 	}
 	
 	private void computeConvex()

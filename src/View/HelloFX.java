@@ -110,9 +110,7 @@ public class HelloFX extends Application
     	loadFileButton.setOnAction(loadFileButtonHandler);   	
     	putPointsButton.setOnAction(putPointsButtonHandler);   	
     	exitButton.setOnAction(exitButtonHandler);   	  	
-    	infoButton.setOnAction(infoButtonHandler);
-    	
-    	
+    	infoButton.setOnAction(infoButtonHandler);   	
     }
     
     
@@ -144,8 +142,7 @@ public class HelloFX extends Application
 	    buttons.add(loadFileButton);
 	    buttons.add(putPointsButton);
 	    buttons.add(exitButton);	    
-	    buttons.add(infoButton);
-	    
+	    buttons.add(infoButton);	    
 	}
     
     private void createMainPane()

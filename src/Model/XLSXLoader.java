@@ -1,12 +1,11 @@
 package Model;
 
-public class TXTLoader 
+public class XLSXLoader 
 {
 	private String path;
 	
-	public TXTLoader(String path)
+	public XLSXLoader(String path)
 	{
 		this.path = path;
 	}
-	
 }
