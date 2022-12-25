@@ -102,7 +102,7 @@ public class HelloFX extends Application
     {
     	changeLanguageButtonHandler = new ChangeLanguageButtonHandler(buttons, paperTitle);
     	loadFileButtonHandler = new LoadFileButtonHandler();
-    	putPointsButtonHandler = new PutPointsButtonHandler();
+    	putPointsButtonHandler = new PutPointsButtonHandler(stage);
     	exitButtonHandler = new ExitButtonHandler(stage);   	
     	infoButtonHandler = new InfoButtonHandler();
     	
