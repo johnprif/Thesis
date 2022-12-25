@@ -34,7 +34,7 @@ public class TextHandler
     	if(language.equals("EN"))
     	{
     		//-----MainWidnow--------------
-    		paperTitleText = "A SIMPLE ALGORITHM FOR\nCOMPUTING THE SMALEST\n   ENCLOSING CIRCLE\n  ";
+    		paperTitleText = "A SIMPLE ALGORITHM FOR\nCOMPUTING THE SMALLEST\n   ENCLOSING CIRCLE\n  ";
     		loadFileButtonText = "Load Points From File";
     		putPointsButtonText = "Create Points";
     		exitButtonText = "Exit";  		
