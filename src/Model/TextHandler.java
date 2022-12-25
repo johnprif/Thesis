@@ -35,7 +35,7 @@ public class TextHandler
     	{
     		//-----MainWidnow--------------
     		paperTitleText = "A SIMPLE ALGORITHM FOR\nCOMPUTING THE SMALEST\n   ENCLOSING CIRCLE\n  ";
-    		loadFileButtonText = "Load Points From CSV";
+    		loadFileButtonText = "Load Points From File";
     		putPointsButtonText = "Create Points";
     		exitButtonText = "Exit";  		
     		
@@ -46,7 +46,7 @@ public class TextHandler
     	{
     		//-----MainWidnow--------------
     		paperTitleText = "ΕΝΑΣ ΑΠΛΟΣ ΑΛΓΟΡΙΘΜΟΣ\n ΓΙΑ ΤΟΝ ΥΠΟΛΟΓΙΣΜΟ\n   ΤΟΥ ΕΛΑΧΙΣΤΟΥ\n ΠΕΡΙΚΛΕΙΩΝΤΑ ΚΥΚΛΟΥ";
-    		loadFileButtonText = "Φόρτωση Σημείων από CSV";
+    		loadFileButtonText = "Φόρτωση Σημείων από Αρχείο";
     		putPointsButtonText = "Δημιουργία σημείων";
     		exitButtonText = "Έξοδος";
     		

@@ -119,7 +119,7 @@ public class HelloFX extends Application
     private void createButtons()
 	{
     	changeLanguageButton = new Button("EN");
-    	loadFileButton = new Button("Load Points From CSV");
+    	loadFileButton = new Button("Load Points From File");
     	putPointsButton = new Button("Create Points");
     	exitButton = new Button("Exit");    	
     	infoButton = new Button("?");
