@@ -58,6 +58,7 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 			     new FileChooser.ExtensionFilter("CSV", "*.csv")
 			    ,new FileChooser.ExtensionFilter("txt", "*.txt")
 			    ,new FileChooser.ExtensionFilter("Excel", "*.xlsx")
+			    ,new FileChooser.ExtensionFilter("Excel", "*.xls")
 			);
 		File selectedFile = fileChooser.showOpenDialog(stage);
 		

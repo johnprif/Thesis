@@ -24,7 +24,7 @@ public class FileLoaderFactory
 			}else if(path.contains(".txt"))
 			{
 				allPoints = new TXTLoader(path);
-			}else if(path.contains(".xlsx"))
+			}else if(path.contains(".xlsx") || path.contains(".xls"))
 			{
 				allPoints = new XLSXLoader(path);
 			}else
