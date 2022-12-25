@@ -73,6 +73,54 @@ public class DoublyLinkedList2
 		return dll.indexOf(data);
 	}
 	
+	//it must be implement here?
+		//serial search, multiplexity O(n)
+		public Node findMaxNode()
+		{
+			Node current = head;
+			Node maxNode = head;
+			double maxRadius = 0;
+			double maxAngle = 0;
+			double currentRadius = 0;
+			double currentAngle = 0;
+			
+			if(head==null)
+			{
+				System.out.println("Doubly linked list is empty");
+				return null;
+			}
+			//Start from second node
+			current = current.next;
+			//TO-DO
+			//check if current.next == null 
+			//check current.next, head, head.next
+			//check head, head.next, head.next.next
+			while(current!=null && current.next!=null)
+			{
+				currentRadius = getRadius(current.before.data, current.data, current.next.data);
+				currentAngle = getAngle(current.before.data, current.data, current.next.data);
+				if(currentRadius>=maxRadius)
+				{
+					if(currentRadius==maxRadius)
+					{					
+						if(currentAngle>=maxAngle)
+						{
+							maxNode = current;
+							maxRadius = currentRadius;
+							maxAngle = currentAngle;
+						}//else nothing
+					}else//currentRadius>maxRadius
+					{
+						maxNode = current;
+						maxRadius = currentRadius;
+						maxAngle = currentAngle;
+					}			
+				}
+				current=current.next;
+			}
+			return maxNode;
+		}
+	
 	public double getRadius(Point2D p, Point2D q, Point2D r)
 	{
 		double x1 = p.getX();
