@@ -10,7 +10,6 @@ public class GraphGUI
 	public GraphGUI()
 	{
 		createStage();
-//		stage.close();
 	}
 	
 	private void createStage()
