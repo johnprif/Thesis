@@ -14,7 +14,7 @@ import com.opencsv.exceptions.CsvException;
 
 import javafx.geometry.Point2D;
 
-public class CSVLoader 
+public class CSVLoader implements FileLoader
 {
 	private String csvPath;
 	private List<String[]> stringCSVData;

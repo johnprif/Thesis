@@ -8,7 +8,7 @@ import com.opencsv.exceptions.CsvException;
 
 import Model.Algorithm1;
 import Model.CSVLoader;
-import Model.FileLoader;
+import Model.FileLoaderFactory;
 import Model.GrahamScan;
 import Model.TextHandler;
 import javafx.event.ActionEvent;
@@ -31,7 +31,7 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 	private TextHandler textHandler;
 	
 	private FileChooser fileChooser;
-	private FileLoader allPoints;
+	private FileLoaderFactory allPoints;
 	
 	public LoadFileButtonHandler()
 	{
@@ -64,7 +64,7 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 		if(selectedFile != null)
 		{
 			path = selectedFile.getAbsolutePath();
-			allPoints = new FileLoader(path);
+			allPoints = new FileLoaderFactory(path);
 		}else
 		{
 		}

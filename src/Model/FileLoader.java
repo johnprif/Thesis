@@ -1,46 +1,14 @@
+//https://www.w3schools.com/java/java_interface.asp
+
 package Model;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import javafx.geometry.Point2D;
 
-import com.opencsv.exceptions.CsvException;
-
-public class FileLoader 
+public interface FileLoader 
 {
-	private String path;
-	private Object allPoints;
-	
-	public FileLoader(String path)
-	{
-		this.path = path;
-	}
-	
-	private void callSpecificLoader()
-	{
-		try {
-			if(path.contains(".csv"))
-			{
-				allPoints = new CSVLoader(path);
-			}else if(path.contains(".txt"))
-			{
-				allPoints = new TXTLoader(path);
-			}else if(path.contains(".xlsx"))
-			{
-				allPoints = new XLSXLoader(path);
-			}else
-			{
-				
-			}	
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (CsvException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		
-	}
-	
-	
+//	public void readValues();
+	public List<double[]> getDoubleValues();
+	public ArrayList<Point2D> get2Dvalues();
 }
