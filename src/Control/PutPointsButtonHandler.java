@@ -7,23 +7,20 @@ import javafx.stage.Stage;
 
 public class PutPointsButtonHandler  implements EventHandler<ActionEvent>
 {
-	private Stage stage;
+	private Stage mainStage;
 	private Stage graphStage;
 	private GraphGUI graphGUI;
 	
-	public PutPointsButtonHandler(Stage stage)
+	public PutPointsButtonHandler(Stage mainStage)
 	{
-		this.stage = stage;		
+		this.mainStage = mainStage;		
 	}
 	
 	@Override
 	public void handle(ActionEvent arg0) 
 	{
-		stage.close();
-		graphStage = new Stage();
-		graphStage.setHeight(600);
-		graphStage.setWidth(600);
-		graphGUI = new GraphGUI(graphStage);
+		mainStage.close();
+		graphGUI = new GraphGUI();
 	}
 
 }

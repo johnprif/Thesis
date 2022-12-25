@@ -11,6 +11,7 @@ import Model.CSVLoader;
 import Model.FileLoaderFactory;
 import Model.GrahamScan;
 import Model.TextHandler;
+import View.GraphGUI;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -25,7 +26,8 @@ import javafx.geometry.Point2D;
 public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 {
 
-	private Stage stage;
+	private Stage fileChooserStage;
+	private Stage mainStage;
 	private String path;
 
 	private TextHandler textHandler;
@@ -33,17 +35,20 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 	private FileChooser fileChooser;
 	private FileLoaderFactory allPoints;
 	
-	public LoadFileButtonHandler()
+	private GraphGUI graphGUI;
+	
+	public LoadFileButtonHandler(Stage mainStage)
 	{
+		this.mainStage = mainStage;
 		textHandler = TextHandler.getInstance();
 	}
 	
 	@Override
 	public void handle(ActionEvent arg0) 
 	{
-		stage = new Stage();
+		fileChooserStage = new Stage();
 		textHandler = TextHandler.getInstance();
-		fileChooser(stage);
+		fileChooser(fileChooserStage);
 //		computeConvex();
 	}
 	
@@ -62,11 +67,13 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 			);
 		File selectedFile = fileChooser.showOpenDialog(stage);
 		
-		if(selectedFile != null)
+		if(selectedFile != null)//pressed OK
 		{
 			path = selectedFile.getAbsolutePath();
 			allPoints = new FileLoaderFactory(path);
-		}else
+			mainStage.close();
+			graphGUI = new GraphGUI();
+		}else//pressed Cancel
 		{
 		}
 	}

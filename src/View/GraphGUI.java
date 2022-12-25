@@ -5,14 +5,23 @@ import javafx.stage.Stage;
 
 public class GraphGUI
 {
-	private Stage stage;
+	private Stage graphStage;
 
-	public GraphGUI(Stage stage)
+	public GraphGUI()
 	{
-		this.stage = stage;
-		stage.show();
+		createStage();
 //		stage.close();
 	}
 	
-
+	private void createStage()
+    {
+		graphStage = new Stage();
+		graphStage.setTitle("GRAPH-GUI");
+		graphStage.setHeight(700);
+		graphStage.setWidth(700);
+		graphStage.setResizable(false);
+//		graphStage.setScene(scene);
+		graphStage.show();
+    }
+	
 }
