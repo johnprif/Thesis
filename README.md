@@ -1,3 +1,3 @@
 # Java_Paper
-A simple algorythm for computing the smallest enclosing circle 
+A simple algorithm for computing the smallest enclosing circle 
 by Sven Skyum
