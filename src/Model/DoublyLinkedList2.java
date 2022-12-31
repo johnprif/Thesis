@@ -1,4 +1,5 @@
 //https://www.geeksforgeeks.org/linked-list-in-java/
+//https://www.geeksforgeeks.org/java-singleton-design-pattern-practices-examples/
 package Model;
 
 import java.util.Iterator;
@@ -9,11 +10,18 @@ import javafx.geometry.Point2D;
 
 public class DoublyLinkedList2 
 {
-	LinkedList<Point2D> dll;
-
-	public DoublyLinkedList2()
+	private LinkedList<Point2D> dll;
+	// public instance initialized when loading the class
+	private static final DoublyLinkedList2 instance = new DoublyLinkedList2();
+	
+	private DoublyLinkedList2()
 	{
+	    // private constructor
 		dll = new LinkedList<Point2D>();
+	}
+	public static DoublyLinkedList2 getInstance()
+	{
+		return instance;
 	}
 	
 	public int getSize()

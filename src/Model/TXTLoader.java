@@ -26,7 +26,7 @@ public class TXTLoader implements FileLoader
 		stringTXTData = new ArrayList<String[]>();
 		doubleTXTData = new ArrayList<double[]>();
 		points2DTXTData = new ArrayList<Point2D>(); 
-		
+		System.out.println("I am TXT LOADER");
 		readValues();
 //		printResults();
 		convertValuesToOther();

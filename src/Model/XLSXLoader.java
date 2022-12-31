@@ -35,7 +35,7 @@ public class XLSXLoader implements FileLoader
 		stringXLSXData = new ArrayList<String[]>();
 		doubleXLSXData = new ArrayList<double[]>();
 		points2DXLSXData = new ArrayList<Point2D>(); 
-		
+		System.out.println("I am EXCEL LOADER");
 		readValues();
 //		printResults();
 		convertValuesToOther();

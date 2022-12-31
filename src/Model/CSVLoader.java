@@ -27,7 +27,7 @@ public class CSVLoader implements FileLoader
 		stringCSVData = new ArrayList<String[]>();
 		doubleCSVData = new ArrayList<double[]>();
 		points2DCSVData = new ArrayList<Point2D>(); 
-		
+		System.out.println("I am CSV LOADER");
 		readValues();
 //		printResults();
 		convertValuesToOther();
