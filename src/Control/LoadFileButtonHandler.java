@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import com.opencsv.exceptions.CsvException;
 
 import Model.Algorithm1;
-import Model.CSVLoader;
-import Model.FileLoaderFactory;
 import Model.GrahamScan;
 import Model.TextHandler;
+import Model_Loader.CSVLoader;
+import Model_Loader.FileLoaderFactory;
 import View.GraphGUI;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

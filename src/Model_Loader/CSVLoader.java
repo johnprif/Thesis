@@ -3,7 +3,7 @@
 //https://github.com/johnprif/GoogleFromLidl
 //https://www.digitalocean.com/community/tutorials/java-convert-string-to-double
 
-package Model;
+package Model_Loader;
 
 import java.io.FileReader;
 import java.io.IOException;

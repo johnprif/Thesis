@@ -1,6 +1,6 @@
 //https://www.geeksforgeeks.org/different-ways-reading-text-file-java/
 
-package Model;
+package Model_Loader;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,6 +11,7 @@ import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvException;
+
 import javafx.geometry.Point2D;
 
 public class TXTLoader implements FileLoader

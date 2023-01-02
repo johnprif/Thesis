@@ -1,6 +1,6 @@
 //https://www.w3schools.com/java/java_interface.asp
 
-package Model;
+package Model_Loader;
 
 import java.util.ArrayList;
 import java.util.List;

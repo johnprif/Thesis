@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import com.opencsv.exceptions.CsvException;
 
-import Model.CSVLoader;
+import Model_Loader.CSVLoader;
 
 class CSVLoaderTester {
 
