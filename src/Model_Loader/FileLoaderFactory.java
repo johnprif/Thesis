@@ -1,32 +1,40 @@
 package Model_Loader;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.opencsv.exceptions.CsvException;
+
+import javafx.geometry.Point2D;
 
 public class FileLoaderFactory 
 {
 	private String path;
-	private Object allPoints;
+	private CSVLoader csvLoader;
+	private TXTLoader txtLoader;
+	private XLSXLoader xlsxLoader;
+	private ArrayList<Point2D> allPoints;
 	
 	public FileLoaderFactory(String path)
 	{
 		this.path = path;
-		callSpecificLoader();
 	}
 	//allPoints??
-	private Object callSpecificLoader()
+	public ArrayList<Point2D> getAllPoints()
 	{
 		try {
 			if(path.contains(".csv"))
 			{
-				allPoints = new CSVLoader(path);
+				csvLoader = new CSVLoader(path);
+				allPoints = new ArrayList<Point2D>(csvLoader.get2Dvalues());
 			}else if(path.contains(".txt"))
 			{
-				allPoints = new TXTLoader(path);
+				txtLoader = new TXTLoader(path);
+				allPoints = new ArrayList<Point2D>(txtLoader.get2Dvalues());
 			}else if(path.contains(".xlsx") || path.contains(".xls"))
 			{
-				allPoints = new XLSXLoader(path);
+				xlsxLoader = new XLSXLoader(path);
+				allPoints = new ArrayList<Point2D>(xlsxLoader.get2Dvalues());
 			}else
 			{
 				

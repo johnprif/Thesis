@@ -37,7 +37,7 @@ public class CSVLoader implements FileLoader
 	{
 		// Create an object of file reader
         // class with CSV file as a parameter.
-		CSVParser csvParser = new CSVParserBuilder().withSeparator(',').withSeparator(',').build();
+		CSVParser csvParser = new CSVParserBuilder().withSeparator(',').build();
 		// create csvReader object
 		CSVReader csvReader = new CSVReaderBuilder(new FileReader(csvPath))
 									.withCSVParser(csvParser)

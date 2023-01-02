@@ -29,11 +29,11 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 	private Stage fileChooserStage;
 	private Stage mainStage;
 	private String path;
-
+	private ArrayList<Point2D> allPoints;
 	private TextHandler textHandler;
 	
 	private FileChooser fileChooser;
-	private FileLoaderFactory allPoints;
+	private FileLoaderFactory fileFactoryLoader;
 	
 	private GraphGUI graphGUI;
 	
@@ -70,12 +70,18 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 		if(selectedFile != null)//pressed OK
 		{
 			path = selectedFile.getAbsolutePath();
-			allPoints = new FileLoaderFactory(path);
-			mainStage.close();
-			graphGUI = new GraphGUI();
+			nextSteps();
 		}else//pressed Cancel
 		{
 		}
+	}
+	
+	private void nextSteps()
+	{
+		fileFactoryLoader = new FileLoaderFactory(path);
+		mainStage.close();
+//		allPoints = new ArrayList<Point2D>(fileFactoryLoader.getAllPoints());
+		graphGUI = new GraphGUI(fileFactoryLoader.getAllPoints());
 	}
 	
 	public String getPath()
@@ -83,18 +89,18 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 		return path;
 	}
 	
-	private void computeConvex()
-	{	
-		GrahamScan convexPoints;		
-			convexPoints = new GrahamScan(allPoints.get2Dvalues());
-			convexPoints.computeGrahamScan();
-			convexPoints.moveStackToArrayList();
-			ArrayList<Point2D> kati = new ArrayList<Point2D>(convexPoints.getconvexHullPoints());
+//	private void computeConvex()
+//	{	
+//		GrahamScan convexPoints;		
+//			convexPoints = new GrahamScan(allPoints.get2Dvalues());
+//			convexPoints.computeGrahamScan();
+//			convexPoints.moveStackToArrayList();
+//			ArrayList<Point2D> kati = new ArrayList<Point2D>(convexPoints.getconvexHullPoints());
 //			System.out.println("------BELLOW ARE THE CONVEXHULL POINTS------");
 //			for(int i=0; i<kati.size(); i++)
 //			{
 //				System.out.println("My points are = "+kati.get(i));
 //			}
-			Algorithm1 al = new Algorithm1(kati);		
-	}
+//			Algorithm1 al = new Algorithm1(kati);		
+//	}
 }
