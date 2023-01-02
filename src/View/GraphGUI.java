@@ -25,7 +25,7 @@ public class GraphGUI
 		GrahamScan convexPoints = new GrahamScan(allPoints);	
 		printer();
 //		convexPoints = new GrahamScan(allPoints.get2Dvalues());
-		convexPoints.computeGrahamScan();
+//		convexPoints.computeGrahamScan();
 //		convexPoints.moveStackToArrayList();
 //		ArrayList<Point2D> kati = new ArrayList<Point2D>(convexPoints.getconvexHullPoints());
 		System.out.println("------BELLOW ARE THE CONVEXHULL POINTS------");

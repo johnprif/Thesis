@@ -28,9 +28,10 @@ public class GrahamScan
 	{
 		this.allPoints = new ArrayList<Point2D>(points);
 		stack = new Stack<Point2D>();
+		computeGrahamScan();
 	}
 	
-	public void computeGrahamScan()
+	private void computeGrahamScan()
 	{
 		//find the leftmost point
 		double leftmost = 0;

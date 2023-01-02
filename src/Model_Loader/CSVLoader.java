@@ -40,7 +40,7 @@ public class CSVLoader implements FileLoader
 		CSVParser csvParser = new CSVParserBuilder().withSeparator(',').build();
 		// create csvReader object
 		CSVReader csvReader = new CSVReaderBuilder(new FileReader(csvPath))
-									.withCSVParser(csvParser)
+//									.withCSVParser(csvParser)
 									.withSkipLines(0).build();																					
 		stringCSVData.addAll(csvReader.readAll());
 	}
@@ -71,8 +71,9 @@ public class CSVLoader implements FileLoader
 			{
 				String temp = stringCSVData.get(i)[j].replace(',', '.');
 //				point[j]=Double.parseDouble(stringCSVData.get(i)[j]);
+//				point[j]=Double.valueOf(temp);
 				point[j]=Double.parseDouble(temp);
-//                System.out.println(point[j] + " is of type " + ((Object)point[j]).getClass().getSimpleName());
+//              System.out.println(point[j] + " is of type " + ((Object)point[j]).getClass().getSimpleName());
 			}
 			doubleCSVData.add(point);
 			points2DCSVData.add(new Point2D(point[0], point[1]));		
