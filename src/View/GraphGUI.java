@@ -16,6 +16,7 @@ public class GraphGUI
 	public GraphGUI(ArrayList<Point2D> allPoints)
 	{
 		this.allPoints = new ArrayList<Point2D>(allPoints);
+		System.out.println("The size of all points are = "+allPoints.size());
 		computeConvex();
 		createStage();
 	}
@@ -23,16 +24,17 @@ public class GraphGUI
 	private void computeConvex()
 	{	
 		GrahamScan convexPoints = new GrahamScan(allPoints);	
-		printer();
+//		printer();
 //		convexPoints = new GrahamScan(allPoints.get2Dvalues());
 //		convexPoints.computeGrahamScan();
-//		convexPoints.moveStackToArrayList();
+		convexPoints.moveStackToArrayList();
 //		ArrayList<Point2D> kati = new ArrayList<Point2D>(convexPoints.getconvexHullPoints());
 		System.out.println("------BELLOW ARE THE CONVEXHULL POINTS------");
-//		for(int i=0; i<kati.size(); i++)
-//		{
-//			System.out.println("My points are = "+kati.get(i));
-//		}
+		for(int i=0; i<convexPoints.getconvexHullPoints().size(); i++)
+		{
+			System.out.println("My points are = "+convexPoints.getconvexHullPoints().get(i));
+		}
+		System.out.println("The size of convex points are = "+convexPoints.getconvexHullPoints().size());
 //		Algorithm1 al = new Algorithm1(kati);		
 	}
 	
