@@ -1,19 +1,31 @@
 //https://coderslegacy.com/java/jfreechart-scatter-plot/
 //https://www.jfree.org/jfreechart/javadoc/index.html
 //https://github.com/jfree/jfreechart-fx/releases
+//https://zetcode.com/java/jfreechart/
+//https://www.tutorialspoint.com/jfreechart/jfreechart_xy_chart.htm#
 
 package View;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.fx.ChartViewer;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.statistics.HistogramDataset;
+import org.jfree.data.xy.DefaultXYZDataset;
+import org.jfree.data.xy.MatrixSeries;
+import org.jfree.data.xy.MatrixSeriesCollection;
+import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
@@ -139,6 +151,7 @@ public class GraphGUI
         }
         
         
+        
         dataset.addSeries(series1);
          
         JFreeChart scatterPlot = ChartFactory.createScatterPlot(
@@ -147,7 +160,16 @@ public class GraphGUI
                 "Y", // Y-Axis Label
                 dataset // Dataset for the Chart
                 );
-         
+        
+        final XYPlot plot = scatterPlot.getXYPlot( );
+        XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer( );
+	      renderer.setSeriesPaint( 0 , Color.RED );
+	      renderer.setSeriesStroke( 0 , new BasicStroke( 4.0f ) );
+	      plot.setDomainPannable(true);
+	      plot.setRangePannable(true);
+	      plot.setRenderer( renderer ); 
+        
+        
         try {
 			ChartUtils.saveChartAsPNG(new File("C://Users/Joanis Prifti/Desktop/scatterplot1.png"), scatterPlot, 600, 400);
 			ChartUtils.saveChartAsPNG(new File("C://Users/Joanis Prifti/Desktop/scatterplot2.png"), scatterPlot, 600, 400);
@@ -163,36 +185,55 @@ public class GraphGUI
 	
 	private void myChart4()
 	{
-		XYSeriesCollection dataset = new XYSeriesCollection();
-        
-        XYSeries series1 = new XYSeries("convexPoints");  
-        
-        for(int i=0; i<convexPoints.getconvexHullPoints().size(); i++)
-        {
-        	series1.add(convexPoints.getconvexHullPoints().get(i).getX(), convexPoints.getconvexHullPoints().get(i).getY());
-        }
-        
-        
-        dataset.addSeries(series1);
-         
-        JFreeChart scatterPlot = ChartFactory.createScatterPlot(
-                "JFreeChart Scatter Plot", // Chart title
-                "X", // X-Axis Label
-                "Y", // Y-Axis Label
-                dataset // Dataset for the Chart
-                );
-         
-        try {
-			ChartUtils.saveChartAsPNG(new File("C://Users/Joanis Prifti/Desktop/scatterplot1.png"), scatterPlot, 600, 400);
-			ChartUtils.saveChartAsPNG(new File("C://Users/Joanis Prifti/Desktop/scatterplot2.png"), scatterPlot, 600, 400);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-        ChartViewer viewer = new ChartViewer(scatterPlot);  
-        graphStage.setScene(new Scene(viewer));
+		JFreeChart xylineChart = ChartFactory.createXYLineChart(
+		         "convexHull" ,
+		         "X" ,
+		         "Y" ,
+		         createDataset() ,
+		         PlotOrientation.VERTICAL ,
+		         true , true , false);
+		         
+		      ChartPanel chartPanel = new ChartPanel( xylineChart );
+		      chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 367 ) );
+		      final XYPlot plot = xylineChart.getXYPlot( );
+		      
+		      XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer( );
+//		      renderer.setSeriesPaint( 0 , Color.RED );
+		      renderer.setSeriesPaint( 1 , Color.GREEN );
+		      renderer.setSeriesPaint( 2 , Color.YELLOW );
+//		      renderer.setSeriesStroke( 0 , new BasicStroke( 4.0f ) );
+		      renderer.setSeriesStroke( 1 , new BasicStroke( 3.0f ) );
+		      renderer.setSeriesStroke( 2 , new BasicStroke( 2.0f ) );
+		      plot.setRenderer( renderer ); 
+		      ChartViewer viewer = new ChartViewer(xylineChart);  
+		      graphStage.setScene(new Scene(viewer));
     
 	}
+	
+	private XYDataset createDataset( ) {
+	      final XYSeries firefox = new XYSeries( "Firefox" );                   
+	      
+	      for(int i=0; i<convexPoints.getconvexHullPoints().size(); i++)
+	        {
+	    	  firefox.add(convexPoints.getconvexHullPoints().get(i).getX(), convexPoints.getconvexHullPoints().get(i).getY());
+	        }
+	      
+	      
+	      final XYSeries chrome = new XYSeries( "Chrome" );          
+	      chrome.add( 1.0 , 4.0 );          
+	      chrome.add( 2.0 , 5.0 );          
+	      chrome.add( 3.0 , 6.0 );          
+	      
+	      final XYSeries iexplorer = new XYSeries( "InternetExplorer" );          
+	      iexplorer.add( 3.0 , 4.0 );          
+	      iexplorer.add( 4.0 , 5.0 );          
+	      iexplorer.add( 5.0 , 4.0 );          
+	      
+	      final XYSeriesCollection dataset = new XYSeriesCollection( );          
+	      dataset.addSeries( firefox );          
+	      dataset.addSeries( chrome );          
+	      dataset.addSeries( iexplorer );
+	      return dataset;
+	   }
 	
 }
