@@ -42,13 +42,17 @@ public class GraphGUI
 	private ArrayList<Point2D> allPoints;
 	private ArrayList<double[]> allDoublePoints;
 	private GrahamScan convexPoints;
+	private Algorithm1 al;
 	
 	public GraphGUI(ArrayList<Point2D> allPoints)
 	{
 		this.allPoints = new ArrayList<Point2D>(allPoints);
 		System.out.println("The size of all points are = "+allPoints.size());
 		computeConvex();
+		callAlgorithm1();
 		createStage();
+		callAlgorithm1();
+		myChart3();
 	}
 	
 	private void computeConvex()
@@ -65,7 +69,7 @@ public class GraphGUI
 			System.out.println("My points are = "+convexPoints.getconvexHullPoints().get(i));
 		}
 		System.out.println("The size of convex points are = "+convexPoints.getconvexHullPoints().size());
-//		Algorithm1 al = new Algorithm1(kati);		
+			
 	}
 	
 	private void printer()
@@ -76,11 +80,17 @@ public class GraphGUI
 		}
 	}
 	
+	private void callAlgorithm1()
+	{
+		al = new Algorithm1(convexPoints.getconvexHullPoints());	
+		
+	}
+	
 	private void createStage()
     {
 		graphStage = new Stage();
 
-		myChart3();
+//		myChart3();
 		
 		
 		graphStage.setTitle("GRAPH-GUI");
@@ -160,14 +170,13 @@ public class GraphGUI
                 "Y", // Y-Axis Label
                 dataset // Dataset for the Chart
                 );
-        
-        final XYPlot plot = scatterPlot.getXYPlot( );
-        XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer( );
-	      renderer.setSeriesPaint( 0 , Color.RED );
-	      renderer.setSeriesStroke( 0 , new BasicStroke( 4.0f ) );
-	      plot.setDomainPannable(true);
-	      plot.setRangePannable(true);
-	      plot.setRenderer( renderer ); 
+//        final XYPlot plot = scatterPlot.getXYPlot( );
+//        XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer( );
+//	      renderer.setSeriesPaint( 0 , Color.RED );
+//	      renderer.setSeriesStroke( 0 , new BasicStroke( 4.0f ) );
+//	      plot.setDomainPannable(true);
+//	      plot.setRangePannable(true);
+//	      plot.setRenderer( renderer ); 
         
         
         try {

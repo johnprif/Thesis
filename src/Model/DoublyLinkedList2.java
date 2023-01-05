@@ -2,6 +2,7 @@
 //https://www.geeksforgeeks.org/java-singleton-design-pattern-practices-examples/
 package Model;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -11,6 +12,7 @@ import javafx.geometry.Point2D;
 public class DoublyLinkedList2 
 {
 	private LinkedList<Point2D> dll;
+	private ArrayList<Point2D> convexPoints;
 	// public instance initialized when loading the class
 	private static final DoublyLinkedList2 instance = new DoublyLinkedList2();
 	
@@ -22,6 +24,11 @@ public class DoublyLinkedList2
 	public static DoublyLinkedList2 getInstance()
 	{
 		return instance;
+	}
+	
+	public void setPoints(ArrayList<Point2D> convexPoints)
+	{
+		this.convexPoints = new ArrayList<Point2D>(convexPoints);
 	}
 	
 	public int getSize()
@@ -83,50 +90,23 @@ public class DoublyLinkedList2
 	
 	//it must be implement here?
 		//serial search, multiplexity O(n)
-		public Node findMaxNode()
+		public int findMaxNode()
 		{
-			Node current = head;
-			Node maxNode = head;
 			double maxRadius = 0;
 			double maxAngle = 0;
-			double currentRadius = 0;
-			double currentAngle = 0;
+			int index = 0;
 			
-			if(head==null)
+			if(convexPoints.size()==0)//empty list
 			{
-				System.out.println("Doubly linked list is empty");
-				return null;
-			}
-			//Start from second node
-			current = current.next;
-			//TO-DO
-			//check if current.next == null 
-			//check current.next, head, head.next
-			//check head, head.next, head.next.next
-			while(current!=null && current.next!=null)
+				return -1;
+			}else if(convexPoints.size()==1 || convexPoints.size()==2)
 			{
-				currentRadius = getRadius(current.before.data, current.data, current.next.data);
-				currentAngle = getAngle(current.before.data, current.data, current.next.data);
-				if(currentRadius>=maxRadius)
-				{
-					if(currentRadius==maxRadius)
-					{					
-						if(currentAngle>=maxAngle)
-						{
-							maxNode = current;
-							maxRadius = currentRadius;
-							maxAngle = currentAngle;
-						}//else nothing
-					}else//currentRadius>maxRadius
-					{
-						maxNode = current;
-						maxRadius = currentRadius;
-						maxAngle = currentAngle;
-					}			
-				}
-				current=current.next;
+				return 0;
+			}else
+			{
+				
+				return index;
 			}
-			return maxNode;
 		}
 	
 	public double getRadius(Point2D p, Point2D q, Point2D r)

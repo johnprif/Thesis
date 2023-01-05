@@ -30,7 +30,8 @@ public class Algorithm1
 	{
 		this.convexPoints = new ArrayList<Point2D>(convexPoints);
 		myDoublyLinkedList2 = DoublyLinkedList2.getInstance();
-		movePointsToDoublyLinkedList();
+		myDoublyLinkedList2.setPoints(this.convexPoints);
+//		movePointsToDoublyLinkedList();
 		computeSmallestEnclosingCircle();
 	}
 	
