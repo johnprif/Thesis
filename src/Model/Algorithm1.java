@@ -62,19 +62,15 @@ public class Algorithm1
 			{
 				maxAngle = myDoublyLinkedList2.findMaxNode();
 				System.out.println("maxAngle = "+maxAngle);
-				//TO-DO 
-				//How to find angle for specific point(paxPoint==p)
-				if(maxAngle<=myPi2)
-//				if(Double.compare(myDoublyLinkedList.getAngle(maxPoint.before.data, maxPoint.data, maxPoint.next.data), Math.PI/2) < 0)
-				{
-					System.out.println("The algorithm 1 finished = "+myDoublyLinkedList2.getSize());
-					finish = true;
-				}else
+				if(maxAngle>myPi2)
 				{
 					myDoublyLinkedList2.deleteMaxNode();					
 					System.out.println("The length of DLL is = "+myDoublyLinkedList2.getSize());
+				}else
+				{
+					System.out.println("The algorithm 1 finished = "+myDoublyLinkedList2.getSize());
+					finish = true;
 				}
-//				break;
 			}while(!finish);
 		}else
 		{
