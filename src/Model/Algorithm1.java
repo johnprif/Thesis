@@ -76,7 +76,6 @@ public class Algorithm1
 		{
 			System.out.println("Only 1 point");
 		}
-//		System.out.print("The size of latest DLL is = "+myDoublyLinkedList2.getSize()+"\n");
 //		myDoublyLinkedList2.displayFirstToLast();
 		System.out.print("----------------------------------------------------------------------\n");
 		System.out.println("The final size is = "+myDoublyLinkedList2.getSize());

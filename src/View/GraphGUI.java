@@ -30,6 +30,7 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
 import Model.Algorithm1;
+import Model.DoublyLinkedList2;
 import Model.GrahamScan;
 import javafx.application.Application;
 import javafx.geometry.Point2D;
@@ -154,14 +155,32 @@ public class GraphGUI
 		XYSeriesCollection dataset = new XYSeriesCollection();
         
         XYSeries series1 = new XYSeries("convexPoints");  
-        
+        XYSeries series2 = new XYSeries("AllPoints");
+        XYSeries series3 = new XYSeries("Algorithm1");
         for(int i=0; i<convexPoints.getconvexHullPoints().size(); i++)
         {
         	series1.add(convexPoints.getconvexHullPoints().get(i).getX(), convexPoints.getconvexHullPoints().get(i).getY());
         }
         
+//        
+//        for(int i=0; i<allPoints.size(); i++)
+//        {
+//        	series2.add(allPoints.get(i).getX(), allPoints.get(i).getY());
+//        }
+        
+        DoublyLinkedList2 myDoublyLinkedList2 = DoublyLinkedList2.getInstance();
+        
+        System.out.println("The size of algorithm1 is = "+myDoublyLinkedList2.getPoints().size());
+        
+        for(int i=0; i<myDoublyLinkedList2.getPoints().size(); i++)
+        {
+        	series3.add(myDoublyLinkedList2.getPoints().get(i).getX(), myDoublyLinkedList2.getPoints().get(i).getY());
+        }
         
         
+//        dataset.addSeries(series1);
+//        dataset.addSeries(series2);
+        dataset.addSeries(series3);
         dataset.addSeries(series1);
          
         JFreeChart scatterPlot = ChartFactory.createScatterPlot(
