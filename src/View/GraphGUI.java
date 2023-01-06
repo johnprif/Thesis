@@ -8,6 +8,8 @@ package View;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,9 +18,12 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.annotations.XYShapeAnnotation;
+import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.fx.ChartViewer;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.StandardXYItemRenderer;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.statistics.HistogramDataset;
@@ -28,6 +33,10 @@ import org.jfree.data.xy.MatrixSeriesCollection;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+
 
 import Model.Algorithm1;
 import Model.DoublyLinkedList2;
@@ -35,6 +44,10 @@ import Model.GrahamScan;
 import javafx.application.Application;
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
+
+import javafx.scene.chart.ScatterChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 public class GraphGUI
@@ -53,7 +66,7 @@ public class GraphGUI
 //		callAlgorithm1();
 		createStage();
 		callAlgorithm1();
-		myChart3();
+		chart7();
 	}
 	
 	private void computeConvex()
@@ -157,6 +170,8 @@ public class GraphGUI
         XYSeries series1 = new XYSeries("convexPoints");  
         XYSeries series2 = new XYSeries("AllPoints");
         XYSeries series3 = new XYSeries("Algorithm1");
+        
+        
         for(int i=0; i<convexPoints.getconvexHullPoints().size(); i++)
         {
         	series1.add(convexPoints.getconvexHullPoints().get(i).getX(), convexPoints.getconvexHullPoints().get(i).getY());
@@ -197,7 +212,19 @@ public class GraphGUI
 //	      plot.setRangePannable(true);
 //	      plot.setRenderer( renderer ); 
         
-        
+      //Changes background color  
+        XYPlot plot = (XYPlot)scatterPlot.getPlot();  
+//        plot.setBackgroundPaint(new Color(255,228,196)); 
+	    plot.setDomainPannable(true);
+	    plot.setRangePannable(true);
+
+	    
+	    Shape oval = new Ellipse2D.Float(100, 100, 100, 100);
+	    plot.addAnnotation(new XYShapeAnnotation(oval));
+	    Ellipse2D circle = new Ellipse2D.Double(-5, -5, 10, 10);
+        XYShapeAnnotation annotation = new XYShapeAnnotation(circle, new BasicStroke(1.0f), Color.BLACK, Color.BLACK);
+        plot.addAnnotation(annotation);
+
         try {
 			ChartUtils.saveChartAsPNG(new File("C://Users/Joanis Prifti/Desktop/scatterplot1.png"), scatterPlot, 600, 400);
 			ChartUtils.saveChartAsPNG(new File("C://Users/Joanis Prifti/Desktop/scatterplot2.png"), scatterPlot, 600, 400);
@@ -264,4 +291,29 @@ public class GraphGUI
 	      return dataset;
 	   }
 	
+	private void chart7()
+	{
+		XYSeries series = new XYSeries("Points");
+		DoublyLinkedList2 myDoublyLinkedList2 = DoublyLinkedList2.getInstance();
+        
+        for(int i=0; i<myDoublyLinkedList2.getPoints().size(); i++)
+        {
+        	series.add(myDoublyLinkedList2.getPoints().get(i).getX(), myDoublyLinkedList2.getPoints().get(i).getY());
+        }
+        
+        XYSeriesCollection dataset = new XYSeriesCollection(series);
+        XYPlot plot = new XYPlot(dataset, new NumberAxis("X"), new NumberAxis("Y"), new org.jfree.chart.renderer.xy.XYLineAndShapeRenderer());
+        Ellipse2D circle = new Ellipse2D.Double(-5, -5, 10, 10);
+        XYShapeAnnotation annotation = new XYShapeAnnotation(circle, new BasicStroke(1.0f), Color.BLACK, Color.BLACK);
+        plot.addAnnotation(annotation);
+        JFreeChart chart = new JFreeChart(plot);
+        ChartViewer viewer = new ChartViewer(chart);
+        graphStage.setScene(new Scene(viewer));
+        System.out.println(circle);
+        System.out.println(annotation);
+        graphStage.show();
+
+
+
+	}
 }
