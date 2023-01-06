@@ -49,7 +49,7 @@ public class GraphGUI
 		this.allPoints = new ArrayList<Point2D>(allPoints);
 		System.out.println("The size of all points are = "+allPoints.size());
 		computeConvex();
-		callAlgorithm1();
+//		callAlgorithm1();
 		createStage();
 		callAlgorithm1();
 		myChart3();

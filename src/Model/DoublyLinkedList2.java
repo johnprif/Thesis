@@ -11,15 +11,16 @@ import javafx.geometry.Point2D;
 
 public class DoublyLinkedList2 
 {
-	private LinkedList<Point2D> dll;
+//	private LinkedList<Point2D> dll;
 	private ArrayList<Point2D> convexPoints;
 	// public instance initialized when loading the class
 	private static final DoublyLinkedList2 instance = new DoublyLinkedList2();
+	private int indexOfMaxPoint = 0;
 	
 	private DoublyLinkedList2()
 	{
 	    // private constructor
-		dll = new LinkedList<Point2D>();
+//		dll = new LinkedList<Point2D>();
 	}
 	public static DoublyLinkedList2 getInstance()
 	{
@@ -33,84 +34,109 @@ public class DoublyLinkedList2
 	
 	public int getSize()
 	{
-		return dll.size();
+		return convexPoints.size();
 	}
 	
-	public boolean insertAtFirst(Point2D data)
+	public void deleteMaxNode()
 	{
-		dll.addFirst(data);
-		return true;
-	}
-	
-	public boolean insertAtIndex(Point2D data, int index)
-	{			
-		dll.add(index, data);
-		return true;
-	}
-	
-	public boolean insertAtLast(Point2D data)
-	{
-		dll.addLast(data);
-		return true;
-	}
-	
-	public boolean deleteFirstNode()
-	{
-		dll.removeFirst();	
-		return true;
-	}
-	
-	public boolean deleteAtIndex(int index)
-	{
-		dll.remove(index);
-		return true;
-	}
-	
-	public boolean deleteLastNode() 
-	{
-		dll.removeLast();
-		return true;
+		convexPoints.remove(indexOfMaxPoint);
 	}
 	
 	public void displayFirstToLast()
 	{
-		Iterator it = dll.iterator();
-		System.out.println("The doubly linked list is --> ");
-		while(it.hasNext())
+		System.out.println("The ArrayList is --> ");
+		for(int i=0; i<convexPoints.size(); i++)
 		{
-			System.out.println(" "+it.next());
+			System.out.println(" "+convexPoints.get(i));
 		}
 		System.out.println("");
 	}
 	
-	public int searchIndexOfNode(Point2D data)
-	{
-		return dll.indexOf(data);
-	}
-	
 	//it must be implement here?
 		//serial search, multiplexity O(n)
-		public int findMaxNode()
+		public double findMaxNode()
 		{
-			double maxRadius = 0;
-			double maxAngle = 0;
-			int index = 0;
+			double maxRadius = 0.0;
+			double maxAngle = 0.0;
+			double currentRadius = 0.0;
+			double currentAngle = 0.0;
+			int convexPointsLenght = convexPoints.size();
 			
-			if(convexPoints.size()==0)//empty list
+			if(convexPoints.size()==2)
 			{
 				return -1;
-			}else if(convexPoints.size()==1 || convexPoints.size()==2)
+			}else //size at least = 3
 			{
-				return 0;
-			}else
-			{
+				for(int i=1; i<convexPoints.size()-1; i++)
+				{
 				
-				return index;
+					currentRadius = getRadius(convexPoints.get(i-1), convexPoints.get(i), convexPoints.get(i+1));
+					currentAngle = getAngle(convexPoints.get(i-1), convexPoints.get(i), convexPoints.get(i+1));
+					System.out.println("convexPoints.get(i-1), convexPoints.get(i), convexPoints.get(i+1)"+convexPoints.get(i-1)+ convexPoints.get(i)+ convexPoints.get(i+1));
+					
+					if(currentRadius>maxRadius)
+					{
+						indexOfMaxPoint = i;
+						maxRadius = currentRadius;
+						maxAngle = currentAngle;
+					}else if(currentRadius == maxRadius)
+					{
+						if(currentAngle >= maxAngle)
+						{
+							indexOfMaxPoint = i;
+							maxAngle = currentAngle;
+							maxRadius = currentRadius;
+						}
+					}
+				}
+				//----------------------------------
+				currentRadius = getRadius(convexPoints.get(convexPointsLenght-2), convexPoints.get(convexPointsLenght-1), convexPoints.get(0));
+				currentAngle = getAngle(convexPoints.get(convexPointsLenght-2), convexPoints.get(convexPointsLenght-1), convexPoints.get(0));
+//				System.out.println("convexPoints.get(i-1), convexPoints.get(i), convexPoints.get(i+1)"+convexPoints.get(i-1)+ convexPoints.get(i)+ convexPoints.get(i+1));
+				
+				if(currentRadius>maxRadius)
+				{
+					indexOfMaxPoint = convexPointsLenght-1;
+					maxRadius = currentRadius;
+					maxAngle = currentAngle;
+				}else if(currentRadius == maxRadius)
+				{
+					if(currentAngle >= maxAngle)
+					{
+						indexOfMaxPoint = convexPointsLenght-1;
+						maxAngle = currentAngle;
+						maxRadius = currentRadius;
+					}
+				}
+				
+				currentRadius = getRadius(convexPoints.get(convexPointsLenght-1), convexPoints.get(0), convexPoints.get(1));
+				currentAngle = getAngle(convexPoints.get(convexPointsLenght-1), convexPoints.get(0), convexPoints.get(1));
+				//System.out.println("convexPoints.get(i-1), convexPoints.get(i), convexPoints.get(i+1)"+convexPoints.get(i-1)+ convexPoints.get(i)+ convexPoints.get(i+1));
+				
+				if(currentRadius>maxRadius)
+				{
+					indexOfMaxPoint = 0;
+					maxRadius = currentRadius;
+					maxAngle = currentAngle;
+				}else if(currentRadius == maxRadius)
+				{
+					if(currentAngle >= maxAngle)
+					{
+						indexOfMaxPoint = 0;
+						maxAngle = currentAngle;
+						maxRadius = currentRadius;
+					}
+				}
+				
+				//------------
 			}
+			System.out.println("FindMaxAngle == "+maxAngle);
+			return maxAngle;
 		}
 	
 	public double getRadius(Point2D p, Point2D q, Point2D r)
 	{
+//		System.out.println("\n\nHello\n\n");
 		double x1 = p.getX();
 		double y1 = p.getY();
 		double x2 = q.getX();
@@ -171,7 +197,8 @@ public class DoublyLinkedList2
 //		    System.out.println("Centre = (" + h + "," + k + ")");
 //		    System.out.println("Radius = " + df.format(R));
 		}
-		return R;
+		
+		return Math.round(R*1000.0)/1000.0;
 	}
 	
 	public double getAngle(Point2D p, Point2D q, Point2D r)
@@ -182,7 +209,7 @@ public class DoublyLinkedList2
 //		double _pq_qr_ = Math.sqrt(pq.getX()*pq.getX()+pq.getY()*pq.getY()) * Math.sqrt(qr.getX()*qr.getX()+qr.getY()*qr.getY());		
 		double _pq_qr_ = Math.sqrt(Math.pow(pq.getX(),2)+Math.pow(pq.getY(),2)) * Math.sqrt(Math.pow(qr.getX(),2)+Math.pow(qr.getY(),2));	
 		double angle = Math.acos(pq_qr/_pq_qr_);
-//		System.out.println("The angle is = "+angle);
-		return angle;
+		System.out.println("The angle is = "+Math.round(angle*1000.0)/1000.0);
+		return Math.round(angle*1000.0)/1000.0;
 	}
 }

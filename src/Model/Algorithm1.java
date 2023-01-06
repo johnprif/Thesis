@@ -52,33 +52,36 @@ public class Algorithm1
 	private void computeSmallestEnclosingCircle()
 	{
 		boolean finish;
-		Node maxPoint;
-		
+		double maxAngle;
+		double myPi2 = Math.round(Math.PI/2*1000.0)/1000.0;
+		System.out.println("myPi2 = "+myPi2);
 		if(myDoublyLinkedList2.getSize() != 1)
 		{
 			finish = false;
 			do
 			{
-				maxPoint = myDoublyLinkedList2.findMaxNode();
-				System.out.println("maxPoint.data = "+maxPoint.data);
+				maxAngle = myDoublyLinkedList2.findMaxNode();
+				System.out.println("maxAngle = "+maxAngle);
 				//TO-DO 
 				//How to find angle for specific point(paxPoint==p)
-				if(myDoublyLinkedList2.getAngle(maxPoint.before.data, maxPoint.data, maxPoint.next.data)<=3.14/2)
+				if(maxAngle<=myPi2)
 //				if(Double.compare(myDoublyLinkedList.getAngle(maxPoint.before.data, maxPoint.data, maxPoint.next.data), Math.PI/2) < 0)
 				{
+					System.out.println("The algorithm 1 finished = "+myDoublyLinkedList2.getSize());
 					finish = true;
 				}else
 				{
-					myDoublyLinkedList2.deleteAtIndex(myDoublyLinkedList2.searchIndexOfNode(maxPoint.data));					
+					myDoublyLinkedList2.deleteMaxNode();					
 					System.out.println("The length of DLL is = "+myDoublyLinkedList2.getSize());
 				}
+//				break;
 			}while(!finish);
 		}else
 		{
 			System.out.println("Only 1 point");
 		}
-		System.out.print("The size of latest DLL is = "+myDoublyLinkedList2.getSize()+"\n");
-		myDoublyLinkedList2.displayFirstToLast();
+//		System.out.print("The size of latest DLL is = "+myDoublyLinkedList2.getSize()+"\n");
+//		myDoublyLinkedList2.displayFirstToLast();
 		System.out.print("----------------------------------------------------------------------\n");
 		System.out.println("The final size is = "+myDoublyLinkedList2.getSize());
 	}
