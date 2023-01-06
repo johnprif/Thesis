@@ -1,5 +1,6 @@
 //https://www.geeksforgeeks.org/linked-list-in-java/
 //https://www.geeksforgeeks.org/java-singleton-design-pattern-practices-examples/
+//http://phrogz.net/angle-between-three-points
 package Model;
 
 import java.util.ArrayList;
@@ -134,9 +135,8 @@ public class DoublyLinkedList2
 			return maxAngle;
 		}
 	
-	public double getRadius(Point2D p, Point2D q, Point2D r)
+	public double getRadius2(Point2D p, Point2D q, Point2D r)
 	{
-//		System.out.println("\n\nHello\n\n");
 		double x1 = p.getX();
 		double y1 = p.getY();
 		double x2 = q.getX();
@@ -201,7 +201,68 @@ public class DoublyLinkedList2
 		return Math.round(R*1000.0)/1000.0;
 	}
 	
-	public double getAngle(Point2D p, Point2D q, Point2D r)
+	public double getRadius(Point2D p, Point2D q, Point2D r) {
+	    double x1 = p.getX();
+	    double y1 = p.getY();
+	    double x2 = q.getX();
+	    double y2 = q.getY();
+	    double x3 = r.getX();
+	    double y3 = r.getY();
+
+	    double R = 0;
+
+	    if ((p != q) && (q != r) && (p != r)) {
+	        double x12 = x1 - x2;
+	        double x13 = x1 - x3;
+
+	        double y12 = y1 - y2;
+	        double y13 = y1 - y3;
+
+	        double y31 = y3 - y1;
+	        double y21 = y2 - y1;
+
+	        double x31 = x3 - x1;
+	        double x21 = x2 - x1;
+
+	        // x1^2 - x3^2
+	        double sx13 = x1 * x1 - x3 * x3;
+
+	        // y1^2 - y3^2
+	        double sy13 = y1 * y1 - y3 * y3;
+
+	        double sx21 = x2 * x2 - x1 * x1;
+
+	        double sy21 = y2 * y2 - y1 * y1;
+
+	        double f = ((sx13) * (x12)
+	                + (sy13) * (x12)
+	                + (sx21) * (x13)
+	                + (sy21) * (x13))
+	                / (2 * ((y31) * (x12) - (y21) * (x13)));
+	        double g = ((sx13) * (y12)
+	                + (sy13) * (y12)
+	                + (sx21) * (y13)
+	                + (sy21) * (y13))
+	                / (2 * ((x31) * (y12) - (x21) * (y13)));
+
+	        double c = -x1 * x1 - y1 * y1 - 2 * g * x1 - 2 * f * y1;
+
+	        // eqn of circle be x^2 + y^2 + 2*g*x + 2*f*y + c = 0
+	        // where centre is (h = -g, k = -f) and radius r
+	        // as r^2 = h^2 + k^2 - c
+	        double h = -g;
+	        double k = -f;
+	        double sqr_of_r = h * h + k * k - c;
+
+	        // r is the radius
+	        R = Math.sqrt(sqr_of_r);
+	    }
+
+	    return Math.round(R * 1000.0) / 1000.0;
+	}
+
+	
+	public double getAngle2(Point2D p, Point2D q, Point2D r)
 	{
 		Point2D pq = new Point2D(p.getX()-q.getX(), p.getY()-q.getY());
 		Point2D qr = new Point2D(q.getX()-r.getX(), q.getY()-r.getY());
@@ -211,5 +272,21 @@ public class DoublyLinkedList2
 		double angle = Math.acos(pq_qr/_pq_qr_);
 		System.out.println("The angle is = "+Math.round(angle*1000.0)/1000.0);
 		return Math.round(angle*1000.0)/1000.0;
+	}
+	
+	public double getAngle3(Point2D p, Point2D q, Point2D r)
+	{
+		double a = Math.pow((q.getX()-p.getX()),2) + Math.pow((q.getY()-p.getY()),2);
+		double b = Math.pow(q.getX()-r.getX(),2) + Math.pow(q.getY()-r.getY(),2);
+		double c = Math.pow(r.getX()-p.getX(), 2) + Math.pow(r.getY()-p.getY(), 2);
+		return Math.round(Math.acos((a+b-c)/Math.sqrt(4*a*b))*1000.0)/1000.0;
+	}
+	
+	public double getAngle(Point2D p, Point2D q, Point2D r) 
+	{
+		double a = (q.getX() - p.getX()) * (q.getX() - p.getX()) + (q.getY() - p.getY()) * (q.getY() - p.getY());
+		double b = (q.getX() - r.getX()) * (q.getX() - r.getX()) + (q.getY() - r.getY()) * (q.getY() - r.getY());
+		double c = (r.getX() - p.getX()) * (r.getX() - p.getX()) + (r.getY() - p.getY()) * (r.getY() - p.getY());
+		return Math.round(Math.acos((a + b - c) / Math.sqrt(4 * a * b)) * 1000.0) / 1000.0;
 	}
 }
