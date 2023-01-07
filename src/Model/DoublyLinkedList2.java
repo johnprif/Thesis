@@ -138,7 +138,7 @@ public class DoublyLinkedList2
 		return maxAngle;
 	}
 	
-	public int findMaxNode() {
+	public double findMaxNode() {
 	    int size = convexPoints.size();
 	    if (size <= 2) return -1;
 	    
@@ -160,7 +160,7 @@ public class DoublyLinkedList2
 	        }
 	    }
 	    
-	    return indexOfMaxPoint;
+	    return maxAngle;
 	}
 
 		
