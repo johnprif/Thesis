@@ -320,9 +320,6 @@ public class GraphGUI
         System.out.println(circle);
         System.out.println(annotation);
         graphStage.show();
-
-
-
 	}
 	
 	private void chart7()
@@ -350,8 +347,7 @@ public class GraphGUI
                 "X", // X-Axis Label
                 "Y", // Y-Axis Label
                 dataset // Dataset for the Chart
-                );
-		
+                );		
 		
 //		XYPlot plot = new XYPlot(dataset, new NumberAxis("X"), new NumberAxis("Y"), null);
 		XYPlot plot = (XYPlot)scatterPlot.getPlot(); 
@@ -361,12 +357,6 @@ public class GraphGUI
 		JFreeChart chart = new JFreeChart(plot);
 		ChartViewer viewer = new ChartViewer(chart);
 		graphStage.setScene(new Scene(viewer));
-		System.out.println(circle);
-		System.out.println(annotation);
 		graphStage.show();
-
-
-
-
 	}
 }
