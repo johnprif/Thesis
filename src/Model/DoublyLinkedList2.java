@@ -138,7 +138,7 @@ public class DoublyLinkedList2
 		return maxAngle;
 	}
 		
-	private double getRadius(Point2D p, Point2D q, Point2D r) 
+	public double getRadius(Point2D p, Point2D q, Point2D r) 
 	{
 	    double x1 = p.getX();
 	    double y1 = p.getY();
@@ -149,7 +149,7 @@ public class DoublyLinkedList2
 
 	    double R = 0;
 
-	    if ((p != q) && (q != r) && (p != r)) 
+	    if ((!p.equals(q)) && (!q.equals(r)) && (!p.equals(r))) 
 	    {
 	        double x12 = x1 - x2;
 	        double x13 = x1 - x3;

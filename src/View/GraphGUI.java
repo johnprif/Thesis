@@ -310,7 +310,7 @@ public class GraphGUI
         XYSeriesCollection dataset = new XYSeriesCollection(series);
         dataset.addSeries(series2);
         XYPlot plot = new XYPlot(dataset, new NumberAxis("X"), new NumberAxis("Y"), new org.jfree.chart.renderer.xy.XYLineAndShapeRenderer());
-        Ellipse2D circle = new Ellipse2D.Double(-5000, -5000, 10000, 10000);
+        Ellipse2D circle = new Ellipse2D.Double(myDoublyLinkedList2.getPoints().get(0).getX(), myDoublyLinkedList2.getPoints().get(0).getY(), myDoublyLinkedList2.getRadius(myDoublyLinkedList2.getPoints().get(0), myDoublyLinkedList2.getPoints().get(1), myDoublyLinkedList2.getPoints().get(2)), myDoublyLinkedList2.getRadius(myDoublyLinkedList2.getPoints().get(0), myDoublyLinkedList2.getPoints().get(1), myDoublyLinkedList2.getPoints().get(2)));
         XYShapeAnnotation annotation = new XYShapeAnnotation(circle, new BasicStroke(1.0f), Color.BLACK, null);
         plot.addAnnotation(annotation);
         JFreeChart chart = new JFreeChart(plot);
