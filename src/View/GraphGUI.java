@@ -293,7 +293,8 @@ public class GraphGUI
 	
 	private void chart7()
 	{
-		XYSeries series = new XYSeries("Points");
+		XYSeries series = new XYSeries("circlePoints");
+		XYSeries series2 = new XYSeries("convexPoints");
 		DoublyLinkedList2 myDoublyLinkedList2 = DoublyLinkedList2.getInstance();
         
         for(int i=0; i<myDoublyLinkedList2.getPoints().size(); i++)
@@ -301,10 +302,16 @@ public class GraphGUI
         	series.add(myDoublyLinkedList2.getPoints().get(i).getX(), myDoublyLinkedList2.getPoints().get(i).getY());
         }
         
+        for(int i=0; i<convexPoints.getconvexHullPoints().size(); i++)
+        {
+        	series2.add(convexPoints.getconvexHullPoints().get(i).getX(), convexPoints.getconvexHullPoints().get(i).getY());
+        }
+        
         XYSeriesCollection dataset = new XYSeriesCollection(series);
+        dataset.addSeries(series2);
         XYPlot plot = new XYPlot(dataset, new NumberAxis("X"), new NumberAxis("Y"), new org.jfree.chart.renderer.xy.XYLineAndShapeRenderer());
         Ellipse2D circle = new Ellipse2D.Double(-5, -5, 10, 10);
-        XYShapeAnnotation annotation = new XYShapeAnnotation(circle, new BasicStroke(1.0f), Color.BLACK, Color.BLACK);
+        XYShapeAnnotation annotation = new XYShapeAnnotation(circle, new BasicStroke(1.0f), Color.BLACK, null);
         plot.addAnnotation(annotation);
         JFreeChart chart = new JFreeChart(plot);
         ChartViewer viewer = new ChartViewer(chart);
