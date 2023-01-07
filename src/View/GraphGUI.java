@@ -49,6 +49,7 @@ import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import org.jfree.chart.renderer.xy.XYItemRendererState;
 
 public class GraphGUI
 {
@@ -291,7 +292,7 @@ public class GraphGUI
 	      return dataset;
 	   }
 	
-	private void chart7()
+	private void chart8()
 	{
 		XYSeries series = new XYSeries("circlePoints");
 		XYSeries series2 = new XYSeries("convexPoints");
@@ -319,6 +320,51 @@ public class GraphGUI
         System.out.println(circle);
         System.out.println(annotation);
         graphStage.show();
+
+
+
+	}
+	
+	private void chart7()
+	{
+		XYSeries series = new XYSeries("circlePoints");
+		XYSeries series2 = new XYSeries("convexPoints");
+		DoublyLinkedList2 myDoublyLinkedList2 = DoublyLinkedList2.getInstance();
+
+		for(int i=0; i<myDoublyLinkedList2.getPoints().size(); i++)
+		{
+		    series.add(myDoublyLinkedList2.getPoints().get(i).getX(), myDoublyLinkedList2.getPoints().get(i).getY());
+		}
+
+		for(int i=0; i<convexPoints.getconvexHullPoints().size(); i++)
+		{
+		    series2.add(convexPoints.getconvexHullPoints().get(i).getX(), convexPoints.getconvexHullPoints().get(i).getY());
+		}
+
+		XYSeriesCollection dataset = new XYSeriesCollection(series);
+		dataset.addSeries(series2);
+		
+		
+		JFreeChart scatterPlot = ChartFactory.createScatterPlot(
+                "JFreeChart Scatter Plot", // Chart title
+                "X", // X-Axis Label
+                "Y", // Y-Axis Label
+                dataset // Dataset for the Chart
+                );
+		
+		
+//		XYPlot plot = new XYPlot(dataset, new NumberAxis("X"), new NumberAxis("Y"), null);
+		XYPlot plot = (XYPlot)scatterPlot.getPlot(); 
+		Ellipse2D circle = new Ellipse2D.Double(myDoublyLinkedList2.getPoints().get(0).getX(), myDoublyLinkedList2.getPoints().get(0).getY(), myDoublyLinkedList2.getRadius(myDoublyLinkedList2.getPoints().get(0), myDoublyLinkedList2.getPoints().get(1), myDoublyLinkedList2.getPoints().get(2)), myDoublyLinkedList2.getRadius(myDoublyLinkedList2.getPoints().get(0), myDoublyLinkedList2.getPoints().get(1), myDoublyLinkedList2.getPoints().get(2)));
+		XYShapeAnnotation annotation = new XYShapeAnnotation(circle, new BasicStroke(1.0f), Color.BLACK, null);
+		plot.addAnnotation(annotation);
+		JFreeChart chart = new JFreeChart(plot);
+		ChartViewer viewer = new ChartViewer(chart);
+		graphStage.setScene(new Scene(viewer));
+		System.out.println(circle);
+		System.out.println(annotation);
+		graphStage.show();
+
 
 
 
