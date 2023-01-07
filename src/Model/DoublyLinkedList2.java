@@ -60,7 +60,7 @@ public class DoublyLinkedList2
 	
 	//it must be implement here?
 		//serial search, multiplexity O(n)
-	public double findMaxNode()
+	public double findMaxNode2()
 	{
 		double maxRadius = 0.0;
 		double maxAngle = 0.0;
@@ -137,6 +137,32 @@ public class DoublyLinkedList2
 		}
 		return maxAngle;
 	}
+	
+	public int findMaxNode() {
+	    int size = convexPoints.size();
+	    if (size <= 2) return -1;
+	    
+	    double maxRadius = 0.0;
+	    double maxAngle = 0.0;
+	    
+	    for (int i = 0; i < size; i++) {
+	        Point2D prev = convexPoints.get((i + size - 1) % size);
+	        Point2D curr = convexPoints.get(i);
+	        Point2D next = convexPoints.get((i + 1) % size);
+	        
+	        double radius = getRadius(prev, curr, next);
+	        double angle = getAngle(prev, curr, next);
+	        
+	        if (radius > maxRadius || (radius == maxRadius && angle >= maxAngle)) {
+	        	indexOfMaxPoint = i;
+	            maxRadius = radius;
+	            maxAngle = angle;
+	        }
+	    }
+	    
+	    return indexOfMaxPoint;
+	}
+
 		
 	public double getRadius(Point2D p, Point2D q, Point2D r) 
 	{
