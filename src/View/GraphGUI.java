@@ -351,9 +351,12 @@ public class GraphGUI
 		
 //		XYPlot plot = new XYPlot(dataset, new NumberAxis("X"), new NumberAxis("Y"), null);
 		XYPlot plot = (XYPlot)scatterPlot.getPlot(); 
-		Ellipse2D circle = new Ellipse2D.Double(myDoublyLinkedList2.getPoints().get(0).getX(), myDoublyLinkedList2.getPoints().get(0).getY(), myDoublyLinkedList2.getRadius(myDoublyLinkedList2.getPoints().get(0), myDoublyLinkedList2.getPoints().get(1), myDoublyLinkedList2.getPoints().get(2)), myDoublyLinkedList2.getRadius(myDoublyLinkedList2.getPoints().get(0), myDoublyLinkedList2.getPoints().get(1), myDoublyLinkedList2.getPoints().get(2)));
+//		Ellipse2D circle = new Ellipse2D.Double(myDoublyLinkedList2.getPoints().get(0).getX(), myDoublyLinkedList2.getPoints().get(0).getY(), myDoublyLinkedList2.getRadius(myDoublyLinkedList2.getPoints().get(0), myDoublyLinkedList2.getPoints().get(1), myDoublyLinkedList2.getPoints().get(2)), myDoublyLinkedList2.getRadius(myDoublyLinkedList2.getPoints().get(0), myDoublyLinkedList2.getPoints().get(1), myDoublyLinkedList2.getPoints().get(2)));
+		Ellipse2D circle = myDoublyLinkedList2.findCircle(myDoublyLinkedList2.getPoints().get(0), myDoublyLinkedList2.getPoints().get(1), myDoublyLinkedList2.getPoints().get(2));
 		XYShapeAnnotation annotation = new XYShapeAnnotation(circle, new BasicStroke(1.0f), Color.BLACK, null);
 		plot.addAnnotation(annotation);
+		plot.setDomainPannable(true);
+	    plot.setRangePannable(true);
 		JFreeChart chart = new JFreeChart(plot);
 		ChartViewer viewer = new ChartViewer(chart);
 		graphStage.setScene(new Scene(viewer));
