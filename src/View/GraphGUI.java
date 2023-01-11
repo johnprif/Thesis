@@ -80,7 +80,6 @@ public class GraphGUI
 	{
 		XYSeries series = new XYSeries("circlePoints");
 		XYSeries series2 = new XYSeries("convexPoints");
-		DataBase myDoublyLinkedList2 = DataBase.getInstance();
 
 		for(int i=0; i<dataBase.getConvexPointsSize(); i++)
 		{
@@ -92,18 +91,23 @@ public class GraphGUI
 		    series2.add(dataBase.getCirclePoints().get(i).getX(), dataBase.getCirclePoints().get(i).getY());
 		}
 
+		
 		XYSeriesCollection dataset = new XYSeriesCollection();
 		dataset.addSeries(series2);
 		dataset.addSeries(series);
-		
-		
+		dataset.setAutoWidth(true);
+
 		JFreeChart scatterPlot = ChartFactory.createScatterPlot(
                 "JFreeChart Scatter Plot", // Chart title
                 "X", // X-Axis Label
                 "Y", // Y-Axis Label
                 dataset // Dataset for the Chart
                 );		
-		
+		scatterPlot.setElementHinting(true);
+		scatterPlot.setTextAntiAlias(true);
+		scatterPlot.setNotify(true);
+		scatterPlot.setAntiAlias(true);
+		System.out.println(scatterPlot.getRenderingHints().toString());
 //		XYPlot plot = new XYPlot(dataset, new NumberAxis("X"), new NumberAxis("Y"), null);
 		XYPlot plot = (XYPlot)scatterPlot.getPlot(); 
 //		Ellipse2D circle = new Ellipse2D.Double(myDoublyLinkedList2.getPoints().get(0).getX(), myDoublyLinkedList2.getPoints().get(0).getY(), myDoublyLinkedList2.getRadius(myDoublyLinkedList2.getPoints().get(0), myDoublyLinkedList2.getPoints().get(1), myDoublyLinkedList2.getPoints().get(2)), myDoublyLinkedList2.getRadius(myDoublyLinkedList2.getPoints().get(0), myDoublyLinkedList2.getPoints().get(1), myDoublyLinkedList2.getPoints().get(2)));

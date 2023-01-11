@@ -19,8 +19,8 @@ public class PutPointsButtonHandler  implements EventHandler<ActionEvent>
 	@Override
 	public void handle(ActionEvent arg0) 
 	{
-		mainStage.close();
-		graphGUI = new GraphGUI();
+		//mainStage.close();
+		System.out.println("Put points with mouse");
 	}
 
 }

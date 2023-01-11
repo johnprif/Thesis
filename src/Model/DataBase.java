@@ -53,7 +53,6 @@ public class DataBase
 	public void setConvexPoints(ArrayList<Point2D> convexPoints)
 	{
 		this.convexPoints = new ArrayList<Point2D>(convexPoints);
-		circlePoints = new ArrayList<Point2D>(this.convexPoints);
 	}
 	
 	public void setCirclePoints(ArrayList<Point2D> circlePoints)
@@ -76,7 +75,12 @@ public class DataBase
 		return circlePoints.size();
 	}
 	
-	public void deleteMaxNode()
+	public void deleteMaxNodeForVoronoi()
+	{
+		convexPoints.remove(indexOfMaxPoint);
+	}
+	
+	public void deleteMaxNodeForCircle()
 	{
 		circlePoints.remove(indexOfMaxPoint);
 	}
@@ -114,33 +118,28 @@ public class DataBase
 	public Ellipse2D findCircle(Point2D point1, Point2D point2, Point2D point3)
 	{
 		// Assume that point1, point2, and point3 are Point2D objects
-		double x1 = point1.getX();
-		double y1 = point1.getY();
-		double x2 = point2.getX();
-		double y2 = point2.getY();
-		double x3 = point3.getX();
-		double y3 = point3.getY();
-
-//		double xmin = Math.min(x1, Math.min(x2, x3));
-//		double xmax = Math.max(x1, Math.max(x2, x3));
-//		double ymin = Math.min(y1, Math.min(y2, y3));
-//		double ymax = Math.max(y1, Math.max(y2, y3));
-
-		double a = (x1 * x1 + y1 * y1 - x2 * x2 - y2 * y2) / 2;
-		double b = (x2 * x2 + y2 * y2 - x3 * x3 - y3 * y3) / 2;
-		double c = (x1 - x2) / (y2 - y1);
-		double d = (x2 - x3) / (y3 - y2);
-		double e = (a - b) / (d - c);
-		double f = a + c * e;
-
-		double centerX = e / 2;
-		double centerY = f / 2;
-		double radius = Math.sqrt(centerX * centerX + centerY * centerY);
+//		double x1 = point1.getX();
+//		double y1 = point1.getY();
+//		double x2 = point2.getX();
+//		double y2 = point2.getY();
+//		double x3 = point3.getX();
+//		double y3 = point3.getY();
+//
+//		double a = (x1 * x1 + y1 * y1 - x2 * x2 - y2 * y2) / 2;
+//		double b = (x2 * x2 + y2 * y2 - x3 * x3 - y3 * y3) / 2;
+//		double c = (x1 - x2) / (y2 - y1);
+//		double d = (x2 - x3) / (y3 - y2);
+//		double e = (a - b) / (d - c);
+//		double f = a + c * e;
+//
+//		double centerX = e / 2;
+//		double centerY = f / 2;
+//		double radius = Math.sqrt(centerX * centerX + centerY * centerY);
 		Ellipse2D circle = new Ellipse2D.Double(getCenter(point1, point2, point3).getX() - getRadius(point1, point2, point3), getCenter(point1, point2, point3).getY() - getRadius(point1, point2, point3), getRadius(point1, point2, point3) * 2, getRadius(point1, point2, point3) * 2);
 		return circle;
 	}
 	
-	public double findMaxNode() 
+	public double findMaxNodeforCircle() 
 	{
 	    int size = circlePoints.size();
 	    if (size <= 2) return -1;
@@ -166,6 +165,32 @@ public class DataBase
 	    return maxAngle;
 	}
 		
+	public double findMaxNodeforVoronoi() 
+	{
+	    int size = convexPoints.size();
+	    if (size <= 2) return -1;
+	    
+	    double maxRadius = 0.0;
+	    double maxAngle = 0.0;
+	    
+	    for (int i = 0; i < size; i++) {
+	        Point2D prev = convexPoints.get((i + size - 1) % size);
+	        Point2D curr = convexPoints.get(i);
+	        Point2D next = convexPoints.get((i + 1) % size);
+	        
+	        double radius = getRadius(prev, curr, next);
+	        double angle = getAngle(prev, curr, next);
+	        
+	        if (radius > maxRadius || (radius == maxRadius && angle >= maxAngle)) {
+	        	indexOfMaxPoint = i;
+	            maxRadius = radius;
+	            maxAngle = angle;
+	        }
+	    }
+	    
+	    return maxAngle;
+	}
+	
 	public double getRadius(Point2D p, Point2D q, Point2D r) 
 	{
 	    double x1 = p.getX();

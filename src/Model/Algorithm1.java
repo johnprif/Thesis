@@ -41,11 +41,11 @@ public class Algorithm1
 			finish = false;
 			do
 			{
-				maxAngle = dataBase.findMaxNode();
+				maxAngle = dataBase.findMaxNodeforCircle();
 				if(maxAngle>myPi2)
 				{
-					dataBase.deleteMaxNode();					
-					System.out.println("The length of DLL is = "+dataBase.getCirclePointsSize());
+					dataBase.deleteMaxNodeForCircle();					
+					System.out.println("The length of circlePoints is = "+dataBase.getCirclePointsSize());
 				}else
 				{
 					System.out.println("The algorithm 1 finished = "+dataBase.getCirclePointsSize());
