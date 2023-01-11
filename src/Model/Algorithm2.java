@@ -13,7 +13,7 @@ public class Algorithm2
 	{
 		boolean finish;
 		Node maxPoint;
-		int n = myDoublyLinkedList.getSize();
+		int n = myDoublyLinkedList.getConvexPointsSize();
 		
 		
 		if(n > 2)
@@ -32,16 +32,16 @@ public class Algorithm2
 				}else
 				{
 					myDoublyLinkedList.deleteAtIndex(myDoublyLinkedList.searchIndexOfNode(maxPoint.data));					
-					System.out.println("The length of DLL is = "+myDoublyLinkedList.getSize());
+					System.out.println("The length of DLL is = "+myDoublyLinkedList.getConvexPointsSize());
 				}
 			}while(n==2);
 		}else
 		{
 			System.out.println("Only 1 point");
 		}
-		System.out.print("The size of latest DLL is = "+myDoublyLinkedList.getSize()+"\n");
-		myDoublyLinkedList.displayFirstToLast();
+		System.out.print("The size of latest DLL is = "+myDoublyLinkedList.getConvexPointsSize()+"\n");
+		myDoublyLinkedList.displayConvexPoints();
 		System.out.print("----------------------------------------------------------------------\n");
-		System.out.println("The final size is = "+myDoublyLinkedList.getSize());
+		System.out.println("The final size is = "+myDoublyLinkedList.getConvexPointsSize());
 	}
 }

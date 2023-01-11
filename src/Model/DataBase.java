@@ -11,47 +11,89 @@ import Model.DoublyLinkedList.Node;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Ellipse;
 
-public class DoublyLinkedList2 
+public class DataBase 
 {
-//	private LinkedList<Point2D> dll;
+	private ArrayList<Point2D> allPoints;
 	private ArrayList<Point2D> convexPoints;
+	private ArrayList<Point2D> circlePoints;
 	// public instance initialized when loading the class
-	private static final DoublyLinkedList2 instance = new DoublyLinkedList2();
+	private static final DataBase instance = new DataBase();
 	private int indexOfMaxPoint = 0;
 	
-	private DoublyLinkedList2()
+	private DataBase()
 	{
 	    // private constructor
 //		dll = new LinkedList<Point2D>();
 	}
-	public static DoublyLinkedList2 getInstance()
+	public static DataBase getInstance()
 	{
 		return instance;
 	}
 	
-	public ArrayList<Point2D> getPoints()
+	public ArrayList<Point2D> getAllPoints()
+	{
+		return allPoints;
+	}
+	
+	public ArrayList<Point2D> getConvexPoints()
 	{
 		return convexPoints;
 	}
 	
-	public void setPoints(ArrayList<Point2D> convexPoints)
+	public ArrayList<Point2D> getCirclePoints()
 	{
-		this.convexPoints = new ArrayList<Point2D>(convexPoints);
+		return circlePoints;
 	}
 	
-	public int getSize()
+	public void setAllPoints(ArrayList<Point2D> allPoints)
+	{
+		this.allPoints = new ArrayList<Point2D>(allPoints);
+	}
+	
+	public void setConvexPoints(ArrayList<Point2D> convexPoints)
+	{
+		this.convexPoints = new ArrayList<Point2D>(convexPoints);
+		circlePoints = new ArrayList<Point2D>(this.convexPoints);
+	}
+	
+	public void setCirclePoints(ArrayList<Point2D> circlePoints)
+	{
+		this.circlePoints = new ArrayList<Point2D>(circlePoints);
+	}
+	
+	public int getAllPointsSize()
+	{
+		return allPoints.size();
+	}
+	
+	public int getConvexPointsSize()
 	{
 		return convexPoints.size();
 	}
 	
-	public void deleteMaxNode()
+	public int getCirclePointsSize()
 	{
-		convexPoints.remove(indexOfMaxPoint);
+		return circlePoints.size();
 	}
 	
-	public void displayFirstToLast()
+	public void deleteMaxNode()
 	{
-		System.out.println("The ArrayList is --> ");
+		circlePoints.remove(indexOfMaxPoint);
+	}
+	
+	public void displayAllPoints()
+	{
+		System.out.println("The ArrayList All Points is --> ");
+		for(int i=0; i<allPoints.size(); i++)
+		{
+			System.out.println(" "+allPoints.get(i));
+		}
+		System.out.println("");
+	}
+	
+	public void displayConvexPoints()
+	{
+		System.out.println("The ArrayList of Convex Points is --> ");
 		for(int i=0; i<convexPoints.size(); i++)
 		{
 			System.out.println(" "+convexPoints.get(i));
@@ -59,84 +101,14 @@ public class DoublyLinkedList2
 		System.out.println("");
 	}
 	
-	//it must be implement here?
-		//serial search, multiplexity O(n)
-	public double findMaxNode2()
+	public void displayCirclePoints()
 	{
-		double maxRadius = 0.0;
-		double maxAngle = 0.0;
-		double currentRadius = 0.0;
-		double currentAngle = 0.0;
-		int convexPointsLenght = convexPoints.size();
-			
-		if(convexPoints.size()==2)
+		System.out.println("The ArrayList of Circle Points is --> ");
+		for(int i=0; i<circlePoints.size(); i++)
 		{
-			return -1;
-		}else //size at least = 3
-		{
-			for(int i=1; i<convexPoints.size()-1; i++)
-			{
-			
-				currentRadius = getRadius(convexPoints.get(i-1), convexPoints.get(i), convexPoints.get(i+1));
-				currentAngle = getAngle(convexPoints.get(i-1), convexPoints.get(i), convexPoints.get(i+1));
-				
-				if(currentRadius>maxRadius)
-				{
-					indexOfMaxPoint = i;
-					maxRadius = currentRadius;
-					maxAngle = currentAngle;
-				}else if(currentRadius == maxRadius)
-				{
-					if(currentAngle >= maxAngle)
-					{
-						indexOfMaxPoint = i;
-						maxRadius = currentRadius;
-						maxAngle = currentAngle;
-					}
-				}
-			}
-				//----------------------------------
-				currentRadius = getRadius(convexPoints.get(convexPointsLenght-2), convexPoints.get(convexPointsLenght-1), convexPoints.get(0));
-				currentAngle = getAngle(convexPoints.get(convexPointsLenght-2), convexPoints.get(convexPointsLenght-1), convexPoints.get(0));
-//				System.out.println("convexPoints.get(i-1), convexPoints.get(i), convexPoints.get(i+1)"+convexPoints.get(i-1)+ convexPoints.get(i)+ convexPoints.get(i+1));
-				
-				if(currentRadius>maxRadius)
-				{
-					indexOfMaxPoint = convexPointsLenght-1;
-					maxRadius = currentRadius;
-					maxAngle = currentAngle;
-				}else if(currentRadius == maxRadius)
-				{
-					if(currentAngle >= maxAngle)
-					{
-						indexOfMaxPoint = convexPointsLenght-1;
-						maxAngle = currentAngle;
-						maxRadius = currentRadius;
-					}
-				}
-				
-				currentRadius = getRadius(convexPoints.get(convexPointsLenght-1), convexPoints.get(0), convexPoints.get(1));
-				currentAngle = getAngle(convexPoints.get(convexPointsLenght-1), convexPoints.get(0), convexPoints.get(1));
-				//System.out.println("convexPoints.get(i-1), convexPoints.get(i), convexPoints.get(i+1)"+convexPoints.get(i-1)+ convexPoints.get(i)+ convexPoints.get(i+1));
-				
-				if(currentRadius>maxRadius)
-				{
-					indexOfMaxPoint = 0;
-					maxRadius = currentRadius;
-					maxAngle = currentAngle;
-				}else if(currentRadius == maxRadius)
-				{
-					if(currentAngle >= maxAngle)
-					{
-						indexOfMaxPoint = 0;
-						maxAngle = currentAngle;
-						maxRadius = currentRadius;
-					}
-				}
-				
-				//------------
+			System.out.println(" "+circlePoints.get(i));
 		}
-		return maxAngle;
+		System.out.println("");
 	}
 	
 	public Ellipse2D findCircle(Point2D point1, Point2D point2, Point2D point3)
@@ -168,17 +140,18 @@ public class DoublyLinkedList2
 		return circle;
 	}
 	
-	public double findMaxNode() {
-	    int size = convexPoints.size();
+	public double findMaxNode() 
+	{
+	    int size = circlePoints.size();
 	    if (size <= 2) return -1;
 	    
 	    double maxRadius = 0.0;
 	    double maxAngle = 0.0;
 	    
 	    for (int i = 0; i < size; i++) {
-	        Point2D prev = convexPoints.get((i + size - 1) % size);
-	        Point2D curr = convexPoints.get(i);
-	        Point2D next = convexPoints.get((i + 1) % size);
+	        Point2D prev = circlePoints.get((i + size - 1) % size);
+	        Point2D curr = circlePoints.get(i);
+	        Point2D next = circlePoints.get((i + 1) % size);
 	        
 	        double radius = getRadius(prev, curr, next);
 	        double angle = getAngle(prev, curr, next);
@@ -192,7 +165,6 @@ public class DoublyLinkedList2
 	    
 	    return maxAngle;
 	}
-
 		
 	public double getRadius(Point2D p, Point2D q, Point2D r) 
 	{

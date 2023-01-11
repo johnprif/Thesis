@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.opencsv.exceptions.CsvException;
 
+import Model.DataBase;
 import javafx.geometry.Point2D;
 
 public class FileLoaderFactory 
@@ -14,10 +15,12 @@ public class FileLoaderFactory
 	private TXTLoader txtLoader;
 	private XLSXLoader xlsxLoader;
 	private ArrayList<Point2D> allPoints;
+	private DataBase dataBase;
 	
 	public FileLoaderFactory(String path)
 	{
 		this.path = path;
+		dataBase = DataBase.getInstance();
 	}
 	//allPoints??
 	public ArrayList<Point2D> getAllPoints()
@@ -46,7 +49,8 @@ public class FileLoaderFactory
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		System.out.println("The size of allPoints is = "+allPoints.size());
+		dataBase.setAllPoints(allPoints);
 		return allPoints;
 		
 	}

@@ -23,12 +23,17 @@ public class GrahamScan
 	private ArrayList<Point2D> allPoints;
 	private ArrayList<Point2D> convexHullPoints;
 	private Stack<Point2D> stack;
+	private DataBase dataBase;
 	
-	public GrahamScan(ArrayList<Point2D> points)
+	public GrahamScan()
 	{
-		this.allPoints = new ArrayList<Point2D>(points);
+		dataBase = DataBase.getInstance();
+		System.out.println("The size of all Points = "+dataBase.getAllPointsSize());
+		allPoints = new ArrayList<Point2D>(dataBase.getAllPoints());
 		stack = new Stack<Point2D>();
 		computeGrahamScan();
+		convexHullPoints = new ArrayList<Point2D>(stack);
+		dataBase.setConvexPoints(convexHullPoints);
 	}
 	
 	private void computeGrahamScan()

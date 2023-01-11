@@ -23,30 +23,12 @@ import javafx.geometry.Point2D;
 import java.lang.Math;
 public class Algorithm1 
 {
-	private ArrayList<Point2D> convexPoints;
-	private DoublyLinkedList2 myDoublyLinkedList2;
+	private DataBase dataBase;
 	
-	public Algorithm1(ArrayList<Point2D> convexPoints) 
+	public Algorithm1() 
 	{
-		this.convexPoints = new ArrayList<Point2D>(convexPoints);
-		myDoublyLinkedList2 = DoublyLinkedList2.getInstance();
-		myDoublyLinkedList2.setPoints(this.convexPoints);
-//		movePointsToDoublyLinkedList();
+		dataBase = DataBase.getInstance();
 		computeSmallestEnclosingCircle();
-	}
-	
-	private void movePointsToDoublyLinkedList()
-	{
-		//check if convexPoints.size()==0
-		//check if convexPoints.size()==1
-		
-		for(int i=0; i<convexPoints.size(); i++)
-		{
-			myDoublyLinkedList2.insertAtLast(convexPoints.get(i));
-		}
-		System.out.print("The size of initial DLL is = "+myDoublyLinkedList2.getSize()+"\n");
-		myDoublyLinkedList2.displayFirstToLast();
-		System.out.print("----------------------------------------------------------------------\n");
 	}
 	
 	private void computeSmallestEnclosingCircle()
@@ -54,21 +36,19 @@ public class Algorithm1
 		boolean finish;
 		double maxAngle;
 		double myPi2 = Math.round(Math.PI/2*1000.0)/1000.0;
-		System.out.println("myPi2 = "+myPi2);
-		if(myDoublyLinkedList2.getSize() != 1)
+		if(dataBase.getCirclePointsSize() != 1)
 		{
 			finish = false;
 			do
 			{
-				maxAngle = myDoublyLinkedList2.findMaxNode();
-				System.out.println("maxAngle = "+maxAngle);
+				maxAngle = dataBase.findMaxNode();
 				if(maxAngle>myPi2)
 				{
-					myDoublyLinkedList2.deleteMaxNode();					
-					System.out.println("The length of DLL is = "+myDoublyLinkedList2.getSize());
+					dataBase.deleteMaxNode();					
+					System.out.println("The length of DLL is = "+dataBase.getCirclePointsSize());
 				}else
 				{
-					System.out.println("The algorithm 1 finished = "+myDoublyLinkedList2.getSize());
+					System.out.println("The algorithm 1 finished = "+dataBase.getCirclePointsSize());
 					finish = true;
 				}
 			}while(!finish);
@@ -78,8 +58,6 @@ public class Algorithm1
 		}
 //		myDoublyLinkedList2.displayFirstToLast();
 		System.out.print("----------------------------------------------------------------------\n");
-		System.out.println("The final size is = "+myDoublyLinkedList2.getSize());
+		System.out.println("The final size is = "+dataBase.getCirclePointsSize());
 	}
-	
-	
 }

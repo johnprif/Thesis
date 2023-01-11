@@ -25,7 +25,6 @@ import javafx.geometry.Point2D;
 
 public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 {
-
 	private Stage fileChooserStage;
 	private Stage mainStage;
 	private String path;
@@ -36,11 +35,13 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 	private FileLoaderFactory fileFactoryLoader;
 	
 	private GraphGUI graphGUI;
+	private AlgorithmsHandler algorithmsHandler;
 	
 	public LoadFileButtonHandler(Stage mainStage)
 	{
 		this.mainStage = mainStage;
 		textHandler = TextHandler.getInstance();
+		
 	}
 	
 	@Override
@@ -49,14 +50,10 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 		fileChooserStage = new Stage();
 		textHandler = TextHandler.getInstance();
 		fileChooser(fileChooserStage);
-//		computeConvex();
 	}
 	
 	private void fileChooser(Stage stage)
 	{
-		// set title for the stage
-//        stage.setTitle(textHandler.getFileChooserTitleText());
- 
         fileChooser = new FileChooser();
 		fileChooser.setTitle(textHandler.getFileChooserTitleText());
 		fileChooser.getExtensionFilters().addAll(
@@ -79,9 +76,12 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 	private void nextSteps()
 	{
 		fileFactoryLoader = new FileLoaderFactory(path);
+		fileFactoryLoader.getAllPoints();
 		mainStage.close();
 //		allPoints = new ArrayList<Point2D>(fileFactoryLoader.getAllPoints());
-		graphGUI = new GraphGUI(fileFactoryLoader.getAllPoints());
+//		graphGUI = new GraphGUI(fileFactoryLoader.getAllPoints());
+		algorithmsHandler = new AlgorithmsHandler();
+		graphGUI = new GraphGUI();
 	}
 	
 	public String getPath()
@@ -89,18 +89,4 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 		return path;
 	}
 	
-//	private void computeConvex()
-//	{	
-//		GrahamScan convexPoints;		
-//			convexPoints = new GrahamScan(allPoints.get2Dvalues());
-//			convexPoints.computeGrahamScan();
-//			convexPoints.moveStackToArrayList();
-//			ArrayList<Point2D> kati = new ArrayList<Point2D>(convexPoints.getconvexHullPoints());
-//			System.out.println("------BELLOW ARE THE CONVEXHULL POINTS------");
-//			for(int i=0; i<kati.size(); i++)
-//			{
-//				System.out.println("My points are = "+kati.get(i));
-//			}
-//			Algorithm1 al = new Algorithm1(kati);		
-//	}
 }
