@@ -40,9 +40,13 @@ import org.jfree.data.xy.MatrixSeriesCollection;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
+
+import Control.CustomMouseListener;
+
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.chart.fx.interaction.ChartMouseEventFX;
 import org.jfree.chart.fx.interaction.ChartMouseListenerFX;
 import org.jfree.chart.fx.interaction.ZoomHandlerFX;
 import org.jfree.chart.ChartMouseEvent;
@@ -63,6 +67,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import org.jfree.chart.renderer.xy.XYItemRendererState;
+
+
 
 public class GraphGUI
 {
@@ -138,9 +144,12 @@ public class GraphGUI
 		chart.setTitle("SmallestEnclosingCircle");
 		ChartViewer viewer = new ChartViewer(chart);
 		//---------------------------------------------------------------------------
-
+		viewer.addChartMouseListener(new CustomMouseListener());
 
 		//--------------------------------------------------
 		graphStage.setScene(new Scene(viewer));
 	}
+
+
+
 }
