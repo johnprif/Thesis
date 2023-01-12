@@ -24,6 +24,9 @@ import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.annotations.XYShapeAnnotation;
 import org.jfree.chart.axis.ValueAxis;
+import org.jfree.chart.event.ChartChangeEvent;
+import org.jfree.chart.event.ChartChangeListener;
+import org.jfree.chart.event.PlotChangeListener;
 import org.jfree.chart.fx.ChartViewer;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
@@ -49,8 +52,10 @@ import Model.Algorithm1;
 import Model.DataBase;
 import Model.GrahamScan;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
+import org.jfree.chart.fx.ChartViewer;
 
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
@@ -131,22 +136,8 @@ public class GraphGUI
 	    plot.setOutlineVisible(true);
 		JFreeChart chart = new JFreeChart(plot);
 		chart.setTitle("SmallestEnclosingCircle");
-		//---------------------------------------------------------------------------
 		ChartViewer viewer = new ChartViewer(chart);
-		viewer.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-		    @Override
-		    public void handle(MouseEvent event) {
-		        int x = (int) event.getX();
-		        int y = (int) event.getY();
-		        Point2D p = viewer.getChart().translateScreenToJava2D(new Point(x, y));
-		        Rectangle2D plotArea = viewer.getChart().getScreenDataArea();
-		        XYPlot plot = (XYPlot) viewer.getChart().getPlot();
-		        double chartX = plot.getDomainAxis().java2DToValue(p.getX(), plotArea, plot.getDomainAxisEdge());
-		        double chartY = plot.getRangeAxis().java2DToValue(p.getY(), plotArea, plot.getRangeAxisEdge());
-		        System.out.println("X: " + chartX + " Y: " + chartY);
-		    }
-		});
-
+		//---------------------------------------------------------------------------
 
 
 		//--------------------------------------------------
