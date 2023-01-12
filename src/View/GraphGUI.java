@@ -91,7 +91,7 @@ public class GraphGUI
 	private void createStage()
     {
 		graphStage = new Stage();		
-		graphStage.setTitle("GRAPH-GUI -> "+path+" -> "+(dataBase.getAllPointsSize()-1)+" points");
+		graphStage.setTitle("SmallestEnclosingCircle -> "+path+" -> "+(dataBase.getAllPointsSize()-1)+" points");
 		graphStage.setHeight(700);
 		graphStage.setWidth(700);
 		graphStage.setResizable(true);
@@ -141,10 +141,10 @@ public class GraphGUI
 	    plot.setDomainZeroBaselineVisible(true);
 	    plot.setOutlineVisible(true);
 		JFreeChart chart = new JFreeChart(plot);
-		chart.setTitle("SmallestEnclosingCircle");
+		chart.setTitle("Current Point:");
 		ChartViewer viewer = new ChartViewer(chart);
 		//---------------------------------------------------------------------------
-		viewer.addChartMouseListener(new CustomMouseListener());
+		viewer.addChartMouseListener(new CustomMouseListener(chart));
 
 		//--------------------------------------------------
 		graphStage.setScene(new Scene(viewer));
