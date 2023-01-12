@@ -81,7 +81,7 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 //		allPoints = new ArrayList<Point2D>(fileFactoryLoader.getAllPoints());
 //		graphGUI = new GraphGUI(fileFactoryLoader.getAllPoints());
 		algorithmsHandler = new AlgorithmsHandler();
-		graphGUI = new GraphGUI();
+		graphGUI = new GraphGUI(path);
 	}
 	
 	public String getPath()

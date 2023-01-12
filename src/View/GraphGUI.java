@@ -56,13 +56,15 @@ public class GraphGUI
 	private Stage graphStage;
 	private ArrayList<Point2D> allPoints;
 	private DataBase dataBase;
+	private String path;
 	
-	public GraphGUI()
+	public GraphGUI(String path)
 	{
+		this.path = path;
 		dataBase = DataBase.getInstance();
 		System.out.println("The size of all points are = "+dataBase.getAllPointsSize());
 		createStage();
-		chart7();
+		displaySmallestEnclosingCircle();
 		graphStage.show();
 	}
 	
@@ -70,16 +72,16 @@ public class GraphGUI
 	private void createStage()
     {
 		graphStage = new Stage();		
-		graphStage.setTitle("GRAPH-GUI");
+		graphStage.setTitle("GRAPH-GUI -> "+path);
 		graphStage.setHeight(700);
 		graphStage.setWidth(700);
 		graphStage.setResizable(true);
     }
 	
-	private void chart7()
+	private void displaySmallestEnclosingCircle()
 	{
-		XYSeries series = new XYSeries("circlePoints");
-		XYSeries series2 = new XYSeries("convexPoints");
+		XYSeries series = new XYSeries("circlePoints -> "+(dataBase.getCirclePointsSize()-1));
+		XYSeries series2 = new XYSeries("convexPoints -> "+(dataBase.getConvexPointsSize()-1));
 
 		for(int i=0; i<dataBase.getConvexPointsSize(); i++)
 		{
@@ -96,7 +98,6 @@ public class GraphGUI
 		dataset.addSeries(series2);
 		dataset.addSeries(series);
 		dataset.setAutoWidth(true);
-
 		JFreeChart scatterPlot = ChartFactory.createScatterPlot(
                 "JFreeChart Scatter Plot", // Chart title
                 "X", // X-Axis Label
@@ -107,7 +108,6 @@ public class GraphGUI
 		scatterPlot.setTextAntiAlias(true);
 		scatterPlot.setNotify(true);
 		scatterPlot.setAntiAlias(true);
-		System.out.println(scatterPlot.getRenderingHints().toString());
 //		XYPlot plot = new XYPlot(dataset, new NumberAxis("X"), new NumberAxis("Y"), null);
 		XYPlot plot = (XYPlot)scatterPlot.getPlot(); 
 //		Ellipse2D circle = new Ellipse2D.Double(myDoublyLinkedList2.getPoints().get(0).getX(), myDoublyLinkedList2.getPoints().get(0).getY(), myDoublyLinkedList2.getRadius(myDoublyLinkedList2.getPoints().get(0), myDoublyLinkedList2.getPoints().get(1), myDoublyLinkedList2.getPoints().get(2)), myDoublyLinkedList2.getRadius(myDoublyLinkedList2.getPoints().get(0), myDoublyLinkedList2.getPoints().get(1), myDoublyLinkedList2.getPoints().get(2)));
@@ -122,6 +122,7 @@ public class GraphGUI
 	    plot.setDomainZeroBaselineVisible(true);
 	    plot.setOutlineVisible(true);
 		JFreeChart chart = new JFreeChart(plot);
+		chart.setTitle("SmallestEnclosingCircle");
 		ChartViewer viewer = new ChartViewer(chart);
 		graphStage.setScene(new Scene(viewer));
 	}

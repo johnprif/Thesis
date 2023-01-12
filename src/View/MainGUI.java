@@ -37,7 +37,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class HelloFX extends Application
+public class MainGUI extends Application
 {
 	private String javaVersion = System.getProperty("java.version");
     private String javafxVersion = System.getProperty("javafx.version");
