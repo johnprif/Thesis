@@ -41,10 +41,4 @@ public class CustomMouseListener  implements ChartMouseListenerFX
 		// TODO Auto-generated method stub
 //		System.out.println("CLICK-MOVE -> x="+arg0.getTrigger().getScreenX()+" y="+arg0.getTrigger().getScreenY());
 	}
-	
-	public void setOnMousePressed(ChartMouseEventFX arg0)
-	{
-		
-	}
-
 }
