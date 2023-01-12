@@ -72,7 +72,7 @@ public class GraphGUI
 	private void createStage()
     {
 		graphStage = new Stage();		
-		graphStage.setTitle("GRAPH-GUI -> "+path);
+		graphStage.setTitle("GRAPH-GUI -> "+path+" -> "+(dataBase.getAllPointsSize()-1)+" points");
 		graphStage.setHeight(700);
 		graphStage.setWidth(700);
 		graphStage.setResizable(true);
