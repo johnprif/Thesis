@@ -19,8 +19,9 @@ module Java_Paper
 	requires org.junit.jupiter.api;
 	requires org.apache.poi.ooxml;
 	requires java.base;
-	requires org.jfree.jfreechart;
 	requires org.jfree.chart.fx;
+	requires org.jfree.jfreechart;
+	requires jdk.internal.le;
 //	requires com.healthmarketscience.jackcess;
 	
 	opens View to javafx.graphics, javafx.fxml;

@@ -8,13 +8,17 @@ package View;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartMouseEvent;
+import org.jfree.chart.ChartMouseListener;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
@@ -36,8 +40,11 @@ import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-
-
+import org.jfree.chart.fx.interaction.ChartMouseListenerFX;
+import org.jfree.chart.fx.interaction.ZoomHandlerFX;
+import org.jfree.chart.ChartMouseEvent;
+import org.jfree.chart.ChartRenderingInfo;
+import org.jfree.chart.JFreeChart;
 import Model.Algorithm1;
 import Model.DataBase;
 import Model.GrahamScan;
@@ -47,6 +54,7 @@ import javafx.scene.Scene;
 
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import org.jfree.chart.renderer.xy.XYItemRendererState;
@@ -123,7 +131,25 @@ public class GraphGUI
 	    plot.setOutlineVisible(true);
 		JFreeChart chart = new JFreeChart(plot);
 		chart.setTitle("SmallestEnclosingCircle");
+		//---------------------------------------------------------------------------
 		ChartViewer viewer = new ChartViewer(chart);
+		viewer.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent event) {
+		        int x = (int) event.getX();
+		        int y = (int) event.getY();
+		        Point2D p = viewer.getChart().translateScreenToJava2D(new Point(x, y));
+		        Rectangle2D plotArea = viewer.getChart().getScreenDataArea();
+		        XYPlot plot = (XYPlot) viewer.getChart().getPlot();
+		        double chartX = plot.getDomainAxis().java2DToValue(p.getX(), plotArea, plot.getDomainAxisEdge());
+		        double chartY = plot.getRangeAxis().java2DToValue(p.getY(), plotArea, plot.getRangeAxisEdge());
+		        System.out.println("X: " + chartX + " Y: " + chartY);
+		    }
+		});
+
+
+
+		//--------------------------------------------------
 		graphStage.setScene(new Scene(viewer));
 	}
 }
