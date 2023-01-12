@@ -176,17 +176,17 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Joanis Prifti/Documents/GitHub/Java_Paper/ImportantFiles/jars/JFreeChart-FX/jfreechart-1.5.3.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/Joanis Prifti/Documents/GitHub/Java_Paper/ImportantFiles/jars/JFreeChart-FX/org.jfree.chart.fx-2.0.1.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/Joanis Prifti/Documents/GitHub/Java_Paper/ImportantFiles/jars/JFreeChart-FX/org.jfree.fxgraphics2d-2.1.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Joanis Prifti/Documents/GitHub/Java_Paper/ImportantFiles/jars/JFreeChart-FX/jfreechart-1.5.3.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

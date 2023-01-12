@@ -1,8 +1,14 @@
 package Control;
 
+import java.io.File;
+
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.fx.interaction.ChartMouseEventFX;
 import org.jfree.chart.fx.interaction.ChartMouseListenerFX;
+
+import javafx.scene.input.MouseButton;
+import java.io.File;
+import java.io.IOException;
 
 public class CustomMouseListener  implements ChartMouseListenerFX
 {
@@ -19,6 +25,13 @@ public class CustomMouseListener  implements ChartMouseListenerFX
 		System.out.println("CLICK -> x="+arg0.getTrigger().getX()+" y="+arg0.getTrigger().getY());
 		System.out.println("Point -> x="+arg0.getChart().getXYPlot().getDomainCrosshairValue()+" y="+arg0.getChart().getXYPlot().getRangeCrosshairValue());
 		chart.setTitle("Current Point: ("+arg0.getChart().getXYPlot().getDomainCrosshairValue()+", "+arg0.getChart().getXYPlot().getRangeCrosshairValue()+")");
+		if(arg0.getTrigger().getButton()==MouseButton.SECONDARY)
+		{
+			System.out.println("RIGHT CLICK -> x="+arg0.getTrigger().getX()+" y="+arg0.getTrigger().getY());
+//			File XYChart = new File( "XYLineChart.jpeg" ); 
+//		    ChartUtilities.saveChartAsPNG( XYChart, chart, 700, 700);
+
+		}
 	}
 
 
@@ -27,6 +40,11 @@ public class CustomMouseListener  implements ChartMouseListenerFX
 	{
 		// TODO Auto-generated method stub
 //		System.out.println("CLICK-MOVE -> x="+arg0.getTrigger().getScreenX()+" y="+arg0.getTrigger().getScreenY());
+	}
+	
+	public void setOnMousePressed(ChartMouseEventFX arg0)
+	{
+		
 	}
 
 }
