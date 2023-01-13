@@ -19,6 +19,7 @@ public class DataBase
 	// public instance initialized when loading the class
 	private static final DataBase instance = new DataBase();
 	private int indexOfMaxPoint = 0;
+	private int indexOfMaxPoint2 = 0;
 	
 	private DataBase()
 	{
@@ -77,7 +78,7 @@ public class DataBase
 	
 	public void deleteMaxNodeForVoronoi()
 	{
-		convexPoints.remove(indexOfMaxPoint);
+		convexPoints.remove(indexOfMaxPoint2);
 	}
 	
 	public void deleteMaxNodeForCircle()
@@ -182,7 +183,7 @@ public class DataBase
 	        double angle = getAngle(prev, curr, next);
 	        
 	        if (radius > maxRadius || (radius == maxRadius && angle >= maxAngle)) {
-	        	indexOfMaxPoint = i;
+	        	indexOfMaxPoint2 = i;
 	            maxRadius = radius;
 	            maxAngle = angle;
 	        }

@@ -8,6 +8,7 @@ package View;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Point;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
@@ -32,6 +33,7 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.StandardXYItemRenderer;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.chart.title.TextTitle;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.statistics.HistogramDataset;
 import org.jfree.data.xy.DefaultXYZDataset;
@@ -101,15 +103,18 @@ public class GraphGUI
 	
 	private void displaySmallestEnclosingCircle()
 	{	
+		TextTitle textTitle = new TextTitle("Current Point: None");
+		textTitle.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		makeSeries();
 	    
 	    makePlots();
 	    
 		JFreeChart chart = new JFreeChart(plot);
-		chart.setTitle("Current Point: None");
+		chart.setTitle("Smallest Enclosing Circle");
+		chart.addSubtitle(textTitle);
 		ChartViewer viewer = new ChartViewer(chart);
 		//---------------------------------------------------------------------------
-		viewer.addChartMouseListener(new CustomMouseListener(chart));
+		viewer.addChartMouseListener(new CustomMouseListener(textTitle));
 
 		//--------------------------------------------------
 		circleStage.setScene(new Scene(viewer));
@@ -136,7 +141,6 @@ public class GraphGUI
 		{
 		    series3.add(dataBase.getCirclePoints().get(i).getX(), dataBase.getCirclePoints().get(i).getY());
 		}
-				
 		dataset = new XYSeriesCollection();
 		dataset.addSeries(series3);
 		dataset.addSeries(series2);
