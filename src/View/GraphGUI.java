@@ -80,6 +80,8 @@ public class GraphGUI
 	private XYSeriesCollection dataset;
 	
 	private XYPlot plot;
+	private TextTitle textSubTitle;
+	private JFreeChart chart;
 	
 	public GraphGUI(String path)
 	{
@@ -103,18 +105,17 @@ public class GraphGUI
 	
 	private void displaySmallestEnclosingCircle()
 	{	
-		TextTitle textTitle = new TextTitle("Current Point: None");
-		textTitle.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		textSubTitle = new TextTitle("Current Point: None");
+		textSubTitle.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		makeSeries();
 	    
 	    makePlots();
 	    
-		JFreeChart chart = new JFreeChart(plot);
-		chart.setTitle("Smallest Enclosing Circle");
-		chart.addSubtitle(textTitle);
+		
+		//---------------------
 		ChartViewer viewer = new ChartViewer(chart);
 		//---------------------------------------------------------------------------
-		viewer.addChartMouseListener(new CustomMouseListener(textTitle));
+		viewer.addChartMouseListener(new CustomMouseListener(textSubTitle));
 
 		//--------------------------------------------------
 		circleStage.setScene(new Scene(viewer));
@@ -124,8 +125,8 @@ public class GraphGUI
 	{
 		XYSeries series1 = new XYSeries("allPoints -> "+(dataBase.getAllPointsSize()-1));
 		XYSeries series2 = new XYSeries("convexPoints -> "+(dataBase.getConvexPointsSize()-1));
-		XYSeries series3 = new XYSeries("circlePoints -> "+(dataBase.getCirclePointsSize()-1));
-		
+		XYSeries series3 = new XYSeries("circlePoints -> "+(dataBase.getCirclePointsSize()-1));			
+		dataset = new XYSeriesCollection();
 		
 		for(int i=0; i<dataBase.getAllPointsSize(); i++)
 		{
@@ -141,7 +142,7 @@ public class GraphGUI
 		{
 		    series3.add(dataBase.getCirclePoints().get(i).getX(), dataBase.getCirclePoints().get(i).getY());
 		}
-		dataset = new XYSeriesCollection();
+		
 		dataset.addSeries(series3);
 		dataset.addSeries(series2);
 		dataset.addSeries(series1);
@@ -156,10 +157,11 @@ public class GraphGUI
                 "Y", // Y-Axis Label
                 dataset // Dataset for the Chart
                 );	
-		scatterPlot.setElementHinting(true);
-		scatterPlot.setTextAntiAlias(true);
-		scatterPlot.setNotify(true);
-		scatterPlot.setAntiAlias(true);
+//		scatterPlot.setElementHinting(true);
+//		scatterPlot.setTextAntiAlias(true);
+//		scatterPlot.setNotify(true);
+//		scatterPlot.setAntiAlias(true);
+//		scatterPlot.setBorderVisible(true);
 		plot = (XYPlot)scatterPlot.getPlot(); 
 		Ellipse2D circle = dataBase.findCircle(dataBase.getCirclePoints().get(0), dataBase.getCirclePoints().get(1), dataBase.getCirclePoints().get(2));
 		XYShapeAnnotation annotation = new XYShapeAnnotation(circle, new BasicStroke(1.0f), Color.BLACK, null);
@@ -171,6 +173,16 @@ public class GraphGUI
 	    plot.setDomainCrosshairVisible(true);
 	    plot.setDomainZeroBaselineVisible(true);
 	    plot.setOutlineVisible(true);
+	    
+	    chart = new JFreeChart(plot);
+		chart.setTitle("Smallest Enclosing Circle");
+		chart.addSubtitle(textSubTitle);
+		//---------------------
+		chart.setElementHinting(true);
+		chart.setTextAntiAlias(true);
+		chart.setNotify(true);
+		chart.setAntiAlias(true);
+		chart.setBorderVisible(true);
 	}
 
 }
