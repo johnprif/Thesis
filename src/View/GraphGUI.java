@@ -40,10 +40,7 @@ import org.jfree.data.xy.MatrixSeriesCollection;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
-
-import Control.CustomChangeListener;
 import Control.CustomMouseListener;
-
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
@@ -73,10 +70,14 @@ import org.jfree.chart.renderer.xy.XYItemRendererState;
 
 public class GraphGUI
 {
-	private Stage graphStage;
-	private ArrayList<Point2D> allPoints;
+	private Stage circleStage;
+	private Stage voronoiStage;
 	private DataBase dataBase;
 	private String path;
+
+	private XYSeriesCollection dataset;
+	
+	private XYPlot plot;
 	
 	public GraphGUI(String path)
 	{
@@ -85,52 +86,77 @@ public class GraphGUI
 		System.out.println("The size of all points are = "+dataBase.getAllPointsSize());
 		createStage();
 		displaySmallestEnclosingCircle();
-		graphStage.show();
+		circleStage.show();
 	}
 	
 	
 	private void createStage()
     {
-		graphStage = new Stage();		
-		graphStage.setTitle("SmallestEnclosingCircle -> "+path+" -> "+(dataBase.getAllPointsSize()-1)+" points");
-		graphStage.setHeight(700);
-		graphStage.setWidth(700);
-		graphStage.setResizable(true);
+		circleStage = new Stage();		
+		circleStage.setTitle("SmallestEnclosingCircle -> "+path+" -> "+(dataBase.getAllPointsSize()-1)+" points");
+		circleStage.setHeight(700);
+		circleStage.setWidth(700);
+		circleStage.setResizable(true);
     }
 	
 	private void displaySmallestEnclosingCircle()
+	{	
+		makeSeries();
+	    
+	    makePlots();
+	    
+		JFreeChart chart = new JFreeChart(plot);
+		chart.setTitle("Current Point: None");
+		ChartViewer viewer = new ChartViewer(chart);
+		//---------------------------------------------------------------------------
+		viewer.addChartMouseListener(new CustomMouseListener(chart));
+
+		//--------------------------------------------------
+		circleStage.setScene(new Scene(viewer));
+	}
+
+	private void makeSeries()
 	{
-		XYSeries series = new XYSeries("circlePoints -> "+(dataBase.getCirclePointsSize()-1));
+		XYSeries series1 = new XYSeries("allPoints -> "+(dataBase.getAllPointsSize()-1));
 		XYSeries series2 = new XYSeries("convexPoints -> "+(dataBase.getConvexPointsSize()-1));
+		XYSeries series3 = new XYSeries("circlePoints -> "+(dataBase.getCirclePointsSize()-1));
+		
+		
+		for(int i=0; i<dataBase.getAllPointsSize(); i++)
+		{
+		    series1.add(dataBase.getAllPoints().get(i).getX(), dataBase.getAllPoints().get(i).getY());
+		}
 
 		for(int i=0; i<dataBase.getConvexPointsSize(); i++)
 		{
-		    series.add(dataBase.getConvexPoints().get(i).getX(), dataBase.getConvexPoints().get(i).getY());
+		    series2.add(dataBase.getConvexPoints().get(i).getX(), dataBase.getConvexPoints().get(i).getY());
 		}
 
 		for(int i=0; i<dataBase.getCirclePointsSize(); i++)
 		{
-		    series2.add(dataBase.getCirclePoints().get(i).getX(), dataBase.getCirclePoints().get(i).getY());
+		    series3.add(dataBase.getCirclePoints().get(i).getX(), dataBase.getCirclePoints().get(i).getY());
 		}
-
-		
-		XYSeriesCollection dataset = new XYSeriesCollection();
+				
+		dataset = new XYSeriesCollection();
+		dataset.addSeries(series3);
 		dataset.addSeries(series2);
-		dataset.addSeries(series);
+		dataset.addSeries(series1);
 		dataset.setAutoWidth(true);
+	}
+	
+	private void makePlots()
+	{
 		JFreeChart scatterPlot = ChartFactory.createScatterPlot(
-                "JFreeChart Scatter Plot", // Chart title
+                "Current Point: None", // Chart title
                 "X", // X-Axis Label
                 "Y", // Y-Axis Label
                 dataset // Dataset for the Chart
-                );		
+                );	
 		scatterPlot.setElementHinting(true);
 		scatterPlot.setTextAntiAlias(true);
 		scatterPlot.setNotify(true);
 		scatterPlot.setAntiAlias(true);
-//		XYPlot plot = new XYPlot(dataset, new NumberAxis("X"), new NumberAxis("Y"), null);
-		XYPlot plot = (XYPlot)scatterPlot.getPlot(); 
-//		Ellipse2D circle = new Ellipse2D.Double(myDoublyLinkedList2.getPoints().get(0).getX(), myDoublyLinkedList2.getPoints().get(0).getY(), myDoublyLinkedList2.getRadius(myDoublyLinkedList2.getPoints().get(0), myDoublyLinkedList2.getPoints().get(1), myDoublyLinkedList2.getPoints().get(2)), myDoublyLinkedList2.getRadius(myDoublyLinkedList2.getPoints().get(0), myDoublyLinkedList2.getPoints().get(1), myDoublyLinkedList2.getPoints().get(2)));
+		plot = (XYPlot)scatterPlot.getPlot(); 
 		Ellipse2D circle = dataBase.findCircle(dataBase.getCirclePoints().get(0), dataBase.getCirclePoints().get(1), dataBase.getCirclePoints().get(2));
 		XYShapeAnnotation annotation = new XYShapeAnnotation(circle, new BasicStroke(1.0f), Color.BLACK, null);
 		plot.addAnnotation(annotation);
@@ -141,16 +167,6 @@ public class GraphGUI
 	    plot.setDomainCrosshairVisible(true);
 	    plot.setDomainZeroBaselineVisible(true);
 	    plot.setOutlineVisible(true);
-		JFreeChart chart = new JFreeChart(plot);
-		chart.setTitle("Current Point:");
-		ChartViewer viewer = new ChartViewer(chart);
-		//---------------------------------------------------------------------------
-		viewer.addChartMouseListener(new CustomMouseListener(chart));
-
-		//--------------------------------------------------
-		graphStage.setScene(new Scene(viewer));
 	}
-
-
 
 }
