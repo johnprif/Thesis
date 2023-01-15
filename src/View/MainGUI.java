@@ -41,7 +41,8 @@ public class MainGUI extends Application
 {
 	private String javaVersion = System.getProperty("java.version");
     private String javafxVersion = System.getProperty("javafx.version");
-	
+	private String version = "v0.1";
+    
 	private Stage stage;
 	private Scene scene;
 	
@@ -255,7 +256,7 @@ public class MainGUI extends Application
     		stage.getIcons().add(imageMain2);
 		}
     	
-    	stage.setTitle("Sven Skyum 1991, JavaFX " + javafxVersion + ", running on Java " + javaVersion);
+    	stage.setTitle("Sven Skyum 1991, JavaFX " + javafxVersion + ", running on Java " + javaVersion +", "+version);
         stage.setHeight(700);
         stage.setWidth(600);
         stage.setResizable(false);
