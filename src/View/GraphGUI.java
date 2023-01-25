@@ -133,7 +133,7 @@ public class GraphGUI
 		    series1.add(dataBase.getAllPoints().get(i).getX(), dataBase.getAllPoints().get(i).getY());
 		}
 
-		for(int i=0; i<dataBase.getConvexPointsSize()-1; i++)
+		for(int i=0; i<dataBase.getConvexPointsSize(); i++)
 		{
 		    series2.add(dataBase.getConvexPoints().get(i).getX(), dataBase.getConvexPoints().get(i).getY());
 		}

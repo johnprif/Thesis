@@ -13,13 +13,17 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Stack;
 
 import javafx.geometry.Point2D;
 
 public class GrahamScan 
 {
+	private static Point2D start;
+	
 	private ArrayList<Point2D> allPoints;
 	private ArrayList<Point2D> convexHullPoints;
 	private Stack<Point2D> stack;
@@ -31,8 +35,15 @@ public class GrahamScan
 		System.out.println("The size of all Points = "+dataBase.getAllPointsSize());
 		allPoints = new ArrayList<Point2D>(dataBase.getAllPoints());
 		stack = new Stack<Point2D>();
-		computeGrahamScan();
-		convexHullPoints = new ArrayList<Point2D>(stack);
+//		computeGrahamScan();
+//		convexHullPoints = new ArrayList<Point2D>(stack);
+//		convexHullPoints.remove(0);
+		
+//		dataBase.setConvexPoints(convexHullPoints);
+//		dataBase.setCirclePoints(convexHullPoints);
+		convexHullPoints = new ArrayList<Point2D>(convexHull(allPoints));
+		System.out.println(convexHullPoints.size());
+		convexHullPoints.remove(convexHullPoints.size()-1);
 		dataBase.setConvexPoints(convexHullPoints);
 		dataBase.setCirclePoints(convexHullPoints);
 	}
@@ -146,6 +157,64 @@ public class GrahamScan
 	{
 		return convexHullPoints;
 	}
+	
+	
+	
+	//----------------------------------
+	public static List<Point2D> convexHull(List<Point2D> points) {
+        // Find the point with the lowest y-coordinate (or the leftmost point in case of a tie)
+//        Point2D start = points.get(0);
+        start = points.get(0);
+
+        for (Point2D point : points) {
+            if (point.getY() < start.getY() || (point.getY() == start.getY() && point.getX() < start.getX())) {
+                start = point;
+            }
+        }
+
+        // Sort the points by polar angle with respect to the start point
+        List<Point2D> sortedPoints = new ArrayList<>(points);
+        sortedPoints.remove(start);
+        Collections.sort(sortedPoints, (a, b) -> {
+            double angleA = Math.atan2(a.getY() - start.getY(), a.getX() - start.getX());
+            double angleB = Math.atan2(b.getY() - start.getY(), b.getX() - start.getX());
+            if (angleA < angleB) {
+                return -1;
+            } else if (angleA > angleB) {
+                return 1;
+            } else {
+                return Double.compare(a.distance(start), b.distance(start));
+            }
+        });
+
+        // Perform the Graham's scan
+        List<Point2D> hull = new ArrayList<>();
+        hull.add(start);
+        for (Point2D point : sortedPoints) {
+            while (hull.size() >= 2) {
+                Point2D p2 = hull.get(hull.size() - 1);
+                Point2D p1 = hull.get(hull.size() - 2);
+				if (crossProduct(p1, p2, point) < 0) 
+				{
+					hull.remove(hull.size() - 1);
+				} else 
+				{
+					break;
+				}
+            }
+            hull.add(point);
+        }
+        hull.add(start);
+        return hull;
+    }
+
+    private static double crossProduct(Point2D a, Point2D b, Point2D c) {
+        double y1 = b.getY() - a.getY();
+        double y2 = c.getY() - a.getY();
+        double x1 = b.getX() - a.getX();
+        double x2 = c.getX() - a.getX();
+        return x1 * y2 - x2 * y1;
+    }
 }
 
 
