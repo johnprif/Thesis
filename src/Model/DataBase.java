@@ -128,8 +128,7 @@ public class DataBase
 		Point2D point3;
 		if (n < 3) 
 		{
-//	        throw new IllegalArgumentException("At least 3 points are required to form a circle");
-	        System.out.println("At least 3 points are required to form a circle");
+	        throw new IllegalArgumentException("At least 3 points are required to form a circle");
 	    }else if (n == 3)
 		{
 			point1 = circlePoints.get(0);
