@@ -131,7 +131,7 @@ public class GraphGUI
 		for(int i=0; i<dataBase.getAllPointsSize(); i++)
 		{
 		    series1.add(dataBase.getAllPoints().get(i).getX(), dataBase.getAllPoints().get(i).getY());
-		    System.out.println("allPoints->("+dataBase.getAllPoints().get(i).getX()+" ,"+dataBase.getAllPoints().get(i).getY()+")");
+//		    System.out.println("allPoints->("+dataBase.getAllPoints().get(i).getX()+" ,"+dataBase.getAllPoints().get(i).getY()+")");
 
 		}
 
@@ -169,7 +169,7 @@ public class GraphGUI
 		plot = (XYPlot)scatterPlot.getPlot(); 
 //		Ellipse2D circle = dataBase.findCircle();
 		
-		Ellipse2D circle = dataBase.findCircle2(dataBase.getCirclePoints());
+		Ellipse2D circle = dataBase.findCircle();
 
 		
 		XYShapeAnnotation annotation = new XYShapeAnnotation(circle, new BasicStroke(1.0f), Color.BLACK, null);

@@ -29,6 +29,10 @@ public class Algorithm1
 	{
 		dataBase = DataBase.getInstance();
 		computeSmallestEnclosingCircle();
+		if(dataBase.getCirclePointsSize()>=4)
+		{
+			computeSmallestEnclosingCircle();
+		}
 	}
 	
 	private void computeSmallestEnclosingCircle()
@@ -56,6 +60,7 @@ public class Algorithm1
 		{
 			System.out.println("Only 1 point");
 		}
+		
 //		myDoublyLinkedList2.displayFirstToLast();
 		System.out.print("----------------------------------------------------------------------\n");
 		System.out.println("The final size is = "+dataBase.getCirclePointsSize());
