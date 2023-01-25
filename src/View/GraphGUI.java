@@ -166,8 +166,6 @@ public class GraphGUI
 //		Ellipse2D circle = dataBase.findCircle();
 		
 		Ellipse2D circle = dataBase.findCircle();
-
-		
 		XYShapeAnnotation annotation = new XYShapeAnnotation(circle, new BasicStroke(1.0f), Color.BLACK, null);
 		plot.addAnnotation(annotation);
 		plot.setDomainPannable(true);

@@ -126,10 +126,16 @@ public class DataBase
 		Point2D point1;
 		Point2D point2;
 		Point2D point3;
-		if (n < 3) 
+		if (n == 2) 
 		{
-	        throw new IllegalArgumentException("At least 3 points are required to form a circle");
-	    }else if (n == 3)
+			point1 = circlePoints.get(0);
+			point2 = circlePoints.get(1);
+//	        throw new IllegalArgumentException("At least 3 points are required to form a circle");
+			double centerX = (point1.getX() + point2.getX()) / 2;
+	        double centerY = (point1.getY() + point2.getY()) / 2;
+	        double radius = point1.distance(point2) / 2;
+	        return new Ellipse2D.Double(centerX - radius, centerY - radius, radius * 2, radius * 2);
+		}else if (n == 3)
 		{
 			point1 = circlePoints.get(0);
 			point2 = circlePoints.get(1);

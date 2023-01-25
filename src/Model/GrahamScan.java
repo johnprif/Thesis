@@ -26,7 +26,6 @@ public class GrahamScan
 	
 	private ArrayList<Point2D> allPoints;
 	private ArrayList<Point2D> convexHullPoints;
-	private Stack<Point2D> stack;
 	private DataBase dataBase;
 	
 	public GrahamScan()
@@ -34,22 +33,16 @@ public class GrahamScan
 		dataBase = DataBase.getInstance();
 		System.out.println("The size of all Points = "+dataBase.getAllPointsSize());
 		allPoints = new ArrayList<Point2D>(dataBase.getAllPoints());
-		stack = new Stack<Point2D>();
-//		computeGrahamScan();
-//		convexHullPoints = new ArrayList<Point2D>(stack);
-//		convexHullPoints.remove(0);
-		
-//		dataBase.setConvexPoints(convexHullPoints);
-//		dataBase.setCirclePoints(convexHullPoints);
-		convexHullPoints = new ArrayList<Point2D>(convexHull(allPoints));
-		System.out.println(convexHullPoints.size());
+//		convexHullPoints = new ArrayList<Point2D>(computeGrahamScan());
+		convexHullPoints = new ArrayList<Point2D>(computeGrahamScan2(allPoints));
 		convexHullPoints.remove(convexHullPoints.size()-1);
 		dataBase.setConvexPoints(convexHullPoints);
 		dataBase.setCirclePoints(convexHullPoints);
 	}
 	
-	private void computeGrahamScan()
+	private  ArrayList<Point2D> computeGrahamScan()
 	{
+		Stack<Point2D> stack = new Stack<Point2D>();
 		//find the leftmost point
 		double leftmost = 0;
 		int leftIndex = 0;
@@ -122,6 +115,8 @@ public class GrahamScan
 				Stack<Point2D> sclone = (Stack<Point2D>)stack.clone();
 			}
 		}
+		convexHullPoints = new ArrayList<Point2D>(stack);
+		return convexHullPoints;
 	}
 
 	/**
@@ -161,7 +156,7 @@ public class GrahamScan
 	
 	
 	//----------------------------------
-	public static List<Point2D> convexHull(List<Point2D> points) {
+	public static List<Point2D> computeGrahamScan2(List<Point2D> points) {
         // Find the point with the lowest y-coordinate (or the leftmost point in case of a tie)
 //        Point2D start = points.get(0);
         start = points.get(0);
