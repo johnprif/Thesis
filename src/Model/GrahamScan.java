@@ -43,9 +43,11 @@ public class GrahamScan
 		double leftmost = 0;
 		int leftIndex = 0;
 
-		for(int i = 0; i < allPoints.size(); i++) {
+		for(int i = 0; i < allPoints.size(); i++) 
+		{
 			double current = allPoints.get(i).getX();
-			if (current < leftmost){
+			if (current < leftmost)
+			{
 				leftmost = current;
 				leftIndex = i;
 			}
@@ -139,11 +141,6 @@ public class GrahamScan
 		double slope = (p1.getX() - p2.getX()) / (p1.getY() - p2.getY());
 		return slope;
 	}	
-	
-	public void moveStackToArrayList()
-	{
-		convexHullPoints = new ArrayList<Point2D>(stack);
-	}
 	
 	public ArrayList<Point2D> getconvexHullPoints()
 	{

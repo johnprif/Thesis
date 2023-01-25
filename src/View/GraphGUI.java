@@ -131,20 +131,16 @@ public class GraphGUI
 		for(int i=0; i<dataBase.getAllPointsSize(); i++)
 		{
 		    series1.add(dataBase.getAllPoints().get(i).getX(), dataBase.getAllPoints().get(i).getY());
-//		    System.out.println("allPoints->("+dataBase.getAllPoints().get(i).getX()+" ,"+dataBase.getAllPoints().get(i).getY()+")");
-
 		}
 
 		for(int i=0; i<dataBase.getConvexPointsSize()-1; i++)
 		{
 		    series2.add(dataBase.getConvexPoints().get(i).getX(), dataBase.getConvexPoints().get(i).getY());
-		    System.out.println("convexPoints->("+dataBase.getConvexPoints().get(i).getX()+" ,"+dataBase.getConvexPoints().get(i).getY()+")");
 		}
 
 		for(int i=0; i<dataBase.getCirclePointsSize(); i++)
 		{
 		    series3.add(dataBase.getCirclePoints().get(i).getX(), dataBase.getCirclePoints().get(i).getY());
-		    System.out.println("circlePoints->("+dataBase.getCirclePoints().get(i).getX()+" ,"+dataBase.getCirclePoints().get(i).getY()+")");
 		}
 		
 		dataset.addSeries(series3);
