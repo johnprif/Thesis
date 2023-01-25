@@ -7,6 +7,8 @@ import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
+
 import Model.DoublyLinkedList.Node;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Ellipse;
@@ -116,8 +118,11 @@ public class DataBase
 		System.out.println("");
 	}
 	
-	public Ellipse2D findCircle(Point2D point1, Point2D point2, Point2D point3)
+	public Ellipse2D findCircle()
 	{
+		Point2D point1 = circlePoints.get(0);
+		Point2D point2 = circlePoints.get(1);
+		Point2D point3 = circlePoints.get(2);
 		// Assume that point1, point2, and point3 are Point2D objects
 //		double x1 = point1.getX();
 //		double y1 = point1.getY();
@@ -139,6 +144,43 @@ public class DataBase
 		Ellipse2D circle = new Ellipse2D.Double(getCenter(point1, point2, point3).getX() - getRadius(point1, point2, point3), getCenter(point1, point2, point3).getY() - getRadius(point1, point2, point3), getRadius(point1, point2, point3) * 2, getRadius(point1, point2, point3) * 2);
 		return circle;
 	}
+	
+	//----------TEST--------------------
+	public Ellipse2D findCircle2(List<Point2D> points) {
+        int n = points.size();
+        double[][] A = new double[n][3];
+        double[] b = new double[n];
+
+        for (int i = 0; i < n; i++) {
+            Point2D point = points.get(i);
+            A[i][0] = point.getX();
+            A[i][1] = point.getY();
+            A[i][2] = 1;
+            b[i] = point.getX() * point.getX() + point.getY() * point.getY();
+        }
+
+        double[] x = new double[3];
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < n; j++) {
+                x[i] += A[j][i] * b[j];
+            }
+        }
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                for (int k = 0; k < n; k++) {
+                    x[i] -= A[k][i] * A[k][j] * x[j];
+                }
+            }
+        }
+
+        double centerX = x[0] / 2;
+        double centerY = x[1] / 2;
+        double radius = Math.sqrt(x[2] + centerX * centerX + centerY * centerY);
+        return new Ellipse2D.Double(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
+    }
+	//----------------END TEST-------------------
+	
 	
 	public double findMaxNodeforCircle() 
 	{
