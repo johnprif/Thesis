@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.net.URL;
 
 import com.opencsv.exceptions.CsvException;
 
@@ -156,12 +158,8 @@ public class MainGUI extends Application
     	
     	borderPane.setTop(null);
     	
-    	
-    	if(imageViewMain !=null)
-    	{
-    		borderPane.setLeft(imageViewMain);
-        	borderPane.setAlignment(imageViewMain, Pos.CENTER); 
-    	}
+    	borderPane.setLeft(imageViewMain);
+        borderPane.setAlignment(imageViewMain, Pos.CENTER); 
     	
     	//------------------------------------------------------------------
     	borderPane.setCenter(vbox);
@@ -195,67 +193,28 @@ public class MainGUI extends Application
     
     private void createMainLogo()
 	{
-		String saitecLogo = "ImportantFiles/Icons/MainLogo_W.png";
-		
-		File f = new File(saitecLogo);
-		
-		if(f.exists() && !f.isDirectory())
-		{
-			try {
-				inputstreamMain = new FileInputStream(saitecLogo);
-			} catch (FileNotFoundException e) 
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			imageMain = new Image(inputstreamMain); 
-			imageViewMain = new ImageView(imageMain);
-			//setting the fit height and width of the image view 
-		    imageViewMain.setFitHeight(573); 
-		    imageViewMain.setFitWidth(300);
-		}else
-		{
-			imageMain=null;
-			imageViewMain = null;
-		}
+    	URL url = getClass().getResource("/Icons/MainLogo_W.png");	
+		imageMain = new Image(url.toString()); 
+		imageViewMain = new ImageView(imageMain);
+		//setting the fit height and width of the image view 
+		imageViewMain.setFitHeight(573); 
+		imageViewMain.setFitWidth(300);
 		
 	}
     
     private void createMainLogo2()
 	{
-		String saitecLogo = "ImportantFiles/Icons/MainLogo_B2.png";
-		
-		File f = new File(saitecLogo);
-		
-		if(f.exists() && !f.isDirectory())
-		{
-			try {
-				inputstreamMain2 = new FileInputStream(saitecLogo);
-			} catch (FileNotFoundException e) 
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			imageMain2 = new Image(inputstreamMain2); 
-			imageViewMain2 = new ImageView(imageMain2);
-			//setting the fit height and width of the image view 
-		    imageViewMain2.setFitHeight(38); 
-		    imageViewMain2.setFitWidth(20);
-		}else
-		{
-			imageMain2=null;
-			imageViewMain2 = null;
-		}
-		
+		URL url = getClass().getResource("/Icons/MainLogo_B2.png");	
+		imageMain2 = new Image(url.toString()); 
+		imageViewMain2 = new ImageView(imageMain2);
+		//setting the fit height and width of the image view 
+		imageViewMain2.setFitHeight(38); 
+		imageViewMain2.setFitWidth(20);
 	}
     
     private void createStage()
     {
-    	if(imageViewMain2 != null)
-		{
-    		stage.getIcons().add(imageMain2);
-		}
-    	
+    	stage.getIcons().add(imageMain2);   	
     	stage.setTitle("Sven Skyum 1991, JavaFX " + javafxVersion + ", running on Java " + javaVersion +", "+version);
         stage.setHeight(700);
         stage.setWidth(600);
