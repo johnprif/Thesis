@@ -66,11 +66,9 @@ public class MainGUI extends Application
 	
 	private Label paperTitle;
 	
-	private FileInputStream inputstreamMain;
 	private Image imageMain;
 	private ImageView imageViewMain;
 	
-	private FileInputStream inputstreamMain2;
 	private Image imageMain2;
 	private ImageView imageViewMain2;
 	

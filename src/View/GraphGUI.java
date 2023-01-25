@@ -97,7 +97,7 @@ public class GraphGUI
 	private void createStage()
     {
 		circleStage = new Stage();		
-		circleStage.setTitle("SmallestEnclosingCircle -> "+path+" -> "+(dataBase.getAllPointsSize()-1)+" points");
+		circleStage.setTitle("SmallestEnclosingCircle -> "+path+" -> "+(dataBase.getAllPointsSize())+" points");
 		circleStage.setHeight(700);
 		circleStage.setWidth(700);
 		circleStage.setResizable(true);
@@ -123,7 +123,7 @@ public class GraphGUI
 
 	private void makeSeries()
 	{
-		XYSeries series1 = new XYSeries("allPoints -> "+(dataBase.getAllPointsSize()-1));
+		XYSeries series1 = new XYSeries("allPoints -> "+(dataBase.getAllPointsSize()));
 		XYSeries series2 = new XYSeries("convexPoints -> "+(dataBase.getConvexPointsSize()-1));
 		XYSeries series3 = new XYSeries("circlePoints -> "+(dataBase.getCirclePointsSize()-1));			
 		dataset = new XYSeriesCollection();
@@ -133,14 +133,16 @@ public class GraphGUI
 		    series1.add(dataBase.getAllPoints().get(i).getX(), dataBase.getAllPoints().get(i).getY());
 		}
 
-		for(int i=0; i<dataBase.getConvexPointsSize(); i++)
+		for(int i=0; i<dataBase.getConvexPointsSize()-1; i++)
 		{
 		    series2.add(dataBase.getConvexPoints().get(i).getX(), dataBase.getConvexPoints().get(i).getY());
+		    System.out.println("convexPoints->("+dataBase.getConvexPoints().get(i).getX()+" ,"+dataBase.getConvexPoints().get(i).getY()+")");
 		}
 
-		for(int i=0; i<dataBase.getCirclePointsSize(); i++)
+		for(int i=0; i<dataBase.getCirclePointsSize()-1; i++)
 		{
 		    series3.add(dataBase.getCirclePoints().get(i).getX(), dataBase.getCirclePoints().get(i).getY());
+		    System.out.println("circlePoints->("+dataBase.getCirclePoints().get(i).getX()+" ,"+dataBase.getCirclePoints().get(i).getY()+")");
 		}
 		
 		dataset.addSeries(series3);
