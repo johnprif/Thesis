@@ -141,7 +141,7 @@ public class GraphGUI
 		    System.out.println("convexPoints->("+dataBase.getConvexPoints().get(i).getX()+" ,"+dataBase.getConvexPoints().get(i).getY()+")");
 		}
 
-		for(int i=0; i<dataBase.getCirclePointsSize()-1; i++)
+		for(int i=0; i<dataBase.getCirclePointsSize(); i++)
 		{
 		    series3.add(dataBase.getCirclePoints().get(i).getX(), dataBase.getCirclePoints().get(i).getY());
 		    System.out.println("circlePoints->("+dataBase.getCirclePoints().get(i).getX()+" ,"+dataBase.getCirclePoints().get(i).getY()+")");

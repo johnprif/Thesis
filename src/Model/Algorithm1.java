@@ -29,10 +29,6 @@ public class Algorithm1
 	{
 		dataBase = DataBase.getInstance();
 		computeSmallestEnclosingCircle();
-		if(dataBase.getCirclePointsSize()>=4)
-		{
-			computeSmallestEnclosingCircle();
-		}
 	}
 	
 	private void computeSmallestEnclosingCircle()

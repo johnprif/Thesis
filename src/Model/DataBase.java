@@ -120,19 +120,24 @@ public class DataBase
 	
 	public Ellipse2D findCircle()
 	{
+		int n = circlePoints.size();
 		Point2D point1;
 		Point2D point2;
 		Point2D point3;
-		if (circlePoints.size() == 3)
+		if (n < 3) {
+	        throw new IllegalArgumentException("At least 3 points are required to form a circle");
+	    }else if (n-1 == 3)
 		{
 			point1 = circlePoints.get(0);
 			point2 = circlePoints.get(1);
 			point3 = circlePoints.get(2);
+			System.out.println("findCircle = "+circlePoints.size()+" points");
 		}else
 		{
 			point1 = circlePoints.get(3);
 			point2 = circlePoints.get(1);
 			point3 = circlePoints.get(2);
+			System.out.println("findCircle = "+circlePoints.size()+" points");
 		}
 		
 		// Assume that point1, point2, and point3 are Point2D objects
@@ -157,160 +162,6 @@ public class DataBase
 		return circle;
 	}
 	
-	//----------TEST--------------------
-	public Ellipse2D findCircle2(List<Point2D> points) {
-        int n = points.size();
-        double[][] A = new double[n][3];
-        double[] b = new double[n];
-
-        for (int i = 0; i < n; i++) {
-            Point2D point = points.get(i);
-            A[i][0] = point.getX();
-            A[i][1] = point.getY();
-            A[i][2] = 1;
-            b[i] = point.getX() * point.getX() + point.getY() * point.getY();
-        }
-
-        double[] x = new double[3];
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < n; j++) {
-                x[i] += A[j][i] * b[j];
-            }
-        }
-
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                for (int k = 0; k < n; k++) {
-                    x[i] -= A[k][i] * A[k][j] * x[j];
-                }
-            }
-        }
-
-        double centerX = x[0] / 2;
-        double centerY = x[1] / 2;
-        double radius = Math.sqrt(x[2] + centerX * centerX + centerY * centerY);
-        return new Ellipse2D.Double(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
-    }
-	
-	 public Ellipse2D findCircle3(List<Point2D> points) {
-	        int n = points.size();
-	        if (n < 3) {
-	            throw new IllegalArgumentException("At least 3 points are required to form a circle");
-	        }
-
-	        Point2D A, B, C, D, E;
-	        A = B = C = D = E = new Point2D(0,0);
-
-	        if (n == 3) {
-	            A = points.get(0);
-	            B = points.get(1);
-	            C = points.get(2);
-	        } else if (n == 4) {
-	            A = points.get(0);
-	            B = points.get(1);
-	            C = points.get(2);
-	            D = points.get(3);
-	        } else if (n >= 5) {
-	            A = points.get(0);
-	            B = points.get(1);
-	            C = points.get(2);
-	            D = points.get(3);
-	            E = points.get(4);
-	        }
-	        double yDelta_a = B.getY() - A.getY();
-	        double xDelta_a = B.getX() - A.getX();
-	        double yDelta_b = C.getY() - B.getY();
-	        double xDelta_b = C.getX() - B.getX();
-
-	        double aSlope = yDelta_a / xDelta_a;
-	        double bSlope = yDelta_b / xDelta_b;
-
-	        double centerX = (aSlope * bSlope * (A.getY() - C.getY()) + bSlope * (A.getX() + B.getX()) - aSlope * (B.getX() + C.getX())) / (2 * (bSlope - aSlope));
-	        double centerY = -1 * (centerX - (A.getX() + B.getX()) / 2) / aSlope + (A.getY() + B.getY()) / 2;
-	        Point2D center = new Point2D(centerX, centerY);
-	        double radius = center.distance(A);
-	        return new Ellipse2D.Double(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
-	    }
-	 
-	 public Ellipse2D findCircle4(List<Point2D> points) {
-		    int n = points.size();
-		    if (n < 3) {
-		        throw new IllegalArgumentException("At least 3 points are required to form a circle");
-		    }
-
-		    // Sum of x, y and xy, x^2 and y^2
-		    double Sx = 0, Sy = 0, Sxy = 0, Sx2 = 0, Sy2 = 0;
-		    for (Point2D point : points) {
-		        Sx += point.getX();
-		        Sy += point.getY();
-		        Sxy += point.getX() * point.getY();
-		        Sx2 += point.getX() * point.getX();
-		        Sy2 += point.getY() * point.getY();
-		    }
-		    // Mean of x and y
-		    double x_bar = Sx / n;
-		    double y_bar = Sy / n;
-
-		    // Linear regression coefficients
-		    double a = (n * Sxy - Sx * Sy) / (n * Sx2 - Sx * Sx);
-		    double b = y_bar - a * x_bar;
-
-		    // Center of the circle
-		    double centerX = x_bar;
-		    double centerY = a * centerX + b;
-		    Point2D center = new Point2D(centerX, centerY);
-
-		    // Radius of the circle
-		    double radius = 0;
-		    for (Point2D point : points) {
-		        radius += center.distance(point);
-		    }
-		    radius /= n;
-
-		    return new Ellipse2D.Double(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
-		}
-
-	 public Ellipse2D findCircle5(List<Point2D> points) {
-		    int n = points.size();
-		    if (n < 2) {
-		        throw new IllegalArgumentException("At least 2 points are required to form a circle");
-		    }
-		    if (n == 2) {
-		        Point2D p1 = points.get(0);
-		        Point2D p2 = points.get(1);
-		        double centerX = (p1.getX() + p2.getX()) / 2.0;
-		        double centerY = (p1.getY() + p2.getY()) / 2.0;
-		        Point2D center = new Point2D(centerX, centerY);
-		        double radius = center.distance(p1);
-		        return new Ellipse2D.Double(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
-		    } else if (n == 3) {
-		        Point2D A, B, C;
-		        A = points.get(0);
-		        B = points.get(1);
-		        C = points.get(2);
-
-		        double yDelta_a = B.getY() - A.getY();
-		        double xDelta_a = B.getX() - A.getX();
-		        double yDelta_b = C.getY() - B.getY();
-		        double xDelta_b = C.getX() - B.getX();
-
-		        double aSlope = yDelta_a / xDelta_a;
-		        double bSlope = yDelta_b / xDelta_b;
-
-		        double centerX = (aSlope * bSlope * (A.getY() - C.getY()) + bSlope * (A.getX() + B.getX()) - aSlope * (B.getX() + C.getX())) / (2 * (bSlope - aSlope));
-		        double centerY = -1 * (centerX - (A.getX() + B.getX()) / 2) / aSlope + (A.getY() + B.getY()) / 2;
-
-		        Point2D center = new Point2D(centerX, centerY);
-		        double radius = center.distance(A);
-		        return new Ellipse2D.Double(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
-		    } else {
-		        // for 4 or more points you can use other algorithms like "gift wrapping" or "Melkman's algorithm"
-		    }
-		}
-
-	//----------------END TEST-------------------
-	
-	
 	public double findMaxNodeforCircle() 
 	{
 	    int size = circlePoints.size();
@@ -319,7 +170,8 @@ public class DataBase
 	    double maxRadius = 0.0;
 	    double maxAngle = 0.0;
 	    
-	    for (int i = 0; i < size; i++) {
+	    for (int i = 0; i < size; i++) 
+	    {
 	        Point2D prev = circlePoints.get((i + size - 1) % size);
 	        Point2D curr = circlePoints.get(i);
 	        Point2D next = circlePoints.get((i + 1) % size);
@@ -327,7 +179,8 @@ public class DataBase
 	        double radius = getRadius(prev, curr, next);
 	        double angle = getAngle(prev, curr, next);
 	        
-	        if (radius > maxRadius || (radius == maxRadius && angle >= maxAngle)) {
+	        if (radius > maxRadius || (radius == maxRadius && angle >= maxAngle)) 
+	        {
 	        	indexOfMaxPoint = i;
 	            maxRadius = radius;
 	            maxAngle = angle;
