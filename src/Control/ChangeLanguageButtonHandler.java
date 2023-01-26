@@ -1,7 +1,6 @@
 package Control;
 
 import java.util.ArrayList;
-
 import Model.TextHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

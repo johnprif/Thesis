@@ -53,7 +53,6 @@ public class Algorithm1
 			System.out.println("Only 1 point");
 		}
 		
-//		myDoublyLinkedList2.displayFirstToLast();
 		System.out.print("----------------------------------------------------------------------\n");
 		System.out.println("The final size is = "+dataBase.getCirclePointsSize());
 		dataBase.displayConvexPoints();
