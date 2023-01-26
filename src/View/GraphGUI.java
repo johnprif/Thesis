@@ -124,8 +124,8 @@ public class GraphGUI
 	private void makeSeries()
 	{
 		XYSeries series1 = new XYSeries("allPoints -> "+(dataBase.getAllPointsSize()));
-		XYSeries series2 = new XYSeries("convexPoints -> "+(dataBase.getConvexPointsSize()-1));
-		XYSeries series3 = new XYSeries("circlePoints -> "+(dataBase.getCirclePointsSize()-1));			
+		XYSeries series2 = new XYSeries("convexPoints -> "+(dataBase.getConvexPointsSize()));
+		XYSeries series3 = new XYSeries("circlePoints -> "+(dataBase.getCirclePointsSize()));			
 		dataset = new XYSeriesCollection();
 		
 		for(int i=0; i<dataBase.getAllPointsSize(); i++)
