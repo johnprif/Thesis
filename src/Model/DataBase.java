@@ -86,7 +86,7 @@ public class DataBase
 	
 	public void displayAllPoints()
 	{
-		System.out.println("The ArrayList All Points is --> ");
+		System.out.println("The ArrayList '"+getAllPointsSize()+"' All Points is --> ");
 		for(int i=0; i<allPoints.size(); i++)
 		{
 			System.out.println(" "+allPoints.get(i));
@@ -96,7 +96,7 @@ public class DataBase
 	
 	public void displayConvexPoints()
 	{
-		System.out.println("The ArrayList of Convex Points is --> ");
+		System.out.println("The ArrayList of '"+getConvexPointsSize()+"' Convex Points is --> ");
 		for(int i=0; i<convexPoints.size(); i++)
 		{
 			System.out.println(" "+convexPoints.get(i));
@@ -106,7 +106,7 @@ public class DataBase
 	
 	public void displayCirclePoints()
 	{
-		System.out.println("The ArrayList of Circle Points is --> ");
+		System.out.println("The ArrayList of '"+getCirclePointsSize()+"' Circle Points is --> ");
 		for(int i=0; i<circlePoints.size(); i++)
 		{
 			System.out.println(" "+circlePoints.get(i));
@@ -117,51 +117,15 @@ public class DataBase
 	public Ellipse2D findCircle()
 	{
 		int n = circlePoints.size();
-		Point2D point1;
-		Point2D point2;
-		Point2D point3;
-		if (n == 2) 
+		Ellipse2D circle;
+		Point2D point1 = circlePoints.get(0);
+		Point2D point2 = circlePoints.get(1);
+		Point2D point3 = null;
+		if (n == 3) 
 		{
-			point1 = circlePoints.get(0);
-			point2 = circlePoints.get(1);
-//	        throw new IllegalArgumentException("At least 3 points are required to form a circle");
-			double centerX = (point1.getX() + point2.getX()) / 2;
-	        double centerY = (point1.getY() + point2.getY()) / 2;
-	        double radius = point1.distance(point2) / 2;
-	        return new Ellipse2D.Double(centerX - radius, centerY - radius, radius * 2, radius * 2);
-		}else if (n == 3)
-		{
-			point1 = circlePoints.get(0);
-			point2 = circlePoints.get(1);
 			point3 = circlePoints.get(2);
-			System.out.println("findCircle = "+circlePoints.size()+" points");
-		}else
-		{
-			point1 = circlePoints.get(3);
-			point2 = circlePoints.get(1);
-			point3 = circlePoints.get(2);
-			System.out.println("findCircle = "+circlePoints.size()+" points");
 		}
-		
-		// Assume that point1, point2, and point3 are Point2D objects
-//		double x1 = point1.getX();
-//		double y1 = point1.getY();
-//		double x2 = point2.getX();
-//		double y2 = point2.getY();
-//		double x3 = point3.getX();
-//		double y3 = point3.getY();
-//
-//		double a = (x1 * x1 + y1 * y1 - x2 * x2 - y2 * y2) / 2;
-//		double b = (x2 * x2 + y2 * y2 - x3 * x3 - y3 * y3) / 2;
-//		double c = (x1 - x2) / (y2 - y1);
-//		double d = (x2 - x3) / (y3 - y2);
-//		double e = (a - b) / (d - c);
-//		double f = a + c * e;
-//
-//		double centerX = e / 2;
-//		double centerY = f / 2;
-//		double radius = Math.sqrt(centerX * centerX + centerY * centerY);
-		Ellipse2D circle = new Ellipse2D.Double(getCenter(point1, point2, point3).getX() - getRadius(point1, point2, point3), getCenter(point1, point2, point3).getY() - getRadius(point1, point2, point3), getRadius(point1, point2, point3) * 2, getRadius(point1, point2, point3) * 2);
+		circle = new Ellipse2D.Double(getCenter(point1, point2, point3).getX() - getRadius(point1, point2, point3), getCenter(point1, point2, point3).getY() - getRadius(point1, point2, point3), getRadius(point1, point2, point3) * 2, getRadius(point1, point2, point3) * 2);
 		return circle;
 	}
 	
@@ -225,13 +189,23 @@ public class DataBase
 	    double y1 = p.getY();
 	    double x2 = q.getX();
 	    double y2 = q.getY();
-	    double x3 = r.getX();
-	    double y3 = r.getY();
+	    double x3;
+	    double y3;
 
 	    double R = 0;
 
+	    if(r == null)
+	    {
+	    	R = p.distance(q) / 2;
+	    	return Math.round(R * 1000.0) / 1000.0;	    	
+	    }
+	    
 	    if ((!p.equals(q)) && (!q.equals(r)) && (!p.equals(r))) 
 	    {
+	    	//----------------------
+	    	x3 = r.getX();
+		    y3 = r.getY();
+	    	//----------------------
 	        double x12 = x1 - x2;
 	        double x13 = x1 - x3;
 
@@ -287,13 +261,24 @@ public class DataBase
 	    double y1 = p.getY();
 	    double x2 = q.getX();
 	    double y2 = q.getY();
-	    double x3 = r.getX();
-	    double y3 = r.getY();
+	    double x3;
+	    double y3;
 
 	    double R = 0;
 
+	    if(r == null)
+	    {
+	    	double centerX = (x1 + x2) / 2;
+	        double centerY = (y1 + y2) / 2;
+	        return new Point2D(centerX, centerY);
+	    }
+	    
 	    if ((!p.equals(q)) && (!q.equals(r)) && (!p.equals(r))) 
 	    {
+	    	//----------------------
+	    	x3 = r.getX();
+		    y3 = r.getY();
+	    	//----------------------
 	        double x12 = x1 - x2;
 	        double x13 = x1 - x3;
 

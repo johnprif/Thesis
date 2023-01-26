@@ -41,7 +41,6 @@ public class Algorithm1
 				if(maxAngle>myPi2)
 				{
 					dataBase.deleteMaxNodeForCircle();					
-					System.out.println("The length of circlePoints is = "+dataBase.getCirclePointsSize());
 				}else
 				{
 					System.out.println("The algorithm 1 finished = "+dataBase.getCirclePointsSize());
@@ -54,7 +53,6 @@ public class Algorithm1
 		}
 		
 		System.out.print("----------------------------------------------------------------------\n");
-		System.out.println("The final size is = "+dataBase.getCirclePointsSize());
 		dataBase.displayConvexPoints();
 		dataBase.displayCirclePoints();
 	}
