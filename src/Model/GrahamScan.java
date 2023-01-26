@@ -14,9 +14,7 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Stack;
 
 import javafx.geometry.Point2D;
 
@@ -31,132 +29,15 @@ public class GrahamScan
 	public GrahamScan()
 	{
 		dataBase = DataBase.getInstance();
-		System.out.println("The size of all Points = "+dataBase.getAllPointsSize());
 		allPoints = new ArrayList<Point2D>(dataBase.getAllPoints());
-//		convexHullPoints = new ArrayList<Point2D>(computeGrahamScan());
-		convexHullPoints = new ArrayList<Point2D>(computeGrahamScan2(allPoints));
+		convexHullPoints = new ArrayList<Point2D>(computeGrahamScan(allPoints));
 		convexHullPoints.remove(convexHullPoints.size()-1);
 		dataBase.setConvexPoints(convexHullPoints);
 		dataBase.setCirclePoints(convexHullPoints);
 	}
-	
-	private  ArrayList<Point2D> computeGrahamScan()
-	{
-		Stack<Point2D> stack = new Stack<Point2D>();
-		//find the leftmost point
-		double leftmost = 0;
-		int leftIndex = 0;
-
-		for(int i = 0; i < allPoints.size(); i++) 
-		{
-			double current = allPoints.get(i).getX();
-			if (current < leftmost)
-			{
-				leftmost = current;
-				leftIndex = i;
-			}
-		}
-
-		//move ptP to the front of the list
-		Point2D temp = allPoints.get(leftIndex);
-		allPoints.set(leftIndex, allPoints.get(0));
-		allPoints.set(0, temp);
-
-		Point2D ptP = allPoints.get(0);
-
-		//sort all points by slope to ptP
-
-		Comparator<Point2D> slopeToPtP = new Comparator<Point2D>() 
-		{
-			@Override
-			public int compare(Point2D pt1, Point2D pt2) 
-			{
-
-				//if both points are below or above the reference point, swap the order
-				int corrector = 1;
-				if (pt1.getY() > ptP.getY() && pt2.getY() > ptP.getY()) corrector = -1;
-				if (pt1.getY() < ptP.getY() && pt2.getY() < ptP.getY()) corrector = -1;
-
-				if (getSlope(pt1, ptP) < getSlope(pt2, ptP)) return corrector*-1;
-				else return corrector*1;
-
-			}
-		};
-
-		allPoints.sort(slopeToPtP);
-
 		
-		stack.push(allPoints.get(0));
-
-		boolean complete = false;
-		Point2D q = allPoints.get(1);
-		int loc = 2;
-
-		while (!complete){
-			Point2D r = allPoints.get(loc);
-			if( ccw(stack.peek(), q, r) < 0 )
-			{
-				stack.push(q);
-				q = r;
-				loc++;
-			}
-			else{
-				q = stack.pop();
-			}
-			if (loc == allPoints.size())
-			{
-				complete = true;
-				stack.push(q);
-				stack.push(allPoints.get(0));
-			}
-
-			if (stack.peek() != ptP)
-			{
-				Stack<Point2D> sclone = (Stack<Point2D>)stack.clone();
-			}
-		}
-		convexHullPoints = new ArrayList<Point2D>(stack);
-		return convexHullPoints;
-	}
-
-	/**
-	 * Determine if the angle p1-p2-p3 is clockwise or counterclockwise
-	 *
-	 * @param p1 1st point
-	 * @param p2 2nd point
-	 * @param p3 3rd point
-	 * @return positive number if the angle p1-p2-p3 is counterclockwise,
-	 * negative if clockwise, zero if the 3 points are colinear.
-	 */
-	private double ccw(Point2D p1, Point2D p2, Point2D p3)
-	{
-		// compute coordinates of vectors from p2 to p1 and p3
-		double v1x = p1.getX() - p2.getX();
-		double v1y = p1.getY() - p2.getY();
-
-		double v2x = p3.getX() - p2.getX();
-		double v2y = p3.getY() - p2.getY();
-
-		// desired quantity is 3rd component of cross product (other
-		// components are zero as these vectors are 2d)
-		return v1x * v2y - v2x * v1y;
-	}
-
-	private double getSlope(Point2D p1, Point2D p2) 
-	{
-		double slope = (p1.getX() - p2.getX()) / (p1.getY() - p2.getY());
-		return slope;
-	}	
-	
-	public ArrayList<Point2D> getconvexHullPoints()
-	{
-		return convexHullPoints;
-	}
-	
-	
-	
-	//----------------------------------
-	public static List<Point2D> computeGrahamScan2(List<Point2D> points) {
+	//----------------------------------O(nlogn)
+	public static List<Point2D> computeGrahamScan(List<Point2D> points) {
         // Find the point with the lowest y-coordinate (or the leftmost point in case of a tie)
 //        Point2D start = points.get(0);
         start = points.get(0);
@@ -203,11 +84,11 @@ public class GrahamScan
         return hull;
     }
 
-    private static double crossProduct(Point2D a, Point2D b, Point2D c) {
-        double y1 = b.getY() - a.getY();
-        double y2 = c.getY() - a.getY();
-        double x1 = b.getX() - a.getX();
-        double x2 = c.getX() - a.getX();
+    private static double crossProduct(Point2D p, Point2D q, Point2D r) {
+        double y1 = q.getY() - p.getY();
+        double y2 = r.getY() - p.getY();
+        double x1 = q.getX() - p.getX();
+        double x2 = r.getX() - p.getX();
         return x1 * y2 - x2 * y1;
     }
 }

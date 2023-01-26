@@ -9,66 +9,19 @@ package View;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Point;
-import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-
 import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartMouseEvent;
-import org.jfree.chart.ChartMouseListener;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.annotations.XYShapeAnnotation;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.event.ChartChangeEvent;
-import org.jfree.chart.event.ChartChangeListener;
-import org.jfree.chart.event.PlotChangeListener;
 import org.jfree.chart.fx.ChartViewer;
-import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.StandardXYItemRenderer;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.chart.title.TextTitle;
-import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.statistics.HistogramDataset;
-import org.jfree.data.xy.DefaultXYZDataset;
-import org.jfree.data.xy.MatrixSeries;
-import org.jfree.data.xy.MatrixSeriesCollection;
-import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import Control.CustomMouseListener;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.chart.fx.interaction.ChartMouseEventFX;
-import org.jfree.chart.fx.interaction.ChartMouseListenerFX;
-import org.jfree.chart.fx.interaction.ZoomHandlerFX;
-import org.jfree.chart.ChartMouseEvent;
-import org.jfree.chart.ChartRenderingInfo;
-import org.jfree.chart.JFreeChart;
-import Model.Algorithm1;
 import Model.DataBase;
-import Model.GrahamScan;
-import javafx.application.Application;
-import javafx.event.EventHandler;
-import javafx.geometry.Point2D;
 import javafx.scene.Scene;
-import org.jfree.chart.fx.ChartViewer;
-
-import javafx.scene.chart.ScatterChart;
-import javafx.scene.chart.XYChart;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-import org.jfree.chart.renderer.xy.XYItemRendererState;
-
-
 
 public class GraphGUI
 {
