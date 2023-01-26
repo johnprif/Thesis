@@ -1,0 +1,9 @@
+.button {
+    -fx-background-color: #4CAF50; /* Green */
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-padding: 12px 24px;
+    -fx-border-radius: 8px;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+}

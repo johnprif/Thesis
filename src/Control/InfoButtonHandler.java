@@ -36,6 +36,7 @@ public class InfoButtonHandler  implements EventHandler<ActionEvent>
         layout.getChildren().addAll(userManualView);
 
         Scene scene = new Scene(layout, 500, 500);
+//        scene.getStylesheets().add("styles.css");
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();

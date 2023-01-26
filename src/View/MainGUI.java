@@ -66,6 +66,7 @@ public class MainGUI extends Application
 		createMainPane();
 		      
         scene = new Scene(borderPane);
+//        scene.getStylesheets().add("styles.css");
         
         createAndSetHandlers();
         
