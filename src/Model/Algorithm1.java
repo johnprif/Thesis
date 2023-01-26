@@ -24,7 +24,6 @@ public class Algorithm1
 	{
 		dataBase = DataBase.getInstance();
 		computeSmallestEnclosingCircle();
-//		computeSmallestEnclosingCircle();
 	}
 	
 	private void computeSmallestEnclosingCircle()
