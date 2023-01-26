@@ -163,10 +163,9 @@ public class GraphGUI
 //		scatterPlot.setAntiAlias(true);
 //		scatterPlot.setBorderVisible(true);
 		plot = (XYPlot)scatterPlot.getPlot(); 
-//		Ellipse2D circle = dataBase.findCircle();
 		
 		Ellipse2D circle = dataBase.findCircle();
-		XYShapeAnnotation annotation = new XYShapeAnnotation(circle, new BasicStroke(1.0f), Color.BLACK, null);
+		XYShapeAnnotation annotation = new XYShapeAnnotation(circle, new BasicStroke(1.0f), Color.RED, null);
 		plot.addAnnotation(annotation);
 		plot.setDomainPannable(true);
 	    plot.setRangePannable(true);
