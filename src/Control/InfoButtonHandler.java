@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class InfoButtonHandler  implements EventHandler<ActionEvent>
@@ -29,12 +30,14 @@ public class InfoButtonHandler  implements EventHandler<ActionEvent>
 
         WebView userManualView = new WebView();
         userManualView.getEngine().load("https://example.com/user-manual");
-
+//        userManualView.getEngine().load(" https://github.com/johnprif/CV/blob/main/newCV.pdf");
+       
         VBox layout = new VBox(10);
         layout.getChildren().addAll(userManualView);
 
         Scene scene = new Scene(layout, 500, 500);
         stage.setScene(scene);
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
 		
 	}
