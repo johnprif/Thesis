@@ -5,13 +5,7 @@ package Model;
 
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-
-import Model.DoublyLinkedList.Node;
 import javafx.geometry.Point2D;
-import javafx.scene.shape.Ellipse;
 
 public class DataBase 
 {

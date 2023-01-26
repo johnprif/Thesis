@@ -29,11 +29,10 @@ public class CSVLoader implements FileLoader
 		points2DCSVData = new ArrayList<Point2D>(); 
 		System.out.println("I am CSV LOADER");
 		readValues();
-//		printResults();
-		convertValuesToOther();
+		convertDoubleToPoint2D();
 	}
 		
-	private void readValues()  throws IOException, CsvException
+	private void readValues() throws IOException, CsvException
 	{
 		// Create an object of file reader
         // class with CSV file as a parameter.
@@ -61,7 +60,7 @@ public class CSVLoader implements FileLoader
         }
 	}
 	
-	public void convertValuesToOther()
+	public void convertDoubleToPoint2D()
 	{
 		//Convert data from String to double		
 		double point[]=new double[2];

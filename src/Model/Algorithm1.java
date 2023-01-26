@@ -14,13 +14,8 @@
 
 package Model;
 
-import java.text.*;
-import java.util.ArrayList;
-import java.util.LinkedList;
-
-import Model.DoublyLinkedList.Node;
-import javafx.geometry.Point2D;
 import java.lang.Math;
+
 public class Algorithm1 
 {
 	private DataBase dataBase;

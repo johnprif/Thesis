@@ -1,7 +1,5 @@
 package Model;
 
-import Model.DoublyLinkedList.Node;
-
 public class Algorithm2 
 {
 	private DataBase dataBase;
