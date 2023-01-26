@@ -22,6 +22,7 @@ module Java_Paper
 	requires org.jfree.chart.fx;
 	requires org.jfree.jfreechart;
 	requires jdk.internal.le;
+	requires javafx.web;
 //	requires com.healthmarketscience.jackcess;
 	
 	opens View to javafx.graphics, javafx.fxml;
