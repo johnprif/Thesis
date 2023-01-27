@@ -11,6 +11,6 @@ public class Algorithm2
 	
 	private void computeVoronoiDiagram()
 	{
-		
+		System.out.println("I am the second algorithm!");
 	}
 }
