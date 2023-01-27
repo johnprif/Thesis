@@ -40,7 +40,6 @@ public class GraphGUI
 	{
 		this.path = path;
 		dataBase = DataBase.getInstance();
-		System.out.println("The size of all points are = "+dataBase.getAllPointsSize());
 		createStage();
 		displaySmallestEnclosingCircle();
 		circleStage.show();
@@ -60,17 +59,14 @@ public class GraphGUI
 	{	
 		textSubTitle = new TextTitle("Current Point: None");
 		textSubTitle.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		makeSeries();
-	    
-	    makePlots();
-	    
 		
-		//---------------------
+		makeSeries();	    
+	    makePlot();
+	    makeChart();
+	    
 		ChartViewer viewer = new ChartViewer(chart);
-		//---------------------------------------------------------------------------
 		viewer.addChartMouseListener(new CustomMouseListener(textSubTitle));
 
-		//--------------------------------------------------
 		circleStage.setScene(new Scene(viewer));
 	}
 
@@ -102,7 +98,7 @@ public class GraphGUI
 		dataset.setAutoWidth(true);
 	}
 	
-	private void makePlots()
+	private void makePlot()
 	{
 		JFreeChart scatterPlot = ChartFactory.createScatterPlot(
                 "Current Point: None", // Chart title
@@ -110,11 +106,6 @@ public class GraphGUI
                 "Y", // Y-Axis Label
                 dataset // Dataset for the Chart
                 );	
-//		scatterPlot.setElementHinting(true);
-//		scatterPlot.setTextAntiAlias(true);
-//		scatterPlot.setNotify(true);
-//		scatterPlot.setAntiAlias(true);
-//		scatterPlot.setBorderVisible(true);
 		plot = (XYPlot)scatterPlot.getPlot(); 
 		
 		Ellipse2D circle = dataBase.findCircle();
@@ -127,16 +118,17 @@ public class GraphGUI
 	    plot.setDomainCrosshairVisible(true);
 	    plot.setDomainZeroBaselineVisible(true);
 	    plot.setOutlineVisible(true);
-	    
-	    chart = new JFreeChart(plot);
+	}
+
+	private void makeChart()
+	{
+		chart = new JFreeChart(plot);
 		chart.setTitle("Smallest Enclosing Circle");
 		chart.addSubtitle(textSubTitle);
-		//---------------------
 		chart.setElementHinting(true);
 		chart.setTextAntiAlias(true);
 		chart.setNotify(true);
 		chart.setAntiAlias(true);
 		chart.setBorderVisible(true);
 	}
-
 }

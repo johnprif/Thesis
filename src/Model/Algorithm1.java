@@ -22,11 +22,10 @@ public class Algorithm1
 	
 	public Algorithm1() 
 	{
-		dataBase = DataBase.getInstance();
-		computeSmallestEnclosingCircle();
+		dataBase = DataBase.getInstance();		
 	}
 	
-	private void computeSmallestEnclosingCircle()
+	public void computeSmallestEnclosingCircle()
 	{
 		boolean finish;
 		double maxAngle;

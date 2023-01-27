@@ -15,9 +15,14 @@ public class AlgorithmsHandler
 	public AlgorithmsHandler()
 	{
 		dataBase = DataBase.getInstance();
+		
 		grahamScan = new GrahamScan();	
+		
 		algorithm1 = new Algorithm1();	
+		algorithm1.computeSmallestEnclosingCircle();
+		
 		algorithm2 = new Algorithm2();
+//		algorithm2.computeVoronoiDiagram();
 		
 	}
 }
