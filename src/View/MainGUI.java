@@ -66,7 +66,7 @@ public class MainGUI extends Application
 		createMainPane();
 		      
         scene = new Scene(borderPane);
-//        scene.getStylesheets().add("styles.css");
+        scene.getStylesheets().add("styles.css");
         
         createAndSetHandlers();
         
@@ -104,6 +104,12 @@ public class MainGUI extends Application
     	exitButton = new Button("Exit");    	
     	infoButton = new Button("?");
     	
+    	changeLanguageButton.setId("changeLanguageButton");
+    	loadFileButton.setId("loadFileButton");
+    	putPointsButton.setId("putPointsButton");
+    	exitButton.setId("exitButton");
+    	infoButton.setId("infoButton");
+    	
     	changeLanguageButton.setAlignment(Pos.CENTER);
     	loadFileButton.setAlignment(Pos.CENTER);
     	putPointsButton.setAlignment(Pos.CENTER);
@@ -114,12 +120,6 @@ public class MainGUI extends Application
     	putPointsButton.setMaxWidth(Double.MAX_VALUE);		    
 	    exitButton.setMaxWidth(Double.MAX_VALUE);
 	    
-	    changeLanguageButton.setStyle("-fx-font-weight: bold; -fx-text-fill: darkslategrey; -fx-font-family: 'Courier New'; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
-	    loadFileButton.setStyle("-fx-font-weight: bold; -fx-text-fill: darkslategrey; -fx-font-family: 'Courier New'; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
-	    putPointsButton.setStyle("-fx-font-weight: bold; -fx-text-fill: darkslategrey; -fx-font-family: 'Courier New'; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
-	    exitButton.setStyle("-fx-font-weight: bold; -fx-text-fill: red; -fx-font-family: 'Courier New'; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
-	    infoButton.setStyle("-fx-font-weight: bold; -fx-text-fill: darkslategrey; -fx-font-family: 'Courier New'; -fx-border-radius: 5; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
-
 	    buttons.add(changeLanguageButton);
 	    buttons.add(loadFileButton);
 	    buttons.add(putPointsButton);
@@ -131,10 +131,7 @@ public class MainGUI extends Application
 	{
     	borderPane = new BorderPane();
     	createMainLogo();
-    	borderPane.setStyle("-fx-background: #4682b4;");
-//    	imageViewMain.fitWidthProperty().bind(stage.widthProperty()); 
-    	borderPane.setPadding(new Insets(10, 10, 10, 10));
-    	
+    	borderPane.setPadding(new Insets(10, 10, 10, 10));    	
     	borderPane.setTop(null);
     	
     	borderPane.setLeft(imageViewMain);
@@ -155,7 +152,6 @@ public class MainGUI extends Application
     private void createPaperTitle()
     {
     	paperTitle = new Label("A SIMPLE ALGORITHM FOR\nCOMPUTING THE SMALLEST\n   ENCLOSING CIRCLE\n  ");
-    	paperTitle.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 17; -fx-font-family: 'Courier New'; -fx-underline: false;");
     	paperTitle.setMaxWidth(Double.MAX_VALUE);
     	paperTitle.setAlignment(Pos.CENTER);
     }
@@ -175,7 +171,6 @@ public class MainGUI extends Application
     	URL url = getClass().getResource("/Icons/MainLogo_W.png");	
 		imageMain = new Image(url.toString()); 
 		imageViewMain = new ImageView(imageMain);
-		//setting the fit height and width of the image view 
 		imageViewMain.setFitHeight(573); 
 		imageViewMain.setFitWidth(300);
 		
@@ -183,19 +178,18 @@ public class MainGUI extends Application
     
     private void createMainLogo2()
 	{
-		URL url = getClass().getResource("/Icons/MainLogo_B2.png");	
+		URL url = getClass().getResource("/Icons/MainLogo_W.png");	
 		imageMain2 = new Image(url.toString()); 
 		imageViewMain2 = new ImageView(imageMain2);
-		//setting the fit height and width of the image view 
 		imageViewMain2.setFitHeight(38); 
-		imageViewMain2.setFitWidth(20);
+		imageViewMain2.setFitWidth(17);
 	}
     
     private void createStage()
     {
     	stage.getIcons().add(imageMain2);   	
     	stage.setTitle("Sven Skyum 1991, JavaFX " + javafxVersion + ", running on Java " + javaVersion +", "+version);
-        stage.setHeight(700);
+    	stage.setHeight(700);
         stage.setWidth(600);
         stage.setResizable(false);
         stage.setScene(scene);
