@@ -105,7 +105,7 @@ public class MainGUI extends Application
     	infoButton = new Button("?");
     	
     	changeLanguageButton.setId("changeLanguageButton");
-    	loadFileButton.setId("loadFileButton");
+    	loadFileButton.setId("my-button");
     	putPointsButton.setId("putPointsButton");
     	exitButton.setId("exitButton");
     	infoButton.setId("infoButton");
