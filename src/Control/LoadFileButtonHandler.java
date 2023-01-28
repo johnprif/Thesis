@@ -7,6 +7,7 @@ import View.GraphGUI;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class LoadFileButtonHandler implements EventHandler<ActionEvent>
@@ -32,20 +33,20 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 	{
 		fileChooserStage = new Stage();
 		textHandler = TextHandler.getInstance();
-		fileChooser(fileChooserStage);
+		fileChooser();
 	}
 	
-	private void fileChooser(Stage stage)
+	private void fileChooser()
 	{
         fileChooser = new FileChooser();
 		fileChooser.setTitle(textHandler.getFileChooserTitleText());
 		fileChooser.getExtensionFilters().addAll(
 			     new FileChooser.ExtensionFilter("CSV", "*.csv")
 			    ,new FileChooser.ExtensionFilter("txt", "*.txt")
-			    ,new FileChooser.ExtensionFilter("Excel", "*.xlsx")
-			    ,new FileChooser.ExtensionFilter("Excel", "*.xls")
+			    ,new FileChooser.ExtensionFilter("Excel 2007-2023", "*.xlsx")
+			    ,new FileChooser.ExtensionFilter("Excel 1997-2003", "*.xls")
 			);
-		File selectedFile = fileChooser.showOpenDialog(stage);
+		File selectedFile = fileChooser.showOpenDialog(fileChooserStage);
 		
 		if(selectedFile != null)//pressed OK
 		{

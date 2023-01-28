@@ -18,14 +18,14 @@ public class InfoButtonHandler  implements EventHandler<ActionEvent>
         stage.setTitle("User Manual");
 
         WebView userManualView = new WebView();
-        userManualView.getEngine().load("https://example.com/user-manual");
-//        userManualView.getEngine().load(" https://github.com/johnprif/CV/blob/main/newCV.pdf");
+//        userManualView.getEngine().load("https://example.com/user-manual");
+        userManualView.getEngine().load(" https://github.com/johnprif/CV/blob/main/newCV.pdf");
        
         VBox layout = new VBox(10);
         layout.getChildren().addAll(userManualView);
 
         Scene scene = new Scene(layout, 500, 500);
-//        scene.getStylesheets().add("styles.css");
+        scene.getStylesheets().add("styles.css");
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
