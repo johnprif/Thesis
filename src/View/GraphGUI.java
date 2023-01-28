@@ -120,12 +120,23 @@ public class GraphGUI
 	    plot.setDomainCrosshairVisible(true);
 	    plot.setDomainZeroBaselineVisible(true);
 	    plot.setOutlineVisible(true);
+	    //=================================================
+	    plot.setBackgroundPaint(Color.WHITE);
+        plot.setDomainGridlinePaint(Color.GRAY);
+        plot.setRangeGridlinePaint(Color.GRAY);
+        plot.getRenderer().setSeriesPaint(0, Color.decode("#006699"));
+      //=================================================
 	}
 
 	private void makeChart()
 	{
 		chart = new JFreeChart(plot);
 		chart.setTitle("Smallest Enclosing Circle");
+		//===============================================================
+		chart.getTitle().setPaint(Color.decode("#006699"));
+		chart.getTitle().setFont(new Font("Arial", Font.BOLD, 24));
+        chart.setBackgroundPaint(Color.decode("#f5f5f5"));
+      //===============================================================
 		chart.addSubtitle(textSubTitle);
 		chart.setElementHinting(true);
 		chart.setTextAntiAlias(true);

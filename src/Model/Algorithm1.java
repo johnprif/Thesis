@@ -49,9 +49,5 @@ public class Algorithm1
 		{
 			System.out.println("Only 1 point");
 		}
-		
-		System.out.print("----------------------------------------------------------------------\n");
-		dataBase.displayConvexPoints();
-		dataBase.displayCirclePoints();
 	}
 }
