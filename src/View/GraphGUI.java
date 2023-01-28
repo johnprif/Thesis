@@ -21,6 +21,7 @@ import org.jfree.data.xy.XYSeriesCollection;
 import Control.CustomMouseListener;
 import Model.DataBase;
 import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -71,8 +72,10 @@ public class GraphGUI
 		ChartViewer viewer = new ChartViewer(chart);
 		viewer.addChartMouseListener(new CustomMouseListener(textSubTitle));
 
-		scene = new Scene(viewer);
-		scene.getStylesheets().add("styles.css");
+		StackPane root = new StackPane();
+		root.getChildren().add(viewer);
+		root.getStylesheets().add("styles.css");
+		scene = new Scene(root);
 		circleStage.setScene(scene);
 	}
 
