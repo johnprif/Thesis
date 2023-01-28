@@ -8,6 +8,7 @@ import Control.InfoButtonHandler;
 import Control.LoadFileButtonHandler;
 import Control.PutPointsButtonHandler;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -18,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class MainGUI extends Application
 {
@@ -192,6 +194,15 @@ public class MainGUI extends Application
         stage.setWidth(600);
         stage.setResizable(true);
         stage.setScene(scene);
+        
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+	          public void handle(WindowEvent we) 
+	          {
+	              stage.close();
+	              System.exit(0);	              
+	          }
+	      });
+        
         stage.show();
     }
     

@@ -54,7 +54,7 @@ public class GraphGUI
 		circleStage.setHeight(700);
 		circleStage.setWidth(700);
 		circleStage.setResizable(true);
-		circleStage.initModality(Modality.APPLICATION_MODAL);
+//		circleStage.initModality(Modality.APPLICATION_MODAL);
     }
 	
 	private void displaySmallestEnclosingCircle()
