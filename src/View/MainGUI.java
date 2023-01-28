@@ -151,7 +151,7 @@ public class MainGUI extends Application
     
     private void createPaperTitle()
     {
-    	paperTitle = new Label("A SIMPLE ALGORITHM FOR\nCOMPUTING THE SMALLEST\n   ENCLOSING CIRCLE\n  ");\
+    	paperTitle = new Label("A SIMPLE ALGORITHM FOR\nCOMPUTING THE SMALLEST\n   ENCLOSING CIRCLE\n  ");
     	paperTitle.setMaxWidth(Double.MAX_VALUE);
     	paperTitle.setAlignment(Pos.CENTER);
     }
