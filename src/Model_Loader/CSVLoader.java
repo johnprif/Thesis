@@ -18,14 +18,12 @@ public class CSVLoader implements FileLoader
 {
 	private String csvPath;
 	private List<String[]> stringCSVData;
-	private List<double[]> doubleCSVData;
 	private ArrayList<Point2D> points2DCSVData;
 	
 	public CSVLoader(String csvPath) throws IOException, CsvException
 	{
 		this.csvPath=csvPath;
 		stringCSVData = new ArrayList<String[]>();
-		doubleCSVData = new ArrayList<double[]>();
 		points2DCSVData = new ArrayList<Point2D>(); 
 		System.out.println("I am CSV LOADER");
 		readValues();
@@ -47,22 +45,20 @@ public class CSVLoader implements FileLoader
 	public void convertStringToPoint2D()
 	{
 		//Convert data from String to double		
-		double point[]=new double[2];
+		double a;
+		double b;
+		String temp1;
+		String temp2;
+		
 		for(int i=0; i<stringCSVData.size(); i++)
 		{
-			for(int j=0; j<stringCSVData.get(i).length; j++)
-			{
-				String temp = stringCSVData.get(i)[j].replace(',', '.');
-				point[j]=Double.parseDouble(temp);				
-			}
-			doubleCSVData.add(point);
-			points2DCSVData.add(new Point2D(point[0], point[1]));	
+			temp1 = stringCSVData.get(i)[0].replace(',', '.');
+			temp2 = stringCSVData.get(i)[1].replace(',', '.');
+			a=Double.parseDouble(temp1);
+			b=Double.parseDouble(temp2);
+			
+			points2DCSVData.add(new Point2D(a, b));	
 		}
-	}
-	
-	public List<double[]> getDoubleValues()
-	{
-		return doubleCSVData;
 	}
 	
 	public ArrayList<Point2D> get2Dvalues()
