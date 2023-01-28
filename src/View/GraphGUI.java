@@ -129,9 +129,9 @@ public class GraphGUI
         plot.setRangeGridlinePaint(Color.GRAY);
         plot.getRenderer().setSeriesPaint(0, Color.decode("#006699"));       
         XYItemRenderer renderer = plot.getRenderer();
-        renderer.setSeriesPaint(0, Color.RED);
-        renderer.setSeriesPaint(1, Color.BLUE);
-        renderer.setSeriesPaint(2, Color.ORANGE);
+        renderer.setSeriesPaint(0, Color.RED); //circle points
+        renderer.setSeriesPaint(1, Color.BLUE); //convex points
+        renderer.setSeriesPaint(2, Color.ORANGE); // all points
       //=======================================================
 
 
