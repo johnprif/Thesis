@@ -72,11 +72,11 @@ public class MainGUI extends Application
         
         createMainLogo2();
         
-        createStage();       
-        
+        createStage();              
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         launch();
     }
     
@@ -105,7 +105,7 @@ public class MainGUI extends Application
     	infoButton = new Button("?");
     	
     	changeLanguageButton.setId("changeLanguageButton");
-    	loadFileButton.setId("my-button");
+    	loadFileButton.setId("loadFileButton");
     	putPointsButton.setId("putPointsButton");
     	exitButton.setId("exitButton");
     	infoButton.setId("infoButton");
@@ -172,8 +172,7 @@ public class MainGUI extends Application
 		imageMain = new Image(url.toString()); 
 		imageViewMain = new ImageView(imageMain);
 		imageViewMain.setFitHeight(573); 
-		imageViewMain.setFitWidth(300);
-		
+		imageViewMain.setFitWidth(300);		
 	}
     
     private void createMainLogo2()
