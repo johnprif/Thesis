@@ -151,6 +151,6 @@ public class GraphGUI
 		chart.setTextAntiAlias(true);
 		chart.setNotify(true);
 		chart.setAntiAlias(true);
-		chart.setBorderVisible(true);
+		chart.setBorderVisible(false);
 	}
 }
