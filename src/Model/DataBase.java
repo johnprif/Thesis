@@ -19,9 +19,8 @@ public class DataBase
 	
 	private DataBase()
 	{
-	    // private constructor
-//		dll = new LinkedList<Point2D>();
 	}
+	
 	public static DataBase getInstance()
 	{
 		return instance;
@@ -119,10 +118,12 @@ public class DataBase
 		Point2D point1 = circlePoints.get(0);
 		Point2D point2 = circlePoints.get(1);
 		Point2D point3 = null;
+		
 		if (n == 3) 
 		{
 			point3 = circlePoints.get(2);
 		}
+		
 		circle = new Ellipse2D.Double(getCenter(point1, point2, point3).getX() - getRadius(point1, point2, point3), getCenter(point1, point2, point3).getY() - getRadius(point1, point2, point3), getRadius(point1, point2, point3) * 2, getRadius(point1, point2, point3) * 2);
 		return circle;
 	}
