@@ -15,6 +15,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.annotations.XYShapeAnnotation;
 import org.jfree.chart.fx.ChartViewer;
 import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -37,7 +38,6 @@ public class GraphGUI
 	private XYPlot plot;
 	private TextTitle textSubTitle;
 	private JFreeChart chart;
-	private Scene scene;
 	
 	public GraphGUI(String path)
 	{
@@ -72,11 +72,7 @@ public class GraphGUI
 		ChartViewer viewer = new ChartViewer(chart);
 		viewer.addChartMouseListener(new CustomMouseListener(textSubTitle));
 
-		StackPane root = new StackPane();
-		root.getChildren().add(viewer);
-		root.getStylesheets().add("styles.css");
-		scene = new Scene(root);
-		circleStage.setScene(scene);
+		circleStage.setScene(new Scene(viewer));
 	}
 
 	private void makeSeries()
@@ -127,23 +123,29 @@ public class GraphGUI
 	    plot.setDomainCrosshairVisible(true);
 	    plot.setDomainZeroBaselineVisible(true);
 	    plot.setOutlineVisible(true);
-	    //=================================================
-//	    plot.setBackgroundPaint(Color.WHITE);
-//        plot.setDomainGridlinePaint(Color.GRAY);
-//        plot.setRangeGridlinePaint(Color.GRAY);
-//        plot.getRenderer().setSeriesPaint(0, Color.decode("#006699"));
-      //=================================================
+	    //=======================================================
+	    plot.setBackgroundPaint(Color.WHITE);
+        plot.setDomainGridlinePaint(Color.GRAY);
+        plot.setRangeGridlinePaint(Color.GRAY);
+        plot.getRenderer().setSeriesPaint(0, Color.decode("#006699"));       
+        XYItemRenderer renderer = plot.getRenderer();
+        renderer.setSeriesPaint(0, Color.RED);
+        renderer.setSeriesPaint(1, Color.BLUE);
+        renderer.setSeriesPaint(2, Color.ORANGE);
+      //=======================================================
+
+
 	}
 
 	private void makeChart()
 	{
 		chart = new JFreeChart(plot);
 		chart.setTitle("Smallest Enclosing Circle");
-		//===============================================================
-//		chart.getTitle().setPaint(Color.decode("#006699"));
-//		chart.getTitle().setFont(new Font("Arial", Font.BOLD, 24));
-//        chart.setBackgroundPaint(Color.decode("#f5f5f5"));
-      //===============================================================
+		//=======================================================
+		chart.getTitle().setPaint(Color.decode("#006699"));
+		chart.getTitle().setFont(new Font("Arial", Font.BOLD, 24));
+        chart.setBackgroundPaint(Color.decode("#f5f5f5"));
+      //=======================================================
 		chart.addSubtitle(textSubTitle);
 		chart.setElementHinting(true);
 		chart.setTextAntiAlias(true);
