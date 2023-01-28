@@ -36,6 +36,7 @@ public class GraphGUI
 	private XYPlot plot;
 	private TextTitle textSubTitle;
 	private JFreeChart chart;
+	private Scene scene;
 	
 	public GraphGUI(String path)
 	{
@@ -43,6 +44,7 @@ public class GraphGUI
 		dataBase = DataBase.getInstance();
 		createStage();
 		displaySmallestEnclosingCircle();
+		
 		circleStage.show();
 	}
 	
@@ -69,7 +71,9 @@ public class GraphGUI
 		ChartViewer viewer = new ChartViewer(chart);
 		viewer.addChartMouseListener(new CustomMouseListener(textSubTitle));
 
-		circleStage.setScene(new Scene(viewer));
+		scene = new Scene(viewer);
+		scene.getStylesheets().add("styles.css");
+		circleStage.setScene(scene);
 	}
 
 	private void makeSeries()
@@ -121,10 +125,10 @@ public class GraphGUI
 	    plot.setDomainZeroBaselineVisible(true);
 	    plot.setOutlineVisible(true);
 	    //=================================================
-	    plot.setBackgroundPaint(Color.WHITE);
-        plot.setDomainGridlinePaint(Color.GRAY);
-        plot.setRangeGridlinePaint(Color.GRAY);
-        plot.getRenderer().setSeriesPaint(0, Color.decode("#006699"));
+//	    plot.setBackgroundPaint(Color.WHITE);
+//        plot.setDomainGridlinePaint(Color.GRAY);
+//        plot.setRangeGridlinePaint(Color.GRAY);
+//        plot.getRenderer().setSeriesPaint(0, Color.decode("#006699"));
       //=================================================
 	}
 
@@ -133,9 +137,9 @@ public class GraphGUI
 		chart = new JFreeChart(plot);
 		chart.setTitle("Smallest Enclosing Circle");
 		//===============================================================
-		chart.getTitle().setPaint(Color.decode("#006699"));
-		chart.getTitle().setFont(new Font("Arial", Font.BOLD, 24));
-        chart.setBackgroundPaint(Color.decode("#f5f5f5"));
+//		chart.getTitle().setPaint(Color.decode("#006699"));
+//		chart.getTitle().setFont(new Font("Arial", Font.BOLD, 24));
+//        chart.setBackgroundPaint(Color.decode("#f5f5f5"));
       //===============================================================
 		chart.addSubtitle(textSubTitle);
 		chart.setElementHinting(true);

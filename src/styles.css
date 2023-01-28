@@ -73,3 +73,25 @@
 	-fx-underline: false;
 }
 
+.chart-title {
+    -fx-text-fill: #006699;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.chart-background {
+    -fx-background-color: #f5f5f5;
+}
+
+.chart-plot-background {
+    -fx-background-color: white;
+}
+
+.chart-gridlines {
+    -fx-stroke: gray;
+}
+
+.chart-series {
+    -fx-stroke: #006699;
+}
+
