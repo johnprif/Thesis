@@ -131,7 +131,11 @@ public class DataBase
 	public double findMaxNodeforCircle() 
 	{
 	    int size = circlePoints.size();
-	    if (size <= 2) return -1;
+	    
+	    if (size <= 2)
+	    {
+	    	return -1;
+	    }
 	    
 	    double maxRadius = 0.0;
 	    double maxAngle = 0.0;
