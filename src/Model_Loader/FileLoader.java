@@ -8,7 +8,5 @@ import javafx.geometry.Point2D;
 
 public interface FileLoader 
 {
-//	public void readValues();
-	public List<double[]> getDoubleValues();
 	public ArrayList<Point2D> get2Dvalues();
 }

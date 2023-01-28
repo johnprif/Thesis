@@ -62,13 +62,6 @@ public class TXTLoader implements FileLoader
 			points2DTXTData.add(new Point2D(point[0], point[1]));		
 		}
 	}
-	
-	
-	@Override
-	public List<double[]> getDoubleValues() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public ArrayList<Point2D> get2Dvalues() {
