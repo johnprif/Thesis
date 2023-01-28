@@ -60,7 +60,8 @@ public class ExcelLoader implements FileLoader
 	
 
 	@Override
-	public ArrayList<Point2D> get2Dvalues() {
+	public ArrayList<Point2D> get2Dvalues() 
+	{
 		// TODO Auto-generated method stub
 		return points2DXLSXData;
 	}
