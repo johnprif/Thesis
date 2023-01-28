@@ -9,13 +9,11 @@ import javafx.stage.Stage;
 
 public class PutPointsButtonHandler  implements EventHandler<ActionEvent>
 {
-	private Stage mainStage;
 	private Stage graphStage;
 	private GraphGUI graphGUI;
 	
-	public PutPointsButtonHandler(Stage mainStage)
-	{
-		this.mainStage = mainStage;		
+	public PutPointsButtonHandler()
+	{	
 	}
 	
 	@Override

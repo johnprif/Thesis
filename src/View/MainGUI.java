@@ -83,8 +83,8 @@ public class MainGUI extends Application
     private void createAndSetHandlers()
     {
     	changeLanguageButtonHandler = new ChangeLanguageButtonHandler(buttons, paperTitle);
-    	loadFileButtonHandler = new LoadFileButtonHandler(stage);
-    	putPointsButtonHandler = new PutPointsButtonHandler(stage);
+    	loadFileButtonHandler = new LoadFileButtonHandler();
+    	putPointsButtonHandler = new PutPointsButtonHandler();
     	exitButtonHandler = new ExitButtonHandler(stage);   	
     	infoButtonHandler = new InfoButtonHandler();
     	

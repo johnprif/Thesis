@@ -1,7 +1,6 @@
 package Control;
 
 import java.io.File;
-import java.util.ArrayList;
 import Model.TextHandler;
 import Model_Loader.FileLoaderFactory;
 import View.GraphGUI;
@@ -9,14 +8,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.geometry.Point2D;
 
 public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 {
 	private Stage fileChooserStage;
-	private Stage mainStage;
 	private String path;
-	private ArrayList<Point2D> allPoints;
 	private TextHandler textHandler;
 	
 	private FileChooser fileChooser;
@@ -25,9 +21,8 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 	private GraphGUI graphGUI;
 	private AlgorithmsHandler algorithmsHandler;
 	
-	public LoadFileButtonHandler(Stage mainStage)
+	public LoadFileButtonHandler()
 	{
-		this.mainStage = mainStage;
 		textHandler = TextHandler.getInstance();
 		
 	}
@@ -65,8 +60,6 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 	{
 		fileFactoryLoader = new FileLoaderFactory(path);
 		fileFactoryLoader.getAllPoints();
-//		allPoints = new ArrayList<Point2D>(fileFactoryLoader.getAllPoints());
-//		graphGUI = new GraphGUI(fileFactoryLoader.getAllPoints());
 		algorithmsHandler = new AlgorithmsHandler();
 		graphGUI = new GraphGUI(path);
 	}
