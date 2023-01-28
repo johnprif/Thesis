@@ -195,7 +195,7 @@ public class DataBase
 	    if(r == null)
 	    {
 	    	R = p.distance(q) / 2;
-	    	return Math.round(R * 1000.0) / 1000.0;	    	
+	    	return R;	
 	    }
 	    
 	    if ((!p.equals(q)) && (!q.equals(r)) && (!p.equals(r))) 
@@ -249,8 +249,7 @@ public class DataBase
 	        // r is the radius
 	        R = Math.sqrt(sqr_of_r);
 	    }
-
-	    return Math.round(R * 1000.0) / 1000.0;
+	    return R;
 	}
 	
 	public Point2D getCenter(Point2D p, Point2D q, Point2D r) 
@@ -324,7 +323,6 @@ public class DataBase
 	        return new Point2D(h,k);
 	    }
 	    return null;
-//	    return new Point2D(h,k);
 	}
 	
 	private double getAngle(Point2D p, Point2D q, Point2D r) 
@@ -332,6 +330,6 @@ public class DataBase
 		double a = (q.getX() - p.getX()) * (q.getX() - p.getX()) + (q.getY() - p.getY()) * (q.getY() - p.getY());
 		double b = (q.getX() - r.getX()) * (q.getX() - r.getX()) + (q.getY() - r.getY()) * (q.getY() - r.getY());
 		double c = (r.getX() - p.getX()) * (r.getX() - p.getX()) + (r.getY() - p.getY()) * (r.getY() - p.getY());
-		return Math.round(Math.acos((a + b - c) / Math.sqrt(4 * a * b)) * 1000.0) / 1000.0;
+		return Math.acos((a + b - c) / Math.sqrt(4 * a * b));
 	}
 }

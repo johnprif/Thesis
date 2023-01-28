@@ -35,10 +35,9 @@ public class GrahamScan
 		dataBase.setCirclePoints(convexHullPoints);
 	}
 		
-	//----------------------------------O(nlogn)
+	//----------------------------------O(nlogn)--------------------------------------
 	public static List<Point2D> computeGrahamScan(List<Point2D> points) {
         // Find the point with the lowest y-coordinate (or the leftmost point in case of a tie)
-//        Point2D start = points.get(0);
         start = points.get(0);
 
         for (Point2D point : points) {

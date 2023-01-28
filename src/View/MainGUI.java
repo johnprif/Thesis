@@ -192,7 +192,7 @@ public class MainGUI extends Application
     	stage.setTitle("Sven Skyum 1991, JavaFX " + javafxVersion + ", running on Java " + javaVersion +", "+version);
     	stage.setHeight(700);
         stage.setWidth(600);
-        stage.setResizable(true);
+        stage.setResizable(false);
         stage.setScene(scene);
         
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {

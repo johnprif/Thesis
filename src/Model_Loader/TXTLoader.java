@@ -27,10 +27,13 @@ public class TXTLoader implements FileLoader
 	{
 		File file = new File(path);
 	    Scanner scanner = new Scanner(file);
+	    String line;
+	    String[] values ;
+	    
 	    while (scanner.hasNextLine()) 
 	    {
-	        String line = scanner.nextLine();
-	        String[] values = line.split("\\s+"); // assuming the values are separated by whitespace
+	        line = scanner.nextLine();
+	        values = line.split("\\s+"); // assuming the values are separated by whitespace
 	        convertStringToPoint2D(values[0], values[1]);
 	    }
 	    scanner.close();
@@ -49,7 +52,6 @@ public class TXTLoader implements FileLoader
 	@Override
 	public ArrayList<Point2D> get2Dvalues() 
 	{
-		// TODO Auto-generated method stub
 		return points2DTXTData;
 	}
 	
