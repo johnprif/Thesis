@@ -1,5 +1,6 @@
 //https://www.baeldung.com/java-microsoft-excel
 //https://github.com/johnprif/AdvancedText2SpeechApp/blob/main/src/input/ExcelReader.java
+//https://howtodoinjava.com/java/library/readingwriting-excel-files-in-java-poi-tutorial/
 
 package Model_Loader;
 
@@ -46,18 +47,14 @@ public class ExcelLoader implements FileLoader
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-	
-	
+    }	
 	
 	public void convertDoubleToPoint2D(Cell column1, Cell column2)
 	{
 		double a = column1.getNumericCellValue();
 		double b = column2.getNumericCellValue();
 		points2DXLSXData.add(new Point2D(a, b));	
-	}
-	
-	
+	}	
 
 	@Override
 	public ArrayList<Point2D> get2Dvalues() 

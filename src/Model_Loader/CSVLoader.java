@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import com.opencsv.*;
 import com.opencsv.exceptions.CsvException;
-
 import javafx.geometry.Point2D;
 
 public class CSVLoader implements FileLoader

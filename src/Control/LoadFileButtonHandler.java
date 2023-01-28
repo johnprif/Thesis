@@ -1,24 +1,12 @@
 package Control;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-
-import com.opencsv.exceptions.CsvException;
-
-import Model.Algorithm1;
-import Model.GrahamScan;
 import Model.TextHandler;
-import Model_Loader.CSVLoader;
 import Model_Loader.FileLoaderFactory;
 import View.GraphGUI;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.geometry.Point2D;

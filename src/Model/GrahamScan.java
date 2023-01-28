@@ -15,7 +15,6 @@ package Model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import javafx.geometry.Point2D;
 
 public class GrahamScan 

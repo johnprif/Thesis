@@ -50,8 +50,6 @@ public class DataBase
 	public void setConvexPoints(ArrayList<Point2D> convexPoints)
 	{
 		this.convexPoints = new ArrayList<Point2D>(convexPoints);
-//		this.convexPoints.remove(this.convexPoints.size()-1);
-//		this.convexPoints.remove(0);
 	}
 	
 	public void setCirclePoints(ArrayList<Point2D> circlePoints)

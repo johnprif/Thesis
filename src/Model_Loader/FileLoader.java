@@ -3,7 +3,6 @@
 package Model_Loader;
 
 import java.util.ArrayList;
-import java.util.List;
 import javafx.geometry.Point2D;
 
 public interface FileLoader 

@@ -23,7 +23,7 @@ public class MainGUI extends Application
 {
 	private String javaVersion = System.getProperty("java.version");
     private String javafxVersion = System.getProperty("javafx.version");
-	private String version = "v0.3";
+	private String version = "v0.4";
     
 	private Stage stage;
 	private Scene scene;
