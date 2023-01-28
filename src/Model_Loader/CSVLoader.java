@@ -52,8 +52,7 @@ public class CSVLoader implements FileLoader
 		{
             for (String cell : row) 
             {
-                System.out.print("String: "+i+"="+cell + "\t");
-//              System.out.println(cell + " is of type " + ((Object)cell).getClass().getSimpleName());   == STRING               
+                System.out.print("String: "+i+"="+cell + "\t");            
             }
             i++;
             System.out.println();

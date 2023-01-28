@@ -22,7 +22,6 @@ public class XLSXLoader implements FileLoader
 		points2DXLSXData = new ArrayList<Point2D>(); 
 		System.out.println("I am EXCEL LOADER");
 		readValues();
-//		printResults();
 	}
 
 	private void readValues()
@@ -44,7 +43,6 @@ public class XLSXLoader implements FileLoader
                 Cell column1 = row.getCell(0);
                 // Get the cell in the second column
                 Cell column2 = row.getCell(1);
-                System.out.println(column1.getNumericCellValue());
                 convertDoubleToPoint2D(column1.getNumericCellValue(), column2.getNumericCellValue());
             }
             // Close the FileInputStream object
