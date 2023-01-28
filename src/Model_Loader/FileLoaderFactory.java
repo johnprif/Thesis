@@ -13,7 +13,7 @@ public class FileLoaderFactory
 	private String path;
 	private CSVLoader csvLoader;
 	private TXTLoader txtLoader;
-	private XLSXLoader xlsxLoader;
+	private ExcelLoader xlsxLoader;
 	private ArrayList<Point2D> allPoints;
 	private DataBase dataBase;
 	
@@ -36,7 +36,7 @@ public class FileLoaderFactory
 				allPoints = new ArrayList<Point2D>(txtLoader.get2Dvalues());
 			}else if(path.contains(".xlsx") || path.contains(".xls"))
 			{
-				xlsxLoader = new XLSXLoader(path);
+				xlsxLoader = new ExcelLoader(path);
 				allPoints = new ArrayList<Point2D>(xlsxLoader.get2Dvalues());
 			}else
 			{

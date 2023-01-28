@@ -44,21 +44,6 @@ public class CSVLoader implements FileLoader
 		stringCSVData.addAll(csvReader.readAll());
 	}
 	
-	private void printResults()
-	{
-		//Print data from csv
-		int i=0;
-		for (String[] row : stringCSVData) 
-		{
-            for (String cell : row) 
-            {
-                System.out.print("String: "+i+"="+cell + "\t");            
-            }
-            i++;
-            System.out.println();
-        }
-	}
-	
 	public void convertStringToPoint2D()
 	{
 		//Convert data from String to double		

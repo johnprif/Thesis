@@ -2,10 +2,13 @@
 
 package Model_Loader;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
@@ -21,7 +24,7 @@ public class TXTLoader implements FileLoader
 	private List<double[]> doubleTXTData;
 	private ArrayList<Point2D> points2DTXTData;
 	
-	public TXTLoader(String path)
+	public TXTLoader(String path) throws IOException, CsvException
 	{
 		this.path = path;
 		stringTXTData = new ArrayList<String[]>();
@@ -29,44 +32,34 @@ public class TXTLoader implements FileLoader
 		points2DTXTData = new ArrayList<Point2D>(); 
 		System.out.println("I am TXT LOADER");
 		readValues();
-//		printResults();
-		convertValuesToOther();
 	}
 	
 	private void readValues()  throws IOException, CsvException
 	{
-		// Create an object of file reader
-        // class with CSV file as a parameter.
-		CSVParser csvParser = new CSVParserBuilder().withSeparator(',').withSeparator(',').build();
-		// create csvReader object
-		CSVReader csvReader = new CSVReaderBuilder(new FileReader(path))
-									.withCSVParser(csvParser)
-									.withSkipLines(0).build();																					
-		stringTXTData.addAll(csvReader.readAll());
+		File file = new File(path);
+	    Scanner scanner = new Scanner(file);
+	    while (scanner.hasNextLine()) {
+	        String line = scanner.nextLine();
+	        String[] values = line.split("\\s+"); // assuming the values are separated by whitespace
+	        convertStringToPoint2D(values[0], values[1]);
+	    }
+	    scanner.close();
 	}
 	
-	public void convertValuesToOther()
+	public void convertStringToPoint2D(String x, String y)
 	{
-		//Convert data from String to double		
-		double point[]=new double[2];
-		for(int i=0; i<stringTXTData.size(); i++)
-		{
-			for(int j=0; j<stringTXTData.get(i).length; j++)
-			{
-				String temp = stringTXTData.get(i)[j].replace(',', '.');
-//				point[j]=Double.parseDouble(stringCSVData.get(i)[j]);
-				point[j]=Double.parseDouble(temp);
-//                System.out.println(point[j] + " is of type " + ((Object)point[j]).getClass().getSimpleName());
-			}
-			doubleTXTData.add(point);
-			points2DTXTData.add(new Point2D(point[0], point[1]));		
-		}
+		String temp1 = x.replace(',', '.');
+		String temp2 = y.replace(',', '.');
+		double a = Double.parseDouble(temp1);
+        double b = Double.parseDouble(temp2);
+		points2DTXTData.add(new Point2D(a, b));
 	}
+
 
 	@Override
 	public ArrayList<Point2D> get2Dvalues() {
 		// TODO Auto-generated method stub
-		return null;
+		return points2DTXTData;
 	}
 	
 }
