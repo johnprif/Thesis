@@ -151,7 +151,7 @@ public class MainGUI extends Application
     
     private void createPaperTitle()
     {
-    	paperTitle = new Label("A SIMPLE ALGORITHM FOR\nCOMPUTING THE SMALLEST\n   ENCLOSING CIRCLE\n  ");
+    	paperTitle = new Label("A SIMPLE ALGORITHM FOR\nCOMPUTING THE SMALLEST\n   ENCLOSING CIRCLE\n  ");\
     	paperTitle.setMaxWidth(Double.MAX_VALUE);
     	paperTitle.setAlignment(Pos.CENTER);
     }
@@ -190,7 +190,7 @@ public class MainGUI extends Application
     	stage.setTitle("Sven Skyum 1991, JavaFX " + javafxVersion + ", running on Java " + javaVersion +", "+version);
     	stage.setHeight(700);
         stage.setWidth(600);
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.setScene(scene);
         stage.show();
     }

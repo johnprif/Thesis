@@ -21,6 +21,7 @@ import org.jfree.data.xy.XYSeriesCollection;
 import Control.CustomMouseListener;
 import Model.DataBase;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class GraphGUI
@@ -53,6 +54,7 @@ public class GraphGUI
 		circleStage.setHeight(700);
 		circleStage.setWidth(700);
 		circleStage.setResizable(true);
+		circleStage.initModality(Modality.APPLICATION_MODAL);
     }
 	
 	private void displaySmallestEnclosingCircle()

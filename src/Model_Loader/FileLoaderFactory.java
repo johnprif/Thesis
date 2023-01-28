@@ -2,9 +2,7 @@ package Model_Loader;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import com.opencsv.exceptions.CsvException;
-
 import Model.DataBase;
 import javafx.geometry.Point2D;
 
@@ -22,7 +20,7 @@ public class FileLoaderFactory
 		this.path = path;
 		dataBase = DataBase.getInstance();
 	}
-	//allPoints??
+
 	public ArrayList<Point2D> getAllPoints()
 	{
 		try {
@@ -42,18 +40,12 @@ public class FileLoaderFactory
 			{
 				
 			}	
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (CsvException e) {
-			// TODO Auto-generated catch block
+		} catch (IOException | CsvException e) 
+		{
 			e.printStackTrace();
 		}
-		System.out.println("The size of allPoints is = "+allPoints.size());
+
 		dataBase.setAllPoints(allPoints);
-		return allPoints;
-		
-	}
-	
-	
+		return allPoints;		
+	}	
 }

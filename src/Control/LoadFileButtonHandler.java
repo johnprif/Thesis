@@ -65,7 +65,6 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 	{
 		fileFactoryLoader = new FileLoaderFactory(path);
 		fileFactoryLoader.getAllPoints();
-		mainStage.close();
 //		allPoints = new ArrayList<Point2D>(fileFactoryLoader.getAllPoints());
 //		graphGUI = new GraphGUI(fileFactoryLoader.getAllPoints());
 		algorithmsHandler = new AlgorithmsHandler();
