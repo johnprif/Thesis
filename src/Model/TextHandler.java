@@ -50,7 +50,7 @@ public class TextHandler
     		//PutPointsButtonHandler popup
     		notImpementPopupTitle = "Put points";
     		notImpementPopupHeaderText = "Under construction!";
-    		notImpementContentText = "The manual addition of points has not been implemented yet!\\nIn the future the user will be able to add points manually and modify them without having to load them from an external file.";
+    		notImpementContentText = "The manual addition of points has not been implemented yet!\nIn the future the user will be able to add points manually and modify them without having to load them from an external file.";
     		
     	}else //GR
     	{
