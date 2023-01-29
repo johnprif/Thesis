@@ -1,5 +1,5 @@
 .root{  
-    -fx-background: #4682b4;
+    -fx-background: red;
 }  
 
 .button {
@@ -11,7 +11,7 @@
 	-fx-padding: 6px; /* 10 pixels padding */
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );   
     -fx-background-radius: 10 10 10 10;
-    -fx-background-color: #f0ffff; /* Light blue color */
+    -fx-background-color: #f5f5f5; /* whitesmoke  */
 }
 
 .button:hover {
@@ -64,16 +64,22 @@
 	-fx-underline: false;
 	-fx-wrap-text: true;	
 	-fx-padding: 5px 5px 50px 5px; /* sets top, right, bottom, left padding */
-	
+}
+
+.label:hover {
+    -fx-text-fill: #ffff00; /* yellow */
+}
+
+.label:pressed {
+	-fx-text-fill: #ffd700; /* gold */
 }
 
 #borderPane {
-    -fx-background-color: #4682b4;
+    -fx-background-color:  #4682b4; /* steelblue */
     -fx-padding: 5px 10px 5px 10px; /* sets top, right, bottom, left padding */
 }
 
 #vbox {
-    -fx-background-color: #4682b4;
     -fx-spacing: 10px;
     -fx-alignment: center;
     -fx-padding: 10px 10px 130px 10px; /* sets top, right, bottom, left padding */

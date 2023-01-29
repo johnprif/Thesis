@@ -6,18 +6,22 @@ import Control.ChangeLanguageButtonHandler;
 import Control.ExitButtonHandler;
 import Control.InfoButtonHandler;
 import Control.LoadFileButtonHandler;
+import Control.PaperTitleHandler;
 import Control.PutPointsButtonHandler;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -35,13 +39,6 @@ public class MainGUI extends Application
 	private Button putPointsButton;
 	private Button exitButton;	
 	private Button infoButton;
-
-	private ChangeLanguageButtonHandler changeLanguageButtonHandler;
-	private LoadFileButtonHandler loadFileButtonHandler;
-	private PutPointsButtonHandler putPointsButtonHandler;
-	private ExitButtonHandler exitButtonHandler;
-
-	private InfoButtonHandler infoButtonHandler;
 	
 	private BorderPane borderPane;
 	private VBox vbox;
@@ -74,7 +71,7 @@ public class MainGUI extends Application
         
         createMainLogo2();
         
-        createStage();              
+        createStage();  
     }
 
     public static void main(String[] args) 
@@ -83,18 +80,12 @@ public class MainGUI extends Application
     }
     
     private void createAndSetHandlers()
-    {
-    	changeLanguageButtonHandler = new ChangeLanguageButtonHandler(buttons, paperTitle);
-    	loadFileButtonHandler = new LoadFileButtonHandler();
-    	putPointsButtonHandler = new PutPointsButtonHandler();
-    	exitButtonHandler = new ExitButtonHandler(stage);   	
-    	infoButtonHandler = new InfoButtonHandler();
-    	
-    	changeLanguageButton.setOnAction(changeLanguageButtonHandler); 
-    	loadFileButton.setOnAction(loadFileButtonHandler);   	
-    	putPointsButton.setOnAction(putPointsButtonHandler);   	
-    	exitButton.setOnAction(exitButtonHandler);   	  	
-    	infoButton.setOnAction(infoButtonHandler);   	
+    {  	
+    	changeLanguageButton.setOnAction(new ChangeLanguageButtonHandler(buttons, paperTitle)); 
+    	loadFileButton.setOnAction(new LoadFileButtonHandler());   	
+    	putPointsButton.setOnAction(new PutPointsButtonHandler());   	
+    	exitButton.setOnAction(new ExitButtonHandler(stage));   	  	
+    	infoButton.setOnAction(new InfoButtonHandler());   	
     }
     
     
@@ -112,9 +103,16 @@ public class MainGUI extends Application
     	exitButton.setId("exitButton");
     	infoButton.setId("infoButton");
     	
+    	changeLanguageButton.setCursor(Cursor.HAND);
+    	loadFileButton.setCursor(Cursor.HAND);
+    	putPointsButton.setCursor(Cursor.HAND);
+    	exitButton.setCursor(Cursor.HAND);
+    	infoButton.setCursor(Cursor.HAND);
+    	
     	loadFileButton.setMaxWidth(Double.MAX_VALUE);
     	putPointsButton.setMaxWidth(Double.MAX_VALUE);		    
 	    exitButton.setMaxWidth(Double.MAX_VALUE);
+	    
 	    
 	    buttons.add(changeLanguageButton);
 	    buttons.add(loadFileButton);
@@ -148,6 +146,8 @@ public class MainGUI extends Application
     private void createPaperTitle()
     {
     	paperTitle = new Label("A SIMPLE ALGORITHM FOR COMPUTING THE SMALLEST ENCLOSING CIRCLE");
+    	paperTitle.setCursor(Cursor.HAND);
+    	paperTitle.setOnMouseClicked(new PaperTitleHandler());
     }
     
     private void createSecondPane()
