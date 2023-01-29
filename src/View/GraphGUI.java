@@ -49,7 +49,6 @@ public class GraphGUI
 		circleStage.show();
 	}
 	
-	
 	private void createStage()
     {
 		circleStage = new Stage();		
