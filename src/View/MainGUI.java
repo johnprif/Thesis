@@ -45,10 +45,7 @@ public class MainGUI extends Application
 	
 	private Label paperTitle;
 	
-	private Image imageMain;
 	private ImageView imageViewMain;
-	
-	private Image imageMain2;
 	private ImageView imageViewMain2;
 	
 	private ArrayList<Button> buttons;
@@ -160,7 +157,7 @@ public class MainGUI extends Application
     private void createMainLogo()
 	{
     	URL url = getClass().getResource("/Icons/MainLogo_W.png");	
-		imageMain = new Image(url.toString()); 
+    	Image imageMain = new Image(url.toString()); 
 		imageViewMain = new ImageView(imageMain);
 		imageViewMain.setFitHeight(573); 
 		imageViewMain.setFitWidth(300);		
@@ -169,7 +166,7 @@ public class MainGUI extends Application
     private void createMainLogo2()
 	{
 		URL url = getClass().getResource("/Icons/MainLogo_W.png");	
-		imageMain2 = new Image(url.toString()); 
+		Image imageMain2 = new Image(url.toString()); 
 		imageViewMain2 = new ImageView(imageMain2);
 		imageViewMain2.setFitHeight(38); 
 		imageViewMain2.setFitWidth(17);
@@ -177,7 +174,9 @@ public class MainGUI extends Application
     
     private void createStage()
     {
-    	stage.getIcons().add(imageMain2);   	
+    	URL url = getClass().getResource("/Icons/circle.png");
+    	Image stageImage = new Image(url.toString());
+    	stage.getIcons().add(stageImage);   	
     	stage.setTitle("Sven Skyum 1991, JavaFX " + javafxVersion + ", running on Java " + javaVersion +", "+version);
     	stage.setHeight(700);
         stage.setWidth(600);
