@@ -112,12 +112,6 @@ public class MainGUI extends Application
     	exitButton.setId("exitButton");
     	infoButton.setId("infoButton");
     	
-    	changeLanguageButton.setAlignment(Pos.CENTER);
-    	loadFileButton.setAlignment(Pos.CENTER);
-    	putPointsButton.setAlignment(Pos.CENTER);
-    	exitButton.setAlignment(Pos.CENTER);   	
-    	infoButton.setAlignment(Pos.CENTER);
-    	
     	loadFileButton.setMaxWidth(Double.MAX_VALUE);
     	putPointsButton.setMaxWidth(Double.MAX_VALUE);		    
 	    exitButton.setMaxWidth(Double.MAX_VALUE);
@@ -154,8 +148,6 @@ public class MainGUI extends Application
     private void createPaperTitle()
     {
     	paperTitle = new Label("A SIMPLE ALGORITHM FOR COMPUTING THE SMALLEST ENCLOSING CIRCLE");
-    	paperTitle.setMaxWidth(Double.MAX_VALUE);
-    	paperTitle.setAlignment(Pos.CENTER);
     }
     
     private void createSecondPane()
