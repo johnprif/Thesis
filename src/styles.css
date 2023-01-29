@@ -3,14 +3,13 @@
 }  
 
 .button {
-	-fx-alignment: center;
-    -fx-font-weight: bold; 
+	-fx-alignment: center;     
 	-fx-text-fill: blue; 
-	-fx-font-size: 13px; /* 18 pixels font size */
 	-fx-font-family: 'Lucida Sans Unicode'; 
+	-fx-font-size: 13px; /* 18 pixels font size */
+	-fx-font-weight: bold;
 	-fx-padding: 6px; /* 10 pixels padding */
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
-    
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );   
     -fx-background-radius: 10 10 10 10;
 }
 
@@ -29,10 +28,10 @@
 }
 
 #exitButton {
-	-fx-alignment: center;
-	-fx-font-weight: bold; 
+	-fx-alignment: center;	
 	-fx-text-fill: red; 
-	-fx-font-family: 'Lucida Sans Unicode'; 
+	-fx-font-family: 'Lucida Sans Unicode';
+	-fx-font-weight: bold;  
 	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 	-fx-background-radius: 10 10 10 10;
 }
@@ -55,23 +54,20 @@
 	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
-.label {
-	-fx-font-weight: bold;
+.label {	
 	-fx-text-fill: white; 
-	-fx-font-size: 17; 
-	-fx-font-family: 'Lucida Sans Typewriter'; 
-	-fx-underline: false;
-	-fx-wrap-text: true;
 	-fx-text-alignment: center;
+	-fx-font-family: 'Lucida Sans Typewriter'; 
+	-fx-font-size: 17; 
+	-fx-font-weight: bold;
+	-fx-underline: false;
+	-fx-wrap-text: true;	
 	-fx-padding: 5px 5px 50px 5px; /* sets top, right, bottom, left padding */
 	
 }
 
 #borderPane {
     -fx-background-color: #4682b4;
-    -fx-border-color: green;
-    -fx-border-width: 2px;
-    -fx-border-radius: 10px;
     -fx-padding: 5px 10px 5px 10px; /* sets top, right, bottom, left padding */
 }
 
