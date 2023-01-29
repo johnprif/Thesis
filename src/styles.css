@@ -6,7 +6,7 @@
     -fx-font-weight: bold; 
 	-fx-text-fill: blue; 
 	-fx-font-size: 13px; /* 18 pixels font size */
-	-fx-font-family: 'Courier New'; 
+	-fx-font-family: 'Lucida Sans Unicode'; 
 	-fx-padding: 6px; /* 10 pixels padding */
 	-fx-border-radius: 5px; 
 	-fx-border-color: white; /* Light blue border color */
@@ -34,43 +34,39 @@
 #exitButton {
 	-fx-font-weight: bold; 
 	-fx-text-fill: red; 
-	-fx-font-family: 'Courier New'; 
+	-fx-font-family: 'Lucida Sans Unicode'; 
 	-fx-border-radius: 5; 
 	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
 #exitButton:hover {
-	-fx-font-weight: bold; 
 	-fx-text-fill: Orange; 
-	-fx-font-family: 'Courier New'; 
 	-fx-border-radius: 5; 
 	-fx-background-color: red; 
 	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
 #exitButton:active {
-	-fx-font-weight: bold; 
 	-fx-text-fill: yellow; 
-	-fx-font-family: 'Courier New'; 
 	-fx-border-radius: 5;
 	-fx-background-color: red; 
 	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
 #exitButton:pressed {
-    -fx-font-weight: bold; 
 	-fx-text-fill: yellow; 
-	-fx-font-family: 'Courier New'; 
 	-fx-border-radius: 5;
 	-fx-background-color: darkred; 
 	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
 .label {
+	-fx-font-weight: bold;
 	-fx-text-fill: white; 
-	-fx-font-weight: bold; 
 	-fx-font-size: 17; 
-	-fx-font-family: 'Courier New'; 
+	-fx-font-family: 'Lucida Sans Typewriter'; 
 	-fx-underline: false;
+	-fx-wrap-text: true;
+	-fx-text-alignment: center;
 }
 

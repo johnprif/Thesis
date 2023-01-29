@@ -38,7 +38,7 @@ public class TextHandler
     	if(language.equals("EN"))
     	{
     		//-----MainWidnow--------------
-    		paperTitleText = "A SIMPLE ALGORITHM FOR\nCOMPUTING THE SMALLEST\n   ENCLOSING CIRCLE\n  ";
+    		paperTitleText = "A SIMPLE ALGORITHM FOR COMPUTING THE SMALLEST ENCLOSING CIRCLE";
     		loadFileButtonText = "Load Points From File";
     		putPointsButtonText = "Create Points";
     		exitButtonText = "Exit";  		
@@ -54,7 +54,7 @@ public class TextHandler
     	}else //GR
     	{
     		//-----MainWidnow--------------
-    		paperTitleText = "ΕΝΑΣ ΑΠΛΟΣ ΑΛΓΟΡΙΘΜΟΣ\n ΓΙΑ ΤΟΝ ΥΠΟΛΟΓΙΣΜΟ\n   ΤΟΥ ΕΛΑΧΙΣΤΟΥ\n ΠΕΡΙΚΛΕΙΩΝΤΑ ΚΥΚΛΟΥ";
+    		paperTitleText = "ΕΝΑΣ ΑΠΛΟΣ ΑΛΓΟΡΙΘΜΟΣ ΓΙΑ ΤΟΝ ΥΠΟΛΟΓΙΣΜΟ ΤΟΥ ΕΛΑΧΙΣΤΟΥ ΠΕΡΙΚΛΕΙΩΝΤΑ ΚΥΚΛΟΥ";
     		loadFileButtonText = "Φόρτωση Σημείων από Αρχείο";
     		putPointsButtonText = "Δημιουργία σημείων";
     		exitButtonText = "Έξοδος";

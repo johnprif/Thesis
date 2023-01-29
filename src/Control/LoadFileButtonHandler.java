@@ -23,7 +23,7 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 	
 	public LoadFileButtonHandler()
 	{
-		textHandler = TextHandler.getInstance();		
+		textHandler = TextHandler.getInstance();	
 	}
 	
 	@Override
