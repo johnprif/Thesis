@@ -70,3 +70,9 @@
 	-fx-text-alignment: center;
 }
 
+.web-view{
+	-fx-context-menu-enabled: true;
+	-fx-page-fill: red;
+	-fx-font-scale: 100;
+}
+
