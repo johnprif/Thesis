@@ -104,7 +104,7 @@ public class MainGUI extends Application
     	loadFileButton = new Button("Load Points From File");
     	putPointsButton = new Button("Create Points");
     	exitButton = new Button("Exit");    	
-    	infoButton = new Button("?");
+    	infoButton = new Button(" ? ");
     	
     	changeLanguageButton.setId("changeLanguageButton");
     	loadFileButton.setId("loadFileButton");
@@ -126,8 +126,8 @@ public class MainGUI extends Application
     private void createMainPane()
 	{
     	borderPane = new BorderPane();
-    	createMainLogo();
-    	borderPane.setPadding(new Insets(10, 10, 10, 10));    	
+    	borderPane.setId("borderPane");
+    	createMainLogo();  	
     	borderPane.setTop(null);
     	
     	borderPane.setLeft(imageViewMain);
@@ -152,12 +152,9 @@ public class MainGUI extends Application
     
     private void createSecondPane()
     { 	
-    	vbox = new VBox(10);    	
-    	vbox.setAlignment(Pos.CENTER);    	
-    	vbox.setMargin(paperTitle, new Insets(5, 5, 50, 5)); 
+    	vbox = new VBox(10);   
+    	vbox.setId("vbox");   	
     	vbox.getChildren().addAll(paperTitle, loadFileButton, putPointsButton, exitButton);    	
-    	vbox.setPadding(new Insets(10, 10, 130, 10));
-    	vbox.setAlignment(Pos.CENTER); 
     }
     
     private void createMainLogo()

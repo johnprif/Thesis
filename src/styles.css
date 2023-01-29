@@ -1,8 +1,9 @@
 .root{  
-    -fx-background: #4682b4; 
+    -fx-background: #4682b4;
 }  
 
 .button {
+	-fx-alignment: center;
     -fx-font-weight: bold; 
 	-fx-text-fill: blue; 
 	-fx-font-size: 13px; /* 18 pixels font size */
@@ -32,6 +33,7 @@
 }
 
 #exitButton {
+	-fx-alignment: center;
 	-fx-font-weight: bold; 
 	-fx-text-fill: red; 
 	-fx-font-family: 'Lucida Sans Unicode'; 
@@ -68,12 +70,23 @@
 	-fx-underline: false;
 	-fx-wrap-text: true;
 	-fx-text-alignment: center;
+	-fx-padding: 5px 5px 50px 5px; /* sets top, right, bottom, left padding */
+	
 }
 
-.web-view{
-	-fx-context-menu-enabled: true;
-	-fx-page-fill: red;
-	-fx-font-scale: 1;
-	-fx-font-smoothing-type: gray;
+#borderPane {
+    -fx-background-color: #4682b4;
+    -fx-border-color: green;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-padding: 5px 10px 5px 10px; /* sets top, right, bottom, left padding */
+}
+
+#vbox {
+    -fx-background-color: #4682b4;
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+    -fx-padding: 10px 10px 130px 10px; /* sets top, right, bottom, left padding */
+    -fx-background-insets: 10px 10px 130px 10px; /* sets top, right, bottom, left background insets */ 
 }
 

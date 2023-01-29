@@ -19,7 +19,7 @@ public class InfoButtonHandler  implements EventHandler<ActionEvent>
 
         WebView userManualView = new WebView();
 //        userManualView.getEngine().load("https://example.com/user-manual");
-        userManualView.getEngine().load("https://github.com/johnprif/CV/blob/main/newCV.pdf");
+        userManualView.getEngine().load("https://www.facebook.com/johnprif");
        
         VBox layout = new VBox(10);
         layout.getChildren().addAll(userManualView);
