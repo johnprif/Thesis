@@ -11,6 +11,7 @@
 	-fx-padding: 6px; /* 10 pixels padding */
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );   
     -fx-background-radius: 10 10 10 10;
+    -fx-background-color: #f0ffff; /* Light blue color */
 }
 
 .button:hover {
