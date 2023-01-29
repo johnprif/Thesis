@@ -85,10 +85,10 @@ public class MainGUI extends Application
     
     private void createButtons()
 	{
-    	changeLanguageButton = new Button("EN");
-    	loadFileButton = new Button("Load Points From File");
-    	putPointsButton = new Button("Create Points");
-    	exitButton = new Button("Exit");    	
+    	changeLanguageButton = new Button();
+    	loadFileButton = new Button();
+    	putPointsButton = new Button();
+    	exitButton = new Button();    	
     	infoButton = new Button(" ? ");
     	
     	changeLanguageButton.setId("changeLanguageButton");
@@ -106,8 +106,7 @@ public class MainGUI extends Application
     	loadFileButton.setMaxWidth(Double.MAX_VALUE);
     	putPointsButton.setMaxWidth(Double.MAX_VALUE);		    
 	    exitButton.setMaxWidth(Double.MAX_VALUE);
-	    
-	    
+	    	    
 	    buttons.add(changeLanguageButton);
 	    buttons.add(loadFileButton);
 	    buttons.add(putPointsButton);
@@ -139,7 +138,7 @@ public class MainGUI extends Application
     
     private void createPaperTitle()
     {
-    	paperTitle = new Label("A SIMPLE ALGORITHM FOR COMPUTING THE SMALLEST ENCLOSING CIRCLE");
+    	paperTitle = new Label();
     	paperTitle.setCursor(Cursor.HAND);
     	paperTitle.setOnMouseClicked(new PaperTitleHandler());
     }
@@ -179,7 +178,7 @@ public class MainGUI extends Application
         stage.setWidth(600);
         stage.setResizable(false);
         stage.setScene(scene);
-        
+
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 	          public void handle(WindowEvent we) 
 	          {

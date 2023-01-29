@@ -11,7 +11,6 @@ public class ChangeLanguageButtonHandler  implements EventHandler<ActionEvent>
 {
 	private TextHandler textHandler;
 	private Boolean flag=true;
-	private ArrayList<Button> buttons;
 		
 	private Button changeLanguageButton;
 	private Label paperTitle;	
@@ -23,13 +22,15 @@ public class ChangeLanguageButtonHandler  implements EventHandler<ActionEvent>
 	{
 		textHandler = TextHandler.getInstance();
 		
-		this.buttons = new ArrayList<Button>(buttons);
 		this.paperTitle = paperTitle;
 		
 		changeLanguageButton = buttons.get(0);
 		loadFileButton = buttons.get(1);
 		putPointsButton = buttons.get(2);
 		exitButton = buttons.get(3);
+		
+		//first time
+		setTexts();
 	}
 	
 	
@@ -45,31 +46,16 @@ public class ChangeLanguageButtonHandler  implements EventHandler<ActionEvent>
 		
 		textHandler.setLanguage(flag? "EN" : "GR");
 		
-		changeLanguageButton.setText(flag? "EN" : "GR");
+		setTexts();		
+	}
+	
+	private void setTexts()
+	{
+		changeLanguageButton.setText(textHandler.getChangeLanguageButtonText());
 		paperTitle.setText(textHandler.getPaperTitleText());
 		loadFileButton.setText(textHandler.getLoadFileButtonText());
 		putPointsButton.setText(textHandler.getPutPointsButtonText());
 		exitButton.setText(textHandler.getExitButtonText());
 	}
-	
-	public String getPaperTitleText()
-    {
-    	return textHandler.getPaperTitleText();
-    }
-    
-    public String getLoadFileButtonText()
-    {
-    	return textHandler.getLoadFileButtonText();
-    }
-    
-    public String getPutPointsButtonText()
-    {
-    	return textHandler.getPutPointsButtonText();
-    }
-    
-    public String getExitButtonText()
-    {
-    	return textHandler.getExitButtonText();
-    }
 
 }

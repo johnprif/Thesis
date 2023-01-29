@@ -3,7 +3,6 @@ package Control;
 import org.jfree.chart.fx.interaction.ChartMouseEventFX;
 import org.jfree.chart.fx.interaction.ChartMouseListenerFX;
 import org.jfree.chart.title.TextTitle;
-import javafx.scene.input.MouseButton;
 
 public class CustomMouseListener  implements ChartMouseListenerFX
 {

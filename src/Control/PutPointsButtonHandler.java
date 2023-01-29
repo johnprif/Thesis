@@ -23,19 +23,10 @@ public class PutPointsButtonHandler  implements EventHandler<ActionEvent>
 	
 	public void notImpementPopup()
     {
-        // set alert type
         Alert a = new Alert(AlertType.INFORMATION);
-
-        // set title text
         a.setTitle(textHandler.getNotImpementPopupTitle());
-        
-        //
         a.setHeaderText(textHandler.getNotImpementPopupHeaderText());
-        
-        // set content text
         a.setContentText(textHandler.getNotImpementContentText());
-
-        // show the dialog
         a.show();
     }
 

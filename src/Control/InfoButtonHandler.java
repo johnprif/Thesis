@@ -10,22 +10,26 @@ import javafx.stage.Stage;
 
 public class InfoButtonHandler  implements EventHandler<ActionEvent>
 {
-
+	private Stage stage;
+	private WebView userManualView;
+	private VBox layout;
+	private Scene scene;
+	
 	@Override
 	public void handle(ActionEvent arg0) 
 	{
-		Stage stage = new Stage();
+		stage = new Stage();
         stage.setTitle("User Manual");
 
-        WebView userManualView = new WebView();
-//        userManualView.getEngine().load("https://example.com/user-manual");
+        userManualView = new WebView();
         userManualView.getEngine().load("https://www.facebook.com/johnprif");
        
-        VBox layout = new VBox(10);
+        layout = new VBox(10);
         layout.getChildren().addAll(userManualView);
 
-        Scene scene = new Scene(layout, 500, 500);
+        scene = new Scene(layout, 500, 500);
         scene.getStylesheets().add("styles.css");
+        
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();

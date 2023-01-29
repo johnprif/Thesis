@@ -12,7 +12,6 @@ public class DataBase
 	private ArrayList<Point2D> allPoints;
 	private ArrayList<Point2D> convexPoints;
 	private ArrayList<Point2D> circlePoints;
-	// public instance initialized when loading the class
 	private static final DataBase instance = new DataBase();
 	private int indexOfMaxPoint = 0;
 	private int indexOfMaxPoint2 = 0;

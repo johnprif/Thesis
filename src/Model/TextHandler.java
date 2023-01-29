@@ -5,11 +5,11 @@ public class TextHandler
 	private static TextHandler instance;
 	
 	//-----------parallel---------------
-	private String changeLanguageButtonText;
-	private String paperTitleText;	
-	private String loadFileButtonText;
-	private String putPointsButtonText;
-	private String exitButtonText;
+	private String changeLanguageButtonText = "EN";
+	private String paperTitleText = "A SIMPLE ALGORITHM FOR COMPUTING THE SMALLEST ENCLOSING CIRCLE";
+	private String loadFileButtonText = "Load Points From File";
+	private String putPointsButtonText = "Create Points";
+	private String exitButtonText = "Exit";
 	
 	//----------notParallel----------------
 	private String fileChooserTitleText = "Choose the file who contains the points";
@@ -35,9 +35,10 @@ public class TextHandler
     
     public void setLanguage(String language)
     {
+    	changeLanguageButtonText = language;
     	if(language.equals("EN"))
     	{
-    		//-----MainWidnow--------------
+    		//-----MainWidnow--------------   		
     		paperTitleText = "A SIMPLE ALGORITHM FOR COMPUTING THE SMALLEST ENCLOSING CIRCLE";
     		loadFileButtonText = "Load Points From File";
     		putPointsButtonText = "Create Points";
@@ -65,9 +66,13 @@ public class TextHandler
     		//PutPointsButtonHandler popup  		
     		notImpementPopupTitle = "Προσθήκη Σημείων";
     		notImpementPopupHeaderText = "Υπό κατασκευή!";
-    		notImpementContentText = "Η χειροκίνητη προσθήκη σημείων δεν έχει υλοποιηθεί ακόμα!\nΜελλοντικά ο χρήστης θα μπορεί να προσθέσει σημεία με το χέρι του και να τα τροποποιεί χωρίς να χρειάζεται η φόρτωση τους από εξωτερικό αρχείο.";
-    	
+    		notImpementContentText = "Η χειροκίνητη προσθήκη σημείων δεν έχει υλοποιηθεί ακόμα!\nΜελλοντικά ο χρήστης θα μπορεί να προσθέσει σημεία με το χέρι του και να τα τροποποιεί χωρίς να χρειάζεται η φόρτωση τους από εξωτερικό αρχείο.";    	
     	}
+    }
+    
+    public String getChangeLanguageButtonText()
+    {
+    	return changeLanguageButtonText;
     }
     
     public String getPaperTitleText()
