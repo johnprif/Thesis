@@ -9,27 +9,23 @@
 	-fx-font-size: 13px; /* 18 pixels font size */
 	-fx-font-family: 'Lucida Sans Unicode'; 
 	-fx-padding: 6px; /* 10 pixels padding */
-	-fx-border-radius: 5px; 
-	-fx-border-color: white; /* Light blue border color */
-    -fx-border-width:1px; /* 2 pixels border width */
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    
+    -fx-background-radius: 10 10 10 10;
 }
 
 .button:hover {
     -fx-background-color: #2980b9; /* Light blue color */
     -fx-text-fill: black; /* Black text color */
-    -fx-border-color: #3498db; /* Blue border color */
 }
 .button:active {
     -fx-background-color: #2980b9; /* Light blue color */
     -fx-text-fill: black; /* Black text color */
-    -fx-border-color: #3498db; /* Blue border color */
 }
 
 .button:pressed {
     -fx-background-color: navy; /* Light blue color */
     -fx-text-fill: darkgrey; /* Black text color */
-    -fx-border-color: #3498db; /* Blue border color */
 }
 
 #exitButton {
@@ -37,27 +33,24 @@
 	-fx-font-weight: bold; 
 	-fx-text-fill: red; 
 	-fx-font-family: 'Lucida Sans Unicode'; 
-	-fx-border-radius: 5; 
 	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+	-fx-background-radius: 10 10 10 10;
 }
 
 #exitButton:hover {
 	-fx-text-fill: Orange; 
-	-fx-border-radius: 5; 
 	-fx-background-color: red; 
 	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
 #exitButton:active {
 	-fx-text-fill: yellow; 
-	-fx-border-radius: 5;
 	-fx-background-color: red; 
 	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
 #exitButton:pressed {
 	-fx-text-fill: yellow; 
-	-fx-border-radius: 5;
 	-fx-background-color: darkred; 
 	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
