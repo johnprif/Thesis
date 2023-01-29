@@ -4,15 +4,19 @@ public class TextHandler
 {
 	private static TextHandler instance;
 	
-	//parallel
+	//-----------parallel---------------
 	private String changeLanguageButtonText;
 	private String paperTitleText;	
 	private String loadFileButtonText;
 	private String putPointsButtonText;
 	private String exitButtonText;
 	
-	//notParallel
+	//----------notParallel----------------
 	private String fileChooserTitleText = "Choose the file who contains the points";
+	
+	private String notImpementPopupTitle = "Put points";
+	private String notImpementPopupHeaderText = "Under construction!";
+	private String notImpementContentText = "The manual addition of points has not been implemented yet!\\nIn the future the user will be able to add points manually and modify them without having to load them from an external file.";
 	
 	private TextHandler()
     {
@@ -42,6 +46,11 @@ public class TextHandler
     		//-----FileChooserWindow--------------
     		fileChooserTitleText = "Choose the file who contains the points";
     		
+    		//PutPointsButtonHandler popup
+    		notImpementPopupTitle = "Put points";
+    		notImpementPopupHeaderText = "Under construction!";
+    		notImpementContentText = "The manual addition of points has not been implemented yet!\\nIn the future the user will be able to add points manually and modify them without having to load them from an external file.";
+    		
     	}else //GR
     	{
     		//-----MainWidnow--------------
@@ -52,6 +61,12 @@ public class TextHandler
     		
     		//-----FileChooserWindow--------------
     		fileChooserTitleText = "Επιλέξτε το αρχείο που περιέχει τα σημεία";
+    		
+    		//PutPointsButtonHandler popup  		
+    		notImpementPopupTitle = "Προσθήκη Σημείων";
+    		notImpementPopupHeaderText = "Υπό κατασκευή!";
+    		notImpementContentText = "Η χειροκίνητη προσθήκη σημείων δεν έχει υλοποιηθεί ακόμα!\nΜελλοντικά ο χρήστης θα μπορεί να προσθέσει σημεία με το χέρι του και να τα τροποποιεί χωρίς να χρειάζεται η φόρτωση τους από εξωτερικό αρχείο.";
+    	
     	}
     }
     
@@ -79,4 +94,18 @@ public class TextHandler
     {
     	return fileChooserTitleText;
     }
+    
+    public String getNotImpementPopupTitle()
+    {
+    	return notImpementPopupTitle;
+    }
+    public String getNotImpementPopupHeaderText()
+    {
+    	return notImpementPopupHeaderText;
+    }
+    public String getNotImpementContentText()
+    {
+    	return notImpementContentText;
+    }
+    
 }

@@ -1,26 +1,23 @@
 package Control;
 
-import View.GraphGUI;
+import Model.TextHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 
 public class PutPointsButtonHandler  implements EventHandler<ActionEvent>
-{
-	private Stage graphStage;
-	private GraphGUI graphGUI;
+{	
+	private TextHandler textHandler;
 	
 	public PutPointsButtonHandler()
 	{	
+		textHandler = TextHandler.getInstance();
 	}
 	
 	@Override
 	public void handle(ActionEvent arg0) 
 	{
-		//mainStage.close();
-		System.out.println("Put points with mouse");
 		notImpementPopup();
 	}
 	
@@ -29,8 +26,14 @@ public class PutPointsButtonHandler  implements EventHandler<ActionEvent>
         // set alert type
         Alert a = new Alert(AlertType.INFORMATION);
 
+        // set title text
+        a.setTitle(textHandler.getNotImpementPopupTitle());
+        
+        //
+        a.setHeaderText(textHandler.getNotImpementPopupHeaderText());
+        
         // set content text
-        a.setContentText("Δεν έχει υλοποιηθεί ακόμα!");
+        a.setContentText(textHandler.getNotImpementContentText());
 
         // show the dialog
         a.show();

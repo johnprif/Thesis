@@ -30,7 +30,6 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 	public void handle(ActionEvent arg0) 
 	{
 		fileChooserStage = new Stage();
-		textHandler = TextHandler.getInstance();
 		fileChooser();
 	}
 	
