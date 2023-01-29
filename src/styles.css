@@ -73,6 +73,7 @@
 .web-view{
 	-fx-context-menu-enabled: true;
 	-fx-page-fill: red;
-	-fx-font-scale: 100;
+	-fx-font-scale: 1;
+	-fx-font-smoothing-type: gray;
 }
 
