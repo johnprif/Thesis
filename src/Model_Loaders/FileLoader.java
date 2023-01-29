@@ -1,6 +1,6 @@
 //https://www.w3schools.com/java/java_interface.asp
 
-package Model_Loader;
+package Model_Loaders;
 
 import java.util.ArrayList;
 import javafx.geometry.Point2D;

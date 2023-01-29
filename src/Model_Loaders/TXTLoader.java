@@ -1,6 +1,6 @@
 //https://www.geeksforgeeks.org/different-ways-reading-text-file-java/
 
-package Model_Loader;
+package Model_Loaders;
 
 import java.io.File;
 import java.io.IOException;

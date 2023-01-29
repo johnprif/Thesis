@@ -1,4 +1,4 @@
-package Model_Loader;
+package Model_Loaders;
 
 import java.io.IOException;
 import java.util.ArrayList;

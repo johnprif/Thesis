@@ -11,6 +11,7 @@
 	-fx-border-radius: 5px; 
 	-fx-border-color: white; /* Light blue border color */
     -fx-border-width:1px; /* 2 pixels border width */
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
 .button:hover {

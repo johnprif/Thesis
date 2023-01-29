@@ -2,7 +2,7 @@ package Control;
 
 import java.io.File;
 import Model.TextHandler;
-import Model_Loader.FileLoaderFactory;
+import Model_Loaders.FileLoaderFactory;
 import View.GraphGUI;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

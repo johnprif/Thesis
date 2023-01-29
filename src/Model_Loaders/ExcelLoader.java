@@ -2,7 +2,7 @@
 //https://github.com/johnprif/AdvancedText2SpeechApp/blob/main/src/input/ExcelReader.java
 //https://howtodoinjava.com/java/library/readingwriting-excel-files-in-java-poi-tutorial/
 
-package Model_Loader;
+package Model_Loaders;
 
 import org.apache.poi.ss.usermodel.*;
 import java.io.File;
