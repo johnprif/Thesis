@@ -20,7 +20,7 @@ public class CustomMouseListener  implements ChartMouseListenerFX
 	{
 		x = arg0.getChart().getXYPlot().getDomainCrosshairValue();
 		y = arg0.getChart().getXYPlot().getRangeCrosshairValue();
-		textTitle.setText("Current Point: ("+x+", "+y+")");
+		textTitle.setText("Current Point: ("+x+"1, "+y+")");
 	}
 
 

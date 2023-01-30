@@ -13,6 +13,8 @@ import java.awt.geom.Ellipse2D;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.annotations.XYShapeAnnotation;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.NumberTickUnit;
 import org.jfree.chart.fx.ChartViewer;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYItemRenderer;
@@ -36,8 +38,6 @@ public class GraphGUI
 	private XYPlot plot;
 	private TextTitle textSubTitle;
 	private JFreeChart chart;
-
-	private Ellipse2D circle;
 	
 	public GraphGUI(String path)
 	{
@@ -111,8 +111,9 @@ public class GraphGUI
                 );	
 		plot = (XYPlot)scatterPlot.getPlot(); 
 		
-		circle = dataBase.findCircle();
+		Ellipse2D circle = dataBase.findCircle();
 		XYShapeAnnotation annotation = new XYShapeAnnotation(circle, new BasicStroke(1.0f), Color.RED, null);
+		annotation.setToolTipText("center=("+circle.getCenterX()+", "+circle.getCenterY()+")\nradius="+circle.getWidth()/2);
 		plot.addAnnotation(annotation);
 		plot.setDomainPannable(true);
 	    plot.setRangePannable(true);
