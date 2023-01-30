@@ -36,7 +36,7 @@ public class GraphGUI
 	private XYPlot plot;
 	private TextTitle textSubTitle;
 	private JFreeChart chart;
-	
+
 	private Ellipse2D circle;
 	
 	public GraphGUI(String path)
@@ -69,7 +69,7 @@ public class GraphGUI
 	    
 		ChartViewer viewer = new ChartViewer(chart);
 		viewer.addChartMouseListener(new CustomMouseListener(textSubTitle));
-
+		
 		circleStage.setScene(new Scene(viewer));
 	}
 
@@ -131,8 +131,6 @@ public class GraphGUI
         renderer.setSeriesPaint(1, Color.BLUE); //convex points
         renderer.setSeriesPaint(2, Color.ORANGE); // all points
       //=======================================================
-
-
 	}
 
 	private void makeChart()
