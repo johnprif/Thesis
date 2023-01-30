@@ -20,7 +20,7 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 	
 	private AlgorithmsHandler algorithmsHandler;
 	
-	private GraphsGUIHandler grapghsGUIHandler;
+	private GraphGUIHandler graphGUIHandler;
 	
 	public LoadFileButtonHandler()
 	{
@@ -60,6 +60,6 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 		fileFactoryLoader = new FileLoaderFactory(path);
 		fileFactoryLoader.getAllPoints();
 		algorithmsHandler = new AlgorithmsHandler();
-		grapghsGUIHandler = new GraphsGUIHandler(path);
+		graphGUIHandler = new GraphGUIHandler(path);
 	}
 }
