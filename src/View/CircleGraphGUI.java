@@ -22,7 +22,6 @@ import org.jfree.chart.title.TextTitle;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import Control.CustomMouseListener;
-import Model.DataBase;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.geometry.Point2D;
