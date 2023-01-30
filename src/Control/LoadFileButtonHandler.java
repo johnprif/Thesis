@@ -3,7 +3,7 @@ package Control;
 import java.io.File;
 import Model.TextHandler;
 import Model_Loaders.FileLoaderFactory;
-import View.GraphGUI;
+import View.CircleGraphGUI;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
@@ -18,8 +18,9 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 	private FileChooser fileChooser;
 	private FileLoaderFactory fileFactoryLoader;
 	
-	private GraphGUI graphGUI;
 	private AlgorithmsHandler algorithmsHandler;
+	
+	private GraphsGUIHandler grapghsGUIHandler;
 	
 	public LoadFileButtonHandler()
 	{
@@ -59,12 +60,6 @@ public class LoadFileButtonHandler implements EventHandler<ActionEvent>
 		fileFactoryLoader = new FileLoaderFactory(path);
 		fileFactoryLoader.getAllPoints();
 		algorithmsHandler = new AlgorithmsHandler();
-		graphGUI = new GraphGUI(path);
+		grapghsGUIHandler = new GraphsGUIHandler(path);
 	}
-	
-	public String getPath()
-	{
-		return path;
-	}
-	
 }

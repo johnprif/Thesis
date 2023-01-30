@@ -13,8 +13,6 @@ import java.awt.geom.Ellipse2D;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.annotations.XYShapeAnnotation;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.axis.NumberTickUnit;
 import org.jfree.chart.fx.ChartViewer;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYItemRenderer;
@@ -26,7 +24,7 @@ import Model.DataBase;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class GraphGUI
+public class CircleGraphGUI
 {
 	private Stage circleStage;
 	private Stage voronoiStage;
@@ -39,7 +37,7 @@ public class GraphGUI
 	private TextTitle textSubTitle;
 	private JFreeChart chart;
 	
-	public GraphGUI(String path)
+	public CircleGraphGUI(String path)
 	{
 		this.path = path;
 		dataBase = DataBase.getInstance();
