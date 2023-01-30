@@ -37,6 +37,8 @@ public class GraphGUI
 	private TextTitle textSubTitle;
 	private JFreeChart chart;
 	
+	private Ellipse2D circle;
+	
 	public GraphGUI(String path)
 	{
 		this.path = path;
@@ -109,7 +111,7 @@ public class GraphGUI
                 );	
 		plot = (XYPlot)scatterPlot.getPlot(); 
 		
-		Ellipse2D circle = dataBase.findCircle();
+		circle = dataBase.findCircle();
 		XYShapeAnnotation annotation = new XYShapeAnnotation(circle, new BasicStroke(1.0f), Color.RED, null);
 		plot.addAnnotation(annotation);
 		plot.setDomainPannable(true);
@@ -139,8 +141,8 @@ public class GraphGUI
 		chart.setTitle("Smallest Enclosing Circle");
 		//=======================================================
 		chart.getTitle().setPaint(Color.decode("#006699"));
-		chart.getTitle().setFont(new Font("Arial", Font.BOLD, 24));
-        chart.setBackgroundPaint(Color.decode("#f5f5f5"));
+		chart.getTitle().setFont(new Font("Arial", Font.TRUETYPE_FONT, 24));
+        chart.setBackgroundPaint(Color.decode("#f0f9f6"));
       //=======================================================
 		chart.addSubtitle(textSubTitle);
 		chart.setElementHinting(true);
