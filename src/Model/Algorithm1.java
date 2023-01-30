@@ -29,7 +29,7 @@ public class Algorithm1
 	{
 		boolean finish;
 		double maxAngle;
-		double myPi2 = Math.round(Math.PI/2*1000.0)/1000.0;
+		double myPi2 = Math.PI/2;
 		
 		if(dataBase.getCirclePointsSize() != 1)
 		{
