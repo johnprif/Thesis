@@ -73,7 +73,7 @@ public class DataBase
 	}
 	
 //	----------O(nlog(n))---------------
-	private void loadMaps()
+	private void loadMaps2()
 	{
 		int size = circlePoints.size();
 		double radius;
@@ -97,6 +97,31 @@ public class DataBase
 	    }
 	}
 	
+	private void loadMaps()
+	{
+	    int size = circlePoints.size();
+	    double radius;
+
+	    hashMap = new HashMap<Point2D, ArrayList<Point2D>>();
+	    treeMap = new TreeMap<>();
+
+	    for (int i = 0; i < size; i++) 
+	    {
+	        Point2D prev = circlePoints.get((i + size - 1) % size);
+	        Point2D curr = circlePoints.get(i);
+	        Point2D next = circlePoints.get((i + 1) % size);
+
+	        radius = getRadius(prev, curr, next);
+	        ArrayList<Point2D> kati = new ArrayList<Point2D>();
+	        kati.add(prev);
+	        kati.add(next);
+
+	        System.out.println("Contains same radius? --> "+treeMap.containsKey(radius));
+	        hashMap.put(curr, kati);
+	        treeMap.put(radius, curr);
+	    }
+	}
+
 //----------O(log(n)) for each calling---------------
 	public double customFindMaxAngle()
 	{
@@ -271,12 +296,6 @@ public class DataBase
 	            maxRadius = radius;
 	            maxAngle = angle;
 	        }
-//	        if (radius > maxRadius) 
-//	        {
-//	        	indexOfMaxPoint = i;
-//	            maxRadius = radius;
-//	            maxAngle = angle;
-//	        }
 	    }
 	    
 	    return maxAngle;
