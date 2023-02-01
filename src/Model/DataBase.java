@@ -159,12 +159,13 @@ public class DataBase
 	public void moveToCircleArray()
 	{
 		HashMap<Point2D, Point2D> kati = new HashMap<Point2D, Point2D>();
-		circlePoints = new ArrayList<Point2D>();
+		
 
 		for (Point2D key : hashMap.keySet()) 
 		{
 			kati.put(key, key);
 		}
+		circlePoints = new ArrayList<Point2D>(kati.values());
 	}
 	//-----------------------------------------------------------------------------------
 	public int getAllPointsSize()
