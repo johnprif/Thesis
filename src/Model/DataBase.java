@@ -72,9 +72,12 @@ public class DataBase
 		//-----------------------------------------------
 	}
 	
+//	----------O(n)---------------
 	private void loadMaps()
 	{
 		int size = circlePoints.size();
+		double radius;
+		
 		hashMap = new HashMap<Point2D, ArrayList<Point2D>>();
 		treeMap = new TreeMap<>();
 		
@@ -84,7 +87,7 @@ public class DataBase
 	        Point2D curr = circlePoints.get(i);
 	        Point2D next = circlePoints.get((i + 1) % size);
 	        
-	        double radius = getRadius(prev, curr, next);
+	        radius = getRadius(prev, curr, next);
 	        ArrayList<Point2D> kati = new ArrayList<Point2D>();
 	        kati.add(prev);
 	        kati.add(next);
@@ -160,7 +163,6 @@ public class DataBase
 	{
 		HashMap<Point2D, Point2D> kati = new HashMap<Point2D, Point2D>();
 		
-
 		for (Point2D key : hashMap.keySet()) 
 		{
 			kati.put(key, key);
