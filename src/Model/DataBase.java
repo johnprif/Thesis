@@ -72,7 +72,7 @@ public class DataBase
 		//-----------------------------------------------
 	}
 	
-//	----------O(n)---------------
+//	----------O(nlog(n))---------------
 	private void loadMaps()
 	{
 		int size = circlePoints.size();
@@ -83,21 +83,21 @@ public class DataBase
 		
 		for (int i = 0; i < size; i++) 
 	    {
-	        Point2D prev = circlePoints.get((i + size - 1) % size);
-	        Point2D curr = circlePoints.get(i);
-	        Point2D next = circlePoints.get((i + 1) % size);
+	        Point2D prev = circlePoints.get((i + size - 1) % size); //O(1)
+	        Point2D curr = circlePoints.get(i); //O(1)
+	        Point2D next = circlePoints.get((i + 1) % size); //O(1)
 	        
-	        radius = getRadius(prev, curr, next);
+	        radius = getRadius(prev, curr, next); //O(1)
 	        ArrayList<Point2D> kati = new ArrayList<Point2D>();
 	        kati.add(prev);
 	        kati.add(next);
 
-	        hashMap.put(curr, kati);
-	        treeMap.put(radius, curr);
+	        hashMap.put(curr, kati); //O(1)
+	        treeMap.put(radius, curr); //O(log(n))
 	    }
 	}
 	
-//----------2*O(log(n)) for each calling---------------
+//----------O(log(n)) for each calling---------------
 	public double customFindMaxAngle()
 	{
 		int size = hashMap.size(); //O(1)
@@ -107,7 +107,7 @@ public class DataBase
 	    	return -1;
 	    }
 		
-		maxRadiusCustom = treeMap.lastKey(); //O(log(n))
+		maxRadiusCustom = treeMap.lastKey(); //O(1)
 		currCustom = treeMap.get(maxRadiusCustom); //O(log(n))
 		prevCustom = hashMap.get(currCustom).get(0); //O(1)
 		nextCustom = hashMap.get(currCustom).get(1); //O(1)
@@ -115,6 +115,7 @@ public class DataBase
 		
 		return maxAngleCustom;
 	}
+	
 	
 //----------5*O(log(n)) for each calling---------------
 	public void customDeleteNodeForCircle()
@@ -243,37 +244,43 @@ public class DataBase
 	}
 	
 //----------O(n) for each calling---------------
-//	public double findMaxNodeforCircle() 
-//	{
-//	    int size = circlePoints.size();
-//	    
-//	    if (size <= 2)
-//	    {
-//	    	return -1;
-//	    }
-//	    
-//	    double maxRadius = 0.0;
-//	    double maxAngle = 0.0;
-//	    
-//	    for (int i = 0; i < size; i++) 
-//	    {
-//	        Point2D prev = circlePoints.get((i + size - 1) % size);
-//	        Point2D curr = circlePoints.get(i);
-//	        Point2D next = circlePoints.get((i + 1) % size);
-//	        
-//	        double radius = getRadius(prev, curr, next);
-//	        double angle = getAngle(prev, curr, next);
-//	        
-//	        if (radius > maxRadius || (radius == maxRadius && angle >= maxAngle)) 
+	public double findMaxNodeforCircle() 
+	{
+	    int size = circlePoints.size();
+	    
+	    if (size <= 2)
+	    {
+	    	return -1;
+	    }
+	    
+	    double maxRadius = 0.0;
+	    double maxAngle = 0.0;
+	    
+	    for (int i = 0; i < size; i++) 
+	    {
+	        Point2D prev = circlePoints.get((i + size - 1) % size);
+	        Point2D curr = circlePoints.get(i);
+	        Point2D next = circlePoints.get((i + 1) % size);
+	        
+	        double radius = getRadius(prev, curr, next);
+	        double angle = getAngle(prev, curr, next);
+	        
+	        if (radius > maxRadius || (radius == maxRadius && angle >= maxAngle)) 
+	        {
+	        	indexOfMaxPoint = i;
+	            maxRadius = radius;
+	            maxAngle = angle;
+	        }
+//	        if (radius > maxRadius) 
 //	        {
 //	        	indexOfMaxPoint = i;
 //	            maxRadius = radius;
 //	            maxAngle = angle;
 //	        }
-//	    }
-//	    
-//	    return maxAngle;
-//	}
+	    }
+	    
+	    return maxAngle;
+	}
 	
 	public double findMaxNodeforVoronoi() 
 	{
