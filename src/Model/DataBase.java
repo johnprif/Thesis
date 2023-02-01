@@ -136,7 +136,7 @@ public class DataBase
 		currCustom = treeMap.get(maxRadiusCustom); //O(log(n))
 		prevCustom = hashMap.get(currCustom).get(0); //O(1)
 		nextCustom = hashMap.get(currCustom).get(1); //O(1)
-		maxAngleCustom =  getAngle(prevCustom, currCustom, nextCustom); //O(1)
+		maxAngleCustom = getAngle(prevCustom, currCustom, nextCustom); //O(1)
 		
 		return maxAngleCustom;
 	}
@@ -174,7 +174,8 @@ public class DataBase
 		
 		hashMap.put(leftCurr, left); //O(1)
 		hashMap.put(rightCurr, right); //O(1)
-		
+		System.out.println("Contains same radius? --> "+treeMap.containsKey(getRadius(leftPrev, leftCurr, rightCurr)));
+		System.out.println("Contains same radius? --> "+treeMap.containsKey(getRadius(leftCurr, rightCurr, rightNext)));
 		treeMap.put(getRadius(leftPrev, leftCurr, rightCurr), leftCurr);  //O(log(n))
 		treeMap.put(getRadius(leftCurr, rightCurr, rightNext), rightCurr); //O(log(n))
 	}
