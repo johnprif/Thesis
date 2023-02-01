@@ -19,7 +19,8 @@ public class AlgorithmsHandler
 		grahamScan = new GrahamScan();	
 		
 		algorithm1 = new Algorithm1();	
-		algorithm1.computeSmallestEnclosingCircle();
+//		algorithm1.computeSmallestEnclosingCircle();
+		algorithm1.computeSmallestEnclosingCircle2();
 		
 		algorithm2 = new Algorithm2();
 //		algorithm2.computeVoronoiDiagram();

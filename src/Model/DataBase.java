@@ -5,6 +5,9 @@ package Model;
 
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.TreeMap;
+
 import javafx.geometry.Point2D;
 
 public class DataBase 
@@ -15,6 +18,17 @@ public class DataBase
 	private static final DataBase instance = new DataBase();
 	private int indexOfMaxPoint = 0;
 	private int indexOfMaxPoint2 = 0;
+	//-------------------------------------------------------
+	private HashMap<Point2D, ArrayList<Point2D>> hashMap;
+	private TreeMap<Double, Point2D> treeMap;
+	
+	private Point2D currCustom;
+	private Point2D prevCustom;
+	private Point2D nextCustom;
+	private double maxAngleCustom;
+	private double maxRadiusCustom;
+	
+	//-------------------------------------------------------
 	
 	private DataBase()
 	{
@@ -53,8 +67,115 @@ public class DataBase
 	public void setCirclePoints(ArrayList<Point2D> circlePoints)
 	{
 		this.circlePoints = new ArrayList<Point2D>(circlePoints);
+		//-----------------------------------------------
+		loadMaps();
+		//-----------------------------------------------
 	}
 	
+	private void loadMaps()
+	{
+		int size = circlePoints.size();
+		hashMap = new HashMap<Point2D, ArrayList<Point2D>>();
+		treeMap = new TreeMap<>();
+		
+		for (int i = 0; i < size; i++) 
+	    {
+	        Point2D prev = circlePoints.get((i + size - 1) % size);
+	        Point2D curr = circlePoints.get(i);
+	        Point2D next = circlePoints.get((i + 1) % size);
+	        
+	        double radius = getRadius(prev, curr, next);
+	        ArrayList<Point2D> kati = new ArrayList<Point2D>();
+	        kati.add(prev);
+	        kati.add(next);
+
+	        hashMap.put(curr, kati);
+	        treeMap.put(radius, curr);
+	    }
+	}
+	
+	public double customFindMaxAngle()
+	{
+		int size = hashMap.size();
+	    
+	    if (size <= 2)
+	    {
+	    	return -1;
+	    }
+		
+		maxRadiusCustom = treeMap.lastKey();
+		currCustom = treeMap.get(maxRadiusCustom);
+		prevCustom = hashMap.get(currCustom).get(0);
+		nextCustom = hashMap.get(currCustom).get(1);
+		maxAngleCustom =  getAngle(prevCustom, currCustom, nextCustom);
+		
+		return maxAngleCustom;
+	}
+	
+	public void customDeleteNodeForCircle()
+	{	
+		ArrayList<Point2D> left = new ArrayList<Point2D>();
+		ArrayList<Point2D> right = new ArrayList<Point2D>();
+		
+		//---I found that has changed
+		Point2D leftCurr = hashMap.get(currCustom).get(0);
+		Point2D leftPrev = hashMap.get(leftCurr).get(0);
+		Point2D leftNext = hashMap.get(leftCurr).get(1);
+		
+		Point2D rightCurr = hashMap.get(currCustom).get(1);
+		Point2D rightPrev = hashMap.get(rightCurr).get(0);
+		Point2D rightNext = hashMap.get(rightCurr).get(1);
+				
+		treeMap.remove(maxRadiusCustom);
+		treeMap.remove(getRadius(leftPrev, leftCurr, leftNext));
+		treeMap.remove(getRadius(rightPrev, rightCurr, rightNext));
+		
+		hashMap.remove(leftCurr);
+		hashMap.remove(currCustom);
+		hashMap.remove(rightCurr);
+		
+		
+		left.add(leftPrev);
+		left.add(rightCurr);
+		
+		right.add(leftCurr);
+		right.add(rightNext);
+		
+		hashMap.put(leftCurr, left);
+		hashMap.put(rightCurr, right);
+		
+		treeMap.put(getRadius(leftPrev, leftCurr, rightCurr), leftCurr);
+		treeMap.put(getRadius(leftCurr, rightCurr, rightNext), rightCurr);
+	}
+	
+	public int getHashCirclePointsSize()
+	{
+		return hashMap.size();
+	}
+	
+	
+	public void moveToCircleArray()
+	{
+		HashMap<Point2D, Point2D> kati = new HashMap<Point2D, Point2D>();
+		circlePoints = new ArrayList<Point2D>();
+//		hashMap.forEach((key, value) ->{
+//			circlePoints.add(value.get(0));
+//			circlePoints.add(value.get(1));
+//			circlePoints.add(key);
+//		});
+		System.out.println("The size of the map is = "+hashMap.size());
+		for (Point2D key : hashMap.keySet()) 
+		{
+			kati.put(key, key);
+//		    System.out.println("Key: " + key + " Value: " + hashMap.get(key).get(0));
+//		    System.out.println("Key: " + key + " Value: " + hashMap.get(key).get(1));
+		    circlePoints.add(kati.get(key));
+//		    circlePoints.add(hashMap.get(key).get(1));
+//		    circlePoints.add(key);
+//		    break;
+		}
+	}
+	//-----------------------------------------------------------------------------------
 	public int getAllPointsSize()
 	{
 		return allPoints.size();
