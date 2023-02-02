@@ -254,16 +254,12 @@ public class DataBase
 			neighbours.remove(leftCurr); //O(1)
 			neighbours.remove(currCustom); //O(1)
 			neighbours.remove(rightCurr); //O(1)
-			
-			
-			
-			
+					
 			left.add(leftPrev); //O(1)
 			left.add(rightCurr); //O(1)
 			
 			right.add(leftCurr); //O(1)
-			right.add(rightNext); //O(1)
-			
+			right.add(rightNext); //O(1)			
 			
 			neighbours.put(leftCurr, left); //O(1)
 			neighbours.put(rightCurr, right); //O(1)
