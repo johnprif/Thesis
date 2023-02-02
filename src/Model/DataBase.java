@@ -160,7 +160,7 @@ public class DataBase
 		radiusForEachNode.put(getRadius(leftPrev, leftCurr, rightCurr), leftCurr);  //O(log(n))
 		radiusForEachNode.put(getRadius(leftCurr, rightCurr, rightNext), rightCurr); //O(log(n))
 	}
-	
+	//----------7*O(log(n)) for each calling---------------
 	public void customDeleteNodeForCircle()
 	{	
 		ArrayList<Point2D> left = new ArrayList<Point2D>();
@@ -196,24 +196,26 @@ public class DataBase
 		
 		double beforeRadius = getRadius(leftPrev, leftCurr, rightCurr);
 		double nextRadius = getRadius(leftCurr, rightCurr, rightNext);
-		if(!radiusForEachNode.containsKey(beforeRadius))
+		Point2D currPoint;
+		
+		if(!radiusForEachNode.containsKey(beforeRadius)) //O(log(n))
 		{
 			radiusForEachNode.put(beforeRadius, leftCurr);  //O(log(n))
 		}else
 		{
-			Point2D currPoint = radiusForEachNode.get(beforeRadius);
+			currPoint = radiusForEachNode.get(beforeRadius);
 			
 			if(getAngle(neighbours.get(leftCurr).get(0), leftCurr, neighbours.get(leftCurr).get(1)) >= getAngle(neighbours.get(currPoint).get(0), currPoint, neighbours.get(currPoint).get(1)))
 			{
 				radiusForEachNode.put(getRadius(neighbours.get(currPoint).get(0), currPoint, neighbours.get(currPoint).get(1)), leftCurr);  //O(log(n))
 			}
 		}
-		if(!radiusForEachNode.containsKey(nextRadius))
+		if(!radiusForEachNode.containsKey(nextRadius)) //O(log(n))
 		{
 			radiusForEachNode.put(nextRadius, rightCurr); //O(log(n))
 		}else
 		{
-			Point2D currPoint = radiusForEachNode.get(nextRadius);
+			currPoint = radiusForEachNode.get(nextRadius);
 			if(getAngle(neighbours.get(rightCurr).get(0), rightCurr, neighbours.get(rightCurr).get(1)) >= getAngle(neighbours.get(currPoint).get(0), currPoint, neighbours.get(currPoint).get(1)))
 			{
 				radiusForEachNode.put(getRadius(neighbours.get(currPoint).get(0), currPoint, neighbours.get(currPoint).get(1)), leftCurr);  //O(log(n))
