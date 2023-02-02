@@ -123,7 +123,7 @@ public class DataBase
 		nextCustom = neighbours.get(currCustom).get(1); //O(1)
 		maxAngleCustom = getAngle(prevCustom, currCustom, nextCustom); //O(1)
 		//---------------------------------------------
-		existingRadius.put(maxRadiusCustom, currCustom);
+//		existingRadius.put(maxRadiusCustom, currCustom);
 		//---------------------------------------------
 		return maxAngleCustom;
 	}
@@ -166,7 +166,7 @@ public class DataBase
 		radiusForEachNode.put(getRadius(leftCurr, rightCurr, rightNext), rightCurr); //O(log(n))
 	}
 	//----------7*O(log(n)) for each calling---------------
-	public void customDeleteNodeForCircle()
+	public void customDeleteNodeForCircle2()
 	{	
 		ArrayList<Point2D> left = new ArrayList<Point2D>();
 		ArrayList<Point2D> right = new ArrayList<Point2D>();
@@ -228,8 +228,8 @@ public class DataBase
 		}
 	}
 	
-	//----------7*O(log(n)) for each calling---------------
-		public void customDeleteNodeForCircle2()
+	//----------5*O(log(n)) for each calling---------------
+		public void customDeleteNodeForCircle()
 		{	
 			ArrayList<Point2D> left = new ArrayList<Point2D>();
 			ArrayList<Point2D> right = new ArrayList<Point2D>();
@@ -247,7 +247,9 @@ public class DataBase
 			radiusForEachNode.remove(getRadius(leftPrev, leftCurr, leftNext)); //O(log(n))
 			radiusForEachNode.remove(getRadius(rightPrev, rightCurr, rightNext)); //O(log(n))
 			
-			existingRadius.remove(maxRadiusCustom);
+			existingRadius.remove(maxRadiusCustom);//O(1)
+			existingRadius.remove(getRadius(leftPrev, leftCurr, leftNext)); //O(1)
+			existingRadius.remove(getRadius(rightPrev, rightCurr, rightNext)); //O(1))
 			
 			neighbours.remove(leftCurr); //O(1)
 			neighbours.remove(currCustom); //O(1)
@@ -273,27 +275,30 @@ public class DataBase
 			if(!existingRadius.containsKey(beforeRadius)) //O(1)
 			{
 				radiusForEachNode.put(beforeRadius, leftCurr);  //O(log(n))
+				existingRadius.put(beforeRadius, leftCurr);//O(1)
+				
 			}else
 			{
-//				currPoint = radiusForEachNode.get(beforeRadius);
-				currPoint = existingRadius.get(beforeRadius);
+				currPoint = existingRadius.get(beforeRadius);//O(1)
 				
 				if(getAngle(neighbours.get(leftCurr).get(0), leftCurr, neighbours.get(leftCurr).get(1)) >= getAngle(neighbours.get(currPoint).get(0), currPoint, neighbours.get(currPoint).get(1)))
 				{
 					radiusForEachNode.put(getRadius(neighbours.get(currPoint).get(0), currPoint, neighbours.get(currPoint).get(1)), leftCurr);  //O(log(n))
+					existingRadius.put(getRadius(neighbours.get(currPoint).get(0), currPoint, neighbours.get(currPoint).get(1)), leftCurr);  //O(1)
 				}
 			}
 			if(!existingRadius.containsKey(nextRadius)) //O(1)
 			{
 				radiusForEachNode.put(nextRadius, rightCurr); //O(log(n))
+				existingRadius.put(nextRadius, rightCurr);//O(1)
 			}else
 			{
-//				currPoint = radiusForEachNode.get(nextRadius);
-				currPoint = existingRadius.get(nextRadius);
+				currPoint = existingRadius.get(nextRadius);//O(1)
 				
 				if(getAngle(neighbours.get(rightCurr).get(0), rightCurr, neighbours.get(rightCurr).get(1)) >= getAngle(neighbours.get(currPoint).get(0), currPoint, neighbours.get(currPoint).get(1)))
 				{
 					radiusForEachNode.put(getRadius(neighbours.get(currPoint).get(0), currPoint, neighbours.get(currPoint).get(1)), rightCurr);  //O(log(n))
+					existingRadius.put(getRadius(neighbours.get(currPoint).get(0), currPoint, neighbours.get(currPoint).get(1)), rightCurr);  //O(1)
 				}
 			}
 		}
