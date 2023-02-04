@@ -17,6 +17,7 @@ public class AlgorithmsHandler
 		dataBase = DataBase.getInstance();
 		
 		grahamScan = new GrahamScan();	
+		grahamScan.initialize();
 		
 		algorithm1 = new Algorithm1();	
 		algorithm1.computeSmallestEnclosingCircle();

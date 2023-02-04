@@ -27,16 +27,20 @@ public class GrahamScan
 	
 	public GrahamScan()
 	{
-		dataBase = DataBase.getInstance();
+		dataBase = DataBase.getInstance();		
+	}
+		
+	public void initialize()
+	{
 		allPoints = new ArrayList<Point2D>(dataBase.getAllPoints());
 		convexHullPoints = new ArrayList<Point2D>(computeGrahamScan(allPoints));
 		convexHullPoints.remove(convexHullPoints.size()-1);
 		dataBase.setConvexPoints(convexHullPoints);
 		dataBase.setCirclePoints(convexHullPoints);
 	}
-		
+	
 	//----------------------------------O(nlogn)--------------------------------------
-	public static List<Point2D> computeGrahamScan(List<Point2D> points) {
+	private static List<Point2D> computeGrahamScan(List<Point2D> points) {
         // Find the point with the lowest y-coordinate (or the leftmost point in case of a tie)
         start = points.get(0);
 
