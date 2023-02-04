@@ -31,42 +31,15 @@ public class Algorithm1
 		double maxAngle;
 		double myPi2 = Math.PI/2;
 		
-		if(dataBase.getCirclePointsSize() != 1)
-		{
-			finish = false;
-			do
-			{
-				maxAngle = dataBase.findMaxNodeforCircle();
-				if(maxAngle>myPi2)
-				{
-					dataBase.deleteMaxNodeForCircle();					
-				}else
-				{
-					System.out.println("The algorithm 1 finished = "+dataBase.getCirclePointsSize());
-					finish = true;
-				}
-			}while(!finish);
-		}else
-		{
-			System.out.println("Only 1 point");
-		}
-	}
-	
-	public void computeSmallestEnclosingCircle2()
-	{
-		boolean finish;
-		double maxAngle;
-		double myPi2 = Math.PI/2;
-		
 		if(dataBase.getHashCirclePointsSize() != 1)
 		{
 			finish = false;
 			do
 			{
-				maxAngle = dataBase.customFindMaxAngle();
+				maxAngle = dataBase.findMaxAngle();
 				if(maxAngle>myPi2)
 				{
-					dataBase.customDeleteNodeForCircle();					
+					dataBase.deleteNodeForCircle();					
 				}else
 				{
 					dataBase.moveToCircleArray();
