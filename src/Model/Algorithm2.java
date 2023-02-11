@@ -8,31 +8,32 @@ public class Algorithm2
 		dataBase = DataBase.getInstance();
 	}
 	
-//	public void computeVoronoiDiagram()
-//	{
-//		System.out.println("I am the second algorithm!");
-//		boolean finish;
-//		double maxAngle;
-//		double myPi2 = Math.round(Math.PI/2*1000.0)/1000.0;
-//		
-//		if(dataBase.getCirclePointsSize() != 1)
-//		{
-//			finish = false;
-//			do
-//			{
-//				maxAngle = dataBase.findMaxNodeforCircle();
-//				if(maxAngle>myPi2)
-//				{
-//					dataBase.deleteMaxNodeForCircle();					
-//				}else
-//				{
-//					System.out.println("The algorithm 1 finished = "+dataBase.getCirclePointsSize());
-//					finish = true;
-//				}
-//			}while(!finish);
-//		}else
-//		{
-//			System.out.println("Only 1 point");
-//		}
-//	}
+	public void computeFarthestNeighborVoronoiDiagram()
+	{
+		System.out.println("I am the second algorithm!");
+		double n = dataBase.getCirclePointsSize();
+		
+		if(n > 2)
+		{
+			do
+			{
+				//find p maximizing radius and angle
+				//q=before(p);
+				//c=centre(q, p, next(p));
+				//add c to K;
+				//add (c, u(p)) and (c, u(q)) to E;
+				//u(q)=c;
+				//next(q)=next(p);
+				//before(next(q))=q;
+				n = n-1;
+			}while(n == 2);
+			//add (u(q), u(next(q))) to E;
+		}else
+		{
+			if(n == 2) //S={p1, p2}
+			{
+				//add (u(p1), u(p2)) to E;
+			}
+		}
+	}
 }
