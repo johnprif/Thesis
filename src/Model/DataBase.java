@@ -30,8 +30,12 @@ public class DataBase
 	private double maxAngleCustom;
 	private double maxRadiusCustom;
 	
+	private ArrayList<Point2D> K;
+	private ArrayList<ArrayList<Point2D>> E;
+	
 	private DataBase()
 	{
+		
 	}
 	
 	public static DataBase getInstance()
@@ -455,4 +459,48 @@ public class DataBase
 
 	    return new Point2D(x, y);
 	}
+	
+	public Point2D getUp2(Point2D p, Point2D nextP) {
+	    double mx = (p.getX() + nextP.getX()) / 2.0;
+	    double my = (p.getY() + nextP.getY()) / 2.0;
+	    double dx = nextP.getY() - p.getY();
+	    double dy = p.getX() - nextP.getX();
+	    double ux = mx + dx;
+	    double uy = my + dy;
+	    return new Point2D(ux, uy);
+	}
+
+	public void addAllUpToK() 
+	{		
+		int size = convexPoints.size();
+		
+		for (int i = 0; i < size; i++) 
+	    {
+//	        Point2D prev = convexPoints.get((i + size - 1) % size); //O(1)
+	        Point2D curr = convexPoints.get(i); //O(1)
+	        Point2D next = convexPoints.get((i + 1) % size); //O(1)
+	        
+	        K.add(getUp2(curr, next));
+	    }
+	}
+	
+	public void addCtoK(Point2D c)
+	{
+		K.add(c);
+	}
+	
+	public void addCandUtoE(Point2D c, Point2D up)
+	{
+		ArrayList<Point2D> inner = new ArrayList<Point2D>();
+		inner.add(c);
+		inner.add(up);
+		E.add(inner);
+	}
+
+	public void makeKandE() 
+	{
+		K = new ArrayList<Point2D>();
+		E = new ArrayList<ArrayList<Point2D>>();		
+	}
+
 }
