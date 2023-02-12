@@ -73,6 +73,16 @@ public class DataBase
 		return circlePoints;
 	}
 	
+	public ArrayList<Point2D> getK()
+	{
+		return K;
+	}
+	
+	public ArrayList<ArrayList<Point2D>> getE()
+	{
+		return E;
+	}
+	
 	public void setAllPoints(ArrayList<Point2D> allPoints)
 	{
 		this.allPoints = new ArrayList<Point2D>(allPoints);

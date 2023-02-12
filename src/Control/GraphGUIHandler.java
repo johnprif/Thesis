@@ -17,7 +17,7 @@ public class GraphGUIHandler
 		dataBase = DataBase.getInstance();
 		
 		makeCircleGraph();
-//		makeVoronoiGraph();	
+		makeVoronoiGraph();	
 	}
 	
 	private void makeCircleGraph()
@@ -33,5 +33,13 @@ public class GraphGUIHandler
 	private void makeVoronoiGraph()
 	{
 		voronoiGraphGUI = new VoronoiGraphGUI(path);
+		voronoiGraphGUI.setAllPoints(dataBase.getAllPoints());
+		voronoiGraphGUI.setConvexPoints(dataBase.getConvexPoints());
+		voronoiGraphGUI.setCirclePoints(dataBase.getCirclePoints());
+		voronoiGraphGUI.setCircleObject(dataBase.findCircle());
+		voronoiGraphGUI.setK(dataBase.getK());
+		voronoiGraphGUI.setE(dataBase.getE());
+		
+		voronoiGraphGUI.initialize();
 	}
 }

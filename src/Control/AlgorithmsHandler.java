@@ -23,7 +23,7 @@ public class AlgorithmsHandler
 		algorithm1.computeSmallestEnclosingCircle();
 		
 		algorithm2 = new Algorithm2();
-//		algorithm2.computeVoronoiDiagram();
+		algorithm2.computeFarthestNeighborVoronoiDiagram();
 		
 	}
 }

@@ -13,7 +13,7 @@ public class Algorithm2
 	public void computeFarthestNeighborVoronoiDiagram()
 	{
 		System.out.println("I am the second algorithm!");
-		double n = dataBase.getConvexPointsSize();
+		int n = dataBase.getConvexPointsSize();
 		//I have to make (K,E) ArrayLits for each K, E
 		dataBase.makeKandE();
 		//for all p in S add u(p) to K;
@@ -25,6 +25,7 @@ public class Algorithm2
 		
 		if(n > 2)
 		{
+			System.out.println("Algorithm 2 n = " + n);
 			do
 			{
 				//find p maximizing radius and angle
@@ -35,12 +36,15 @@ public class Algorithm2
 				dataBase.addCtoK(c);
 				dataBase.addCandUtoE(c, dataBase.getUp2(p));
 				dataBase.addCandUtoE(c, dataBase.getUp2(before_p));
+				//u(q)=c;
 				dataBase.deleteNodeForCircle2();
 				n = n-1;
 			}while(n == 2);
-			dataBase.addCandUtoE(dataBase.getUp2(before_p), dataBase.getUp2(next_p));
+//			dataBase.addCandUtoE(dataBase.getUp2(before_p), dataBase.getUp2(next_p));
+			dataBase.addCandUtoE(c, dataBase.getUp2(next_p));			
 		}else
 		{
+			System.out.println("Algorithm 2 n = " + n);
 			if(n == 2) //S={p1, p2}
 			{
 				Point2D p1 = dataBase.getConvexPoints().get(0);
@@ -53,5 +57,6 @@ public class Algorithm2
 				dataBase.addCandUtoE(u_p1, u_p2);
 			}
 		}
+		System.out.println("Algorithm 2 finished!");
 	}
 }
