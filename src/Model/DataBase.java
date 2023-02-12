@@ -255,20 +255,20 @@ public class DataBase
 	        radiusForEachNode2.put(radius, curr); //O(log(n))
 	        
 	        existingRadius2.put(radius, curr);
-	        
-	        places.put(curr, i);
+//	        
+//	        places.put(curr, i);
 	    }
 	}
 	
 	
 	//----------O(log(n)) for each calling---------------		
-		public int findMaxAngle2()
+		public Point2D findMaxAngle2()
 		{
 			int size = neighbours.size(); //O(1)
 		    
 		    if (size <= 2)
 		    {
-		    	return -1;
+		    	return null;
 		    }
 			
 			maxRadiusCustom2 = radiusForEachNode2.lastKey(); //O(1)
@@ -280,8 +280,18 @@ public class DataBase
 //			existingRadius.put(maxRadiusCustom, currCustom);
 			//---------------------------------------------
 //			return maxAngleCustom2;
-			return places.get(currCustom2);
+			return currCustom2;
 		}	
+		
+		public Point2D getPrev()
+		{
+			return prevCustom2;
+		}
+		
+		public Point2D getNext()
+		{
+			return nextCustom2;
+		}
 	
 		//----------5*O(log(n)) for each calling---------------
 		public void deleteNodeForCircle2()
@@ -602,7 +612,9 @@ public class DataBase
 	    return new Point2D(x, y);
 	}
 	
-	public Point2D getUp2(Point2D p, Point2D nextP) {
+	public Point2D getUp2(Point2D p) 
+	{
+		Point2D nextP = neighbours2.get(p).get(1);
 	    double mx = (p.getX() + nextP.getX()) / 2.0;
 	    double my = (p.getY() + nextP.getY()) / 2.0;
 	    double dx = nextP.getY() - p.getY();
@@ -623,7 +635,7 @@ public class DataBase
 	        Point2D curr = convexPoints.get(i); //O(1)
 	        Point2D next = convexPoints.get((i + 1) % size); //O(1)
 	        
-	        K.add(getUp2(curr, next));
+	        K.add(getUp2(curr));
 	    }
 	}
 	
