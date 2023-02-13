@@ -278,8 +278,13 @@ public class DataBase
 		    	return null;
 		    }
 			
+//-------------------------------------------------------------------------------------------------   
+//		    for Farthest Neighbor Voronoi Diagram
 //			maxRadiusCustom2 = radiusForEachNode2.lastKey(); //O(1)
+//-------------------------------------------------------------------------------------------------   
+//		    for Nearest Neighbor Voronoi Diagram
 			maxRadiusCustom2 = radiusForEachNode2.firstKey(); //O(1)
+//-------------------------------------------------------------------------------------------------   			
 			currCustom2 = radiusForEachNode2.get(maxRadiusCustom2); //O(log(n))
 			prevCustom2 = neighbours2.get(currCustom2).get(0); //O(1)
 			nextCustom2 = neighbours2.get(currCustom2).get(1); //O(1)

@@ -31,7 +31,7 @@ public class FarthestNeighborVoronoiGraphGUI
 	private ArrayList<ArrayList<Point2D>> E;
 	private Stage circleStage;
 	private String path;
-
+	private String title;
 	private XYSeriesCollection dataset;
 	
 	private XYPlot plot;
@@ -44,6 +44,11 @@ public class FarthestNeighborVoronoiGraphGUI
 		this.path = path;
 	}
 		
+	public void setTitle(String title)
+	{
+		this.title = title;
+	}
+	
 	public void setAllPoints(ArrayList<Point2D> allPoints)
 	{
 		this.allPoints = allPoints;
@@ -85,7 +90,7 @@ public class FarthestNeighborVoronoiGraphGUI
 	private void createStage()
     {
 		circleStage = new Stage();		
-		circleStage.setTitle("Farthest Neighbor Voronoi Diagram -> "+path+" -> "+(allPoints.size())+" points");
+		circleStage.setTitle(title+" -> "+path+" -> "+(allPoints.size())+" points");
 		circleStage.setHeight(700);
 		circleStage.setWidth(700);
 		circleStage.setResizable(true);
@@ -204,7 +209,7 @@ public class FarthestNeighborVoronoiGraphGUI
 	private void makeChart()
 	{
 		chart = new JFreeChart(plot);
-		chart.setTitle("Farthest Neighbor Voronoi Diagram");
+		chart.setTitle(title);
 		//=======================================================
 		chart.getTitle().setPaint(Color.decode("#006699"));
 		chart.getTitle().setFont(new Font("Arial", Font.TRUETYPE_FONT, 24));
