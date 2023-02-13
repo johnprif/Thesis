@@ -145,9 +145,7 @@ public class DataBase
 		prevCustom = neighbours.get(currCustom).get(0); //O(1)
 		nextCustom = neighbours.get(currCustom).get(1); //O(1)
 		maxAngleCustom = getAngle(prevCustom, currCustom, nextCustom); //O(1)
-		//---------------------------------------------
-//		existingRadius.put(maxRadiusCustom, currCustom);
-		//---------------------------------------------
+
 		return maxAngleCustom;
 	}		
 	
@@ -289,10 +287,7 @@ public class DataBase
 			prevCustom2 = neighbours2.get(currCustom2).get(0); //O(1)
 			nextCustom2 = neighbours2.get(currCustom2).get(1); //O(1)
 			maxAngleCustom2 = getAngle(prevCustom2, currCustom2, nextCustom2); //O(1)
-			//---------------------------------------------
-//			existingRadius.put(maxRadiusCustom, currCustom);
-			//---------------------------------------------
-//			return maxAngleCustom2;
+
 			return currCustom2;
 		}	
 		
