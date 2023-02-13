@@ -39,7 +39,7 @@ public class Algorithm2
 				//u(q)=c;
 				dataBase.deleteNodeForCircle2();
 				n = n-1;
-			}while(n == 2);
+			}while(n != 2);
 //			dataBase.addCandUtoE(dataBase.getUp2(before_p), dataBase.getUp2(next_p));
 			dataBase.addCandUtoE(c, dataBase.getUp2(next_p));			
 		}else

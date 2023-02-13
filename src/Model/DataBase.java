@@ -281,7 +281,8 @@ public class DataBase
 		    	return null;
 		    }
 			
-			maxRadiusCustom2 = radiusForEachNode2.lastKey(); //O(1)
+//			maxRadiusCustom2 = radiusForEachNode2.lastKey(); //O(1)
+			maxRadiusCustom2 = radiusForEachNode2.firstKey(); //O(1)
 			currCustom2 = radiusForEachNode2.get(maxRadiusCustom2); //O(log(n))
 			prevCustom2 = neighbours2.get(currCustom2).get(0); //O(1)
 			nextCustom2 = neighbours2.get(currCustom2).get(1); //O(1)
@@ -366,7 +367,7 @@ public class DataBase
 			{
 				currPoint = existingRadius2.get(nextRadius);//O(1)
 				
-				if(getAngle(neighbours2.get(rightCurr).get(0), rightCurr, neighbours.get(rightCurr).get(1)) >= getAngle(neighbours2.get(currPoint).get(0), currPoint, neighbours2.get(currPoint).get(1)))
+				if(getAngle(neighbours2.get(rightCurr).get(0), rightCurr, neighbours2.get(rightCurr).get(1)) >= getAngle(neighbours2.get(currPoint).get(0), currPoint, neighbours2.get(currPoint).get(1)))
 				{
 					radiusForEachNode2.put(getRadius(neighbours2.get(currPoint).get(0), currPoint, neighbours2.get(currPoint).get(1)), rightCurr);  //O(log(n))
 					existingRadius2.put(getRadius(neighbours2.get(currPoint).get(0), currPoint, neighbours2.get(currPoint).get(1)), rightCurr);  //O(1)
