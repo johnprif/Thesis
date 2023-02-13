@@ -2,10 +2,10 @@ package Model;
 
 import javafx.geometry.Point2D;
 
-public class Algorithm3 
+public class NearestNeighborVoronoiAlgorithm3 
 {
 	private DataBase dataBase;
-	public Algorithm3()
+	public NearestNeighborVoronoiAlgorithm3()
 	{
 		dataBase = DataBase.getInstance();
 	}

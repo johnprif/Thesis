@@ -16,11 +16,11 @@ package Model;
 
 import java.lang.Math;
 
-public class Algorithm1 
+public class SmallestEnclosingCirlceAlgorithm1 
 {
 	private DataBase dataBase;
 	
-	public Algorithm1() 
+	public SmallestEnclosingCirlceAlgorithm1() 
 	{
 		dataBase = DataBase.getInstance();		
 	}

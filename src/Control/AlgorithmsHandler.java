@@ -1,17 +1,17 @@
 package Control;
 
-import Model.Algorithm1;
-import Model.Algorithm2;
-import Model.Algorithm3;
+import Model.SmallestEnclosingCirlceAlgorithm1;
+import Model.FarthestNeighborVoronoiAlgorithm2;
+import Model.NearestNeighborVoronoiAlgorithm3;
 import Model.DataBase;
 import Model.GrahamScan;
 
 public class AlgorithmsHandler 
 {	
 	private GrahamScan grahamScan;
-	private Algorithm1 algorithm1;
-	private Algorithm2 algorithm2;
-	private Algorithm3 algorithm3;
+	private SmallestEnclosingCirlceAlgorithm1 algorithm1;
+	private FarthestNeighborVoronoiAlgorithm2 algorithm2;
+	private NearestNeighborVoronoiAlgorithm3 algorithm3;
 	private DataBase dataBase;
 	
 	public AlgorithmsHandler()
@@ -21,10 +21,10 @@ public class AlgorithmsHandler
 		grahamScan = new GrahamScan();	
 		grahamScan.initialize();
 		
-		algorithm1 = new Algorithm1();	
+		algorithm1 = new SmallestEnclosingCirlceAlgorithm1();	
 		algorithm1.computeSmallestEnclosingCircle();
 		
-		algorithm2 = new Algorithm2();
+		algorithm2 = new FarthestNeighborVoronoiAlgorithm2();
 		algorithm2.computeFarthestNeighborVoronoiDiagram();
 		
 //		algorithm3 = new Algorithm3();
