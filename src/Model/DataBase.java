@@ -150,7 +150,7 @@ public class DataBase
 	}
 	
 //----------5*O(log(n)) for each calling---------------
-	public void deleteMaxP2()
+	public void deleteMaxP()
 	{	
 		ArrayList<Point2D> left = new ArrayList<Point2D>();
 		ArrayList<Point2D> right = new ArrayList<Point2D>();

@@ -38,7 +38,7 @@ public class VoronoiAlgorithm2and3
 				dataBase.addCandUtoE(c, dataBase.getUp(p));
 				dataBase.addCandUtoE(c, dataBase.getUp(before_p));
 				//u(q)=c;
-				dataBase.deleteMaxP2();
+				dataBase.deleteMaxP();
 				n = n-1;
 			}while(n != 2);
 //			dataBase.addCandUtoE(dataBase.getUp2(before_p), dataBase.getUp2(next_p));

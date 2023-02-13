@@ -39,7 +39,7 @@ public class SmallestEnclosingCirlceAlgorithm1
 				maxAngle = dataBase.findMaxP().getX();
 				if(maxAngle>myPi2)
 				{
-					dataBase.deleteMaxP2();					
+					dataBase.deleteMaxP();					
 				}else
 				{
 					dataBase.moveToCircleArray();
