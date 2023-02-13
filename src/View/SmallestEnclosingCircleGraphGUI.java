@@ -88,8 +88,7 @@ public class SmallestEnclosingCircleGraphGUI
 	{	
 		textSubTitle = new TextTitle("Current Point: None");
 		textSubTitle.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		
-		makeSeries();	    
+  
 	    makePlot();
 	    
 		ChartViewer viewer = new ChartViewer(makeChart());
@@ -98,7 +97,7 @@ public class SmallestEnclosingCircleGraphGUI
 		circleStage.setScene(new Scene(viewer));
 	}
 
-	private void makeSeries()
+	private XYSeriesCollection makeSeriesAndDataset()
 	{
 		int circlePointsSize = circlePoints.size();
 		int convexPointsSize = convexPoints.size();
@@ -129,6 +128,8 @@ public class SmallestEnclosingCircleGraphGUI
 		dataset.addSeries(series2);
 		dataset.addSeries(series1);
 		dataset.setAutoWidth(true);
+		
+		return dataset;
 	}
 	
 	private void makePlot()
@@ -137,7 +138,7 @@ public class SmallestEnclosingCircleGraphGUI
                 "Current Point: None", // Chart title
                 "X", // X-Axis Label
                 "Y", // Y-Axis Label
-                dataset // Dataset for the Chart
+                makeSeriesAndDataset() // Dataset for the Chart
                 );	
 		plot = (XYPlot)scatterPlot.getPlot(); 
 		plot.addAnnotation(makeCircle());

@@ -26,7 +26,6 @@ public class VoronoiGraphGUI
 	private Stage voronoiStage;
 	private String path;
 	private String title;
-	private XYSeriesCollection dataset;
 	
 	private XYPlot plot;
 	private TextTitle textSubTitle;
@@ -84,8 +83,7 @@ public class VoronoiGraphGUI
 	{	
 		textSubTitle = new TextTitle("Current Point: None");
 		textSubTitle.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		
-		makeSeries();	    
+		    
 	    makePlot();
 	    
 		ChartViewer viewer = new ChartViewer(makeChart());
@@ -94,13 +92,13 @@ public class VoronoiGraphGUI
 		voronoiStage.setScene(new Scene(viewer));
 	}
 
-	private void makeSeries()
+	private XYSeriesCollection makeSeriesAndDataset()
 	{
 		XYSeries series0 = new XYSeries("convexPoints -> "+(convexPoints.size()));			
 		XYSeries series1 = new XYSeries("Voronoi Edges -> "+(K.size())+" ||");
 		XYSeries series2 = new XYSeries("Voronoi Lines -> "+(E.size()+" ||"));
 
-		dataset = new XYSeriesCollection();
+		XYSeriesCollection dataset = new XYSeriesCollection();
 
 		for(int i=0; i<convexPoints.size(); i++)
 		{
@@ -125,6 +123,8 @@ public class VoronoiGraphGUI
 		}
 		
 		dataset.setAutoWidth(true);
+		
+		return dataset;
 	}
 	
 	private void makePlot()
@@ -133,7 +133,7 @@ public class VoronoiGraphGUI
                 "Current Point: None", // Chart title
                 "X", // X-Axis Label
                 "Y", // Y-Axis Label
-                dataset // Dataset for the Chart
+                makeSeriesAndDataset() // Dataset for the Chart
                 );	
 		plot = (XYPlot)scatterPlot.getPlot(); 
 		plot.setDomainPannable(true);
