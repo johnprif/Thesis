@@ -592,40 +592,7 @@ public class DataBase
 		return Math.acos((a + b - c) / Math.sqrt(4 * a * b));
 	}
 	
-	/* 
-	This code computes the midpoint between p and nextP, computes the slope of the line segment connecting them, and uses this slope to compute the perpendicular slope. 
-	It then uses the midpoint, the perpendicular slope, and the line equation to find the intersection of the bisector with the perpendicular line through p, which is u(p). 
-	This code should run in efficient time and is suitable for finding u(p) for a wide range of use cases.
-
-	Αυτός ο κώδικας υπολογίζει το μέσο μεταξύ των p και nextP, υπολογίζει την κλίση του ευθύγραμμου τμήματος που τα συνδέει και χρησιμοποιεί την κλίση αυτή για να υπολογίσει την κάθετη κλίση. 
-	Στη συνέχεια χρησιμοποιεί το μέσο σημείο, την κάθετη κλίση και την εξίσωση της ευθείας για να βρει την τομή της διχοτόμου με την κάθετη ευθεία που διέρχεται από το p, η οποία είναι η u(p). 
-	Αυτός ο κώδικας θα πρέπει να εκτελείται σε αποδοτικό χρόνο και είναι κατάλληλος για την εύρεση του u(p) για ένα ευρύ φάσμα περιπτώσεων χρήσης.
-
-	*/
-	public Point2D getUP(Point2D p, Point2D nextP) {
-	    // Compute the midpoint between p and nextP
-	    double midX = (p.getX() + nextP.getX()) / 2.0;
-	    double midY = (p.getY() + nextP.getY()) / 2.0;
-
-	    // Compute the slope of the line segment connecting p and nextP
-	    double slope = (nextP.getY() - p.getY()) / (nextP.getX() - p.getX());
-
-	    // Compute the perpendicular slope
-	    double perpSlope = -1.0 / slope;
-
-	    // Compute the line equation for the bisector
-	    double a = perpSlope;
-	    double b = -1;
-	    double c = midY - perpSlope * midX;
-
-	    // Compute the intersection of the bisector with the perpendicular line through p
-	    double x = (b * (b * p.getX() - a * p.getY()) - a * c) / (a * a + b * b);
-	    double y = (a * (-b * p.getX() + a * p.getY()) - b * c) / (a * a + b * b);
-
-	    return new Point2D(x, y);
-	}
-	
-	public Point2D getUp2(Point2D p) 
+	public Point2D getUp(Point2D p) 
 	{
 		Point2D nextP = neighbours2.get(p).get(1);
 	    double mx = (p.getX() + nextP.getX()) / 2.0;
@@ -645,7 +612,7 @@ public class DataBase
 		for (int i = 0; i < size; i++) 
 	    {
 	        Point2D curr = convexPoints.get(i); //O(1)   
-	        K.add(getUp2(curr));
+	        K.add(getUp(curr));
 	    }
 	}
 	

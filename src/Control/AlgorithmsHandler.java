@@ -24,10 +24,10 @@ public class AlgorithmsHandler
 		algorithm1 = new SmallestEnclosingCirlceAlgorithm1();	
 		algorithm1.computeSmallestEnclosingCircle();
 		
-		algorithm2 = new FarthestNeighborVoronoiAlgorithm2();
-		algorithm2.computeFarthestNeighborVoronoiDiagram();
+//		algorithm2 = new FarthestNeighborVoronoiAlgorithm2();
+//		algorithm2.computeFarthestNeighborVoronoiDiagram();
 		
-//		algorithm3 = new Algorithm3();
-//		algorithm3.computeNearestNeighborVoronoiDiagram();
+		algorithm3 = new NearestNeighborVoronoiAlgorithm3();
+		algorithm3.computeNearestNeighborVoronoiDiagram();
 	}
 }
