@@ -171,7 +171,7 @@ public class VoronoiGraphGUI
         	renderer2.setSeriesPaint(offset+i, Color.decode("#8fbc8f")); //voronoi cells
         	renderer2.setSeriesLinesVisible(offset+i, true);
             renderer2.setSeriesShapesVisible(offset+i, false);
-            renderer2.setSeriesStroke(offset+i, new BasicStroke(2.0f));
+            renderer2.setSeriesStroke(offset+i, new BasicStroke(2.0f)); //light green
             renderer2.setSeriesItemLabelsVisible(offset+i, false);
             renderer2.setDefaultItemLabelsVisible(false);
             renderer2.setSeriesVisibleInLegend(offset+i, false);
