@@ -16,7 +16,7 @@ public class AlgorithmsHandler
 	public AlgorithmsHandler()
 	{
 		dataBase = DataBase.getInstance();
-		dataBase.createListOfKandE();
+		dataBase.initializeKandE();
 		
 		grahamScan = new GrahamScan();			
 		grahamScan.initialize();

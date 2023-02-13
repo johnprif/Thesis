@@ -30,7 +30,7 @@ public class VoronoiAlgorithm2and3
 			do
 			{
 				//find p maximizing radius and angle
-				p = dataBase.findMaxP2(); //=0 for maximizing
+				p = dataBase.findMaxP(); //=0 for maximizing
 				before_p = dataBase.getPrev();				
 				next_p = dataBase.getNext();
 				c = dataBase.getCenter(before_p, p, next_p);

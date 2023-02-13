@@ -23,14 +23,14 @@ public class DataBase
 	
 	private ArrayList<Point2D> K;
 	private ArrayList<ArrayList<Point2D>> E;	
-	private HashMap<Point2D, ArrayList<Point2D>> neighbours2;
-	private TreeMap<Double, Point2D> radiusForEachNode2;
-	private HashMap<Double, Point2D> existingRadius2;
-	private Point2D currCustom2;
-	private Point2D prevCustom2;
-	private Point2D nextCustom2;
-	private double maxAngleCustom2;
-	private double maxRadiusCustom2;
+	private HashMap<Point2D, ArrayList<Point2D>> neighbours;
+	private TreeMap<Double, Point2D> radiusForEachNode;
+	private HashMap<Double, Point2D> existingRadius;
+	private Point2D currCustom;
+	private Point2D prevCustom;
+	private Point2D nextCustom;
+	private double maxAngleCustom;
+	private double maxRadiusCustom;
 	
 	private ArrayList<ArrayList<Point2D>> allK;
 	private ArrayList<ArrayList<ArrayList<Point2D>>> allE;
@@ -63,13 +63,11 @@ public class DataBase
 	public ArrayList<Point2D> getK(int mode)
 	{
 		return allK.get(mode);
-//		return K;
 	}
 	
 	public ArrayList<ArrayList<Point2D>> getE(int mode)
 	{
 		return allE.get(mode);
-//		return E;
 	}
 	
 	public void setAllPoints(ArrayList<Point2D> allPoints)
@@ -99,9 +97,9 @@ public class DataBase
 		int size = getConvexPointsSize();
 		double radius;
 		
-		neighbours2 = new HashMap<Point2D, ArrayList<Point2D>>();
-		radiusForEachNode2 = new TreeMap<>();
-		existingRadius2 = new HashMap<Double, Point2D>();
+		neighbours = new HashMap<Point2D, ArrayList<Point2D>>();
+		radiusForEachNode = new TreeMap<>();
+		existingRadius = new HashMap<Double, Point2D>();
 		
 		for (int i = 0; i < size; i++) 
 	    {
@@ -114,16 +112,16 @@ public class DataBase
 	        kati.add(prev);
 	        kati.add(next);
 
-	        neighbours2.put(curr, kati); //O(1)
-	        radiusForEachNode2.put(radius, curr); //O(log(n))	        
-	        existingRadius2.put(radius, curr);
+	        neighbours.put(curr, kati); //O(1)
+	        radiusForEachNode.put(radius, curr); //O(log(n))	        
+	        existingRadius.put(radius, curr);
 	    }
 	}
 	
 	//----------O(log(n)) for each calling---------------		
-	public Point2D findMaxP2()
+	public Point2D findMaxP()
 	{
-		int size = neighbours2.size(); //O(1)
+		int size = neighbours.size(); //O(1)
 	    
 	    if (size <= 2)
 	    {
@@ -132,121 +130,122 @@ public class DataBase
 	    
 	    if(mode == 0 || mode == 2) //circle or nearest
 	    {
-	    	maxRadiusCustom2 = radiusForEachNode2.lastKey(); //O(1)
+	    	maxRadiusCustom = radiusForEachNode.lastKey(); //O(1)
 	    }else //mode == 1 farthest
 	    {
-	    	maxRadiusCustom2 = radiusForEachNode2.firstKey(); //O(1)
+	    	maxRadiusCustom = radiusForEachNode.firstKey(); //O(1)
 	    }
  			
-		currCustom2 = radiusForEachNode2.get(maxRadiusCustom2); //O(log(n))
-		prevCustom2 = neighbours2.get(currCustom2).get(0); //O(1)
-		nextCustom2 = neighbours2.get(currCustom2).get(1); //O(1)
-		maxAngleCustom2 = getAngle(prevCustom2, currCustom2, nextCustom2); //O(1)
+		currCustom = radiusForEachNode.get(maxRadiusCustom); //O(log(n))
+		prevCustom = neighbours.get(currCustom).get(0); //O(1)
+		nextCustom = neighbours.get(currCustom).get(1); //O(1)
+		maxAngleCustom = getAngle(prevCustom, currCustom, nextCustom); //O(1)
 
 		if(mode == 0)
 		{
-			return new Point2D(maxAngleCustom2, maxAngleCustom2);
+			return new Point2D(maxAngleCustom, maxAngleCustom);
 		}
 		
-		return currCustom2;
+		return currCustom;
+	}
+	
+//----------5*O(log(n)) for each calling---------------
+	public void deleteMaxP2()
+	{	
+		ArrayList<Point2D> left = new ArrayList<Point2D>();
+		ArrayList<Point2D> right = new ArrayList<Point2D>();
+		
+		//---I found that has changed
+		Point2D leftCurr = neighbours.get(currCustom).get(0);
+		Point2D leftPrev = neighbours.get(leftCurr).get(0);
+		Point2D leftNext = neighbours.get(leftCurr).get(1);
+		
+		Point2D rightCurr = neighbours.get(currCustom).get(1); //O(1)
+		Point2D rightPrev = neighbours.get(rightCurr).get(0); //O(1)
+		Point2D rightNext = neighbours.get(rightCurr).get(1); //O(1)
+		
+		radiusForEachNode.remove(maxRadiusCustom);  //O(log(n))
+		radiusForEachNode.remove(getRadius(leftPrev, leftCurr, leftNext)); //O(log(n))
+		radiusForEachNode.remove(getRadius(rightPrev, rightCurr, rightNext)); //O(log(n))
+		
+		existingRadius.remove(maxRadiusCustom);//O(1)
+		existingRadius.remove(getRadius(leftPrev, leftCurr, leftNext)); //O(1)
+		existingRadius.remove(getRadius(rightPrev, rightCurr, rightNext)); //O(1))
+		
+		neighbours.remove(leftCurr); //O(1)
+		neighbours.remove(currCustom); //O(1)
+		neighbours.remove(rightCurr); //O(1)
+				
+		left.add(leftPrev); //O(1)
+		left.add(rightCurr); //O(1)
+		
+		right.add(leftCurr); //O(1)
+		right.add(rightNext); //O(1)			
+		
+		neighbours.put(leftCurr, left); //O(1)
+		neighbours.put(rightCurr, right); //O(1)
+		
+		double beforeRadius = getRadius(leftPrev, leftCurr, rightCurr);
+		double nextRadius = getRadius(leftCurr, rightCurr, rightNext);
+		Point2D currPoint;
+
+		if(!existingRadius.containsKey(beforeRadius)) //O(1)
+		{
+			radiusForEachNode.put(beforeRadius, leftCurr);  //O(log(n))
+			existingRadius.put(beforeRadius, leftCurr);//O(1)
+			
+		}else
+		{
+			currPoint = existingRadius.get(beforeRadius);//O(1)
+			
+			if(getAngle(neighbours.get(leftCurr).get(0), leftCurr, neighbours.get(leftCurr).get(1)) >= getAngle(neighbours.get(currPoint).get(0), currPoint, neighbours.get(currPoint).get(1)))
+			{
+				radiusForEachNode.put(getRadius(neighbours.get(currPoint).get(0), currPoint, neighbours.get(currPoint).get(1)), leftCurr);  //O(log(n))
+				existingRadius.put(getRadius(neighbours.get(currPoint).get(0), currPoint, neighbours.get(currPoint).get(1)), leftCurr);  //O(1)
+			}
+		}
+		if(!existingRadius.containsKey(nextRadius)) //O(1)
+		{
+			radiusForEachNode.put(nextRadius, rightCurr); //O(log(n))
+			existingRadius.put(nextRadius, rightCurr);//O(1)
+		}else
+		{
+			currPoint = existingRadius.get(nextRadius);//O(1)
+			
+			if(getAngle(neighbours.get(rightCurr).get(0), rightCurr, neighbours.get(rightCurr).get(1)) >= getAngle(neighbours.get(currPoint).get(0), currPoint, neighbours.get(currPoint).get(1)))
+			{
+				radiusForEachNode.put(getRadius(neighbours.get(currPoint).get(0), currPoint, neighbours.get(currPoint).get(1)), rightCurr);  //O(log(n))
+				existingRadius.put(getRadius(neighbours.get(currPoint).get(0), currPoint, neighbours.get(currPoint).get(1)), rightCurr);  //O(1)
+			}
+		}
 	}
 	
 	public int getHashCirclePointsSize()
 	{
-		return neighbours2.size();
+		return neighbours.size();
 	}
 		
 	public void moveToCircleArray()
 	{
 		HashMap<Point2D, Point2D> neighboursTemp = new HashMap<Point2D, Point2D>();
 		
-		for (Point2D key : neighbours2.keySet()) 
+		for (Point2D key : neighbours.keySet()) 
 		{
 			neighboursTemp.put(key, key);
 		}
 		circlePoints = new ArrayList<Point2D>(neighboursTemp.values());
 	}
 		
-		public Point2D getPrev()
-		{
-			return prevCustom2;
-		}
-		
-		public Point2D getNext()
-		{
-			return nextCustom2;
-		}
+	public Point2D getPrev()
+	{
+		return prevCustom;
+	}
 	
-		//----------5*O(log(n)) for each calling---------------
-		public void deleteMaxP2()
-		{	
-			ArrayList<Point2D> left = new ArrayList<Point2D>();
-			ArrayList<Point2D> right = new ArrayList<Point2D>();
-			
-			//---I found that has changed
-			Point2D leftCurr = neighbours2.get(currCustom2).get(0);
-			Point2D leftPrev = neighbours2.get(leftCurr).get(0);
-			Point2D leftNext = neighbours2.get(leftCurr).get(1);
-			
-			Point2D rightCurr = neighbours2.get(currCustom2).get(1); //O(1)
-			Point2D rightPrev = neighbours2.get(rightCurr).get(0); //O(1)
-			Point2D rightNext = neighbours2.get(rightCurr).get(1); //O(1)
-			
-			radiusForEachNode2.remove(maxRadiusCustom2);  //O(log(n))
-			radiusForEachNode2.remove(getRadius(leftPrev, leftCurr, leftNext)); //O(log(n))
-			radiusForEachNode2.remove(getRadius(rightPrev, rightCurr, rightNext)); //O(log(n))
-			
-			existingRadius2.remove(maxRadiusCustom2);//O(1)
-			existingRadius2.remove(getRadius(leftPrev, leftCurr, leftNext)); //O(1)
-			existingRadius2.remove(getRadius(rightPrev, rightCurr, rightNext)); //O(1))
-			
-			neighbours2.remove(leftCurr); //O(1)
-			neighbours2.remove(currCustom2); //O(1)
-			neighbours2.remove(rightCurr); //O(1)
-					
-			left.add(leftPrev); //O(1)
-			left.add(rightCurr); //O(1)
-			
-			right.add(leftCurr); //O(1)
-			right.add(rightNext); //O(1)			
-			
-			neighbours2.put(leftCurr, left); //O(1)
-			neighbours2.put(rightCurr, right); //O(1)
-			
-			double beforeRadius = getRadius(leftPrev, leftCurr, rightCurr);
-			double nextRadius = getRadius(leftCurr, rightCurr, rightNext);
-			Point2D currPoint;
-
-			if(!existingRadius2.containsKey(beforeRadius)) //O(1)
-			{
-				radiusForEachNode2.put(beforeRadius, leftCurr);  //O(log(n))
-				existingRadius2.put(beforeRadius, leftCurr);//O(1)
-				
-			}else
-			{
-				currPoint = existingRadius2.get(beforeRadius);//O(1)
-				
-				if(getAngle(neighbours2.get(leftCurr).get(0), leftCurr, neighbours2.get(leftCurr).get(1)) >= getAngle(neighbours2.get(currPoint).get(0), currPoint, neighbours2.get(currPoint).get(1)))
-				{
-					radiusForEachNode2.put(getRadius(neighbours2.get(currPoint).get(0), currPoint, neighbours2.get(currPoint).get(1)), leftCurr);  //O(log(n))
-					existingRadius2.put(getRadius(neighbours2.get(currPoint).get(0), currPoint, neighbours2.get(currPoint).get(1)), leftCurr);  //O(1)
-				}
-			}
-			if(!existingRadius2.containsKey(nextRadius)) //O(1)
-			{
-				radiusForEachNode2.put(nextRadius, rightCurr); //O(log(n))
-				existingRadius2.put(nextRadius, rightCurr);//O(1)
-			}else
-			{
-				currPoint = existingRadius2.get(nextRadius);//O(1)
-				
-				if(getAngle(neighbours2.get(rightCurr).get(0), rightCurr, neighbours2.get(rightCurr).get(1)) >= getAngle(neighbours2.get(currPoint).get(0), currPoint, neighbours2.get(currPoint).get(1)))
-				{
-					radiusForEachNode2.put(getRadius(neighbours2.get(currPoint).get(0), currPoint, neighbours2.get(currPoint).get(1)), rightCurr);  //O(log(n))
-					existingRadius2.put(getRadius(neighbours2.get(currPoint).get(0), currPoint, neighbours2.get(currPoint).get(1)), rightCurr);  //O(1)
-				}
-			}
-		}
+	public Point2D getNext()
+	{
+		return nextCustom;
+	}
+	
 		
 	public int getAllPointsSize()
 	{
@@ -263,7 +262,7 @@ public class DataBase
 		return circlePoints.size();
 	}
 	
-	public Ellipse2D findCircle()
+	public Ellipse2D getCircleShape()
 	{
 		int n = getCirclePointsSize();
 		Ellipse2D circle;
@@ -435,7 +434,7 @@ public class DataBase
 	
 	public Point2D getUp(Point2D p) 
 	{
-		Point2D nextP = neighbours2.get(p).get(1);
+		Point2D nextP = neighbours.get(p).get(1);
 	    double mx = (p.getX() + nextP.getX()) / 2.0;
 	    double my = (p.getY() + nextP.getY()) / 2.0;
 	    double dx = nextP.getY() - p.getY();
@@ -478,14 +477,11 @@ public class DataBase
 
 	public void moveKandE() 
 	{
-//		allK = new ArrayList<ArrayList<Point2D>>();
 		allK.add(K);
-		
-//		allE = new ArrayList<ArrayList<ArrayList<Point2D>>>();
 		allE.add(E);
 	}
 
-	public void createListOfKandE() 
+	public void initializeKandE() 
 	{
 		allK = new ArrayList<ArrayList<Point2D>>();
 		allE = new ArrayList<ArrayList<ArrayList<Point2D>>>();

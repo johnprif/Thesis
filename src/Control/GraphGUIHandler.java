@@ -28,7 +28,7 @@ public class GraphGUIHandler
 		circleGraphGUI.setAllPoints(dataBase.getAllPoints());
 		circleGraphGUI.setConvexPoints(dataBase.getConvexPoints());
 		circleGraphGUI.setCirclePoints(dataBase.getCirclePoints());
-		circleGraphGUI.setCircleObject(dataBase.findCircle());
+		circleGraphGUI.setCircleObject(dataBase.getCircleShape());
 		circleGraphGUI.initialize(x, y);
 	}
 	
