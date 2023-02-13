@@ -1,14 +1,14 @@
 package Control;
 
 import Model.DataBase;
-import View.CircleGraphGUI;
+import View.SmallestEnclosingCircleGraphGUI;
 import View.FarthestNeighborVoronoiGraphGUI;
 
 public class GraphGUIHandler 
 {
 	private String path;
 	private DataBase dataBase;
-	private CircleGraphGUI circleGraphGUI;
+	private SmallestEnclosingCircleGraphGUI circleGraphGUI;
 	private FarthestNeighborVoronoiGraphGUI farthestNeighborVoronoiGraphGUI;
 	
 	public GraphGUIHandler(String path)
@@ -23,7 +23,7 @@ public class GraphGUIHandler
 	
 	private void makeCircleGraph()
 	{
-		circleGraphGUI = new CircleGraphGUI(path);
+		circleGraphGUI = new SmallestEnclosingCircleGraphGUI(path);
 		circleGraphGUI.setAllPoints(dataBase.getAllPoints());
 		circleGraphGUI.setConvexPoints(dataBase.getConvexPoints());
 		circleGraphGUI.setCirclePoints(dataBase.getCirclePoints());

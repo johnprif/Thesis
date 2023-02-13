@@ -27,7 +27,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.geometry.Point2D;
 
-public class CircleGraphGUI
+public class SmallestEnclosingCircleGraphGUI
 {
 	private ArrayList<Point2D> allPoints;
 	private ArrayList<Point2D> convexPoints;
@@ -44,7 +44,7 @@ public class CircleGraphGUI
 	
 	private Ellipse2D circle;
 	
-	public CircleGraphGUI(String path)
+	public SmallestEnclosingCircleGraphGUI(String path)
 	{
 		this.path = path;
 	}
