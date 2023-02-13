@@ -41,7 +41,6 @@ public class DataBase
 	private double maxAngleCustom2;
 	private double maxRadiusCustom2;
 	private ArrayList<Point2D> convexPoints2;
-	private HashMap<Point2D, Integer> places = new HashMap<Point2D, Integer>();;
 	
 	private DataBase()
 	{
@@ -265,8 +264,6 @@ public class DataBase
 	        radiusForEachNode2.put(radius, curr); //O(log(n))
 	        
 	        existingRadius2.put(radius, curr);
-//	        
-//	        places.put(curr, i);
 	    }
 	}
 	
@@ -274,7 +271,7 @@ public class DataBase
 	//----------O(log(n)) for each calling---------------		
 		public Point2D findMaxAngle2()
 		{
-			int size = neighbours.size(); //O(1)
+			int size = neighbours2.size(); //O(1)
 		    
 		    if (size <= 2)
 		    {

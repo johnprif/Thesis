@@ -25,7 +25,7 @@ public class Algorithm2
 		
 		if(n > 2)
 		{
-			System.out.println("Algorithm 2 n = " + n);
+			System.out.println("Algorithm 2 started with = " + n);
 			do
 			{
 				//find p maximizing radius and angle
@@ -44,7 +44,7 @@ public class Algorithm2
 			dataBase.addCandUtoE(c, dataBase.getUp2(next_p));			
 		}else
 		{
-			System.out.println("Algorithm 2 n = " + n);
+			System.out.println("Algorithm 2 started with = " + n);
 			if(n == 2) //S={p1, p2}
 			{
 				Point2D p1 = dataBase.getConvexPoints().get(0);
