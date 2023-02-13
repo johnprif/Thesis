@@ -22,7 +22,7 @@ public class InfoButtonHandler  implements EventHandler<ActionEvent>
         stage.setTitle("User Manual");
 
         userManualView = new WebView();
-        userManualView.getEngine().load("https://www.facebook.com/johnprif");
+        userManualView.getEngine().load("https://github.com/johnprif");
        
         layout = new VBox(10);
         layout.getChildren().addAll(userManualView);
