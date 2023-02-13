@@ -193,7 +193,7 @@ public class FarthestNeighborVoronoiGraphGUI
         
         for(int i=0; i<E.size(); i++)
         {
-        	renderer2.setSeriesPaint(3+i, Color.YELLOW); //voronoi cells
+        	renderer2.setSeriesPaint(3+i, Color.decode("#8fbc8f")); //voronoi cells
         	renderer2.setSeriesLinesVisible(3+i, true);
             renderer2.setSeriesShapesVisible(3+i, false);
             renderer2.setSeriesStroke(3+i, new BasicStroke(2.0f));
