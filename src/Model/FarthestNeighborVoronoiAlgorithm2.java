@@ -29,7 +29,7 @@ public class FarthestNeighborVoronoiAlgorithm2
 			do
 			{
 				//find p maximizing radius and angle
-				p = dataBase.findMaxAngle2();
+				p = dataBase.findMaxP2();
 				before_p = dataBase.getPrev();				
 				next_p = dataBase.getNext();
 				c = dataBase.getCenter(before_p, p, next_p);
@@ -37,7 +37,7 @@ public class FarthestNeighborVoronoiAlgorithm2
 				dataBase.addCandUtoE(c, dataBase.getUp2(p));
 				dataBase.addCandUtoE(c, dataBase.getUp2(before_p));
 				//u(q)=c;
-				dataBase.deleteNodeForCircle2();
+				dataBase.deleteMaxP2();
 				n = n-1;
 			}while(n != 2);
 //			dataBase.addCandUtoE(dataBase.getUp2(before_p), dataBase.getUp2(next_p));

@@ -3,15 +3,15 @@ package Control;
 import Model.DataBase;
 import Model.NearestNeighborVoronoiAlgorithm3;
 import View.SmallestEnclosingCircleGraphGUI;
-import View.FarthestNeighborVoronoiGraphGUI;
+import View.VoronoiGraphGUI;
 
 public class GraphGUIHandler 
 {
 	private String path;
 	private DataBase dataBase;
 	private SmallestEnclosingCircleGraphGUI circleGraphGUI;
-	private FarthestNeighborVoronoiGraphGUI farthestNeighborVoronoiGraphGUI;
-	private FarthestNeighborVoronoiGraphGUI nearestNeighborVoronoiGraphGUI;
+	private VoronoiGraphGUI farthestNeighborVoronoiGraphGUI;
+	private VoronoiGraphGUI nearestNeighborVoronoiGraphGUI;
 	
 	public GraphGUIHandler(String path)
 	{
@@ -35,7 +35,7 @@ public class GraphGUIHandler
 	
 	private void makeFarthestNeighborVoronoiGraph()
 	{
-		farthestNeighborVoronoiGraphGUI = new FarthestNeighborVoronoiGraphGUI(path);
+		farthestNeighborVoronoiGraphGUI = new VoronoiGraphGUI(path);
 		farthestNeighborVoronoiGraphGUI.setTitle("Farthest Neighbor Voronoi Diagram");
 		farthestNeighborVoronoiGraphGUI.setAllPoints(dataBase.getAllPoints());
 		farthestNeighborVoronoiGraphGUI.setConvexPoints(dataBase.getConvexPoints());
@@ -48,7 +48,7 @@ public class GraphGUIHandler
 	
 	private void makeNearestNeighborVoronoiGraph()
 	{
-		nearestNeighborVoronoiGraphGUI = new FarthestNeighborVoronoiGraphGUI(path);
+		nearestNeighborVoronoiGraphGUI = new VoronoiGraphGUI(path);
 		nearestNeighborVoronoiGraphGUI.setTitle("Nearest Neighbor Voronoi Diagram");
 		nearestNeighborVoronoiGraphGUI.setAllPoints(dataBase.getAllPoints());
 		nearestNeighborVoronoiGraphGUI.setConvexPoints(dataBase.getConvexPoints());

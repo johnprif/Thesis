@@ -131,7 +131,7 @@ public class DataBase
 	}
 
 //----------O(log(n)) for each calling---------------		
-	public double findMaxAngle()
+	public double findMaxP()
 	{
 		int size = neighbours.size(); //O(1)
 	    
@@ -152,7 +152,7 @@ public class DataBase
 	}		
 	
 	//----------5*O(log(n)) for each calling---------------
-	public void deleteNodeForCircle()
+	public void deleteMaxP()
 	{	
 		ArrayList<Point2D> left = new ArrayList<Point2D>();
 		ArrayList<Point2D> right = new ArrayList<Point2D>();
@@ -269,7 +269,7 @@ public class DataBase
 	
 	
 	//----------O(log(n)) for each calling---------------		
-		public Point2D findMaxAngle2()
+		public Point2D findMaxP2()
 		{
 			int size = neighbours2.size(); //O(1)
 		    
@@ -307,7 +307,7 @@ public class DataBase
 		}
 	
 		//----------5*O(log(n)) for each calling---------------
-		public void deleteNodeForCircle2()
+		public void deleteMaxP2()
 		{	
 			ArrayList<Point2D> left = new ArrayList<Point2D>();
 			ArrayList<Point2D> right = new ArrayList<Point2D>();

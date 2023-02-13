@@ -22,11 +22,10 @@ import javafx.geometry.Point2D;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class FarthestNeighborVoronoiGraphGUI 
+public class VoronoiGraphGUI 
 {
 	private ArrayList<Point2D> allPoints;
 	private ArrayList<Point2D> convexPoints;
-	private ArrayList<Point2D> circlePoints;
 	private ArrayList<Point2D> K;
 	private ArrayList<ArrayList<Point2D>> E;
 	private Stage voronoiStage;
@@ -37,9 +36,8 @@ public class FarthestNeighborVoronoiGraphGUI
 	private XYPlot plot;
 	private TextTitle textSubTitle;
 	private JFreeChart chart;
-	private Ellipse2D circle;
 	
-	public FarthestNeighborVoronoiGraphGUI(String path)
+	public VoronoiGraphGUI(String path)
 	{
 		this.path = path;
 	}
@@ -57,16 +55,6 @@ public class FarthestNeighborVoronoiGraphGUI
 	public void setConvexPoints(ArrayList<Point2D> convexPoints)
 	{
 		this.convexPoints = convexPoints;
-	}
-	
-	public void setCirclePoints(ArrayList<Point2D> circlePoints)
-	{
-		this.circlePoints = circlePoints;
-	}
-	
-	public void setCircleObject(Ellipse2D circle)
-	{
-		this.circle = circle;
 	}
 	
 	public void setK(ArrayList<Point2D> K) 
@@ -115,10 +103,7 @@ public class FarthestNeighborVoronoiGraphGUI
 
 	private void makeSeries()
 	{
-//		XYSeries series1 = new XYSeries("allPoints -> "+(allPoints.size()));
-		XYSeries series0 = new XYSeries("convexPoints -> "+(convexPoints.size()));
-//		XYSeries series3 = new XYSeries("circlePoints -> "+(circlePoints.size()));		
-		
+		XYSeries series0 = new XYSeries("convexPoints -> "+(convexPoints.size()));			
 		XYSeries series1 = new XYSeries("Voronoi Edges -> "+(K.size())+" ||");
 		XYSeries series2 = new XYSeries("Voronoi Cells-Lines -> "+(E.size()+" ||"));
 
@@ -133,9 +118,7 @@ public class FarthestNeighborVoronoiGraphGUI
 		{
 			series1.add(K.get(i).getX(), K.get(i).getY());
 		}
-
-		
-		
+	
 		dataset.addSeries(series2); // Voronoi Cell
 		dataset.addSeries(series1); // Voronoi Edges
 		dataset.addSeries(series0); // convexPoints
@@ -160,12 +143,6 @@ public class FarthestNeighborVoronoiGraphGUI
                 dataset // Dataset for the Chart
                 );	
 		plot = (XYPlot)scatterPlot.getPlot(); 
-		//---------------------------------------------------------------------------------------------------------------------------
-       
-        //---------------------------------------------------------------------------------------------------------------------------
-//		XYShapeAnnotation annotation = new XYShapeAnnotation(circle, new BasicStroke(1.0f), Color.RED, null);
-//		annotation.setToolTipText("center=("+circle.getCenterX()+", "+circle.getCenterY()+")\nradius="+circle.getWidth()/2);
-//		plot.addAnnotation(annotation);
 		plot.setDomainPannable(true);
 	    plot.setRangePannable(true);
 	    plot.setDomainCrosshairLockedOnData(true);
