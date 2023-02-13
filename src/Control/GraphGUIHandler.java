@@ -1,7 +1,6 @@
 package Control;
 
 import Model.DataBase;
-import Model.NearestNeighborVoronoiAlgorithm3;
 import View.SmallestEnclosingCircleGraphGUI;
 import View.VoronoiGraphGUI;
 
@@ -11,47 +10,36 @@ public class GraphGUIHandler
 	private DataBase dataBase;
 	private SmallestEnclosingCircleGraphGUI circleGraphGUI;
 	private VoronoiGraphGUI farthestNeighborVoronoiGraphGUI;
-	private VoronoiGraphGUI nearestNeighborVoronoiGraphGUI;
 	
 	public GraphGUIHandler(String path)
 	{
 		this.path = path;
 		dataBase = DataBase.getInstance();
 		
-		makeCircleGraph();
-//		makeFarthestNeighborVoronoiGraph();	
-		makeNearestNeighborVoronoiGraph();
+		makeCircleGraph("Smallest Enclosing Circle", 0, 0);
+		makeVoronoiGraph("Nearest Neighbor Voronoi Diagram", 700, 0, 0);	
+		makeVoronoiGraph("Farthest Neighbor Voronoi Diagram", 1400, 0, 1);
 	}
 	
-	private void makeCircleGraph()
+	private void makeCircleGraph(String title, int x, int y)
 	{
 		circleGraphGUI = new SmallestEnclosingCircleGraphGUI(path);
+		circleGraphGUI.setTitle(title);
 		circleGraphGUI.setAllPoints(dataBase.getAllPoints());
 		circleGraphGUI.setConvexPoints(dataBase.getConvexPoints());
 		circleGraphGUI.setCirclePoints(dataBase.getCirclePoints());
 		circleGraphGUI.setCircleObject(dataBase.findCircle());
-		circleGraphGUI.initialize();
+		circleGraphGUI.initialize(x, y);
 	}
 	
-	private void makeFarthestNeighborVoronoiGraph()
+	private void makeVoronoiGraph(String title, int x, int y, int mode)
 	{
 		farthestNeighborVoronoiGraphGUI = new VoronoiGraphGUI(path);
-		farthestNeighborVoronoiGraphGUI.setTitle("Farthest Neighbor Voronoi Diagram");
+		farthestNeighborVoronoiGraphGUI.setTitle(title);
 		farthestNeighborVoronoiGraphGUI.setAllPointsSize(dataBase.getAllPointsSize());
 		farthestNeighborVoronoiGraphGUI.setConvexPoints(dataBase.getConvexPoints());
-		farthestNeighborVoronoiGraphGUI.setK(dataBase.getK());
-		farthestNeighborVoronoiGraphGUI.setE(dataBase.getE());		
-		farthestNeighborVoronoiGraphGUI.initialize();
-	}
-	
-	private void makeNearestNeighborVoronoiGraph()
-	{
-		nearestNeighborVoronoiGraphGUI = new VoronoiGraphGUI(path);
-		nearestNeighborVoronoiGraphGUI.setTitle("Nearest Neighbor Voronoi Diagram");
-		nearestNeighborVoronoiGraphGUI.setAllPointsSize(dataBase.getAllPointsSize());
-		nearestNeighborVoronoiGraphGUI.setConvexPoints(dataBase.getConvexPoints());
-		nearestNeighborVoronoiGraphGUI.setK(dataBase.getK());
-		nearestNeighborVoronoiGraphGUI.setE(dataBase.getE());		
-		nearestNeighborVoronoiGraphGUI.initialize();
+		farthestNeighborVoronoiGraphGUI.setK(dataBase.getK(mode));
+		farthestNeighborVoronoiGraphGUI.setE(dataBase.getE(mode));		
+		farthestNeighborVoronoiGraphGUI.initialize(x, y);
 	}
 }

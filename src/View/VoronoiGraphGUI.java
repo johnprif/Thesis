@@ -61,21 +61,21 @@ public class VoronoiGraphGUI
 		this.E = E;
 	}
 	
-	public void initialize()
+	public void initialize(int x, int y)
 	{
-		createStage();
+		createStage(x, y);
 		displaySmallestEnclosingCircle();
 		voronoiStage.show();
 	}
 	
-	private void createStage()
+	private void createStage(int x, int y)
     {
 		voronoiStage = new Stage();		
 		voronoiStage.setTitle(title+" -> "+path+" -> "+(allPointsSize)+" points");
 		voronoiStage.setHeight(700);
 		voronoiStage.setWidth(700);
-		voronoiStage.setX(700);
-		voronoiStage.setY(0);
+		voronoiStage.setX(x);
+		voronoiStage.setY(y);
 		voronoiStage.setResizable(true);
     }
 	

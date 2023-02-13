@@ -33,6 +33,7 @@ public class SmallestEnclosingCircleGraphGUI
 	
 	private Stage circleStage;
 	private String path;
+	private String title;
 
 	private XYSeriesCollection dataset;
 	
@@ -44,6 +45,11 @@ public class SmallestEnclosingCircleGraphGUI
 	public SmallestEnclosingCircleGraphGUI(String path)
 	{
 		this.path = path;
+	}
+	
+	public void setTitle(String title)
+	{
+		this.title = title;
 	}
 	
 	public void setAllPoints(ArrayList<Point2D> allPoints)
@@ -66,21 +72,21 @@ public class SmallestEnclosingCircleGraphGUI
 		this.circle = circle;
 	}
 	
-	public void initialize()
+	public void initialize(int x, int y)
 	{
-		createStage();
+		createStage(x, y);
 		displaySmallestEnclosingCircle();
 		circleStage.show();
 	}
 	
-	private void createStage()
+	private void createStage(int x, int y)
     {
 		circleStage = new Stage();		
-		circleStage.setTitle("SmallestEnclosingCircle -> "+path+" -> "+(allPoints.size())+" points");
+		circleStage.setTitle(title+" -> "+path+" -> "+(allPoints.size())+" points");
 		circleStage.setHeight(700);
 		circleStage.setWidth(700);
-		circleStage.setX(0);
-		circleStage.setY(0);
+		circleStage.setX(x);
+		circleStage.setY(y);
 		circleStage.setResizable(true);
     }
 	
@@ -182,7 +188,7 @@ public class SmallestEnclosingCircleGraphGUI
 	private JFreeChart makeChart()
 	{
 		JFreeChart chart = new JFreeChart(plot);
-		chart.setTitle("Smallest Enclosing Circle");
+		chart.setTitle(title);
 		//=======================================================
 		chart.getTitle().setPaint(Color.decode("#006699"));
 		chart.getTitle().setFont(new Font("Arial", Font.TRUETYPE_FONT, 24));

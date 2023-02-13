@@ -36,7 +36,6 @@ public class GrahamScan
 		convexHullPoints = new ArrayList<Point2D>(computeGrahamScan(allPoints));
 		convexHullPoints.remove(convexHullPoints.size()-1);
 		dataBase.setConvexPoints(convexHullPoints);
-		dataBase.setCirclePoints(convexHullPoints);
 	}
 	
 	//----------------------------------O(nlogn)--------------------------------------

@@ -2,15 +2,16 @@ package Model;
 
 import javafx.geometry.Point2D;
 
-public class FarthestNeighborVoronoiAlgorithm2 
+public class VoronoiAlgorithm2and3 
 {
 	private DataBase dataBase;
-	public FarthestNeighborVoronoiAlgorithm2()
+	
+	public VoronoiAlgorithm2and3()
 	{
 		dataBase = DataBase.getInstance();
 	}
 	
-	public void computeFarthestNeighborVoronoiDiagram()
+	public void computeVoronoiDiagram()
 	{
 		System.out.println("I am the second algorithm!");
 		int n = dataBase.getConvexPointsSize();
@@ -29,7 +30,7 @@ public class FarthestNeighborVoronoiAlgorithm2
 			do
 			{
 				//find p maximizing radius and angle
-				p = dataBase.findMaxP2();
+				p = dataBase.findMaxP2(); //=0 for maximizing
 				before_p = dataBase.getPrev();				
 				next_p = dataBase.getNext();
 				c = dataBase.getCenter(before_p, p, next_p);
@@ -41,7 +42,7 @@ public class FarthestNeighborVoronoiAlgorithm2
 				n = n-1;
 			}while(n != 2);
 //			dataBase.addCandUtoE(dataBase.getUp2(before_p), dataBase.getUp2(next_p));
-			dataBase.addCandUtoE(c, dataBase.getUp(next_p));			
+			dataBase.addCandUtoE(c, dataBase.getUp(next_p));	
 		}else
 		{
 			System.out.println("Algorithm 2 started with = " + n);
@@ -57,6 +58,7 @@ public class FarthestNeighborVoronoiAlgorithm2
 				dataBase.addCandUtoE(u_p1, u_p2);
 			}
 		}
+		dataBase.moveKandE();
 		System.out.println("Algorithm 2 finished!");
 	}
 }
