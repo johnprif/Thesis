@@ -2,14 +2,14 @@ package Control;
 
 import Model.DataBase;
 import View.CircleGraphGUI;
-import View.VoronoiGraphGUI;
+import View.FarthestNeighborVoronoiGraphGUI;
 
 public class GraphGUIHandler 
 {
 	private String path;
 	private DataBase dataBase;
 	private CircleGraphGUI circleGraphGUI;
-	private VoronoiGraphGUI voronoiGraphGUI;
+	private FarthestNeighborVoronoiGraphGUI farthestNeighborVoronoiGraphGUI;
 	
 	public GraphGUIHandler(String path)
 	{
@@ -17,7 +17,8 @@ public class GraphGUIHandler
 		dataBase = DataBase.getInstance();
 		
 		makeCircleGraph();
-		makeVoronoiGraph();	
+		makeFarthestNeighborVoronoiGraph();	
+		
 	}
 	
 	private void makeCircleGraph()
@@ -30,16 +31,16 @@ public class GraphGUIHandler
 		circleGraphGUI.initialize();
 	}
 	
-	private void makeVoronoiGraph()
+	private void makeFarthestNeighborVoronoiGraph()
 	{
-		voronoiGraphGUI = new VoronoiGraphGUI(path);
-		voronoiGraphGUI.setAllPoints(dataBase.getAllPoints());
-		voronoiGraphGUI.setConvexPoints(dataBase.getConvexPoints());
-		voronoiGraphGUI.setCirclePoints(dataBase.getCirclePoints());
-		voronoiGraphGUI.setCircleObject(dataBase.findCircle());
-		voronoiGraphGUI.setK(dataBase.getK());
-		voronoiGraphGUI.setE(dataBase.getE());
+		farthestNeighborVoronoiGraphGUI = new FarthestNeighborVoronoiGraphGUI(path);
+		farthestNeighborVoronoiGraphGUI.setAllPoints(dataBase.getAllPoints());
+		farthestNeighborVoronoiGraphGUI.setConvexPoints(dataBase.getConvexPoints());
+		farthestNeighborVoronoiGraphGUI.setCirclePoints(dataBase.getCirclePoints());
+		farthestNeighborVoronoiGraphGUI.setCircleObject(dataBase.findCircle());
+		farthestNeighborVoronoiGraphGUI.setK(dataBase.getK());
+		farthestNeighborVoronoiGraphGUI.setE(dataBase.getE());
 		
-		voronoiGraphGUI.initialize();
+		farthestNeighborVoronoiGraphGUI.initialize();
 	}
 }

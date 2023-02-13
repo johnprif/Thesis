@@ -639,10 +639,7 @@ public class DataBase
 		
 		for (int i = 0; i < size; i++) 
 	    {
-//	        Point2D prev = convexPoints.get((i + size - 1) % size); //O(1)
-	        Point2D curr = convexPoints.get(i); //O(1)
-	        Point2D next = convexPoints.get((i + 1) % size); //O(1)
-	        
+	        Point2D curr = convexPoints.get(i); //O(1)   
 	        K.add(getUp2(curr));
 	    }
 	}

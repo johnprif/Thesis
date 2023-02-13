@@ -22,7 +22,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class VoronoiGraphGUI 
+public class FarthestNeighborVoronoiGraphGUI 
 {
 	private ArrayList<Point2D> allPoints;
 	private ArrayList<Point2D> convexPoints;
@@ -39,7 +39,7 @@ public class VoronoiGraphGUI
 	private JFreeChart chart;
 	private Ellipse2D circle;
 	
-	public VoronoiGraphGUI(String path)
+	public FarthestNeighborVoronoiGraphGUI(String path)
 	{
 		this.path = path;
 	}
