@@ -82,6 +82,8 @@ public class SmallestEnclosingCircleGraphGUI
 		circleStage.setTitle("SmallestEnclosingCircle -> "+path+" -> "+(allPoints.size())+" points");
 		circleStage.setHeight(700);
 		circleStage.setWidth(700);
+		circleStage.setX(0);
+		circleStage.setY(0);
 		circleStage.setResizable(true);
     }
 	

@@ -29,7 +29,7 @@ public class FarthestNeighborVoronoiGraphGUI
 	private ArrayList<Point2D> circlePoints;
 	private ArrayList<Point2D> K;
 	private ArrayList<ArrayList<Point2D>> E;
-	private Stage circleStage;
+	private Stage voronoiStage;
 	private String path;
 	private String title;
 	private XYSeriesCollection dataset;
@@ -84,16 +84,18 @@ public class FarthestNeighborVoronoiGraphGUI
 	{
 		createStage();
 		displaySmallestEnclosingCircle();
-		circleStage.show();
+		voronoiStage.show();
 	}
 	
 	private void createStage()
     {
-		circleStage = new Stage();		
-		circleStage.setTitle(title+" -> "+path+" -> "+(allPoints.size())+" points");
-		circleStage.setHeight(700);
-		circleStage.setWidth(700);
-		circleStage.setResizable(true);
+		voronoiStage = new Stage();		
+		voronoiStage.setTitle(title+" -> "+path+" -> "+(allPoints.size())+" points");
+		voronoiStage.setHeight(700);
+		voronoiStage.setWidth(700);
+		voronoiStage.setX(700);
+		voronoiStage.setY(0);
+		voronoiStage.setResizable(true);
     }
 	
 	private void displaySmallestEnclosingCircle()
@@ -108,7 +110,7 @@ public class FarthestNeighborVoronoiGraphGUI
 		ChartViewer viewer = new ChartViewer(chart);
 		viewer.addChartMouseListener(new CustomMouseListener(textSubTitle));
 		
-		circleStage.setScene(new Scene(viewer));
+		voronoiStage.setScene(new Scene(viewer));
 	}
 
 	private void makeSeries()
