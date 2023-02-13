@@ -3,20 +3,15 @@ package View;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.annotations.XYShapeAnnotation;
 import org.jfree.chart.fx.ChartViewer;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
-
 import Control.CustomMouseListener;
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
@@ -35,7 +30,6 @@ public class VoronoiGraphGUI
 	
 	private XYPlot plot;
 	private TextTitle textSubTitle;
-	private JFreeChart chart;
 	
 	public VoronoiGraphGUI(String path)
 	{
@@ -93,9 +87,8 @@ public class VoronoiGraphGUI
 		
 		makeSeries();	    
 	    makePlot();
-	    makeChart();
 	    
-		ChartViewer viewer = new ChartViewer(chart);
+		ChartViewer viewer = new ChartViewer(makeChart());
 		viewer.addChartMouseListener(new CustomMouseListener(textSubTitle));
 		
 		voronoiStage.setScene(new Scene(viewer));
@@ -150,14 +143,16 @@ public class VoronoiGraphGUI
 	    plot.setDomainCrosshairVisible(true);
 	    plot.setDomainZeroBaselineVisible(true);
 	    plot.setOutlineVisible(true);
-	    //=======================================================
 	    plot.setBackgroundPaint(Color.WHITE);
         plot.setDomainGridlinePaint(Color.GRAY);
-        plot.setRangeGridlinePaint(Color.GRAY);
-//        plot.getRenderer().setSeriesPaint(0, Color.decode("#006699"));       
-        
-        XYLineAndShapeRenderer renderer2 = new XYLineAndShapeRenderer();
-       
+        plot.setRangeGridlinePaint(Color.GRAY);    
+        plot.setRenderer(makeRenderer());
+	}
+
+	private XYLineAndShapeRenderer makeRenderer()
+	{
+		XYLineAndShapeRenderer renderer2 = new XYLineAndShapeRenderer();
+	       
         renderer2.setSeriesPaint(2, Color.BLUE); //convex points
         renderer2.setSeriesLinesVisible(2, false);
         renderer2.setSeriesShapesVisible(2, true);
@@ -182,13 +177,12 @@ public class VoronoiGraphGUI
             renderer2.setSeriesVisibleInLegend(offset+i, false);
         }
         
-        plot.setRenderer(renderer2);
-      //=======================================================
+        return renderer2;
 	}
-
-	private void makeChart()
+	
+	private JFreeChart makeChart()
 	{
-		chart = new JFreeChart(plot);
+		JFreeChart chart = new JFreeChart(plot);
 		chart.setTitle(title);
 		//=======================================================
 		chart.getTitle().setPaint(Color.decode("#006699"));
@@ -201,5 +195,6 @@ public class VoronoiGraphGUI
 		chart.setNotify(true);
 		chart.setAntiAlias(true);
 		chart.setBorderVisible(false);
+		return chart;
 	}
 }

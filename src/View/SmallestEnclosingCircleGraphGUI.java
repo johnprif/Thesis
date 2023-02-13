@@ -11,13 +11,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.annotations.XYShapeAnnotation;
 import org.jfree.chart.fx.ChartViewer;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.data.xy.XYSeries;
@@ -40,7 +38,6 @@ public class SmallestEnclosingCircleGraphGUI
 	
 	private XYPlot plot;
 	private TextTitle textSubTitle;
-	private JFreeChart chart;
 	
 	private Ellipse2D circle;
 	
@@ -94,9 +91,8 @@ public class SmallestEnclosingCircleGraphGUI
 		
 		makeSeries();	    
 	    makePlot();
-	    makeChart();
 	    
-		ChartViewer viewer = new ChartViewer(chart);
+		ChartViewer viewer = new ChartViewer(makeChart());
 		viewer.addChartMouseListener(new CustomMouseListener(textSubTitle));
 		
 		circleStage.setScene(new Scene(viewer));
@@ -144,10 +140,7 @@ public class SmallestEnclosingCircleGraphGUI
                 dataset // Dataset for the Chart
                 );	
 		plot = (XYPlot)scatterPlot.getPlot(); 
-
-		XYShapeAnnotation annotation = new XYShapeAnnotation(circle, new BasicStroke(1.0f), Color.RED, null);
-		annotation.setToolTipText("center=("+circle.getCenterX()+", "+circle.getCenterY()+")\nradius="+circle.getWidth()/2);
-		plot.addAnnotation(annotation);
+		plot.addAnnotation(makeCircle());
 		plot.setDomainPannable(true);
 	    plot.setRangePannable(true);
 	    plot.setDomainCrosshairLockedOnData(true);
@@ -155,37 +148,39 @@ public class SmallestEnclosingCircleGraphGUI
 	    plot.setDomainCrosshairVisible(true);
 	    plot.setDomainZeroBaselineVisible(true);
 	    plot.setOutlineVisible(true);
-	    //=======================================================
 	    plot.setBackgroundPaint(Color.WHITE);
         plot.setDomainGridlinePaint(Color.GRAY);
         plot.setRangeGridlinePaint(Color.GRAY);
-//        plot.getRenderer().setSeriesPaint(0, Color.decode("#006699"));       
-//        XYItemRenderer renderer = plot.getRenderer();
-//        renderer.setSeriesPaint(0, Color.RED); //circle points
-//        renderer.setSeriesPaint(1, Color.BLUE); //convex points
-//        renderer.setSeriesStroke(1, new BasicStroke(2.0f));
-//        renderer.setSeriesItemLabelsVisible(2, true);
-//        renderer.setSeriesPaint(2, Color.ORANGE); // all points
-      //=======================================================
-        XYLineAndShapeRenderer renderer2 = new XYLineAndShapeRenderer();
+        plot.setRenderer(makeRenderer());
+	}
+
+	private XYShapeAnnotation makeCircle()
+	{
+		XYShapeAnnotation annotation = new XYShapeAnnotation(circle, new BasicStroke(1.0f), Color.RED, null);
+		annotation.setToolTipText("center=("+circle.getCenterX()+", "+circle.getCenterY()+")\nradius="+circle.getWidth()/2);
+		return annotation;
+	}
+	
+	private XYLineAndShapeRenderer makeRenderer()
+	{
+		XYLineAndShapeRenderer renderer2 = new XYLineAndShapeRenderer();
         renderer2.setSeriesPaint(0, Color.RED); //circle points
         renderer2.setSeriesLinesVisible(0, false);
         renderer2.setSeriesShapesVisible(0, true);
       
-      renderer2.setSeriesPaint(1, Color.BLUE); //convex points
-      renderer2.setSeriesLinesVisible(1, false);
-      renderer2.setSeriesShapesVisible(1, true);
+        renderer2.setSeriesPaint(1, Color.BLUE); //convex points
+        renderer2.setSeriesLinesVisible(1, false);
+        renderer2.setSeriesShapesVisible(1, true);
       
-      renderer2.setSeriesPaint(2, Color.ORANGE); // all points
-      renderer2.setSeriesLinesVisible(2, false);
-      renderer2.setSeriesShapesVisible(2, true);
-      
-      plot.setRenderer(renderer2);
+        renderer2.setSeriesPaint(2, Color.ORANGE); // all points
+        renderer2.setSeriesLinesVisible(2, false);
+        renderer2.setSeriesShapesVisible(2, true);
+        return renderer2;
 	}
-
-	private void makeChart()
+	
+	private JFreeChart makeChart()
 	{
-		chart = new JFreeChart(plot);
+		JFreeChart chart = new JFreeChart(plot);
 		chart.setTitle("Smallest Enclosing Circle");
 		//=======================================================
 		chart.getTitle().setPaint(Color.decode("#006699"));
@@ -198,5 +193,6 @@ public class SmallestEnclosingCircleGraphGUI
 		chart.setNotify(true);
 		chart.setAntiAlias(true);
 		chart.setBorderVisible(false);
+		return chart;
 	}
 }
