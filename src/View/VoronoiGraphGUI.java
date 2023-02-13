@@ -105,7 +105,7 @@ public class VoronoiGraphGUI
 	{
 		XYSeries series0 = new XYSeries("convexPoints -> "+(convexPoints.size()));			
 		XYSeries series1 = new XYSeries("Voronoi Edges -> "+(K.size())+" ||");
-		XYSeries series2 = new XYSeries("Voronoi Cells-Lines -> "+(E.size()+" ||"));
+		XYSeries series2 = new XYSeries("Voronoi Lines -> "+(E.size()+" ||"));
 
 		dataset = new XYSeriesCollection();
 
@@ -172,13 +172,14 @@ public class VoronoiGraphGUI
         
         for(int i=0; i<E.size(); i++)
         {
-        	renderer2.setSeriesPaint(3+i, Color.decode("#8fbc8f")); //voronoi cells
-        	renderer2.setSeriesLinesVisible(3+i, true);
-            renderer2.setSeriesShapesVisible(3+i, false);
-            renderer2.setSeriesStroke(3+i, new BasicStroke(2.0f));
-            renderer2.setSeriesItemLabelsVisible(3+i, false);
+        	int offset = 3;
+        	renderer2.setSeriesPaint(offset+i, Color.decode("#8fbc8f")); //voronoi cells
+        	renderer2.setSeriesLinesVisible(offset+i, true);
+            renderer2.setSeriesShapesVisible(offset+i, false);
+            renderer2.setSeriesStroke(offset+i, new BasicStroke(2.0f));
+            renderer2.setSeriesItemLabelsVisible(offset+i, false);
             renderer2.setDefaultItemLabelsVisible(false);
-            renderer2.setSeriesVisibleInLegend(3+i, false);
+            renderer2.setSeriesVisibleInLegend(offset+i, false);
         }
         
         plot.setRenderer(renderer2);
