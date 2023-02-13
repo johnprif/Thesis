@@ -24,7 +24,7 @@ import javafx.stage.Stage;
 
 public class VoronoiGraphGUI 
 {
-	private ArrayList<Point2D> allPoints;
+	private int allPointsSize;
 	private ArrayList<Point2D> convexPoints;
 	private ArrayList<Point2D> K;
 	private ArrayList<ArrayList<Point2D>> E;
@@ -47,9 +47,9 @@ public class VoronoiGraphGUI
 		this.title = title;
 	}
 	
-	public void setAllPoints(ArrayList<Point2D> allPoints)
+	public void setAllPointsSize(int allPointsSize)
 	{
-		this.allPoints = allPoints;
+		this.allPointsSize = allPointsSize;
 	}
 	
 	public void setConvexPoints(ArrayList<Point2D> convexPoints)
@@ -78,7 +78,7 @@ public class VoronoiGraphGUI
 	private void createStage()
     {
 		voronoiStage = new Stage();		
-		voronoiStage.setTitle(title+" -> "+path+" -> "+(allPoints.size())+" points");
+		voronoiStage.setTitle(title+" -> "+path+" -> "+(allPointsSize)+" points");
 		voronoiStage.setHeight(700);
 		voronoiStage.setWidth(700);
 		voronoiStage.setX(700);

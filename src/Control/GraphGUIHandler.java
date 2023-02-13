@@ -37,7 +37,7 @@ public class GraphGUIHandler
 	{
 		farthestNeighborVoronoiGraphGUI = new VoronoiGraphGUI(path);
 		farthestNeighborVoronoiGraphGUI.setTitle("Farthest Neighbor Voronoi Diagram");
-		farthestNeighborVoronoiGraphGUI.setAllPoints(dataBase.getAllPoints());
+		farthestNeighborVoronoiGraphGUI.setAllPointsSize(dataBase.getAllPointsSize());
 		farthestNeighborVoronoiGraphGUI.setConvexPoints(dataBase.getConvexPoints());
 		farthestNeighborVoronoiGraphGUI.setK(dataBase.getK());
 		farthestNeighborVoronoiGraphGUI.setE(dataBase.getE());		
@@ -48,7 +48,7 @@ public class GraphGUIHandler
 	{
 		nearestNeighborVoronoiGraphGUI = new VoronoiGraphGUI(path);
 		nearestNeighborVoronoiGraphGUI.setTitle("Nearest Neighbor Voronoi Diagram");
-		nearestNeighborVoronoiGraphGUI.setAllPoints(dataBase.getAllPoints());
+		nearestNeighborVoronoiGraphGUI.setAllPointsSize(dataBase.getAllPointsSize());
 		nearestNeighborVoronoiGraphGUI.setConvexPoints(dataBase.getConvexPoints());
 		nearestNeighborVoronoiGraphGUI.setK(dataBase.getK());
 		nearestNeighborVoronoiGraphGUI.setE(dataBase.getE());		
