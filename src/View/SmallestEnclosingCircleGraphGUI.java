@@ -109,7 +109,7 @@ public class SmallestEnclosingCircleGraphGUI
 		int convexPointsSize = convexPoints.size();
 		int allPointsSize = allPoints.size();
 		
-		XYSeries series1 = new XYSeries("allPoints -> "+(allPointsSize-convexPointsSize - circlePointsSize)+"+convexPoints+circlePoints");
+		XYSeries series1 = new XYSeries("allPoints -> "+(allPointsSize-convexPointsSize)+"+convexPoints+circlePoints");
 		XYSeries series2 = new XYSeries("convexPoints -> "+(convexPointsSize - circlePointsSize)+"+circlePoints"+" ||");
 		XYSeries series3 = new XYSeries("circlePoints -> "+circlePointsSize+" ||");			
 		
