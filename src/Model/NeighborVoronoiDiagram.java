@@ -2,11 +2,11 @@ package Model;
 
 import javafx.geometry.Point2D;
 
-public class VoronoiAlgorithm2and3 
+public class NeighborVoronoiDiagram 
 {
 	private DataBase dataBase;
 	
-	public VoronoiAlgorithm2and3()
+	public NeighborVoronoiDiagram()
 	{
 		dataBase = DataBase.getInstance();
 	}

@@ -1,16 +1,16 @@
 package Control;
 
-import Model.SmallestEnclosingCirlceAlgorithm1;
-import Model.VoronoiAlgorithm2and3;
+import Model.SmallestEnclosingCirlce;
+import Model.NeighborVoronoiDiagram;
 import Model.DataBase;
 import Model.GrahamScan;
 
 public class AlgorithmsHandler 
 {	
 	private GrahamScan grahamScan;
-	private SmallestEnclosingCirlceAlgorithm1 algorithm1;
-	private VoronoiAlgorithm2and3 nearestNeighbor;
-	private VoronoiAlgorithm2and3 farthestNeighbor;
+	private SmallestEnclosingCirlce algorithm1;
+	private NeighborVoronoiDiagram nearestNeighbor;
+	private NeighborVoronoiDiagram farthestNeighbor;
 	private DataBase dataBase;
 	
 	public AlgorithmsHandler()
@@ -18,18 +18,43 @@ public class AlgorithmsHandler
 		dataBase = DataBase.getInstance();
 		dataBase.initializeKandE();
 		
+		callAlgorithms();
+	}
+	
+	private void callAlgorithms()	
+	{
+		callGrahamScan();
+		
+		callSmallestEnclosingCircle();
+		
+		callNearestNeighborVoronoi();
+		
+		callFarthestNeighborVoronoi();
+	}
+	
+	private void callGrahamScan()
+	{
 		grahamScan = new GrahamScan();			
 		grahamScan.initialize();
-		
-		algorithm1 = new SmallestEnclosingCirlceAlgorithm1();	
+	}
+	
+	private void callSmallestEnclosingCircle()
+	{
+		algorithm1 = new SmallestEnclosingCirlce();	
 		dataBase.prepareForAlgorithm(0);		
 		algorithm1.computeSmallestEnclosingCircle();
-		
-		nearestNeighbor = new VoronoiAlgorithm2and3();
+	}
+	
+	private void callNearestNeighborVoronoi()
+	{
+		nearestNeighbor = new NeighborVoronoiDiagram();
 		dataBase.prepareForAlgorithm(1);	
 		nearestNeighbor.computeVoronoiDiagram();
-		
-		farthestNeighbor = new VoronoiAlgorithm2and3();
+	}
+	
+	private void callFarthestNeighborVoronoi()
+	{
+		farthestNeighbor = new NeighborVoronoiDiagram();
 		dataBase.prepareForAlgorithm(2);
 		farthestNeighbor.computeVoronoiDiagram();
 	}

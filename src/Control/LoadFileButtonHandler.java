@@ -3,7 +3,6 @@ package Control;
 import java.io.File;
 import Model.TextHandler;
 import Model_Loaders.FileLoaderFactory;
-import View.SmallestEnclosingCircleGraphGUI;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
