@@ -89,6 +89,10 @@ public class DataBase
 	{
 		this.mode = mode;
 		loadMaps();
+		if(mode == 1 || mode == 2)
+		{
+			circle = getCircleShape();
+		}		
 	}
 	
 //	----------O(nlog(n))---------------
@@ -450,13 +454,12 @@ public class DataBase
 	    double slope = (nextP.getY()-p.getY())/(nextP.getX()-p.getX());
 	    double versticalSlope = -1/slope;
 	    Point2D mid = new Point2D(mx, my);
-	    Point2D myCentre = new Point2D(getCircleShape().getCenterX(), getCircleShape().getCenterY());
-	    return getIntersectionOfLines(mid, versticalSlope, slope);
-//	    return getIntersectionOfLines(mid, slope, myCentre, versticalSlope);
-	    
+	    Point2D myCentre = new Point2D(circle.getCenterX(), circle.getCenterY());
+	    return getIntersectionOfLines(mid, versticalSlope, slope);	    
 	}
 
-	public Point2D getIntersectionOfLines(Point2D point, double slope1, double slope2) {
+	public Point2D getIntersectionOfLines(Point2D point, double slope1, double slope2) 
+	{
 	    // Calculate y-intercept of each line
 	    double yIntercept1 = point.getY() - slope1 * point.getX();
 	    double yIntercept2 = point.getY() - slope2 * point.getX();
@@ -475,27 +478,6 @@ public class DataBase
 	        return null;
 	    }
 	}
-	
-	public Point2D getIntersectionOfLines2(Point2D point1, double slope1, Point2D point2, double slope2) {
-		// Calculate y-intercept of each line
-	    double yIntercept1 = point1.getY() - slope1 * point1.getX();
-	    double yIntercept2 = point2.getY() - slope2 * point2.getX();
-
-	    // Check if slopes are not equal
-	    if (slope1 != slope2) {
-	        // Calculate x-coordinate of intersection point
-	        double x = (yIntercept2 - yIntercept1) / (slope1 - slope2);
-
-	        // Calculate y-coordinate of intersection point
-	        double y = slope1 * x + yIntercept1;
-
-	        return new Point2D(x, y);
-	    } else {
-	        // Lines are parallel, so they don't intersect
-	        return null;
-	    }
-	}
-
 	
 	//-----------O(n)----------------
 	public void addAllUpToK() 
