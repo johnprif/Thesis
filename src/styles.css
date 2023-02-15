@@ -74,6 +74,26 @@
 	-fx-text-fill: #ffd700; /* gold */
 }
 
+
+#infoLabel {	
+	-fx-text-fill: white; 
+	-fx-text-alignment: left;
+	-fx-font-family: 'Lucida Sans Typewriter'; 
+	-fx-font-size: 12; 
+	-fx-font-weight: bold;
+	-fx-underline: false;
+	-fx-wrap-text: true;	
+	-fx-padding: 5px 5px 50px 5px; /* sets top, right, bottom, left padding */
+}
+
+#infoLabel:hover {
+    -fx-text-fill: #ffff00; /* yellow */
+}
+
+#infoLabel:pressed {
+	-fx-text-fill: #ffd700; /* gold */
+}
+
 #borderPane {
     -fx-background-color:  #4682b4; /* steelblue */
     -fx-padding: 5px 10px 5px 10px; /* sets top, right, bottom, left padding */

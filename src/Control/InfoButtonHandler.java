@@ -3,6 +3,7 @@ package Control;
 import Model.TextHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -30,12 +31,10 @@ public class InfoButtonHandler  implements EventHandler<ActionEvent>
 	private void createAndShowInfoWindow()
 	{	
 		stage = new Stage();
-        stage.setTitle("User Manual");
-
-        userManualView = new WebView();
-        userManualView.getEngine().load("https://github.com/johnprif");
+        stage.setTitle(textHandler.getInfoWindowTitle());
        
-        label = new Label(textHandler.getInfoContent());
+        
+        createContent();
         layout = new VBox(10);
 //        layout.getChildren().addAll(userManualView);
         layout.getChildren().addAll(label);
@@ -47,6 +46,14 @@ public class InfoButtonHandler  implements EventHandler<ActionEvent>
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
 		
+	}
+	
+	private void createContent() 
+	{
+		label = new Label(textHandler.getInfoContent());
+        label.setId("infoLabel");
+        label.setCursor(Cursor.HAND);
+        label.setOnMouseClicked(new InfoContentHandler());
 	}
 
 }
