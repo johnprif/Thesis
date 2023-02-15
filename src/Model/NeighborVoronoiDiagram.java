@@ -30,7 +30,7 @@ public class NeighborVoronoiDiagram
 			do
 			{
 				//find p maximizing radius and angle
-				p = dataBase.findMaxP(); //=0 for maximizing
+				p = dataBase.findMaxP();
 				before_p = dataBase.getPrev();				
 				next_p = dataBase.getNext();
 				c = dataBase.getCenter(before_p, p, next_p);

@@ -20,7 +20,7 @@ public class DataBase
 	private ArrayList<Point2D> circlePoints;
 	private static final DataBase instance = new DataBase();
 	private int mode;
-	
+	private Ellipse2D circle;
 	private ArrayList<Point2D> K;
 	private ArrayList<ArrayList<Point2D>> E;	
 	private HashMap<Point2D, ArrayList<Point2D>> neighbours;
@@ -244,8 +244,7 @@ public class DataBase
 	public Point2D getNext()
 	{
 		return nextCustom;
-	}
-	
+	}	
 		
 	public int getAllPointsSize()
 	{
@@ -265,7 +264,6 @@ public class DataBase
 	public Ellipse2D getCircleShape()
 	{
 		int n = getCirclePointsSize();
-		Ellipse2D circle;
 		Point2D point1 = circlePoints.get(0);
 		Point2D point2 = circlePoints.get(1);
 		Point2D point3 = null;
@@ -434,7 +432,7 @@ public class DataBase
 	
 	public Point2D getUp(Point2D p) 
 	{
-		Point2D nextP = neighbours.get(p).get(1);
+		Point2D nextP = neighbours.get(p).get(1); //O(1)
 	    double mx = (p.getX() + nextP.getX()) / 2.0;
 	    double my = (p.getY() + nextP.getY()) / 2.0;
 	    double dx = nextP.getY() - p.getY();
@@ -444,6 +442,40 @@ public class DataBase
 	    return new Point2D(ux, uy);
 	}
 
+	public Point2D getUp2(Point2D p) 
+	{
+		Point2D nextP = neighbours.get(p).get(1); //O(1)
+	    double mx = (p.getX() + nextP.getX()) / 2.0;
+	    double my = (p.getY() + nextP.getY()) / 2.0;	
+	    double slope = (nextP.getY()-p.getY())/(nextP.getX()-p.getX());
+	    double versticalSlope = -1/slope;
+	    Point2D mid = new Point2D(mx, my);
+	    Point2D myCentre = new Point2D(getCircleShape().getCenterX(), getCircleShape().getCenterY());
+//	    return getClosestPointOnLine(mid, versticalSlope, myCentre);
+	    return getIntersectionOfLines(mid, slope, versticalSlope);
+	}
+
+	public Point2D getIntersectionOfLines(Point2D point, double slope1, double slope2) {
+	    // Calculate y-intercept of each line
+	    double yIntercept1 = point.getY() - slope1 * point.getX();
+	    double yIntercept2 = point.getY() - slope2 * point.getX();
+
+	    // Check if slopes are not equal
+	    if (slope1 != slope2) {
+	        // Calculate x-coordinate of intersection point
+	        double x = (yIntercept2 - yIntercept1) / (slope1 - slope2);
+
+	        // Calculate y-coordinate of intersection point
+	        double y = slope1 * x + yIntercept1;
+
+	        return new Point2D(x, y);
+	    } else {
+	        // Lines are parallel, so they don't intersect
+	        return null;
+	    }
+	}
+
+	
 	//-----------O(n)----------------
 	public void addAllUpToK() 
 	{		
