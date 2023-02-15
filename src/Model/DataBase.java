@@ -9,6 +9,7 @@ package Model;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeMap;
 
 import javafx.geometry.Point2D;
@@ -434,7 +435,7 @@ public class DataBase
 		return Math.acos((a + b - c) / Math.sqrt(4 * a * b));
 	}
 	
-	public Point2D getUp2(Point2D p) 
+	public Point2D getUp(Point2D p) 
 	{
 		Point2D nextP = neighbours.get(p).get(1); //O(1)
 	    double mx = (p.getX() + nextP.getX()) / 2.0;
@@ -446,7 +447,7 @@ public class DataBase
 	    return new Point2D(ux, uy);
 	}
 
-	public Point2D getUp(Point2D p) 
+	public Point2D getUp2(Point2D p) 
 	{
 		Point2D nextP = neighbours.get(p).get(1); //O(1)
 	    double mx = (p.getX() + nextP.getX()) / 2.0;
@@ -457,26 +458,23 @@ public class DataBase
 	    Point2D myCentre = new Point2D(circle.getCenterX(), circle.getCenterY());
 	    return getIntersectionOfLines(mid, versticalSlope, slope);	    
 	}
-
+	
 	public Point2D getIntersectionOfLines(Point2D point, double slope1, double slope2) 
 	{
 	    // Calculate y-intercept of each line
 	    double yIntercept1 = point.getY() - slope1 * point.getX();
 	    double yIntercept2 = point.getY() - slope2 * point.getX();
 
-	    // Check if slopes are not equal
-	    if (slope1 != slope2) {
-	        // Calculate x-coordinate of intersection point
-	        double x = (yIntercept2 - yIntercept1) / (slope1 - slope2);
+        // Calculate x-coordinate of intersection point
+        double x = (yIntercept2 - yIntercept1) / (slope1 - slope2);
 
-	        // Calculate y-coordinate of intersection point
-	        double y = slope1 * x + yIntercept1;
-
-	        return new Point2D(x, y);
-	    } else {
-	        // Lines are parallel, so they don't intersect
-	        return null;
-	    }
+        // Calculate y-coordinate of intersection point
+        double y = slope1 * x + yIntercept1;
+        
+        x=1.05*x;
+        y = slope1 * x + yIntercept1;
+        
+        return new Point2D(x, y);
 	}
 	
 	//-----------O(n)----------------
@@ -522,4 +520,19 @@ public class DataBase
 		allE = new ArrayList<ArrayList<ArrayList<Point2D>>>();
 	}
 
+	 private boolean checkIfContains(Point2D A, Point2D B, Point2D C)
+	 {
+		// Calculate the slope
+	    double m = (B.getY() - A.getY()) / (B.getX() - A.getX());
+	 // Calculate the y-intercept
+        double b = A.getY() - m * A.getX();
+        double y = m*C.getX()+b;
+        if((C.getY() == y))
+        {
+        	return true;
+        }
+        return false;
+	 }
+	
+	
 }
