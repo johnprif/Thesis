@@ -435,7 +435,7 @@ public class DataBase
 		return Math.acos((a + b - c) / Math.sqrt(4 * a * b));
 	}
 	
-	public Point2D getUp(Point2D p) 
+	public Point2D getUp2(Point2D p) 
 	{
 		Point2D nextP = neighbours.get(p).get(1); //O(1)
 	    double mx = (p.getX() + nextP.getX()) / 2.0;
@@ -446,8 +446,32 @@ public class DataBase
 	    double uy = my + dy;
 	    return new Point2D(ux, uy);
 	}
+	
+	public Point2D getUp(Point2D p) 
+	{
+		Point2D nextP = neighbours.get(p).get(1); //O(1)
+	    double mx = (p.getX() + nextP.getX()) / 2.0;
+	    double my = (p.getY() + nextP.getY()) / 2.0;
+	    double dx = nextP.getY() - p.getY();
+	    double dy = p.getX() - nextP.getX();
+	    Point2D mid = new Point2D(mx, my);
+	    Point2D d = new Point2D(dx, dy);
+	    double ux = mx + dx;
+	    double uy = my + dy;
+	    Point2D u = new Point2D(ux, uy);
+	    if(u.distance(p)<=(circle.getWidth()/2))
+	    {
+	    	ux = mx + dx;
+	    	uy = my + dy;
+	    }else
+	    {
+	    	ux = mx + 0.05*dx;
+	    	uy = my + 0.05*dy;
+	    }
+	    return new Point2D(ux, uy);
+	}
 
-	public Point2D getUp2(Point2D p) 
+	public Point2D getUp3(Point2D p) 
 	{
 		Point2D nextP = neighbours.get(p).get(1); //O(1)
 	    double mx = (p.getX() + nextP.getX()) / 2.0;
@@ -471,8 +495,63 @@ public class DataBase
         // Calculate y-coordinate of intersection point
         double y = slope1 * x + yIntercept1;
         
-        x=1.05*x;
-        y = slope1 * x + yIntercept1;
+        if(point.getX()>circle.getCenterX())
+        {
+        	if(x<circle.getCenterX())
+            {
+            	if(slope1<0)
+            	{
+            		x=0.8*x;
+                    y = slope1 * x + yIntercept1;
+            	}else
+            	{
+            		x = 0.8*x;
+            		y = slope1 * x + yIntercept1;
+            	}
+            }else// || y<circle.getCenterY()
+            {
+            	if(slope1<0)
+            	{
+            		x=0.8*x;
+                    y = slope1 * x + yIntercept1;
+            	}else
+            	{
+            		x = 0.8*x;
+            		y = slope1 * x + yIntercept1;
+            	}
+            }
+        }else // || point.getY()>circle.getCenterY()
+        {
+        	if(x>circle.getCenterX())
+            {
+        		if(slope1<0)
+            	{
+            		x=0.8*x;
+                    y = slope1 * x + yIntercept1;
+            	}else
+            	{
+            		x = 0.8*x;
+            		y = slope1 * x + yIntercept1;
+            	}
+            }else// || y>circle.getCenterY()
+            {
+            	if(slope1<0)
+            	{
+            		x=0.8*x;
+                    y = slope1 * x + yIntercept1;
+            	}else
+            	{
+            		x = 0.8*x;
+            		y = slope1 * x + yIntercept1;
+            	}
+            }
+        }
+        
+        
+        
+        
+//        x=1.05*x;
+//        y = slope1 * x + yIntercept1;
         
         return new Point2D(x, y);
 	}
