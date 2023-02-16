@@ -435,18 +435,6 @@ public class DataBase
 		return Math.acos((a + b - c) / Math.sqrt(4 * a * b));
 	}
 	
-	public Point2D getUp2(Point2D p) 
-	{
-		Point2D nextP = neighbours.get(p).get(1); //O(1)
-	    double mx = (p.getX() + nextP.getX()) / 2.0;
-	    double my = (p.getY() + nextP.getY()) / 2.0;
-	    double dx = nextP.getY() - p.getY();
-	    double dy = p.getX() - nextP.getX();
-	    double ux = mx + dx;
-	    double uy = my + dy;
-	    return new Point2D(ux, uy);
-	}
-	
 	public Point2D getUp(Point2D p) 
 	{
 		Point2D nextP = neighbours.get(p).get(1); //O(1)
@@ -454,106 +442,9 @@ public class DataBase
 	    double my = (p.getY() + nextP.getY()) / 2.0;
 	    double dx = nextP.getY() - p.getY();
 	    double dy = p.getX() - nextP.getX();
-	    Point2D mid = new Point2D(mx, my);
-	    Point2D d = new Point2D(dx, dy);
-	    double ux = mx + dx;
-	    double uy = my + dy;
-	    Point2D u = new Point2D(ux, uy);
-	    if(u.distance(p)<=(circle.getWidth()/2))
-	    {
-	    	ux = mx + dx;
-	    	uy = my + dy;
-	    }else
-	    {
-	    	ux = mx + 0.05*dx;
-	    	uy = my + 0.05*dy;
-	    }
+	    double ux = mx + dx/5.0;
+	    double uy = my + dy/5.0;
 	    return new Point2D(ux, uy);
-	}
-
-	public Point2D getUp3(Point2D p) 
-	{
-		Point2D nextP = neighbours.get(p).get(1); //O(1)
-	    double mx = (p.getX() + nextP.getX()) / 2.0;
-	    double my = (p.getY() + nextP.getY()) / 2.0;	
-	    double slope = (nextP.getY()-p.getY())/(nextP.getX()-p.getX());
-	    double versticalSlope = -1/slope;
-	    Point2D mid = new Point2D(mx, my);
-	    Point2D myCentre = new Point2D(circle.getCenterX(), circle.getCenterY());
-	    return getIntersectionOfLines(mid, versticalSlope, slope);	    
-	}
-	
-	public Point2D getIntersectionOfLines(Point2D point, double slope1, double slope2) 
-	{
-	    // Calculate y-intercept of each line
-	    double yIntercept1 = point.getY() - slope1 * point.getX();
-	    double yIntercept2 = point.getY() - slope2 * point.getX();
-
-        // Calculate x-coordinate of intersection point
-        double x = (yIntercept2 - yIntercept1) / (slope1 - slope2);
-
-        // Calculate y-coordinate of intersection point
-        double y = slope1 * x + yIntercept1;
-        
-        if(point.getX()>circle.getCenterX())
-        {
-        	if(x<circle.getCenterX())
-            {
-            	if(slope1<0)
-            	{
-            		x=0.8*x;
-                    y = slope1 * x + yIntercept1;
-            	}else
-            	{
-            		x = 0.8*x;
-            		y = slope1 * x + yIntercept1;
-            	}
-            }else// || y<circle.getCenterY()
-            {
-            	if(slope1<0)
-            	{
-            		x=0.8*x;
-                    y = slope1 * x + yIntercept1;
-            	}else
-            	{
-            		x = 0.8*x;
-            		y = slope1 * x + yIntercept1;
-            	}
-            }
-        }else // || point.getY()>circle.getCenterY()
-        {
-        	if(x>circle.getCenterX())
-            {
-        		if(slope1<0)
-            	{
-            		x=0.8*x;
-                    y = slope1 * x + yIntercept1;
-            	}else
-            	{
-            		x = 0.8*x;
-            		y = slope1 * x + yIntercept1;
-            	}
-            }else// || y>circle.getCenterY()
-            {
-            	if(slope1<0)
-            	{
-            		x=0.8*x;
-                    y = slope1 * x + yIntercept1;
-            	}else
-            	{
-            		x = 0.8*x;
-            		y = slope1 * x + yIntercept1;
-            	}
-            }
-        }
-        
-        
-        
-        
-//        x=1.05*x;
-//        y = slope1 * x + yIntercept1;
-        
-        return new Point2D(x, y);
 	}
 	
 	//-----------O(n)----------------
@@ -598,7 +489,7 @@ public class DataBase
 		allK = new ArrayList<ArrayList<Point2D>>();
 		allE = new ArrayList<ArrayList<ArrayList<Point2D>>>();
 	}
-
+	
 	 private boolean checkIfContains(Point2D A, Point2D B, Point2D C)
 	 {
 		// Calculate the slope
