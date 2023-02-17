@@ -628,6 +628,11 @@ public class DataBase
 	}
 
 	
+	public void updateUp(Point2D p, Point2D c)
+	{
+		u_p.replace(p, c);
+	}
+	
 	//-----------O(n)----------------
 	public void addAllUpToK() 
 	{		

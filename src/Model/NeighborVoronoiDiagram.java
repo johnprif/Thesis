@@ -38,6 +38,7 @@ public class NeighborVoronoiDiagram
 				dataBase.addCandUtoE(c, dataBase.getUp2(p));
 				dataBase.addCandUtoE(c, dataBase.getUp2(before_p));
 				//u(q)=c;
+				dataBase.updateUp(before_p, c);
 				dataBase.deleteMaxP();
 				n = n-1;
 			}while(n != 2);
