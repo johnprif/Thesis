@@ -24,6 +24,7 @@ public class DataBase
 	private Ellipse2D circle;
 	private ArrayList<Point2D> K;
 	private ArrayList<ArrayList<Point2D>> E;	
+	private HashMap<Point2D, Point2D> u_p;
 	private HashMap<Point2D, ArrayList<Point2D>> neighbours;
 	private TreeMap<Double, Point2D> radiusForEachNode;
 	private HashMap<Double, Point2D> existingRadius;
@@ -435,7 +436,7 @@ public class DataBase
 		return Math.acos((a + b - c) / Math.sqrt(4 * a * b));
 	}
 	
-	public Point2D getUp(Point2D p) 
+	public Point2D getUp8(Point2D p) 
 	{
 		Point2D nextP = neighbours.get(p).get(1); //O(1)
 	    double mx = (p.getX() + nextP.getX()) / 2.0;
@@ -443,19 +444,211 @@ public class DataBase
 	    double dx = nextP.getY() - p.getY();
 	    double dy = p.getX() - nextP.getX();
 	    double ux = mx + dx/5.0;
-	    double uy = my + dy/5.0;
+	    double uy = my + dy/5.0;	    
 	    return new Point2D(ux, uy);
 	}
+
+	public Point2D getUp5(Point2D p) 
+	{
+		int size = convexPoints.size();
+		Point2D nextP = neighbours.get(p).get(1); //O(1)
+	    double mx = (p.getX() + nextP.getX()) / 2.0;
+	    double my = (p.getY() + nextP.getY()) / 2.0;
+	    Point2D midPoint = new Point2D(mx, my);
+	    double slope = (nextP.getY()-p.getY())/(nextP.getX()-p.getX());
+	    double invSlope = -1/slope;
+	    //y-my = invSlope*(x-mx)
+	    //y = invSlope*(x-mx)+my;	    
+	    double distance = 0;
+	    Point2D tempUp = null;
+	    Point2D Up = null;
+	    //find farthest point
+	    for(int i=0; i<size; i++)
+	    {
+	    	Point2D nextPoint = convexPoints.get((i + 1) % size);
+	    	if(!nextPoint.equals(p) || !nextPoint.equals(nextP))
+	    	{
+	    		if(getCenter(p, nextP, nextPoint).distance(midPoint)>distance)
+		    	{
+		    		tempUp = getCenter(p, nextP, nextPoint);
+		    		distance = getCenter(p, nextP, nextPoint).distance(midPoint);
+		    	}
+	    	}
+	    	
+	    }
+	    
+	    //increase by 5%
+	    Point2D candidate1 = new Point2D(1.05*tempUp.getX(), (invSlope*(1.05*tempUp.getX()-mx)+my));
+	    //y-my = invSlope*(x-mx);
+	    //y-my = invSlope*x-invSlope*mx;
+	    //x = (y-my+invSlope*mx)/invSlope;
+	    //increase by 5%
+	    Point2D candidate2 = new Point2D(((1.05*tempUp.getY()-my+invSlope*mx)/invSlope), 1.05*tempUp.getY());
+	    if(candidate1.distance(midPoint)>candidate2.distance(midPoint))
+	    {
+	    	Up = candidate1;
+	    }else
+	    {
+	    	Up = candidate2;
+	    }    
+	    return Up;
+	}
+	
+	public Point2D getUp11(Point2D p) 
+	{
+		int size = convexPoints.size();
+		Point2D nextP = neighbours.get(p).get(1); //O(1)
+	    double mx = (p.getX() + nextP.getX()) / 2.0;
+	    double my = (p.getY() + nextP.getY()) / 2.0;
+	    double slope = (nextP.getY()-p.getY())/(nextP.getX()-p.getX());
+	    double invSlope = -1/slope;
+	    //y-my = invSlope*(x-mx)
+	    //y = invSlope*(x-mx)+my;	    
+	    double maxRadius = 0;
+	    Point2D max=null;
+	    Point2D center = new Point2D(circle.getCenterX(), circle.getCenterY());
+	    //find farthest point
+	    for(int i=0; i<size; i++)
+	    {
+	    	Point2D nextPoint = convexPoints.get((i + 1) % size);
+	    	if(!nextPoint.equals(p) || !nextPoint.equals(nextP))
+	    	{
+	    		double currentRadius = getRadius(p, nextP, nextPoint);
+	    		if(currentRadius>=maxRadius)
+		    	{
+		    		maxRadius = currentRadius;
+		    		max = getU(nextP, p, nextPoint);
+		    	}
+	    	}
+	    	return max;
+	    } 
+    
+	 // define the distance to travel
+	    double d = maxRadius/100.0;
+	    // calculate the change in x-coordinate
+	    double dx = Math.sqrt(d * d / (1 + invSlope * invSlope));
+	    if (invSlope < 0) 
+	    {
+	    	dx = -dx;
+	    }
+	    // calculate the change in y-coordinate
+	    double dy = invSlope * dx;
+
+	    // calculate the new coordinates of the point
+	    double x2 = mx + dx;
+	    double y2 = my + dy; 
+	    Point2D tempUp = new Point2D(x2, y2);
+	    
+	    return tempUp;
+	}
+    
+	public Point2D getUp(Point2D p) 
+	{
+		Point2D nextP = neighbours.get(p).get(1); //O(1)
+		Point2D nextNextP = neighbours.get(nextP).get(1);
+	    double mx = (p.getX() + nextP.getX()) / 2.0;
+	    double my = (p.getY() + nextP.getY()) / 2.0;
+	    double slope = (nextP.getY()-p.getY())/(nextP.getX()-p.getX());
+	    double invSlope = -1/slope;
+	    //y-my = invSlope*(x-mx)
+	    //y = invSlope*(x-mx)+my;	    
+	    //find farthest point
+	    double maxRadius = getRadius(p, nextP, nextNextP);
+	 // define the distance to travel
+	    double d = 2.05*maxRadius/10000.0;
+	    // calculate the change in x-coordinate
+	    double dx = Math.sqrt(d * d / (1 + invSlope * invSlope));
+	    if (invSlope < 0) 
+	    {
+	    	dx = -dx;
+	    }
+	    // calculate the change in y-coordinate
+	    double dy = invSlope * dx;
+
+	    // calculate the new coordinates of the point
+	    double x2 = mx + dx;
+	    double y2 = my + dy; 
+	    Point2D Up = new Point2D(x2, y2);
+	    
+	    return Up;
+	}
+	
+	public Point2D getUp33(Point2D p) {
+	    Point2D closestP = null;
+	    double minDist = Double.POSITIVE_INFINITY;
+	    for (Point2D q : neighbours.get(p)) {
+	        double dist = p.distance(q);
+	        if (dist < minDist) {
+	            closestP = q;
+	            minDist = dist;
+	        }
+	    }
+	    double mx = (p.getX() + closestP.getX()) / 2.0;
+	    double my = (p.getY() + closestP.getY()) / 2.0;
+	    double slope = (closestP.getY()-p.getY())/(closestP.getX()-p.getX());
+	    double invSlope = -1/slope;
+	    //y-my = invSlope*(x-mx)
+	    //y = invSlope*(x-mx)+my;	    
+	    //find farthest point
+	    double maxRadius = minDist / 2.0;
+	    // define the distance to travel
+	    double d = 1.05*maxRadius;
+	    // calculate the change in x-coordinate
+	    double dx = Math.sqrt(d * d / (1 + invSlope * invSlope));
+	    if (invSlope < 0) {
+	        dx = -dx;
+	    }
+	    // calculate the change in y-coordinate
+	    double dy = invSlope * dx;
+
+	    // calculate the new coordinates of the point
+	    double x2 = mx + dx;
+	    double y2 = my + dy; 
+	    Point2D Up = new Point2D(x2, y2);
+	    
+	    return Up;
+	}
+	
+	public boolean isPointInCircle(Point2D point, Point2D center, double radius) 
+	{
+        double distance = point.distance(center);
+        return distance < radius;
+    }
+
+	public Point2D circumcenter(Point2D p, Point2D q, Point2D r) {
+	    double a = p.distance(q);
+	    double b = q.distance(r);
+	    double c = r.distance(p);
+
+	    double x = (a * a * (b * b + c * c - a * a) * p.getX() + b * b * (c * c + a * a - b * b) * q.getX() + c * c * (a * a + b * b - c * c) * r.getX()) / (16 * area(p, q, r) * area(p, q, r));
+	    double y = (a * a * (b * b + c * c - a * a) * p.getY() + b * b * (c * c + a * a - b * b) * q.getY() + c * c * (a * a + b * b - c * c) * r.getY()) / (16 * area(p, q, r) * area(p, q, r));
+
+	    return new Point2D(x, y);
+	}
+
+	public double area(Point2D p, Point2D q, Point2D r) {
+	    return Math.abs(p.getX() * q.getY() + q.getX() * r.getY() + r.getX() * p.getY() - q.getX() * p.getY() - r.getX() * q.getY() - p.getX() * r.getY()) / 2.0;
+	}
+
+	public Point2D getU(Point2D p, Point2D prev, Point2D next) {
+	    return circumcenter(p, prev, next);
+	}
+
+
+
 	
 	//-----------O(n)----------------
 	public void addAllUpToK() 
 	{		
 		int size = getConvexPointsSize();
+		u_p = new HashMap<Point2D, Point2D>();
 		
 		for (int i = 0; i < size; i++) 
 	    {
-	        Point2D curr = convexPoints.get(i); //O(1)   
-	        K.add(getUp(curr));
+	        Point2D curr = convexPoints.get(i); //O(1) 
+	        Point2D Ucurr = getUp(curr);
+	        u_p.put(curr, Ucurr);
+	        K.add(Ucurr);
 	    }
 	}
 	
@@ -470,8 +663,14 @@ public class DataBase
 		inner.add(c);
 		inner.add(up);
 		E.add(inner);
+		
 	}
 
+	public Point2D getUp2(Point2D p) 
+	{	    	    
+	    return u_p.get(p);
+	}
+	
 	public void makeKandE() 
 	{
 		K = new ArrayList<Point2D>();
@@ -489,20 +688,4 @@ public class DataBase
 		allK = new ArrayList<ArrayList<Point2D>>();
 		allE = new ArrayList<ArrayList<ArrayList<Point2D>>>();
 	}
-	
-	 private boolean checkIfContains(Point2D A, Point2D B, Point2D C)
-	 {
-		// Calculate the slope
-	    double m = (B.getY() - A.getY()) / (B.getX() - A.getX());
-	 // Calculate the y-intercept
-        double b = A.getY() - m * A.getX();
-        double y = m*C.getX()+b;
-        if((C.getY() == y))
-        {
-        	return true;
-        }
-        return false;
-	 }
-	
-	
 }
