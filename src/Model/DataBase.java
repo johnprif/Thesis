@@ -570,43 +570,18 @@ public class DataBase
 	    double y2 = my + dy; 
 	    Point2D Up = new Point2D(x2, y2);
 	    
-	    return Up;
-	}
-	
-	public Point2D getUp33(Point2D p) {
-	    Point2D closestP = null;
-	    double minDist = Double.POSITIVE_INFINITY;
-	    for (Point2D q : neighbours.get(p)) {
-	        double dist = p.distance(q);
-	        if (dist < minDist) {
-	            closestP = q;
-	            minDist = dist;
-	        }
+//	    return Up;
+	    if(mode == 1)
+	    {
+//	    	return getU2(nextP, p, nextNextP);
+	    	return getUp8(p);
+//	    	return Up;
+	    }else
+	    {
+//	    	return getU(nextP, p, nextNextP);
+	    	return getUp8(p);
 	    }
-	    double mx = (p.getX() + closestP.getX()) / 2.0;
-	    double my = (p.getY() + closestP.getY()) / 2.0;
-	    double slope = (closestP.getY()-p.getY())/(closestP.getX()-p.getX());
-	    double invSlope = -1/slope;
-	    //y-my = invSlope*(x-mx)
-	    //y = invSlope*(x-mx)+my;	    
-	    //find farthest point
-	    double maxRadius = minDist / 2.0;
-	    // define the distance to travel
-	    double d = 1.05*maxRadius;
-	    // calculate the change in x-coordinate
-	    double dx = Math.sqrt(d * d / (1 + invSlope * invSlope));
-	    if (invSlope < 0) {
-	        dx = -dx;
-	    }
-	    // calculate the change in y-coordinate
-	    double dy = invSlope * dx;
-
-	    // calculate the new coordinates of the point
-	    double x2 = mx + dx;
-	    double y2 = my + dy; 
-	    Point2D Up = new Point2D(x2, y2);
 	    
-	    return Up;
 	}
 	
 	public boolean isPointInCircle(Point2D point, Point2D center, double radius) 
@@ -615,26 +590,42 @@ public class DataBase
         return distance < radius;
     }
 
-	public Point2D circumcenter(Point2D p, Point2D q, Point2D r) {
+	public Point2D circumcenter2(Point2D p, Point2D q, Point2D r) {
 	    double a = p.distance(q);
 	    double b = q.distance(r);
 	    double c = r.distance(p);
 
-	    double x = (a * a * (b * b + c * c - a * a) * p.getX() + b * b * (c * c + a * a - b * b) * q.getX() + c * c * (a * a + b * b - c * c) * r.getX()) / (16 * area(p, q, r) * area(p, q, r));
-	    double y = (a * a * (b * b + c * c - a * a) * p.getY() + b * b * (c * c + a * a - b * b) * q.getY() + c * c * (a * a + b * b - c * c) * r.getY()) / (16 * area(p, q, r) * area(p, q, r));
+	    double d = 2 * (p.getX() * (q.getY() - r.getY()) + q.getX() * (r.getY() - p.getY()) + r.getX() * (p.getY() - q.getY()));
+	    double ux = ((p.getX() * p.getX() + p.getY() * p.getY()) * (q.getY() - r.getY()) + (q.getX() * q.getX() + q.getY() * q.getY()) * (r.getY() - p.getY()) + (r.getX() * r.getX() + r.getY() * r.getY()) * (p.getY() - q.getY())) / d;
+	    double uy = ((p.getX() * p.getX() + p.getY() * p.getY()) * (r.getX() - q.getX()) + (q.getX() * q.getX() + q.getY() * q.getY()) * (p.getX() - r.getX()) + (r.getX() * r.getX() + r.getX() * r.getX()) * (q.getX() - p.getX())) / d;
 
-	    return new Point2D(x, y);
+	    return new Point2D(ux, uy);
 	}
 
 	public double area(Point2D p, Point2D q, Point2D r) {
 	    return Math.abs(p.getX() * q.getY() + q.getX() * r.getY() + r.getX() * p.getY() - q.getX() * p.getY() - r.getX() * q.getY() - p.getX() * r.getY()) / 2.0;
 	}
 
+	public Point2D getU2(Point2D p, Point2D prev, Point2D next) {
+	    return circumcenter2(p, prev, next);
+	}
+
+	public Point2D circumcenter(Point2D p, Point2D q, Point2D r) {
+	    double a = q.distance(r);
+	    double b = p.distance(r);
+	    double c = p.distance(q);
+
+	    double s = a + b + c;
+
+	    double x = (a * p.getX() + b * q.getX() + c * r.getX()) / s;
+	    double y = (a * p.getY() + b * q.getY() + c * r.getY()) / s;
+
+	    return new Point2D(x, y);
+	}
+
 	public Point2D getU(Point2D p, Point2D prev, Point2D next) {
 	    return circumcenter(p, prev, next);
 	}
-
-
 
 	
 	//-----------O(n)----------------
