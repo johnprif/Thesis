@@ -3,6 +3,7 @@ package View;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
+import java.net.URL;
 import java.util.ArrayList;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
@@ -15,6 +16,7 @@ import org.jfree.data.xy.XYSeriesCollection;
 import Control.CustomMouseListener;
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class VoronoiGraphGUI 
@@ -77,6 +79,9 @@ public class VoronoiGraphGUI
 		voronoiStage.setX(x);
 		voronoiStage.setY(y);
 		voronoiStage.setResizable(true);
+		URL url = getClass().getResource("/Icons/circle.png");
+    	Image stageImage = new Image(url.toString());
+    	voronoiStage.getIcons().add(stageImage);
     }
 	
 	private void displaySmallestEnclosingCircle()

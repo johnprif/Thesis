@@ -37,6 +37,9 @@ public class InfoButtonHandler  implements EventHandler<ActionEvent>
 	{	
 		stage = new Stage();
         stage.setTitle(textHandler.getInfoWindowTitle());
+        URL url = getClass().getResource("/Icons/circle.png");
+    	Image stageImage = new Image(url.toString());
+    	stage.getIcons().add(stageImage); 
               
         createLabelContent();  
         createGrahpImages(200);

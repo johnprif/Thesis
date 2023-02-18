@@ -10,6 +10,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.geom.Ellipse2D;
+import java.net.URL;
 import java.util.ArrayList;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
@@ -22,6 +23,7 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import Control.CustomMouseListener;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.geometry.Point2D;
 
@@ -88,6 +90,9 @@ public class SmallestEnclosingCircleGraphGUI
 		circleStage.setX(x);
 		circleStage.setY(y);
 		circleStage.setResizable(true);
+		URL url = getClass().getResource("/Icons/circle.png");
+    	Image stageImage = new Image(url.toString());
+    	circleStage.getIcons().add(stageImage); 
     }
 	
 	private void displaySmallestEnclosingCircle()
