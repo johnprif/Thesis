@@ -436,7 +436,7 @@ public class DataBase
 		return Math.acos((a + b - c) / Math.sqrt(4 * a * b));
 	}
 	
-	public Point2D getUp8(Point2D p) 
+	private Point2D Up(Point2D p) 
 	{
 		Point2D nextP = neighbours.get(p).get(1); //O(1)
 	    double mx = (p.getX() + nextP.getX()) / 2.0;
@@ -446,45 +446,6 @@ public class DataBase
 	    double ux = mx + dx/5.0;
 	    double uy = my + dy/5.0;	    
 	    return new Point2D(ux, uy);
-	}
-
-	public Point2D getUp(Point2D p) 
-	{
-		Point2D nextP = neighbours.get(p).get(1); //O(1)
-		Point2D nextNextP = neighbours.get(nextP).get(1);
-	    double mx = (p.getX() + nextP.getX()) / 2.0;
-	    double my = (p.getY() + nextP.getY()) / 2.0;
-	    double slope = (nextP.getY()-p.getY())/(nextP.getX()-p.getX());
-	    double invSlope = -1/slope;
-	    //y-my = invSlope*(x-mx)
-	    //y = invSlope*(x-mx)+my;	    
-	    //find farthest point
-	    double maxRadius = getRadius(p, nextP, nextNextP);
-	 // define the distance to travel
-	    double d = maxRadius/1000.0;
-	    // calculate the change in x-coordinate
-	    double dx = Math.sqrt(d * d / (1 + invSlope * invSlope));
-	    if (invSlope < 0) 
-	    {
-	    	dx = -dx;
-	    }
-	    // calculate the change in y-coordinate
-	    double dy = invSlope * dx;
-
-	    // calculate the new coordinates of the point
-	    double x2 = mx + dx;
-	    double y2 = my + dy; 
-	    Point2D Up = new Point2D(x2, y2);
-	    
-//	    return Up;
-	    if(mode == 1)
-	    {
-	    	return getUp8(p);
-	    }else
-	    {
-	    	return getUp8(p);
-	    }
-	    
 	}
 	
 	public boolean isPointInCircle(Point2D point, Point2D center, double radius) 
@@ -508,7 +469,7 @@ public class DataBase
 		for (int i = 0; i < size; i++) 
 	    {
 	        Point2D curr = convexPoints.get(i); //O(1) 
-	        Point2D Ucurr = getUp8(curr);
+	        Point2D Ucurr = Up(curr);
 	        u_p.put(curr, Ucurr);
 	        K.add(Ucurr);
 	    }
@@ -528,7 +489,7 @@ public class DataBase
 		
 	}
 
-	public Point2D getUp2(Point2D p) 
+	public Point2D getUp(Point2D p) 
 	{	    	    
 	    return u_p.get(p);
 	}

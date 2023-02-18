@@ -1,7 +1,6 @@
 package Control;
 
 import java.net.URL;
-
 import Model.TextHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,14 +12,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class InfoButtonHandler  implements EventHandler<ActionEvent>
 {
 	private Stage stage;
-	private WebView userManualView;
 	private VBox layout;
 	private Scene scene;
 	private Label label;

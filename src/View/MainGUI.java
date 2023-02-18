@@ -81,8 +81,7 @@ public class MainGUI extends Application
     	exitButton.setOnAction(new ExitButtonHandler(stage));   	  	
     	infoButton.setOnAction(new InfoButtonHandler());   	
     }
-    
-    
+       
     private void createButtons()
 	{
     	changeLanguageButton = new Button();
@@ -134,8 +133,7 @@ public class MainGUI extends Application
        	borderPane.setBottom(infoButton);
        	borderPane.setAlignment(infoButton, Pos.CENTER_RIGHT);
 	}
-    
-    
+       
     private void createPaperTitle()
     {
     	paperTitle = new Label();

@@ -189,11 +189,9 @@ public class SmallestEnclosingCircleGraphGUI
 	{
 		JFreeChart chart = new JFreeChart(plot);
 		chart.setTitle(title);
-		//=======================================================
 		chart.getTitle().setPaint(Color.decode("#006699"));
 		chart.getTitle().setFont(new Font("Arial", Font.TRUETYPE_FONT, 24));
         chart.setBackgroundPaint(Color.decode("#f0f9f6"));
-      //=======================================================
 		chart.addSubtitle(textSubTitle);
 		chart.setElementHinting(true);
 		chart.setTextAntiAlias(true);
