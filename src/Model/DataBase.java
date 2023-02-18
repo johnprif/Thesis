@@ -435,16 +435,28 @@ public class DataBase
 		double c = (r.getX() - p.getX()) * (r.getX() - p.getX()) + (r.getY() - p.getY()) * (r.getY() - p.getY());
 		return Math.acos((a + b - c) / Math.sqrt(4 * a * b));
 	}
-	
-	private Point2D Up(Point2D p) 
+	//for nearest voronoi
+	private Point2D Up1(Point2D p) 
 	{
 		Point2D nextP = neighbours.get(p).get(1); //O(1)
 	    double mx = (p.getX() + nextP.getX()) / 2.0;
 	    double my = (p.getY() + nextP.getY()) / 2.0;
 	    double dx = nextP.getY() - p.getY();
 	    double dy = p.getX() - nextP.getX();
-	    double ux = mx + dx/5.0;
-	    double uy = my + dy/5.0;	    
+	    double ux = mx + dx;
+	    double uy = my + dy;	    
+	    return new Point2D(ux, uy);
+	}
+	//for farthest voronoi
+	private Point2D Up2(Point2D p) 
+	{
+		Point2D nextP = neighbours.get(p).get(1); //O(1)
+	    double mx = (p.getX() + nextP.getX()) / 2.0;
+	    double my = (p.getY() + nextP.getY()) / 2.0;
+	    double dx = nextP.getY() - p.getY();
+	    double dy = p.getX() - nextP.getX();
+	    double ux = mx - dx;
+	    double uy = my - dy;	    
 	    return new Point2D(ux, uy);
 	}
 	
@@ -466,13 +478,25 @@ public class DataBase
 		int size = getConvexPointsSize();
 		u_p = new HashMap<Point2D, Point2D>();
 		
-		for (int i = 0; i < size; i++) 
-	    {
-	        Point2D curr = convexPoints.get(i); //O(1) 
-	        Point2D Ucurr = Up(curr);
-	        u_p.put(curr, Ucurr);
-	        K.add(Ucurr);
-	    }
+		if(mode == 1) //nearest voronoi
+		{
+			for (int i = 0; i < size; i++) 
+		    {
+		        Point2D curr = convexPoints.get(i); //O(1) 
+		        Point2D Ucurr = Up1(curr);
+		        u_p.put(curr, Ucurr);
+		        K.add(Ucurr);
+		    }
+		}else //mode==2 farthest voronoi
+		{
+			for (int i = 0; i < size; i++) 
+		    {
+		        Point2D curr = convexPoints.get(i); //O(1) 
+		        Point2D Ucurr = Up2(curr);
+		        u_p.put(curr, Ucurr);
+		        K.add(Ucurr);
+		    }
+		}	
 	}
 	
 	public void addCtoK(Point2D c)
@@ -485,8 +509,7 @@ public class DataBase
 		ArrayList<Point2D> inner = new ArrayList<Point2D>();
 		inner.add(c);
 		inner.add(up);
-		E.add(inner);
-		
+		E.add(inner);	
 	}
 
 	public Point2D getUp(Point2D p) 
