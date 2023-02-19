@@ -9,7 +9,6 @@ package Model;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.TreeMap;
 
 import javafx.geometry.Point2D;

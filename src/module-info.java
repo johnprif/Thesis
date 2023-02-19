@@ -24,7 +24,6 @@ module Java_Paper
 	requires jdk.internal.le;
 	requires javafx.web;
 	requires org.apache.logging.log4j;
-//	requires com.healthmarketscience.jackcess;
 	
 	opens View to javafx.graphics, javafx.fxml;
 }
