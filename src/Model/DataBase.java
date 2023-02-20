@@ -443,7 +443,7 @@ public class DataBase
 	    double dx = nextP.getY() - p.getY();
 	    double dy = p.getX() - nextP.getX();
 	    double ux = mx + dx;
-	    double uy = my + dy;	    
+	    double uy = my + dy;	
 	    return new Point2D(ux, uy);
 	}
 	//for farthest voronoi
