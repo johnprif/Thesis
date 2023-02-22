@@ -446,19 +446,6 @@ public class DataBase
 	    double uy = my + dy;	
 	    return new Point2D(ux, uy);
 	}
-	//for farthest voronoi
-//	private Point2D Up2(Point2D p) 
-//	{
-//		Point2D q = neighbours.get(p).get(1); //O(1)
-//		double midx = (p.getX() + q.getX()) / 2;
-//        double midy = (p.getY() + q.getY()) / 2;
-//        double dx = q.getX() - p.getX();
-//        double dy = q.getY() - p.getY();
-//        double slope = -dx / dy;
-//        double yInt = midy - slope * midx;
-//        double xInt = -yInt / slope;
-//        return new Point2D(xInt, yInt);
-//	}
 	
 	public Point2D Up2(Point2D p) 
 	{
