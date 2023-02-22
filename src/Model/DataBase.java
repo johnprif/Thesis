@@ -447,16 +447,34 @@ public class DataBase
 	    return new Point2D(ux, uy);
 	}
 	//for farthest voronoi
-	private Point2D Up2(Point2D p) 
+//	private Point2D Up2(Point2D p) 
+//	{
+//		Point2D q = neighbours.get(p).get(1); //O(1)
+//		double midx = (p.getX() + q.getX()) / 2;
+//        double midy = (p.getY() + q.getY()) / 2;
+//        double dx = q.getX() - p.getX();
+//        double dy = q.getY() - p.getY();
+//        double slope = -dx / dy;
+//        double yInt = midy - slope * midx;
+//        double xInt = -yInt / slope;
+//        return new Point2D(xInt, yInt);
+//	}
+	
+	public Point2D Up2(Point2D p) 
 	{
-		Point2D nextP = neighbours.get(p).get(1); //O(1)
-	    double mx = (p.getX() + nextP.getX()) / 2.0;
-	    double my = (p.getY() + nextP.getY()) / 2.0;
-	    double dx = nextP.getY() - p.getY();
-	    double dy = p.getX() - nextP.getX();
-	    double ux = mx - dx;
-	    double uy = my - dy;	    
-	    return new Point2D(ux, uy);
+		Point2D q = neighbours.get(p).get(1); //O(1)
+		Point2D r = neighbours.get(p).get(0);
+	    // Calculate the Voronoi center
+	    Point2D center = getCenter(r, p, q);
+	    
+	    // Calculate the point on the line pq closest to the Voronoi center
+	    double t = ((center.getX() - p.getX()) * (q.getX() - p.getX()) + (center.getY() - p.getY()) * (q.getY() - p.getY())) / 
+	               ((q.getX() - p.getX()) * (q.getX() - p.getX()) + (q.getY() - p.getY()) * (q.getY() - p.getY()));
+	    double x = p.getX() + t * (q.getX() - p.getX());
+	    double y = p.getY() + t * (q.getY() - p.getY());
+	    
+	    // Create and return the closest point on the line
+	    return new Point2D(x, y);
 	}
 	
 	public boolean isPointInCircle(Point2D point, Point2D center, double radius) 
