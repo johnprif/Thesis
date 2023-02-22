@@ -7,6 +7,7 @@
 package Model;
 
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeMap;
@@ -434,6 +435,7 @@ public class DataBase
 		double c = (r.getX() - p.getX()) * (r.getX() - p.getX()) + (r.getY() - p.getY()) * (r.getY() - p.getY());
 		return Math.acos((a + b - c) / Math.sqrt(4 * a * b));
 	}
+	
 	//for nearest voronoi
 	private Point2D Up1(Point2D p) 
 	{
@@ -447,29 +449,20 @@ public class DataBase
 	    return new Point2D(ux, uy);
 	}
 	
-	public Point2D Up2(Point2D p) 
+	//for farthest voronoi
+	private Point2D Up2(Point2D p) 
 	{
-		Point2D q = neighbours.get(p).get(1); //O(1)
-		Point2D r = neighbours.get(p).get(0);
-	    // Calculate the Voronoi center
-	    Point2D center = getCenter(r, p, q);
-	    
-	    // Calculate the point on the line pq closest to the Voronoi center
-	    double t = ((center.getX() - p.getX()) * (q.getX() - p.getX()) + (center.getY() - p.getY()) * (q.getY() - p.getY())) / 
-	               ((q.getX() - p.getX()) * (q.getX() - p.getX()) + (q.getY() - p.getY()) * (q.getY() - p.getY()));
-	    double x = p.getX() + t * (q.getX() - p.getX());
-	    double y = p.getY() + t * (q.getY() - p.getY());
-	    
-	    // Create and return the closest point on the line
-	    return new Point2D(x, y);
+		Point2D nextP = neighbours.get(p).get(1); //O(1)
+		Point2D nextNextP = neighbours.get(nextP).get(1); //O(1)
+	    double mx = (p.getX() + nextP.getX()) / 2.0;
+	    double my = (p.getY() + nextP.getY()) / 2.0;
+	    double dx = nextP.getY() - p.getY();
+	    double dy = p.getX() - nextP.getX();
+	    double radius = getRadius(p, nextP, nextNextP);
+	    double ux = mx - radius*dx;
+	    double uy = my - radius*dy;	
+	    return new Point2D(ux, uy);
 	}
-	
-	public boolean isPointInCircle(Point2D point, Point2D center, double radius) 
-	{
-        double distance = point.distance(center);
-        return distance < radius;
-    }
-
 	
 	public void updateUp(Point2D p, Point2D c)
 	{
