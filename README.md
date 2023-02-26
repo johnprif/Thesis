@@ -10,10 +10,11 @@
 - and more...
 
 #### Below you can see some images from the project
-![Screenshot (125)](https://user-images.githubusercontent.com/56134761/219865560-c5eb9329-f4e6-4a3d-82b2-55407980654c.png)
-![Screenshot (127)](https://user-images.githubusercontent.com/56134761/219865566-0b100d8a-f80e-44d4-abbb-41047c25f8ca.png)
-![Screenshot (128)](https://user-images.githubusercontent.com/56134761/219865571-9f01aa79-7132-4a53-8749-a28621adef87.png)
-![Screenshot (129)](https://user-images.githubusercontent.com/56134761/219865572-43cb6d6e-bb55-420c-8939-1d3a3c27280a.png)
-![Screenshot (122)](https://user-images.githubusercontent.com/56134761/219865573-d26d25d3-5f3c-4b90-88d3-b6e153f1f18f.png)
-![Screenshot (123)](https://user-images.githubusercontent.com/56134761/219865574-4a26ad8d-88c6-4907-84d3-37cdeb680d1c.png)
-![Screenshot (124)](https://user-images.githubusercontent.com/56134761/219865576-8777dedb-02d6-441d-97d3-3477a5aff18d.png)
+![Screenshot 2023-02-26 225624](https://user-images.githubusercontent.com/56134761/221436888-c1ca3c69-589b-4817-860d-1da07ae3ca65.png)
+![Screenshot 2023-02-26 225624](https://user-images.githubusercontent.com/56134761/221436998-ef1432fe-b9a4-4e03-9c60-298139287133.png)
+![Screenshot 2023-02-26 230104](https://user-images.githubusercontent.com/56134761/221437043-d33ff6e5-cf1c-4bfa-a99c-feee1a283509.png)
+![Screenshot 2023-02-26 230104](https://user-images.githubusercontent.com/56134761/221437090-db3fe290-aa91-4bdb-af6f-31db9c4a410a.png)
+![Screenshot 2023-02-26 230104](https://user-images.githubusercontent.com/56134761/221437223-550a3a34-e13a-4e4e-a43e-22b36880b486.png)
+![Screenshot 2023-02-26 230104](https://user-images.githubusercontent.com/56134761/221437265-6b697043-8404-46b6-b332-1f937c332d25.png)
+![Screenshot 2023-02-26 230104](https://user-images.githubusercontent.com/56134761/221437301-65a3ae36-84b1-47b8-afb0-22edd18d1bb9.png)
+
