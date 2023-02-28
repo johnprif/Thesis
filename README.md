@@ -3,7 +3,7 @@
 
 #### More specifically, it uses the following
 - Eclipse IDE 2022-12
-- back-end: Java 17.0.5
+- back-end: Java 17.0.6
 - front-end: JavaFX 19
 - CSV parsing: opencsv-5.7.1
 - Excel parsing: poi-5.2.3
