@@ -6,7 +6,7 @@ public class TextHandler
 	
 	//-----------parallel---------------
 	private String changeLanguageButtonText = "EN";
-	private String paperTitleText = "A SIMPLE ALGORITHM FOR COMPUTING THE SMALLEST ENCLOSING CIRCLE\n\t";
+	private String paperTitleText = "Implementation of an Algorithm for the Calculation of the Smallest Enclosing Circle and the Voronoi Diagram";
 	private String loadFileButtonText = "Load Points From File";
 	private String putPointsButtonText = "Create Points";
 	private String exitButtonText = "Exit";
@@ -56,7 +56,7 @@ public class TextHandler
     	if(language.equals("EN"))
     	{
     		//-----MainWidnow--------------   		
-    		paperTitleText = "A SIMPLE ALGORITHM FOR COMPUTING THE SMALLEST ENCLOSING CIRCLE\n\t";
+    		paperTitleText = "Implementation of an Algorithm for the Calculation of the Smallest Enclosing Circle and the Voronoi Diagram";
     		loadFileButtonText = "Load Points From File";
     		putPointsButtonText = "Create Points";
     		exitButtonText = "Exit";  		
@@ -89,7 +89,7 @@ public class TextHandler
     	}else //GR
     	{
     		//-----MainWidnow--------------
-    		paperTitleText = "ΕΝΑΣ ΑΠΛΟΣ ΑΛΓΟΡΙΘΜΟΣ ΓΙΑ ΤΟΝ ΥΠΟΛΟΓΙΣΜΟ ΤΟΥ ΕΛΑΧΙΣΤΟΥ ΠΕΡΙΚΛΕΙΟΝΤΑ ΚΥΚΛΟΥ";
+    		paperTitleText = "Υλοποίηση Αλγορίθμου για τον Υπολογισμό του Ελάχιστου Περικλείοντος Κύκλου και του Διαγράμματος Voronoi\n\t";
     		loadFileButtonText = "Φόρτωση Σημείων από Αρχείο";
     		putPointsButtonText = "Δημιουργία σημείων";
     		exitButtonText = "Έξοδος";
