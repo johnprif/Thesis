@@ -20,7 +20,7 @@ public class TextHandler
 	
 	private String infoWindowTitle = "Information + Instructions for use";
 	private String infoContent = "ABOUT\n"
-			+ "This thesis was developed in the context of the paper by Sven Skyum 1991 entitled \"A SIMPLE ALGORITHM FOR COMPUTING THE SMALLEST ENCLOSING CIRCLE\" and concerns the implementation and visualization of an efficient complexity algorithm O(nlogn) and computes the least pericycle and with small changes and maintaining the same complexity is able to compute both the Voronoi diagrams of the nearest and the farthest neighbor\r\n\n"
+			+ "This thesis was developed in the context of the paper by Sven Skyum 1991 entitled \"Implementation of an Algorithm for the Calculation of the Smallest Enclosing Circle and the Voronoi Diagram\" and concerns the implementation and visualization of an efficient complexity algorithm O(nlogn) and computes the least pericycle and with small changes and maintaining the same complexity is able to compute both the Voronoi diagrams of the nearest and the farthest neighbor\r\n\n"
 			+ "IMPLEMENTATION INSTRUCTIONS:\r\n"
 			+ "1) You can change the language from Greek to English and vice versa in real time by pressing the button on the top right with the corresponding mark\r\n"
 			+ "2) By pressing the 'Exit' button the application terminates\r\n"
@@ -72,7 +72,7 @@ public class TextHandler
     		//Info button
     		infoWindowTitle = "Information + Instructions for use";
     		infoContent = "ABOUT\n"
-    				+ "This thesis was developed in the context of the paper by Sven Skyum 1991 entitled \"A SIMPLE ALGORITHM FOR COMPUTING THE SMALLEST ENCLOSING CIRCLE\" and concerns the implementation and visualization of an efficient complexity algorithm O(nlogn) and computes the least pericycle and with small changes and maintaining the same complexity is able to compute both the Voronoi diagrams of the nearest and the farthest neighbor\r\n\n"
+    				+ "This thesis was developed in the context of the paper by Sven Skyum 1991 entitled \"Implementation of an Algorithm for the Calculation of the Smallest Enclosing Circle and the Voronoi Diagram\" and concerns the implementation and visualization of an efficient complexity algorithm O(nlogn) and computes the least pericycle and with small changes and maintaining the same complexity is able to compute both the Voronoi diagrams of the nearest and the farthest neighbor\r\n\n"
     				+ "IMPLEMENTATION INSTRUCTIONS:\r\n"
     				+ "1) You can change the language from Greek to English and vice versa in real time by pressing the button on the top right with the corresponding mark\r\n"
     				+ "2) By pressing the 'Exit' button the application terminates\r\n"
@@ -105,7 +105,7 @@ public class TextHandler
     		//Info button  	
     		infoWindowTitle = "Πληροφορίες + Οδηγίες χρήσης";
     		infoContent = "ΣΧΕΤΙΚΑ\n"
-    				+ "Αυτή η διπλωματική εργασία αναπτύχθηκε στα πλαίσια του Paper από τον Sven Skyum 1991 με τίτλο \"A SIMPLE ALGORITHM FOR COMPUTING THE SMALLEST ENCLOSING CIRCLE\" και αφορά την υλοποίηση και οπτικοποίηση ενός αποδοτικού αλγορίθμου πολυπλοκότητας O(nlogn) και υπολογίζει τον ελάχιστο περικλείοντα κύκλο και με μικρές αλλαγές και διατηρώντας την ίδια πολυπλοκότητα είναι ικανός να υπολογίσει και τα διαγράμματα Voronoi του πλησιέστερου και του πιο απομακρυσμένου γείτονα\r\n\n"
+    				+ "Αυτή η διπλωματική εργασία αναπτύχθηκε στα πλαίσια του Paper από τον Sven Skyum 1991 με τίτλο \"Implementation of an Algorithm for the Calculation of the Smallest Enclosing Circle and the Voronoi Diagram\" και αφορά την υλοποίηση και οπτικοποίηση ενός αποδοτικού αλγορίθμου πολυπλοκότητας O(nlogn) και υπολογίζει τον ελάχιστο περικλείοντα κύκλο και με μικρές αλλαγές και διατηρώντας την ίδια πολυπλοκότητα είναι ικανός να υπολογίσει και τα διαγράμματα Voronoi του πλησιέστερου και του πιο απομακρυσμένου γείτονα\r\n\n"
     				+ "ΟΔΗΓΙΕΣ ΕΦΑΡΜΟΓΗΣ:\r\n"
     				+ "1) Μπορείτε να αλλάξετε την γλώσσα από ελληνικά σε αγγλικά και αντίστροφα σε πραγματικό χρόνο πατώντας το κουμπί πάνω δεξιά με την αντίστοιχη σήμανση\r\n"
     				+ "2) Πατώντας το κουμπί 'Έξοδος' η εφαρμογή τερματίζει\r\n"
