@@ -440,14 +440,12 @@ public class DataBase
 	private Point2D Up1(Point2D p) 
 	{
 		Point2D nextP = neighbours.get(p).get(1); //O(1)
-		Point2D nextNextP = neighbours.get(nextP).get(1); //O(1)
 	    double mx = (p.getX() + nextP.getX()) / 2.0;
 	    double my = (p.getY() + nextP.getY()) / 2.0;
 	    double dx = nextP.getY() - p.getY();
 	    double dy = p.getX() - nextP.getX();
-	    double radius = getRadius(p, nextP, nextNextP);
-	    double ux = mx + radius*dx;
-	    double uy = my + radius*dy;	
+	    double ux = mx + dx;
+	    double uy = my + dy;	
 	    return new Point2D(ux, uy);
 	}
 	
