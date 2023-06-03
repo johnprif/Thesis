@@ -17,15 +17,18 @@
 .button:hover {
     -fx-background-color: #2980b9; /* Light blue color */
     -fx-text-fill: black; /* Black text color */
+    -fx-cursor: hand;
 }
 .button:active {
     -fx-background-color: #2980b9; /* Light blue color */
     -fx-text-fill: black; /* Black text color */
+    -fx-cursor: hand;
 }
 
 .button:pressed {
     -fx-background-color: navy; /* Light blue color */
     -fx-text-fill: darkgrey; /* Black text color */
+    -fx-cursor: closed-hand;
 }
 
 #exitButton {
@@ -41,18 +44,21 @@
 	-fx-text-fill: Orange; 
 	-fx-background-color: red; 
 	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+	-fx-cursor: hand;
 }
 
 #exitButton:active {
 	-fx-text-fill: yellow; 
 	-fx-background-color: red; 
 	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+	-fx-cursor: hand;
 }
 
 #exitButton:pressed {
 	-fx-text-fill: yellow; 
 	-fx-background-color: darkred; 
 	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+	-fx-cursor: closed-hand;
 }
 
 .label {	
@@ -68,10 +74,12 @@
 
 .label:hover {
     -fx-text-fill: #ffff00; /* yellow */
+    -fx-cursor: hand;
 }
 
 .label:pressed {
 	-fx-text-fill: #ffd700; /* gold */
+	-fx-cursor: closed-hand;
 }
 
 
@@ -88,10 +96,12 @@
 
 #infoLabel:hover {
     -fx-text-fill: #ffff00; /* yellow */
+    -fx-cursor: hand;
 }
 
 #infoLabel:pressed {
 	-fx-text-fill: #ffd700; /* gold */
+	-fx-cursor: closed-hand;
 }
 
 #borderPane {

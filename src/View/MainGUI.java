@@ -96,12 +96,6 @@ public class MainGUI extends Application
     	exitButton.setId("exitButton");
     	infoButton.setId("infoButton");
     	
-    	changeLanguageButton.setCursor(Cursor.HAND);
-    	loadFileButton.setCursor(Cursor.HAND);
-    	putPointsButton.setCursor(Cursor.HAND);
-    	exitButton.setCursor(Cursor.HAND);
-    	infoButton.setCursor(Cursor.HAND);
-    	
     	loadFileButton.setMaxWidth(Double.MAX_VALUE);
     	putPointsButton.setMaxWidth(Double.MAX_VALUE);		    
 	    exitButton.setMaxWidth(Double.MAX_VALUE);
@@ -137,7 +131,6 @@ public class MainGUI extends Application
     private void createPaperTitle()
     {
     	paperTitle = new Label();
-    	paperTitle.setCursor(Cursor.HAND);
     	paperTitle.setOnMouseClicked(new PaperTitleHandler());
     }
     
