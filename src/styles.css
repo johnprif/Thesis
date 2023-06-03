@@ -58,7 +58,7 @@
 .label {	
 	-fx-text-fill: white; 
 	-fx-text-alignment: center;
-	-fx-font-family: 'Lucida Sans Typewriter'; 
+	-fx-font-family: 'Lucida Sans Unicode'; 
 	-fx-font-size: 17; 
 	-fx-font-weight: bold;
 	-fx-underline: false;
@@ -78,7 +78,7 @@
 #infoLabel {	
 	-fx-text-fill: white; 
 	-fx-text-alignment: left;
-	-fx-font-family: 'Lucida Sans Typewriter'; 
+	-fx-font-family: 'Lucida Sans Unicode'; 
 	-fx-font-size: 12; 
 	-fx-font-weight: bold;
 	-fx-underline: false;

@@ -19,7 +19,7 @@ import javafx.geometry.Point2D;
 
 public class GrahamScan 
 {
-	private static Point2D start;
+	private Point2D start;
 	
 	private ArrayList<Point2D> allPoints;
 	private ArrayList<Point2D> convexHullPoints;
@@ -39,7 +39,7 @@ public class GrahamScan
 	}
 	
 	//----------------------------------O(nlogn)--------------------------------------
-	private static List<Point2D> computeGrahamScan(List<Point2D> points) {
+	private List<Point2D> computeGrahamScan(List<Point2D> points) {
         // Find the point with the lowest y-coordinate (or the leftmost point in case of a tie)
         start = points.get(0);
 
@@ -85,7 +85,7 @@ public class GrahamScan
         return hull;
     }
 
-    private static double crossProduct(Point2D p, Point2D q, Point2D r) {
+    private double crossProduct(Point2D p, Point2D q, Point2D r) {
         double y1 = q.getY() - p.getY();
         double y2 = r.getY() - p.getY();
         double x1 = q.getX() - p.getX();
