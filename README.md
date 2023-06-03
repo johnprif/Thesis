@@ -3,17 +3,17 @@
 
 #### More specifically, it uses the following
 - Eclipse IDE 2022-12
-- back-end: Java 17.0.6
+- back-end: Java 17.0.7
 - front-end: JavaFX 19
 - CSV parsing: opencsv-5.7.1
 - Excel parsing: poi-5.2.3
 - and more...
 
 #### Below you can see some images from the project
-![Screenshot 2023-02-26 225624](https://user-images.githubusercontent.com/56134761/221436888-c1ca3c69-589b-4817-860d-1da07ae3ca65.png)
-![Screenshot 2023-02-26 225624](https://user-images.githubusercontent.com/56134761/221436998-ef1432fe-b9a4-4e03-9c60-298139287133.png)
-![Screenshot 2023-02-26 230104](https://user-images.githubusercontent.com/56134761/221437043-d33ff6e5-cf1c-4bfa-a99c-feee1a283509.png)
-![Screenshot 2023-02-26 230104](https://user-images.githubusercontent.com/56134761/221437090-db3fe290-aa91-4bdb-af6f-31db9c4a410a.png)
+![Screenshot (75)](https://github.com/johnprif/Thesis/assets/56134761/9745fa47-aef0-4f40-932c-284ca11623d3)
+![Screenshot (76)](https://github.com/johnprif/Thesis/assets/56134761/30259e62-f042-4a29-af1d-c07d94569564)
+![Screenshot (78)](https://github.com/johnprif/Thesis/assets/56134761/fbeacc07-81e3-4036-b431-3d5e503532e2)
+![Screenshot (77)](https://github.com/johnprif/Thesis/assets/56134761/8ac7f756-f24e-4f2d-a3f8-2e7d36967b9d)
 ![Screenshot 2023-02-26 230104](https://user-images.githubusercontent.com/56134761/221437223-550a3a34-e13a-4e4e-a43e-22b36880b486.png)
 ![Screenshot 2023-02-26 230104](https://user-images.githubusercontent.com/56134761/221437265-6b697043-8404-46b6-b332-1f937c332d25.png)
 ![Screenshot 2023-02-26 230104](https://user-images.githubusercontent.com/56134761/221437301-65a3ae36-84b1-47b8-afb0-22edd18d1bb9.png)
