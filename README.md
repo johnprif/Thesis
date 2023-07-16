@@ -1,5 +1,5 @@
 # Implementation of an Algorithm for the Calculation of the Smallest Enclosing Circle and the Voronoi Diagram By Sven Skyum 1991
-#### It implements the algorithms included in the publication with the above title efficiently (O(nlogn)) using the Java programming language for the back-end and java-fx for the front-end as well as some additional libraries for reading various types of files. Moreover, we used efficient structures such as red-black balanced binary search tree, HashMap etc. to achieve O(nlogn) complexity in all 4 algorithms implemented (Graham Scan, Smallest Enclosing Circle, Nearest Neighbor Voronoi Diagram, Farthest Neighbor Voronoi Diagram).
+#### Implementation of an Algorithm for the Calculation of the Smallest Enclosing Circle and the Voronoi Diagram in O(nlogn) complexity using efficient structures such as Red-Black balanced binary search tree, HashMap etc. The application has been developed in Java, JavaFX, css primarily following MVC and Singleton pattern. It offers a beautiful and easy to use graphical interface understandable by any user. It is able to run on any computer with Windows.
 
 #### More specifically, it uses the following
 - Eclipse IDE 2022-12
