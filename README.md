@@ -2,6 +2,8 @@
 
 > Implementation of an O(n log n) algorithm for the Smallest Enclosing Circle and the Voronoi Diagram, using efficient structures (Red‑Black tree, HashMap) with a JavaFX GUI.
 
+> Sven Skyum, “Implementation of an Algorithm for the Calculation of the Smallest Enclosing Circle and the Voronoi Diagram,” 1991.
+
 [View Live Demo (Windows executable)](https://github.com/johnprif/Thesis/releases/latest) • [Source ›](https://github.com/johnprif/Thesis)  
 
 ## 📋 Table of Contents
@@ -93,7 +95,5 @@ This project is licensed under the **MIT License**, See [LICENSE](https://github
 - GitHub: [johnprif](https://github.com/johnprif)
 - Email: [giannispriftis37@gmail.com](mailto:giannispriftis37@gmail.com)
 - Phone: [+306940020178](tel:+306940020178)
-
-> Sven Skyum, “Implementation of an Algorithm for the Calculation of the Smallest Enclosing Circle and the Voronoi Diagram,” 1991.
 
 
