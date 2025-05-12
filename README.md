@@ -4,8 +4,7 @@
 
 > Sven Skyum, “Implementation of an Algorithm for the Calculation of the Smallest Enclosing Circle and the Voronoi Diagram,” 1991.
 
-[View Live Demo (Windows executable)](https://github.com/johnprif/Thesis/releases/latest) • [Source ›](https://github.com/johnprif/Thesis)  
-
+[Download Latest Release (Windows executable)](https://github.com/johnprif/Thesis/releases/latest)
 ## 📋 Table of Contents
 
 1. [Overview](#overview)  
