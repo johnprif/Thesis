@@ -92,7 +92,7 @@ This project is licensed under the **MIT License**, See [LICENSE](https://github
 
 ## Contact
 - GitHub: [johnprif](https://github.com/johnprif)
-- Email: [giannispriftis37@gmail.com](mailto:giannispriftis37@gmail.com)
+- Email: [joanisprifti@gmail.com](mailto:joanisprifti@gmail.com)
 - Phone: [+306940020178](tel:+306940020178)
 
 
