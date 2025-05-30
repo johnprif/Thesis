@@ -91,7 +91,7 @@ Contributes  welcome! Please:
 This project is licensed under the **MIT License**, See [LICENSE](https://github.com/johnprif/Thesis/blob/main/LICENSE) for details.
 
 ## Contact
-- GitHub: [johnprif](https://github.com/johnprif)
+- GitHub: [joanisprifti](https://github.com/joanisprifti)
 - Email: [joanisprifti@gmail.com](mailto:joanisprifti@gmail.com)
 - Phone: [+306940020178](tel:+306940020178)
 
